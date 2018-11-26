@@ -18,10 +18,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
-<<<<<<< HEAD
-=======
     "vue-drag-drop": "^1.1.4",
->>>>>>> 2f4894363dbd77c660085f40e88461b09bc02a83
     "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
