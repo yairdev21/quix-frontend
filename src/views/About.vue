@@ -1,6 +1,7 @@
 <script>
 
 import Store from '@/store.js'
+import sectionPreview from '@/components/section-preview.cmp.vue'
 
 export default {
   data () {
@@ -8,6 +9,11 @@ export default {
         sections: [{text:'X'}, {title:''},{sm:6}]
     }
   },  
+  computed:{
+    amount() {
+       
+    }
+  },
   mounted () {
     this.$dragging.$on('dragged', ({ value }) => {
       console.log(value.item)
@@ -20,11 +26,15 @@ export default {
   created(){
   let data = this.$store.dispatch({type:'getSections'})
   .then(res=> this.sections=res)
+  },
+  components:{
+    sectionPreview
   }
 }
 </script>
 
 <template>
+
   <div class="section-list">
     <div
       class="section-items"
@@ -32,20 +42,10 @@ export default {
       v-dragging="{ item: section, list: sections, group: 'section'}"
       :key="section.text"
     >
-      <section class="hero-article section-item">
-        <h1 class="text-center">{{section.title}}</h1>
-        <b-row>
-          <b-col :v-for="section in section.amount" cols="12" :sm="section.sm">
-            <div class="left-side" :style="{}">
-              <h2 class="text-center">{{section.title}}</h2>
-              <div class="article">
-                {{section.text}}
-                {{section.text}}
-              </div>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
+      <section-preview :section="section">
+
+      </section-preview>
+
     </div>
   </div>
 </template>
