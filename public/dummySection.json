@@ -1,0 +1,43 @@
+    [
+            {
+                "sectionType": "threeCols",
+                "sectionId": "1",
+                "title": "Title",
+                "sm": "4",
+                "cols": [
+                    {
+                        "id": "1",
+                        "type": "text",
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id": "2",
+                        "type": "text",
+                        "text": "Gorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id": "3",
+                        "type": "text",
+                        "text": "Dorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                ]
+            },
+            {
+                "sectionType": "twoCols",
+                "sm": "6",
+                "sectionId": "2",
+                "title": "Title",
+                "cols": [
+                    {
+                        "id": "1",
+                        "type": "text",
+                        "text": "Lpsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id": "2",
+                        "type": "text",
+                        "text": "Gpsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                ]
+            }
+        ]
