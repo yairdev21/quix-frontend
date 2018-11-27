@@ -42,7 +42,4 @@
   *, *::before, *::after {
     box-sizing: border-box;
   }
-  #app {
-    padding: 3rem;
-  }
 </style>
