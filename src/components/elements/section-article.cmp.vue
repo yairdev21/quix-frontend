@@ -1,6 +1,6 @@
 <template>
     <section class="hero-article">
-        <h1 class="text-center"> Hello this is yout title</h1>
+        <h1 class="text-center"> Hello this is your title</h1>
         <b-row> 
             <b-col cols="12" sm="6">
                 <div class="left-side" :style={}>

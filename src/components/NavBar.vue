@@ -9,12 +9,12 @@
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
               <p class="card-text">
-                <drag class="drag" :transfer-data="{ comp1 }">
+                <drag class="drag" transfer-data="twoCols">
                   <img src="@/assets/img/section1.png">
                 </drag>
               </p>
               <p class="card-text">
-                <drag class="drag">
+                <drag class="drag" transfer-data="threeCols">
                   <img src="@/assets/img/section2.png">
                 </drag>
               </p>
@@ -56,6 +56,24 @@
   </section>
 </template>
 
+
+
+<script>
+export default {
+  name: 'Navbar',
+   data: () => ({
+     draggable: '',
+     comp1: 'hello',
+     toShow: true
+  }),
+  methods:{
+    goHome() {
+      this.$router.push('/')
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .sidebar{
 position: fixed;
@@ -92,23 +110,3 @@ main{
   opacity: 0;
 }
 </style>
-
-<script>
-export default {
-  name: 'Navbar',
-   data: () => ({
-     draggable: '',
-     comp1: 'hello',
-     toShow: false
-  }),
-  methods:{
-    handleDrop(){
-      this.draggable = this.comp1
-    },
-    goHome() {
-      this.$router.push('/')
-    }
-  }
-}
-</script>
-

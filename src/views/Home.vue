@@ -2,14 +2,14 @@
   <div class="home">
     <div id="nav">
       <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
+      <router-link to="/edit">Build New Site</router-link>|
     </div>
     <section class="main flex align-center flex-column justify-center">
       <div class="container flex align-center flex-column justify-center">
 
         <h1>Welcome to the #23 best Website Builder!</h1>
         <button class="build-now">
-          <router-link to="/about">Build NOW</router-link>
+          <router-link to="/edit">Build NOW</router-link>
         </button>
       </div>
     </section>
