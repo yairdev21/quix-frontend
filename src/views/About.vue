@@ -5,7 +5,7 @@ import Store from '@/store.js'
 export default {
   data () {
     return {
-        sections: []
+        sections: [{text:''}]
     }
   },  
   mounted () {
@@ -18,8 +18,8 @@ export default {
     })
   },
   created(){
-    this.$store.dispatch('getSections')
-    .then(res=> this.sections=res)
+    // this.$store.dispatch('getSections')
+    // .then(res=> this.sections=res)
   }
 }
 </script>
@@ -29,11 +29,10 @@ export default {
     <div
       class="section-items"
       v-for="section in sections"
-      v-dragging="{ item: section, list: sections, group: 'section',}"
+      v-dragging="{ item: section, list: sections, group: 'section'}"
       :key="section.text"
     > 
-      <div>
-        YOYO
+      <div class="section-item">
         <h3>{{section.title}}</h3>
         <p>{{section.text}}</p>
       </div>
