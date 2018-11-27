@@ -54,12 +54,16 @@
         <main>{{draggable}}</main>
       </drop>
         <div>
-       <b-button class="menu-icon" @click="toShow=!toShow">☰</b-button>
+       <b-button class="side-bar-btn menu-icon" @click="toShow=!toShow">☰</b-button>
       </div>
 </section>
 </template>
 
 <style lang="scss" scoped>
+.side-bar-btn{
+
+}
+
 section{
 display: flex;
 }
@@ -95,3 +99,4 @@ export default {
   }
 }
 </script>
+
