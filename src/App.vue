@@ -15,7 +15,6 @@
 </script>
 
 <style lang="scss">
-<<<<<<< HEAD
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +32,6 @@
     }
   }
 }
-=======
   html, body {
     padding: 0;
     margin: 0;
@@ -50,5 +48,4 @@
   #app {
     padding: 3rem;
   }
->>>>>>> fdf357cef6d0adf6e2f39ec352a88e6afdf92646
 </style>

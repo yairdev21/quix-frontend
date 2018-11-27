@@ -1,29 +1,3 @@
-<script>
-
-import Store from '@/store.js'
-
-export default {
-  data () {
-    return {
-        sections: [{text:'X'}, {title:''},{sm:6}]
-    }
-  },  
-  mounted () {
-    this.$dragging.$on('dragged', ({ value }) => {
-      console.log(value.item)
-      console.log(value.list)
-    })
-    this.$dragging.$on('dragend', () => {
-        
-    })
-  },
-  created(){
-  let data = this.$store.dispatch({type:'getSections'})
-  .then(res=> this.sections=res)
-  }
-}
-</script>
-
 <template>
   <div class="section-list">
     <div
@@ -58,4 +32,32 @@ export default {
     </div>
   </div>
 </template>
+
+<script>
+
+import Store from '@/store.js'
+
+export default {
+  data () {
+    return {
+        sections: [{text:'X'}, {title:''},{sm:6}]
+    }
+  },  
+  mounted () {
+    this.$dragging.$on('dragged', ({ value }) => {
+      console.log(value.item)
+      console.log(value.list)
+    })
+    this.$dragging.$on('dragend', () => {
+        
+    })
+  },
+  created(){
+  let data = this.$store.dispatch({type:'getSections'})
+  .then(res=> this.sections=res)
+  }
+}
+</script>
+
+
 
