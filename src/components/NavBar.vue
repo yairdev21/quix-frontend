@@ -1,72 +1,95 @@
 <template>
-  <div class="page-container">
-    <md-app md-waterfall md-mode="fixed">
-      <md-app-toolbar class="md-primary">
-        <!-- <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button> -->
-        <span class="md-title">My Title</span>
-      </md-app-toolbar>
-
-      <md-app-drawer  md-permanent="full">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar>
-
-        <md-list>
-            <drag class="drag">
-
-          <md-list-item>
-            <i class="fas fa-font"></i>
-          </md-list-item>
+<section>
+   
+      
+   <transition name="slide-fade">
+   <div v-if="toShow" class="sidebar" role="tablist">
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
+      </b-card-header>
+      <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+        <b-card-body>
+          <p class="card-text">
+            <drag class="drag" :transfer-data="{ comp1 }">
+              <img src="@/assets/img/section1.png">
             </drag>
-
-          <md-list-item>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
-      </md-app-drawer>
-
-      <md-app-content>
-          <drop class="drop" @drop="handleDrop()">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error quibusdam, non molestias et! Earum magnam, similique, quo recusandae placeat dicta asperiores modi sint ea repudiandae maxime? Quae non explicabo, neque.</p>
-          </drop>
-       
-      </md-app-content>
-    </md-app>
+          </p>
+          <p class="card-text">
+            <drag class="drag">
+                 <img src="@/assets/img/section2.png">
+            </drag>        
+          </p>
+        </b-card-body>
+      </b-collapse>
+    </b-card>
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
+      </b-card-header>
+      <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
+        <b-card-body>
+          <p class="card-text">
+             text
+          </p>
+        </b-card-body>
+      </b-collapse>
+    </b-card>
+    <b-card no-body class="mb-1">
+      <b-card-header header-tag="header" class="p-1" role="tab">
+        <b-btn block href="#" v-b-toggle.accordion3 variant="info">Accordion 3</b-btn>
+      </b-card-header>
+      <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
+        <b-card-body>
+          <p class="card-text">
+            text
+          </p>
+        </b-card-body>
+      </b-collapse>
+    </b-card>
   </div>
+  </transition>
+
+     <drop class="drop" @drop="handleDrop()">
+        <main>{{draggable}}</main>
+      </drop>
+        <div>
+       <b-button class="menu-icon" @click="toShow=!toShow">☰</b-button>
+      </div>
+</section>
 </template>
 
 <style lang="scss" scoped>
-  .md-app {
-    min-height: 100vh;
-    border: 1px solid rgba(#000, .12);
-  }
-
-   // Demo purposes only
-  .md-drawer {
-    width: 230px;
-    max-width: calc(100vw - 125px);
-  }
+section{
+display: flex;
+}
+main{
+  width: 80vw;
+}
+.slide-fade-enter-active {
+   transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-10px);
+  opacity: 0;
+}
 </style>
 
 <script>
 export default {
-  name: 'Reveal',
+  name: 'Navbar',
    data: () => ({
-    menuVisible: false
+     draggable: 'null',
+     comp1: 'hello',
+     toShow: false
   }),
   methods:{
     handleDrop(){
-      console.log('drop!!!');
+      this.draggable = this.comp1
       
     }
   }
