@@ -1,20 +1,17 @@
 <template>
-  <div class="home">
-    <md-app>a</md-app>
-    <br>
-    <img alt="Vue logo" src="../assets/logo.png">
-  </div>
+    <NavBar></NavBar>
 </template>
 
 <script>
-import navBar from '@/components/nav-bar.vue'
-import sideBarr from '@/components/side-bar.vue'
+import NavBar from '@/components/NavBar.vue'
+import SideBar from '@/components/SideBar.vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
   name: 'home',
   components: {
-    navBar
+    NavBar,
+    SideBar
   }
 }
 </script>
