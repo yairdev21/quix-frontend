@@ -1,21 +1,31 @@
+<template>
+  <div class="section-list">
+    <nav-bar></nav-bar>
+    <div
+      class="section-items"
+      v-for="section in sections"
+      v-dragging="{ item: section, list: sections, group: 'section'}"
+      :key="section.id"
+    >
+      <section-preview :section="section"></section-preview>
+    </div>
+  </div>
+</template>
+
 <script>
 
 import Store from '@/store.js'
-import sectionPreview from '@/components/section-preview.cmp.vue'
 import NavBar from '@/components/NavBar.vue'
-
+import SectionPreview from '@/components/SectionPreview.cmp.vue'
 
 export default {
   data () {
     return {
-        sections: [{text:'X'}, {title:''},{sm:6}]
+        site: null,
+        sections:null
     }
   },  
-  computed:{
-    amount() {
-       
-    }
-  },
+
   mounted () {
     this.$dragging.$on('dragged', ({ value }) => {
       console.log(value.item)
@@ -26,31 +36,17 @@ export default {
     })
   },
   created(){
-  let data = this.$store.dispatch({type:'getSections'})
-  .then(res=> this.sections=res)
+  this.$store.dispatch({type:'getSite'})
+  .then(res=> {
+    this.site=res
+    this.sections= res.sections
+  })
   },
   components:{
-    sectionPreview,
+    SectionPreview,
     NavBar
-  },
+  }
 }
 </script>
 
-<template>
-
-  <div class="section-list">
-    <nav-bar></nav-bar>
-    <div
-      class="section-items"
-      v-for="section in sections"
-      v-dragging="{ item: section, list: sections, group: 'section'}"
-      :key="section.text"
-    >
-      <section-preview :section="section">
-
-      </section-preview>
-
-    </div>
-  </div>
-</template>
 
