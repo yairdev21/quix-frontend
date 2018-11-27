@@ -29,6 +29,11 @@ import VueDragDrop from 'vue-drag-drop'
 Vue.use(VueDragDrop)
 // 
 
+//  Vue DragDrop
+import VueDND from 'awe-dnd'
+Vue.use(VueDND)
+//
+
 import VueSplit from 'vue-split-panel';
 Vue.use(VueSplit)
 
