@@ -44,15 +44,6 @@ export default {
               </div>
             </div>
           </b-col>
-          <b-col cols="12" sm="6">
-            <div class="left-side">
-              <h2 class="text-center">{{section.title}}</h2>
-              <div class="article">
-                {{section.text}}
-                {{section.text}}
-              </div>
-            </div>
-          </b-col>
         </b-row>
       </section>
     </div>
