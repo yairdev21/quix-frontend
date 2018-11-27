@@ -17,7 +17,7 @@
             <drag class="drag">
 
           <md-list-item>
-            <font-awesome-icon icon="font" size="lg" />
+            <i class="fas fa-font"></i>
           </md-list-item>
             </drag>
 
@@ -63,6 +63,12 @@ export default {
   name: 'Reveal',
    data: () => ({
     menuVisible: false
-  })
+  }),
+  methods:{
+    handleDrop(){
+      console.log('drop!!!');
+      
+    }
+  }
 }
 </script>
