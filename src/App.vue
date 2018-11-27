@@ -32,7 +32,6 @@
     }
   }
 }
-<<<<<<< HEAD
   html, body {
     padding: 0;
     margin: 0;
@@ -49,6 +48,4 @@
   #app {
     padding: 3rem;
   }
-=======
->>>>>>> 63fc68a223fc3cafe3ed284df1c224f5432f2a35
 </style>
