@@ -49,7 +49,9 @@
     </drop>
     <div class="side-bar-btns">
       <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
-      <b-button class="home-icon icon" @click="goHome"><i class="fas fa-home"></i></b-button>
+      <b-button class="home-icon icon" @click="goHome">
+        <i class="fas fa-home"></i>
+      </b-button>
     </div>
   </section>
 </template>
@@ -84,7 +86,12 @@ position: fixed;
 left:80%;
 top: 90%
 }
-.icon{margin:8px;}
+.icon{
+  width: 30px;
+  transform: scale(2);
+  margin:30px;
+
+}
 section{
 display: flex;
 }

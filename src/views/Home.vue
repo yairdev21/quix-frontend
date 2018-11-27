@@ -29,6 +29,7 @@ export default {
 
 #nav{
   position: fixed;
+  font-size: 3rem;
   top: 0;
   width: 100%;
   padding: 10px;
@@ -38,12 +39,10 @@ export default {
 
 section {
 .build-now {
-  margin-top: 60px;
+  margin-top: 40px;
   border-radius: 10px;
 }
-
     &.main {
-      
         background-image: url('../assets/img/QuiX.jpeg');
         background-attachment: fixed;
         background-position: center center;
@@ -98,23 +97,6 @@ section {
                 }
             }
         }
-    }
-
-    &.all-in-one {
-        background-color: #fff;
-
-        > p {
-            max-width: 500px;
-        }
-
-        p {
-            margin: 0 auto 1em;
-            padding-bottom: 15px;
-            font-size: 1.15em;
-            font-weight: 300;
-            line-height: 32px;
-            color: #888;
-        }
 
         .container {
             width: 1000px;
@@ -129,7 +111,7 @@ section {
 
             p {
                 margin-bottom: 0;
-                font-size: 1.25em;
+                font-size: 2.25em;
                 font-weight: 300;
             }
 
