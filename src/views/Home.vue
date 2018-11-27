@@ -6,6 +6,7 @@
     </div>
     <section class="main flex align-center flex-column justify-center">
       <div class="container flex align-center flex-column justify-center">
+
         <h1>Welcome to the #23 best Website Builder!</h1>
         <button class="build-now">
           <router-link to="/about">Build NOW</router-link>
@@ -19,7 +20,10 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
+
   name: 'home',
+
+  data() { return {  editor : new MediumEditor(".editable")}},
   components: {
   }
 }

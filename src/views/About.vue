@@ -7,7 +7,7 @@
       v-dragging="{ item: section, list: sections, group: 'section'}"
       :key="section.id"
     >
-      <section-preview :section="section"></section-preview>
+        <section-preview :section="section"></section-preview>
     </div>
   </div>
 </template>
@@ -44,7 +44,8 @@ export default {
   },
   components:{
     SectionPreview,
-    NavBar
+    NavBar,
+
   }
 }
 </script>

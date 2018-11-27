@@ -11,6 +11,9 @@
 
 <script>
 import ColPreview from '@/components/ColPreview.cmp.vue'
+// Text Editor
+import editor from 'vue2-medium-editor'
+//
 
 export default {
 
@@ -23,7 +26,9 @@ cols(){
    }
 },
 components:{
-  ColPreview
+  ColPreview,
+       'medium-editor': editor
+
 }
  
 }
@@ -32,3 +37,7 @@ components:{
 <style>
 
 </style>
+
+
+   <!-- <medium-editor :text="myText" :options="options" custom-tag="h2" v-on:edit="applyTextEdit">
+        </medium-editor> -->
