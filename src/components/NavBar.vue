@@ -1,69 +1,72 @@
 <template>
-<section>
-   
-      
-   <transition name="slide-fade">
-   <div v-if="toShow" class="sidebar" role="tablist">
-    <b-card no-body class="mb-1">
-      <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
-      </b-card-header>
-      <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
-        <b-card-body>
-          <p class="card-text">
-            <drag class="drag" :transfer-data="{ comp1 }">
-              <img src="@/assets/img/section1.png">
-            </drag>
-          </p>
-          <p class="card-text">
-            <drag class="drag">
-                 <img src="@/assets/img/section2.png">
-            </drag>        
-          </p>
-        </b-card-body>
-      </b-collapse>
-    </b-card>
-    <b-card no-body class="mb-1">
-      <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
-      </b-card-header>
-      <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
-        <b-card-body>
-          <p class="card-text">
-             text
-          </p>
-        </b-card-body>
-      </b-collapse>
-    </b-card>
-    <b-card no-body class="mb-1">
-      <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-btn block href="#" v-b-toggle.accordion3 variant="info">Accordion 3</b-btn>
-      </b-card-header>
-      <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
-        <b-card-body>
-          <p class="card-text">
-            text
-          </p>
-        </b-card-body>
-      </b-collapse>
-    </b-card>
-  </div>
-  </transition>
-
-     <drop class="drop" @drop="handleDrop()">
-        <main>{{draggable}}</main>
-      </drop>
-        <div>
-       <b-button class="side-bar-btn menu-icon" @click="toShow=!toShow">☰</b-button>
+  <section>
+    <transition name="slide-fade">
+      <div v-if="toShow" class="sidebar" role="tablist">
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
+          </b-card-header>
+          <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <p class="card-text">
+                <drag class="drag" :transfer-data="{ comp1 }">
+                  <img src="@/assets/img/section1.png">
+                </drag>
+              </p>
+              <p class="card-text">
+                <drag class="drag">
+                  <img src="@/assets/img/section2.png">
+                </drag>
+              </p>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
+          </b-card-header>
+          <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <p class="card-text">text</p>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
+        <b-card no-body class="mb-1">
+          <b-card-header header-tag="header" class="p-1" role="tab">
+            <b-btn block href="#" v-b-toggle.accordion3 variant="info">Accordion 3</b-btn>
+          </b-card-header>
+          <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
+            <b-card-body>
+              <p class="card-text">text</p>
+            </b-card-body>
+          </b-collapse>
+        </b-card>
       </div>
-</section>
+    </transition>
+
+    <drop class="drop" @drop="handleDrop()">
+      <main>{{draggable}}</main>
+    </drop>
+    <div class="side-bar-btns">
+      <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
+      <b-button class="home-icon icon" @click="goHome"><i class="fas fa-home"></i></b-button>
+    </div>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.side-bar-btn{
-
+.sidebar{
+position: fixed;
+width: 25%;
+top:0;
+z-index: 999;
 }
-
+.side-bar-btns{
+position: fixed;
+left:80%;
+top: 90%
+}
+.icon{margin:8px;}
 section{
 display: flex;
 }
@@ -87,14 +90,16 @@ main{
 export default {
   name: 'Navbar',
    data: () => ({
-     draggable: 'null',
+     draggable: '',
      comp1: 'hello',
      toShow: false
   }),
   methods:{
     handleDrop(){
       this.draggable = this.comp1
-      
+    },
+    goHome() {
+      this.$router.push('/')
     }
   }
 }

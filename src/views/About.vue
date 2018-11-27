@@ -2,6 +2,8 @@
 
 import Store from '@/store.js'
 import sectionPreview from '@/components/section-preview.cmp.vue'
+import NavBar from '@/components/NavBar.vue'
+
 
 export default {
   data () {
@@ -28,14 +30,16 @@ export default {
   .then(res=> this.sections=res)
   },
   components:{
-    sectionPreview
-  }
+    sectionPreview,
+    NavBar
+  },
 }
 </script>
 
 <template>
 
   <div class="section-list">
+    <nav-bar></nav-bar>
     <div
       class="section-items"
       v-for="section in sections"

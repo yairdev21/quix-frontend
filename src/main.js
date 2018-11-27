@@ -42,11 +42,11 @@ Vue.use(VueSweetalert2)
 
 // Vue Fontaswame
   import { library } from '@fortawesome/fontawesome-svg-core'
-  import { faUserSecret, faFont } from '@fortawesome/free-solid-svg-icons'
+  import { faUserSecret, faFont,faHome } from '@fortawesome/free-solid-svg-icons'
   import { faFacebook } from '@fortawesome/free-brands-svg-icons'
   // import { faUserSecret } from  '@fortawesome/free-regular-svg-icons'
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  library.add(faUserSecret , faFont, faFacebook)
+  library.add(faUserSecret , faFont, faFacebook,faHome)
   Vue.component('font-awesome-icon', FontAwesomeIcon)
   import { dom } from '@fortawesome/fontawesome-svg-core'
   dom.watch()
