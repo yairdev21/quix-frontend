@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import SiteService from './services/site-service.js'
-import Article from './modules/article.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    Article
+    
   },
   state: {
     site: null
