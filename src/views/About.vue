@@ -35,7 +35,7 @@ export default {
       <section class="hero-article section-item">
         <h1 class="text-center">{{section.title}}</h1>
         <b-row>
-          <b-col cols="12" :sm="section.sm">
+          <b-col :v-for="section in section.amount" cols="12" :sm="section.sm">
             <div class="left-side" :style="{}">
               <h2 class="text-center">{{section.title}}</h2>
               <div class="article">
