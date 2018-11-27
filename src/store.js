@@ -10,24 +10,21 @@ export default new Vuex.Store({
     Article
   },
   state: {
-    sections: []
+    site: null
   },
   mutations: {
-    loadSections(state, {
-      sections
-    }) {
-      state.sections = sections;
+    loadSite(state, { site }) {
+      state.site = site;
+      console.log(site);
+
     },
   },
   actions: {
-    getSections(context) {
+    getSite(context) {
       return SiteService.query()
-        .then(sections => {
-          context.commit({
-            type: 'loadSections',
-            sections
-          });
-          return sections;
+        .then(site => {
+          context.commit({ type: 'loadSite' , site});
+          return site;
         })
     }
   }

@@ -1,23 +1,52 @@
-<<<<<<< HEAD
-[
     {
-        "amount": "4",
-        "sm": "4",
-        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!",
-        "title": "Title"
-    },
-    {
-        "amount": "4",
-        "sm": "4",
-        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!",
-        "title": "Title2"
+        "name": "site1",
+        "id": "123",
+        "sections": [
+            {
+                "sectionType": "3 cols",
+                "sectionId": "1234",
+                "title": "Title1",
+                "sm": "4",
+                "cols": [
+                    {
+                        "id":"1",
+                        "type": "text",
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id":"2",
+                        "type": "text",
+                        "text": "Gorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id":"3",
+                        "type": "text",
+                        "text": "Dorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                ]
+            },
+            {
+                "sectionType": "3 cols",
+                "sm": "4",
+                "sectionId": "1234",
+                "title": "Title1",
+                "cols": [
+                    {
+                        "id":"1",
+                        "type": "text",
+                        "text": "Lpsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id":"2",
+                        "type": "text",
+                        "text": "Gpsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    },
+                    {
+                        "id":"3",
+                        "type": "text",
+                        "text": "Fpsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                ]
+            }
+        ]
     }
-]
-=======
-[{
-    "amount": "3",
-    "sm": "4",
-    "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!",
-    "title": "Title"
-}]
->>>>>>> 0e0e952dc1b31cc7ee08b3d2747fd7e2b81acf14
