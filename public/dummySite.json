@@ -11,7 +11,7 @@
                     "sm": "12"
                 },
                 "style": {
-                    "backgroundImage": "backgroundImage: 'url(http://res.cloudinary.com/shuvy/image/upload/v1533294837/gipxbksdpgxiympki41h.png)'"
+                    "backgroundImage": "url(http://res.cloudinary.com/shuvy/image/upload/v1533294837/gipxbksdpgxiympki41h.png)"
                 },
                 "elements": [
                     {
