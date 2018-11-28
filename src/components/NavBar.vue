@@ -7,19 +7,20 @@
             <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+          
             <b-card-body>
               <p class="card-text">
-                <drag class="drag" transfer-data="twoCols">
+                <drag class="drag" transfer-data="twoColsSection">
                   <img src="@/assets/img/section1.png">
                 </drag>
               </p>
               <p class="card-text">
-                <drag class="drag" transfer-data="threeCols">
+                <drag class="drag" transfer-data="threeColsSection">
                   <img src="@/assets/img/section2.png">
                 </drag>
               </p>
             </b-card-body>
-          </b-collapse>
+         </b-collapse>
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
@@ -43,30 +44,29 @@
         </b-card>
       </div>
     </transition>
-
-    <drop class="drop" @drop="handleDrop()">
-      <main>{{draggable}}</main>
-    </drop>
-
-    <control-buttons @showPanel="toShow=!toShow"></control-buttons>
+    <div class="side-bar-btns">
+      <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
+      <b-button class="home-icon icon" @click="goHome">
+        <i class="fas fa-home"></i>
+      </b-button>
+    </div>
   </section>
 </template>
 
 
 
 <script>
-import ControlButtons from "@/components/ControlButtons.vue";
+import draggable from "vuedraggable";
+
 export default {
-  name: "Navbar",
-  data: () => ({
-    draggable: "",
-    comp1: "hello",
-    toShow: true
+  name: 'Navbar',
+   data: () => ({
+     toShow: true
   }),
-  methods: {
-  },
-  components: {
-    ControlButtons
+  methods:{
+    goHome() {
+      this.$router.push('/')
+    },
   }
 };
 </script>

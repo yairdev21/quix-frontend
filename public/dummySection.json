@@ -2,7 +2,7 @@
         {
             "type": "section",
             "_id": "2452452",
-            "name": "three cols section",
+            "name": "threeColsSection",
             "data": {
                 "sm": "4"
             },
@@ -37,7 +37,7 @@
         {
             "type": "section",
             "_id": "2453543",
-            "name": "two cols section",
+            "name": "twoColsSection",
             "data": {
                 "sm": "6"
             },
