@@ -1,6 +1,6 @@
 <template>
   <div class="section-list">
-    <nav-bar></nav-bar>
+    <nav-bar v-if="isPanelOpen"></nav-bar>
     <div v-if="sections">
       <medium-editor :options="options"/>
       <draggable
@@ -24,6 +24,7 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
+    <control-buttons @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
   </div>
 </template>
 
@@ -31,6 +32,7 @@
 import Store from "@/store.js";
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
+import ControlButtons from "@/components/ControlButtons.vue";
 import MediumEditor from "vue2-medium-editor";
 import draggable from "vuedraggable";
 
@@ -53,7 +55,8 @@ export default {
     return {
       site: null,
       sections: null,
-      options
+      options,
+      isPanelOpen:true
     };
   },
   methods: {
@@ -84,7 +87,8 @@ export default {
     SectionPreview,
     NavBar,
     MediumEditor,
-    draggable
+    draggable,
+    ControlButtons
   }
 };
 </script>

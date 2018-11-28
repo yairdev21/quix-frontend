@@ -1,14 +1,11 @@
 <template>
   <div class="home">
-<main-header></main-header>
-    <section class="main flex align-center flex-column justify-center">
-      <div class="container flex align-center flex-column justify-center"></div>
-
-      <h1>A site to call your own</h1>
-      <p>Build your personelized landing page for free-NOW!</p>
+    <main-header></main-header>
+    <section class="main">
+      <div class="container"></div>
     </section>
 
-  <card-section></card-section>
+    <card-section></card-section>
     <home-footer class="footer"></home-footer>
   </div>
 </template>
@@ -24,8 +21,6 @@ export default {
 
   data() {
     return {
-   
-      // editor: new MediumEditor(".editable")
     };
   },
   components: {
@@ -37,24 +32,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 section {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+    max-width: 100vw;
   &.main {
-    // background-image: url('../assets/img/backTri.jpg');
-    background: linear-gradient(to right, #8e9eab, #eef2f3);
+    position: relative;
+    background-image: url("../assets/img/homePage.png");
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 70vh;
+    height: 90vh;
+    // max-width: 85vw;
 
     &::before {
       content: "";
       position: absolute;
-      width: 50%;
-      height: 200%;
       z-index: -1;
     }
 
@@ -117,7 +111,6 @@ section {
     }
   }
 }
-
 
 .footer {
   height: 50px;

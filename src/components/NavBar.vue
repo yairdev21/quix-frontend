@@ -7,7 +7,6 @@
             <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
-          
             <b-card-body>
               <p class="card-text">
                 <drag class="drag" transfer-data="twoColsSection">
@@ -68,38 +67,28 @@ export default {
       this.$router.push('/')
     },
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.sidebar{
-position: fixed;
-width: 25%;
-top:0;
-z-index: 999;
+.sidebar {
+  position: fixed;
+  width: 25%;
+  top: 0;
+  z-index: 999;
 }
-.side-bar-btns{
-position: fixed;
-left:80%;
-top: 90%
-}
-.icon{
-  width: 30px;
-  transform: scale(2);
-  margin:30px;
 
+section {
+  display: flex;
 }
-section{
-display: flex;
-}
-main{
+main {
   width: 80vw;
 }
 .slide-fade-enter-active {
-   transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
