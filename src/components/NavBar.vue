@@ -9,12 +9,12 @@
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
               <p class="card-text">
-                <drag class="drag" transfer-data="twoCols">
+                <drag class="drag" transfer-data="twoColsSection">
                   <img src="@/assets/img/section1.png">
                 </drag>
               </p>
               <p class="card-text">
-                <drag class="drag" transfer-data="threeCols">
+                <drag class="drag" transfer-data="threeColsSection">
                   <img src="@/assets/img/section2.png">
                 </drag>
               </p>
@@ -43,10 +43,6 @@
         </b-card>
       </div>
     </transition>
-
-    <drop class="drop" @drop="handleDrop()">
-      <main>{{draggable}}</main>
-    </drop>
     <div class="side-bar-btns">
       <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
       <b-button class="home-icon icon" @click="goHome">

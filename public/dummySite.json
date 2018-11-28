@@ -28,7 +28,7 @@
             {
                 "type": "section",
                 "_id": "3123211234",
-                "name": "three cols section",
+                "name": "threeColsSection",
                 "data": {
                     "sm": "4"
                 },
@@ -63,7 +63,7 @@
             {
                 "type": "section",
                 "_id": "421412412",
-                "name": "one col section",
+                "name": "oneColSection",
                 "title": "Section Title",
                 "data": {
                     "sm": "12"
@@ -109,7 +109,7 @@
                         "type": "map",
                         "name": "map",
                         "data": {
-                            "src": "@/assets/img/QuiX.jpeg"
+                            "src": ""
                         }
                     }
                 ]

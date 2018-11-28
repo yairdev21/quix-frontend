@@ -1,20 +1,19 @@
 <template>
   <div class="section-list">
     <nav-bar></nav-bar>
-    <div
-      v-if="sections"
+    <div v-if="sections">
+        <div
       class="section-items"
-      v-for="section in sections"
+      v-for="(section, idx) in sections"
       v-dragging="{ item: section, list: sections, group: 'section'}"
       :key="section._id"
-    >
-      <section-preview :section="section"></section-preview>
+       >
+         <section-preview :section="section" :idx="idx"></section-preview>
+       </div>
     </div>
-    <drop @drop="addSection">
-      <section class="add-section section-item">
+      <section v-else class="add-section section-item">
         <h1 class="text-center">Drag & Drop New Section Here</h1>
       </section>
-    </drop>
   </div>
 </template>
 
@@ -31,20 +30,15 @@ export default {
         sections:null
     }
   },  
-  methods:{
-     addSection(sectionType){
-     this.$store.dispatch('addSection', {sectionType} );
-     }
-  },
-  mounted () {
-    this.$dragging.$on('dragged', ({ value }) => {
-      console.log(value.item)
-      console.log(value.list)
-    })
-    this.$dragging.$on('dragend', () => {
+  // mounted () {
+  //   this.$dragging.$on('dragged', ({ value }) => {
+  //     console.log(value.item)
+  //     console.log(value.list)
+  //   })
+  //   this.$dragging.$on('dragend', () => {
         
-    })
-  },
+  //   })
+  // },
   created(){
   this.$store.dispatch({type:'getSite'})
   .then(res=> {
