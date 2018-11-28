@@ -6,7 +6,7 @@
       class="section-items"
       v-for="section in sections"
       v-dragging="{ item: section, list: sections, group: 'section'}"
-      :key="section.id"
+      :key="section._id"
     >
       <section-preview :section="section"></section-preview>
     </div>
@@ -49,7 +49,7 @@ export default {
   this.$store.dispatch({type:'getSite'})
   .then(res=> {
     this.site=res
-    this.sections=res.sections
+    this.sections=res.elements
   })
   },
   components:{
