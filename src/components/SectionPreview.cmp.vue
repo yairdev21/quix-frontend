@@ -1,5 +1,4 @@
 <template>
-        <drop @drop="addSection(idx, ...arguments)">
   <section class="hero-article section-item" :style="{style}">
     <h1 class="text-center" :v-if="section.title">{{section.title}}</h1>
     <b-row>
@@ -8,7 +7,6 @@
       </b-col>
     </b-row>
   </section>
-      </drop>
 </template>
 
 <script>
@@ -19,11 +17,7 @@ export default {
   data() {
     return {};
   },
-   methods:{
-     addSection(idx, sectionName){
-     this.$store.dispatch('addSection', {idx, sectionName} );
-     }
-   },
+  
   computed: {
     cols() {
       return this.section.elements;

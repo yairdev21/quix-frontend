@@ -7,6 +7,7 @@
             <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+          
             <b-card-body>
               <p class="card-text">
                 <drag class="drag" transfer-data="twoColsSection">
@@ -19,7 +20,7 @@
                 </drag>
               </p>
             </b-card-body>
-          </b-collapse>
+         </b-collapse>
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
@@ -55,17 +56,17 @@
 
 
 <script>
+import draggable from "vuedraggable";
+
 export default {
   name: 'Navbar',
    data: () => ({
-     draggable: '',
-     comp1: 'hello',
      toShow: true
   }),
   methods:{
     goHome() {
       this.$router.push('/')
-    }
+    },
   }
 }
 </script>

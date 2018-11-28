@@ -15,6 +15,7 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
