@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
-import heroA from './components/elements/section-article.cmp.vue'
+import heroA from './components/elements/header-fixed.vue'
 
 
 Vue.use(Router)
