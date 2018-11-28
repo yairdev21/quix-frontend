@@ -47,62 +47,49 @@
     <drop class="drop" @drop="handleDrop()">
       <main>{{draggable}}</main>
     </drop>
-    <div class="side-bar-btns">
-      <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
-      <b-button class="home-icon icon" @click="goHome">
-        <i class="fas fa-home"></i>
-      </b-button>
-    </div>
+
+    <control-buttons @showPanel="toShow=!toShow"></control-buttons>
   </section>
 </template>
 
 
 
 <script>
+import ControlButtons from "@/components/ControlButtons.vue";
 export default {
-  name: 'Navbar',
-   data: () => ({
-     draggable: '',
-     comp1: 'hello',
-     toShow: true
+  name: "Navbar",
+  data: () => ({
+    draggable: "",
+    comp1: "hello",
+    toShow: true
   }),
-  methods:{
-    goHome() {
-      this.$router.push('/')
-    }
+  methods: {
+  },
+  components: {
+    ControlButtons
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.sidebar{
-position: fixed;
-width: 25%;
-top:0;
-z-index: 999;
+.sidebar {
+  position: fixed;
+  width: 25%;
+  top: 0;
+  z-index: 999;
 }
-.side-bar-btns{
-position: fixed;
-left:80%;
-top: 90%
-}
-.icon{
-  width: 30px;
-  transform: scale(2);
-  margin:30px;
 
+section {
+  display: flex;
 }
-section{
-display: flex;
-}
-main{
+main {
   width: 80vw;
 }
 .slide-fade-enter-active {
-   transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
