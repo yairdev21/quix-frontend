@@ -1,29 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import About from './views/About.vue'
-import heroA from './components/elements/header-fixed.vue'
-
+import EditSite from './views/EditSite.vue'
+import UserLogin from './views/UserLogin.vue'
+import heroA from './components/elements/section-article.cmp.vue'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About},
-      {path: '/test',
-      name: 'hero1',
+      path: '/edit',
+      name: 'edit',
+      component: EditSite
+    },
+    {
+      path: '/test',
+      name: 'hero',
       component: heroA
     },
-
+    {
+      path: '/login',
+      name: 'login',
+      component: UserLogin
+    },
   ]
 })

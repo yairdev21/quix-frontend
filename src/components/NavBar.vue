@@ -9,12 +9,12 @@
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
               <p class="card-text">
-                <drag class="drag" :transfer-data="{ comp1 }">
+                <drag class="drag" transfer-data="twoCols">
                   <img src="@/assets/img/section1.png">
                 </drag>
               </p>
               <p class="card-text">
-                <drag class="drag">
+                <drag class="drag" transfer-data="threeCols">
                   <img src="@/assets/img/section2.png">
                 </drag>
               </p>
@@ -49,10 +49,30 @@
     </drop>
     <div class="side-bar-btns">
       <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
-      <b-button class="home-icon icon" @click="goHome"><i class="fas fa-home"></i></b-button>
+      <b-button class="home-icon icon" @click="goHome">
+        <i class="fas fa-home"></i>
+      </b-button>
     </div>
   </section>
 </template>
+
+
+
+<script>
+export default {
+  name: 'Navbar',
+   data: () => ({
+     draggable: '',
+     comp1: 'hello',
+     toShow: true
+  }),
+  methods:{
+    goHome() {
+      this.$router.push('/')
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .sidebar{
@@ -66,7 +86,12 @@ position: fixed;
 left:80%;
 top: 90%
 }
-.icon{margin:8px;}
+.icon{
+  width: 30px;
+  transform: scale(2);
+  margin:30px;
+
+}
 section{
 display: flex;
 }
@@ -85,23 +110,3 @@ main{
   opacity: 0;
 }
 </style>
-
-<script>
-export default {
-  name: 'Navbar',
-   data: () => ({
-     draggable: '',
-     comp1: 'hello',
-     toShow: false
-  }),
-  methods:{
-    handleDrop(){
-      this.draggable = this.comp1
-    },
-    goHome() {
-      this.$router.push('/')
-    }
-  }
-}
-</script>
-

@@ -1,8 +1,8 @@
 <template>
-  <section class="hero-article section-item">
-    <h1 class="text-center">{{section.title}}</h1>
+  <section contenteditable="true" class="hero-article section-item" :style="{style}">
+    <h1 class="text-center" :v-if="section.title">{{section.title}}</h1>
     <b-row>
-      <b-col v-for="col in cols" cols="12" :sm="section.sm" :key="col.id">
+      <b-col contenteditable="true" v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <col-preview :col="col"></col-preview>
       </b-col>
     </b-row>
@@ -10,25 +10,26 @@
 </template>
 
 <script>
-import ColPreview from '@/components/ColPreview.cmp.vue'
+import ColPreview from "@/components/ColPreview.cmp.vue";
 
 export default {
-
-props:["section"],
-data(){return{
-}},
-computed:{
-cols(){
-  return this.section.cols
-   }
-},
-components:{
-  ColPreview
-}
- 
-}
+  props: ["section"],
+  data() {
+    return {};
+  },
+  computed: {
+    cols() {
+      return this.section.elements;
+    },
+    style() {
+      return this.section.style || null;
+    }
+  },
+  components: {
+    ColPreview
+  }
+};
 </script>
 
 <style>
-
 </style>
