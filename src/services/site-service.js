@@ -6,6 +6,5 @@ query
 }
 function query() {
     return axios.get('dummySite.json')
-    .then(res=> {
-        return res.data})
+    .then(res=> JSON.parse(JSON.stringify(res.data)))
 }
