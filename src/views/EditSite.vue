@@ -10,7 +10,6 @@
         @end="drag=false"
       >
         <div
-          v-if="sections"
           class="section-items"
           v-for="(section, idx) in sections"
           :key="section._id"
@@ -29,7 +28,6 @@
 </template>
 
 <script>
-import Store from "@/store.js";
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
@@ -56,7 +54,7 @@ export default {
       site: null,
       sections: null,
       options,
-      isPanelOpen:true
+      isPanelOpen:false
     };
   },
   methods: {

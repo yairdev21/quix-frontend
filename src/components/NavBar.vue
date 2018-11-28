@@ -23,21 +23,21 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Accordion 2</b-btn>
+            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Components</b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <p class="card-text">text</p>
+              <p class="card-text">coming soon..</p>
             </b-card-body>
           </b-collapse>
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion3 variant="info">Accordion 3</b-btn>
+            <b-btn block href="#" v-b-toggle.accordion3 variant="info">Extra</b-btn>
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <p class="card-text">text</p>
+              <p class="card-text">coming soon..</p>
             </b-card-body>
           </b-collapse>
         </b-card>
