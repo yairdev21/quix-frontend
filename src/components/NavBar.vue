@@ -7,7 +7,6 @@
             <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
-          
             <b-card-body>
               <p class="card-text">
                 <drag class="drag" transfer-data="twoColsSection">
