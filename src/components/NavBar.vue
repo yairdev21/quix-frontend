@@ -74,12 +74,11 @@ export default {
 
   methods: {
     goHome() {
-      this.$router.push("/");
+      this.$router.push("/")
     },
     emitAddSection(evt) {
-      console.log(evt);
-
-      this.$emit("addSection", 1, "twoColsSection");
+      console.log(evt)
+      this.$emit("addSection", 1, "twoColsSection")
     },
     move(evt){
             console.log(evt);

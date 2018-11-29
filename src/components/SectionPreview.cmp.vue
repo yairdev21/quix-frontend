@@ -1,6 +1,5 @@
 <template>
   <section class="section-item" :style="style">
-    <h1 class="text-center" :v-if="section.title">{{section.title}}</h1>
     <b-row>
       <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <col-preview :col="col"></col-preview>

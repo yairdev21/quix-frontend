@@ -1,18 +1,30 @@
 [{  
         "name": "default",
         "_id": "0",
-        "thumb":"https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543487789/eWR1ajl1dHRjd24zYWhvd2JwMzY=/preview",
+        "thumb":"http://res.cloudinary.com/bebarefoot/image/upload/v1543487789/yduj9uttcwn3ahowbp36.png",
         "sections": [{
                 "_id": "156156165",
                 "type": "text",
                 "name": "header",
-                "title": "Yes",
-                "data": {
+                "data": {   
                     "sm": "12"
                 },
+                "elements": [{
+                    "_id": "4124211",
+                    "type": "text",
+                    "name": "h1",
+                    "data": {
+                        "text": "BotiQucumber"
+                    },
+                    "style": {
+                        "color":"white",
+                        "margin-top":"90px",
+                        "font-size":"500%"
+                    }
+                }],
                 "style": {
-                    "backgroundImage": "url(https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543491182/aGFtb3R6/preview)",
-                    "height": "550px",
+                    "backgroundImage": "url(https://data2.1freewallpapers.com/detail/cucumbers-pickles-salted.jpg)",
+                    "height": "450px",
                     "background-repeat": "no-repeat",
                     "background-size": "cover",
                     "padding": "15vh 0"
@@ -23,7 +35,7 @@
                 "_id": "3123211234",
                 "name": "threeColsSection",
                 "data": {
-                    "sm": "4"
+                    "sm": "6"
                 },
                 "style": {},
                 "elements": [{
@@ -31,7 +43,7 @@
                         "type": "text",
                         "name": "p",
                         "data": {
-                            "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                            "text": "A place where all of your cucumber dreams come true!"
                         }
                     },
                     {
@@ -40,14 +52,6 @@
                         "name": "p",
                         "data": {
                             "text": "Gorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
-                        }
-                    },
-                    {
-                        "_id": "65465432",
-                        "type": "img",
-                        "name": "img",
-                        "data": {
-                            "src": "https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543412968/c2FtcGxl/preview"
                         }
                     }
                 ]

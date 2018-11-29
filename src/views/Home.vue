@@ -3,6 +3,7 @@
     <main-header></main-header>
     <section class="main">
       <div class="container"></div>
+      <h1 hidden>Quix</h1>
       <!-- <img src="@/assets/img/homePage.png/"/> -->
     </section>
 
