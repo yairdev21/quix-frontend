@@ -52,7 +52,7 @@ export default {
       site: null,
       sections: null,
       options,
-      isPanelOpen:false
+      isPanelOpen: false
     };
   },
   methods: {
@@ -65,9 +65,10 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch({ type: "getSite" }).then(res => {
-      this.site = res;
-      this.sections = res.elements;
+    let siteId = this.$route.params.siteId;
+    this.$store.dispatch({ type: "editSite", siteId }).then(res => {
+      this.site = res[0];
+      this.sections = res[0].sections;
     });
   },
   components: {
