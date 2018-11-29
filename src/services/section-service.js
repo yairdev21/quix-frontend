@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     query,
-    getSectionByType
+    getSectionByName
 }
 function query() {
     return axios.get('dummySection.json')
@@ -11,12 +11,12 @@ function query() {
         })
 }
 
-function getSectionByType(sectionType) {
+function getSectionByName(sectionName) {
     return axios.get('dummySection.json')
         .then(res => {
             const sections = res.data
             return sections.find(section => {
-                return sectionType === section.sectionType
+                return sectionName === section.name
             })
         })
 }

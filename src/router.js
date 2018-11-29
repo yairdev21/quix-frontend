@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import EditSite from './views/EditSite.vue'
 import UserLogin from './views/UserLogin.vue'
-import heroA from './components/elements/section-article.cmp.vue'
+import heroA from './components/elements/video.el.vue'
 
 Vue.use(Router)
 

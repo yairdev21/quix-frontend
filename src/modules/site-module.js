@@ -9,10 +9,10 @@ export default {
     loadSite(state, { site }) {
       state.site = site;
     },
-    addSection(state, { section }) {
-      state.site.sections.push(section)
+    addSection(state, { idx, section }) {
+      state.site.elements.splice(idx, 0, section)
       // console.log(section);
-      
+
     },
   },
   actions: {
@@ -23,10 +23,10 @@ export default {
           return site;
         })
     },
-    addSection({ commit }, { sectionType }) {
-      sectionService.getSectionByType(sectionType)
+    addSection({ commit }, { idx, sectionName }) {
+      sectionService.getSectionByName(sectionName)
         .then(section => {
-          commit({ type: 'addSection', section })
+          commit({ type: 'addSection', idx, section })
         })
     },
   }
