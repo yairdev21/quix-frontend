@@ -2,7 +2,11 @@
   <div class="home">
     <main-header></main-header>
     <section class="main">
-      <div class="container"></div>
+      <div class="container">
+
+
+      <img src="@/assets/img/homePage.png/"/>
+      </div>
     </section>
 
     <card-section></card-section>
@@ -33,16 +37,16 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
     max-width: 100vw;
   &.main {
     position: relative;
-    background-image: url("../assets/img/homePage.png");
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    // background-image: url("../assets/img/homePage.png");
+    // background-attachment: fixed;
+    // background-position: center center;
+    // background-repeat: no-repeat;
+    // background-size: cover ;
     height: 90vh;
     // max-width: 85vw;
 
