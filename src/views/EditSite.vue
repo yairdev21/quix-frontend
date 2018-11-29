@@ -2,7 +2,6 @@
   <div class="section-list">
     <nav-bar v-if="isPanelOpen"></nav-bar>
     <div v-if="sections">
-      <medium-editor :options="options"/>
       <draggable
         v-model="sections"
         :options="{group:'sections'}"
@@ -27,29 +26,14 @@
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
-import MediumEditor from "vue2-medium-editor";
 import draggable from "vuedraggable";
 
-var options = {
-  toolbar: {
-    allowMultiParagraphSelection: true,
-    buttons: ["bold", "italic", "underline", "h2", "h3"],
-    diffLeft: 0,
-    diffTop: -10,
-    firstButtonClass: "medium-editor-button-first",
-    lastButtonClass: "medium-editor-button-last",
-    relativeContainer: null,
-    standardizeSelectionStart: false,
-    static: false,
-    align: "center"
-  }
-};
+
 export default {
   data() {
     return {
       site: null,
       sections: null,
-      options,
       isPanelOpen: false
     };
   },
@@ -88,7 +72,6 @@ export default {
   components: {
     SectionPreview,
     NavBar,
-    MediumEditor,
     draggable,
     ControlButtons
   }
