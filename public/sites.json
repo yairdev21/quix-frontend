@@ -47,7 +47,7 @@
                         "type": "img",
                         "name": "img",
                         "data": {
-                            "src": "https://loremflickr.com/cache/resized/2905_33903735972_51e13e379f_z_640_360_nofilter.jpg"
+                            "src": "https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543412968/c2FtcGxl/preview"
                         }
                     }
                 ]
@@ -73,7 +73,7 @@
                         "type": "img",
                         "name": "img",
                         "data": {
-                            "src": "https://loremflickr.com/cache/resized/4439_36474864810_10fed24ec8_b_640_360_nofilter.jpg"
+                            "src": "https://res.cloudinary.com/bebarefoot/image/upload/v1543412980/samples/ecommerce/leather-bag-gray.jpg"
                         }
                     }
                 ]

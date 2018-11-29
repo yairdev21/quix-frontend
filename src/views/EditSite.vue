@@ -36,9 +36,6 @@ export default {
     };
   },
   methods: {
-    processEditOperation(operation) {
-      return (this.text = operation.api.origElements.innerHTML);
-    },
     addSection(idx = 0, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
