@@ -1,12 +1,27 @@
 <template>
     <section class="header">
-        <h1 class="header-title">Awesome title</h1>
-        <p class="header-text">We're creating the best place to go when starting a new business or company.With Baianat you can instantly search domain names, social media handles, and see your logo in beautiful logotypes.</p>
+        <h1 class="header-title">{{settings.title}}</h1>
+        <p class="header-text">{{settings.text}}</p>
         <img class="header-logo" src="@/assets/img/mockup.png" alt="logo"/>
     </section>
 </template>
 
 <script>
+export default {
+    data() {
+        return {
+            settings: {
+                title: 'Awesome title',
+                text: 'We\'re creating the best place to go when starting a new business or company.With Baianat you can instantly search domain names, social media handles, and see your logo in beautiful logotypes.',
+            }
+        }
+    },
+    computed: {
+
+    },
+    created() {
+    },
+}
     
 </script>
 
