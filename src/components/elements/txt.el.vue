@@ -1,10 +1,5 @@
 <template>
-    <div>
-        <p class="text">
-            {{text}}
-        </p>
-        <input type="text"/>
-    </div>
+        <p class="text" :contenteditable="isEditable" v-text="content" @blur="saveText"></p>
 </template>
 
 <script>
@@ -20,13 +15,18 @@
 
         data() {
             return {
-                id: ID()
+                id: ID(),
+                content: this.data.text,
+                isEditable: true
             }
         },
 
-        computed: {
-            text() {                
-                return this.data.text || 'not found'
+        methods: {
+            getContent() {               
+                return this.content
+            },
+            saveText(ev) {
+                this.content = ev.target.innerText;
             }
         }
     }
