@@ -4,7 +4,7 @@
         "thumb":"https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543487789/eWR1ajl1dHRjd24zYWhvd2JwMzY=/preview",
         "sections": [{
                 "_id": "156156165",
-                "type": "section",
+                "type": "text",
                 "name": "header",
                 "title": "Welcome to our website",
                 "data": {
@@ -118,7 +118,7 @@
         "thumb": "http://res.cloudinary.com/shuvy/image/upload/v1533415097/yduj9uttcwn3ahowbp36.png",
         "sections": [{
                 "_id": "156156165",
-                "type": "section",
+                "type": "text",
                 "name": "header",
                 "title": "גיתית רעפים בלי נדר",
                 "data": {
@@ -134,7 +134,7 @@
                 }
             },
             {
-                "type": "section",
+                "type": "text",
                 "_id": "421412412",
                 "name": "oneColSection",
                 "title": "?נמאס לכם שהרעפים שלכם לא של גיתית",
@@ -214,7 +214,7 @@
         "thumb": "http://res.cloudinary.com/shuvy/image/upload/v1533400161/vmb1keecmv2t2qdhqet2.png",
         "sections": [{
                 "_id": "156156165",
-                "type": "section",
+                "type": "text",
                 "name": "header",
                 "title": "Have a bite",
                 "data": {
@@ -348,7 +348,7 @@
         "thumb": "http://res.cloudinary.com/shuvy/image/upload/v1534250831/xi9cvczp13ot7ockb6as.png",
         "sections": [{
                 "_id": "156156165",
-                "type": "section",
+                "type": "text",
                 "name": "header",
                 "title": "It's Travling Time",
                 "data": {
@@ -412,7 +412,7 @@
                 ]
             },
             {
-                "type": "section",
+                "type": "text",
                 "_id": "421412412",
                 "name": "oneColSection",
                 "title": "Sample Menu:",
@@ -474,7 +474,7 @@
         "thumb": "http://res.cloudinary.com/shuvy/image/upload/v1533415097/yduj9uttcwn3ahowbp36.png",
         "sections": [{
                 "_id": "156156165",
-                "type": "section",
+                "type": "text",
                 "name": "header",
                 "title": "It's Travling Time",
                 "data": {
@@ -538,7 +538,7 @@
                 ]
             },
             {
-                "type": "section",
+                "type": "text",
                 "_id": "421412412",
                 "name": "oneColSection",
                 "title": "Sample Menu:",
