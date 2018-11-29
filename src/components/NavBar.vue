@@ -14,7 +14,7 @@
                   name:'sections',
                   pull:false
                  }}"
-                  @end="emitAddSection"
+                  @end="emitAddSection(twoColsSection)"
                 >
                   <img src="@/assets/img/section1.png">
                 </draggable>

@@ -13,7 +13,7 @@
 import ColPreview from "@/components/ColPreview.cmp.vue";
 
 export default {
-  props: ["section", "idx"],
+  props: ["section"],
   data() {
     return {};
   },
@@ -26,7 +26,6 @@ export default {
       return this.section.style || null;
     }
   },
- 
   components: {
     ColPreview
   }

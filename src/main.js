@@ -28,6 +28,8 @@ Vue.use(BootstrapVue)
 import VueDragDrop from 'vue-drag-drop'
 Vue.use(VueDragDrop)
 // 
+import vDragDrop from 'v-drag-drop';
+Vue.use(vDragDrop);
 
 //  Vue DragDrop
 import VueDND from 'awe-dnd'
