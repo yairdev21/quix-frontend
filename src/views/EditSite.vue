@@ -8,7 +8,7 @@
         @start="drag=true"
         @end="drag=false"
       >
-        <div class="section-items" v-for="(section, idx) in sections" :key="section._id">
+        <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview :section="section"></section-preview>
         </div>
       </draggable>
@@ -45,6 +45,23 @@ export default {
       });
     }
   },
+<<<<<<< HEAD
+=======
+  // created() {
+  //   this.$store.dispatch({ type: "getSite" }).then(res => {
+  //     this.site = res;
+  //     this.sections = res.elements;
+  //   });
+  // },
+  // mounted () {
+  //   this.$dragging.$on('dragged', ({ value }) => {
+  //     console.log(value.item)
+  //     console.log(value.list)
+  //   })
+  //   this.$dragging.$on('dragend', () => {
+  //   })
+  // },
+>>>>>>> 0fd0a2f566f403f60627f8afa5b434b8c3fcbcfa
   created() {
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "editSite", siteId }).then(res => {

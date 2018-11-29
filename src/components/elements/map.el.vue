@@ -16,8 +16,8 @@
         data() {
             return {
                 id: ID(),
-                lat: 32.0880288,
-                lng: 34.803230100000064
+                lat: undefined,
+                lng: undefined
             }
         },
 
@@ -36,7 +36,9 @@
         },
         
         mounted() {
-            this.initMap()    
+            console.log();
+            
+            this.initMap(this.data.lat, this.data.lng)    
         }
     }
 </script>
