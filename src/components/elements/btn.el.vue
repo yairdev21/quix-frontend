@@ -1,5 +1,7 @@
 <template>
-    <img class="img" :src="imgSrc" alt="image"/>
+    <b-button variant="outline-success" :href="link">
+        {{link}}
+    </b-button>
 </template>
 
 <script>
@@ -20,15 +22,13 @@
         },
 
         computed: {
-            imgSrc() {
-                return this.data.src || 'http://via.placeholder.com/1200x600?text=My%20Awsome%20Image'
+            link() {
+                return this.data.src || '#'
             }
         }
     }
 </script> 
 
 <style lang="scss" scoped>
-    .img {
-        width: 150px;
-    }
+
 </style>

@@ -3,9 +3,19 @@
 </template>
 
 <script>
+    import { ID } from '../../services/utils.js'
+
     export default {
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+
         data() {
             return {
+                id: ID(),
                 lat: 32.0880288,
                 lng: 34.803230100000064
             }
@@ -18,8 +28,8 @@
                 new google.maps.Map(this.$refs.map, {
                     zoom:12,
                     center: {
-                        lat: this.lat,
-                        lng: this.lng
+                        lat: +this.data.lat,
+                        lng: +this.data.lng
                     }
                 })
             }

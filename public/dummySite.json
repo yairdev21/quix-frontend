@@ -19,7 +19,7 @@
             }
         },
         {
-            "type": "section",
+            "type": "text",
             "_id": "421412412",
             "name": "oneColSection",
             "title": "?נמאס לכם שהרעפים שלכם לא של גיתית",
@@ -61,6 +61,24 @@
                     "font-size": "180%",
                     "margin": "5rem auto"
                 }
+            },
+            {
+                "_id": "vhrjfgfu",
+                "type": "video",
+                "name": "video",
+                "data": {
+                    "src": "https://www.youtube.com/watch?v=i4CkFhlLc7s"
+                },
+                "style": {}
+            },
+            {
+                "_id": "fvdgvdfg",
+                "type": "button",
+                "name": "btn",
+                "data": {
+                    "src": "https://www.google.com/not&found"
+                },
+                "style": {}
             }]
         },
 
@@ -85,7 +103,8 @@
                     "type": "map",
                     "name": "map",
                     "data": {
-                        "src": ""
+                        "lat": "32.0880288",
+                        "lng": "34.803230100000064"
                     }
                 }
             ]

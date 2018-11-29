@@ -1,27 +1,44 @@
 <template>
-  <div class="left-side" :style="style" v-html="element">
+  <div class="left-side" :style="style">
+    <component :is="element" :data="col.data"/>
     <!-- <div class="article" >
     </div>-->
   </div>
 </template>
-<script>
 
+<script>
+import TxtEl from '../components/elements/txt.el'
+import ImgEl from '../components/elements/img.el'
+import MapEl from '../components/elements/map.el'
+import VideoEl from '../components/elements/video.el'
+import ButtonEl from '../components/elements/btn.el'
 
 export default {
   props: ["col"],
+
+  components: {
+    TextElement: TxtEl,
+    ImgElement: ImgEl,
+    MapElement: MapEl,
+    VideoElement: VideoEl,
+    ButtonElement: ButtonEl
+  },
+
   computed: {
     element() {
       switch (this.col.type) {
         case "text":
-          return `<p>${this.col.data.text}</p>`;
+          return 'TextElement';
         case "img":
-          return `<img src="${this.col.data.src}"/>`;
+          return  `ImgElement`;
         case "map":
-          return `<iframe src="${this.col.data.src}" width="600" height="450"/>`;
+          return `MapElement`;
+        case "video":
+          return `VideoElement`;
         case "button":
-          return `<a href="${this.col.data.src}">${this.col.data.text}</a>`;
+          return `ButtonElement`;
         default:
-          return `<p> Nothing Found: ${this.col.data.src}</p>`;
+          return 'TextElement';
       }
     },
     style() {

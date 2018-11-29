@@ -1,9 +1,14 @@
 <template>
-    <img class="img" :src="imgSrc" alt="image"/>
+    <div>
+        <p class="text">
+            {{text}}
+        </p>
+        <input type="text"/>
+    </div>
 </template>
 
 <script>
-   import { ID } from '../../services/utils.js'
+    import { ID } from '../../services/utils.js'
 
     export default {
         props: {
@@ -20,15 +25,13 @@
         },
 
         computed: {
-            imgSrc() {
-                return this.data.src || 'http://via.placeholder.com/1200x600?text=My%20Awsome%20Image'
+            text() {                
+                return this.data.text || 'not found'
             }
         }
     }
-</script> 
+</script>
 
 <style lang="scss" scoped>
-    .img {
-        width: 150px;
-    }
+
 </style>
