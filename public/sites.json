@@ -1,4 +1,4 @@
-[{
+[{  
         "name": "default",
         "_id": "0",
         "thumb":"https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543487789/eWR1ajl1dHRjd24zYWhvd2JwMzY=/preview",
@@ -6,22 +6,17 @@
                 "_id": "156156165",
                 "type": "text",
                 "name": "header",
-                "title": "Welcome to our website",
+                "title": "Yes",
                 "data": {
                     "sm": "12"
                 },
                 "style": {
-                    "backgroundImage": "url(http://res.cloudinary.com/shuvy/image/upload/v1533294837/gipxbksdpgxiympki41h.png)"
-                },
-                "elements": [{
-                    "_id": "423432",
-                    "type": "button",
-                    "name": "a",
-                    "data": {
-                        "text": "Go To DooDLE!",
-                        "src": "http://google.com"
-                    }
-                }]
+                    "backgroundImage": "url(https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543491182/aGFtb3R6/preview)",
+                    "height": "550px",
+                    "background-repeat": "no-repeat",
+                    "background-size": "cover",
+                    "padding": "15vh 0"
+                }
             },
             {
                 "type": "section",

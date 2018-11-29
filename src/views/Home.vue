@@ -112,7 +112,10 @@ section {
     }
   }
 }
-
+main-header {
+ display: flex;
+ align-content: center; 
+}
 .footer {
   height: 50px;
 }
