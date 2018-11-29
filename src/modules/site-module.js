@@ -4,7 +4,8 @@ import sectionService from '../services/section-service.js'
 export default {
   state: {
     site: null,
-    sites: []
+    sites: [],
+    editMode:null
   },
   mutations: {
     loadSite(state, {
@@ -23,7 +24,6 @@ export default {
     }) {
       state.site.elements.splice(idx, 0, section)
       // console.log(section);
-
     },
   },
   actions: {

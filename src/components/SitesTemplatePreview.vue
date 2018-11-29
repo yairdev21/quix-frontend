@@ -58,8 +58,8 @@ export default {
 .far {
   bottom: 0;
   display: block;
-  margin: 50% 20px;
-  transform: scale(1.8);
+  margin: 50% 60px;
+  transform: scale(3.5);
   float: left;
 }
 .far:last-child {
@@ -67,7 +67,7 @@ export default {
 }
 
 .far:hover {
-  transform: scale(2.01);
+  transform: scale(4);
   color: green;
   cursor: pointer;
 }

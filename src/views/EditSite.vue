@@ -44,7 +44,7 @@ export default {
       if (!sectionName) return;
       this.$store
         .dispatch("addSection", { idx, sectionName })
-        .then(() => console.log(this.site));
+        // .then(() => console.log(this.site));
     }
   },
   // created() {
@@ -73,13 +73,16 @@ export default {
     NavBar,
     draggable,
     ControlButtons
-  }
+  },
 };
 </script>
 
 <style  scoped>
 .add-section {
   border: 1px dashed black;
+}
+.section-item {
+  border:none;
 }
 </style>
 

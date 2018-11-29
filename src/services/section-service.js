@@ -12,8 +12,10 @@ function query() {
 }
 
 function getSectionByName(sectionName) {
-    return axios.get('dummySection.json')
+    return axios.get(`dummySection.json`)
         .then(res => {
+            console.log(res);
+            
             const sections = res.data
             return sections.find(section => {
                 return sectionName === section.name
