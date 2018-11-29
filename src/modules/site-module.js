@@ -15,17 +15,7 @@ export default {
     loadSites(state, { sites }) {
       state.sites = sites;
     },
-<<<<<<< HEAD
    
-=======
-    addSection(state, {
-      idx,
-      section
-    }) {
-      state.site.elements.splice(idx, 0, section)
-      // console.log(section);
-    },
->>>>>>> 7f93dd2222f4fe4064b7c3628efc4eeb08098cfe
   },
   actions: {
     getSite(context) {
