@@ -14,7 +14,7 @@
                   name:'sections',
                   pull:false
                  }}"
-                  @end="emitAddSection(twoColsSection)"
+                  @end="emitAddSection('twoColsSection')"
                 >
                   <img src="@/assets/img/section1.png">
                 </draggable>
@@ -24,7 +24,7 @@
                 name:'sections',
                 pull:false
                 }}"
-                @end="emitAddSection"
+                @end="emitAddSection('threeColsSection')"
               >
                 <p class="card-text">
                   <img src="@/assets/img/section2.png">
@@ -76,14 +76,11 @@ export default {
     goHome() {
       this.$router.push("/");
     },
-    emitAddSection(evt) {
-      console.log(evt);
-
-      this.$emit("addSection", 1, "twoColsSection");
+    emitAddSection(sectionName) {
+      this.$emit("addSection", sectionName, 1);
     },
     move(evt){
             console.log(evt);
-
     }
   },
   components: {

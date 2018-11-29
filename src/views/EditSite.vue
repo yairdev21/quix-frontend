@@ -1,21 +1,21 @@
 <template>
   <div class="section-list">
     <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
+    <div v-if="sections">
       <draggable
         v-model="sections"
         :options="{group:'sections', animation: 200}"
         @start="drag=true"
-        @end="addSection"
+        @end="drag=false"
       >
-    <div v-if="sections">
         <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview :section="section"></section-preview>
         </div>
+   </draggable>
     </div>
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-   </draggable>
     <control-buttons @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
   </div>
 </template>
