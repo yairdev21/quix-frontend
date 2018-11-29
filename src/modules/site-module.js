@@ -4,23 +4,14 @@ export default {
   state: {
     site: null,
     sites: [],
-    editMode:null
+    editMode: null
   },
   mutations: {
-    loadSite(state, {
-      site
-    }) {
-      state.site = site;
+    loadSite(state, { site }) {
+    state.site = site;
     },
     loadSites(state, { sites }) {
       state.sites = sites;
-    },
-    addSection(state, {
-      idx,
-      section
-    }) {
-      state.site.elements.splice(idx, 0, section)
-      // console.log(section);
     },
   },
   actions: {
@@ -54,6 +45,6 @@ export default {
           return site
         })
     },
- 
+
   }
 }

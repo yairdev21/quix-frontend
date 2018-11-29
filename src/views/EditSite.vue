@@ -42,20 +42,6 @@ export default {
       });
     }
   },
-  // created() {
-  //   this.$store.dispatch({ type: "getSite" }).then(res => {
-  //     this.site = res;
-  //     this.sections = res.elements;
-  //   });
-  // },
-  // mounted () {
-  //   this.$dragging.$on('dragged', ({ value }) => {
-  //     console.log(value.item)
-  //     console.log(value.list)
-  //   })
-  //   this.$dragging.$on('dragend', () => {
-  //   })
-  // },
   created() {
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "editSite", siteId }).then(res => {

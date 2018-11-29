@@ -12,13 +12,8 @@ function query() {
 }
 
 function getSectionByName(sectionName) {
-    return axios.get(`dummySection.json`)
-        .then(res => {
-            console.log(res);
-            
-            const sections = res.data
-            return sections.find(section => {
-                return sectionName === section.name
-            })
-        })
+    const sections = require('../../public/dummySection.json')
+    return new Promise((resolve)=>{
+        resolve(sections.find(section => sectionName === section.name))
+    })
 }
