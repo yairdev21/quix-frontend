@@ -102,6 +102,14 @@
                             "lat": "32.0880288",
                             "lng": "34.803230100000064"
                         }
+                    },
+                    {
+                        "_id": "65465432",
+                        "type": "video",
+                        "name": "video",
+                        "data": {
+                            "src":"https://www.youtube.com/watch?v=n9SwtdrkVHE"
+                        }
                     }
                 ]
             }
