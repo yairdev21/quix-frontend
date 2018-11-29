@@ -5,21 +5,30 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            videoUrl: 'https://www.youtube.com/watch?v=e7sw5xA066Y'
-        }
-    },
+   import { ID } from '../../services/utils.js'
 
-    computed: {
-        video() {
-            const videoId = this.videoUrl.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+    export default {
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
+        },
+        data() {
+            return {
+                id: ID()
+            }
+        },
 
-            return videoId[1]
+        computed: {
+            video() {
+                const video = this.data.src || 'https://www.youtube.com/watch?v=e7sw5xA066Y';
+                const videoId = video.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+                return videoId[1]
+            }
         }
     }
-}
 
 </script>
 

@@ -101,8 +101,25 @@
                     "data": {
                         "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0T6zAr6-VdNWcVwYVhsMHiCZcrVqAeFXsThNI6E1GYSNplql"
                     }
-                }
-            ]
+                },
+                {
+                    "_id": "vhrjfgfu",
+                    "type": "video",
+                    "name": "video",
+                    "data": {
+                        "src": "https://www.youtube.com/watch?v=i4CkFhlLc7s"
+                    },
+                    "style": {}
+                },
+                {
+                    "_id": "fvdgvdfg",
+                    "type": "button",
+                    "name": "btn",
+                    "data": {
+                        "src": "https://www.google.com/not&found"
+                    },
+                    "style": {}
+            }]
         },
         {
             "type": "section",
@@ -125,7 +142,8 @@
                     "type": "map",
                     "name": "map",
                     "data": {
-                        "src": ""
+                        "lat": "32.0880288",
+                        "lng": "34.803230100000064"
                     }
                 }
             ]
