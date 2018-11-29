@@ -1,7 +1,7 @@
 <template>
   <section>
     <transition name="slide-fade">
-      <div v-if="toShow" class="sidebar" role="tablist">
+      <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
@@ -9,17 +9,29 @@
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
               <p class="card-text">
-                <drag class="drag" transfer-data="twoColsSection">
+                <draggable
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection"
+                >
                   <img src="@/assets/img/section1.png">
-                </drag>
+                </draggable>
               </p>
-              <p class="card-text">
-                <drag class="drag" transfer-data="threeColsSection">
+                <draggable
+                :options="{group:{
+                name:'sections',
+                pull:false
+                }}"
+                @end="emitAddSection"
+              >
+                <p class="card-text">
                   <img src="@/assets/img/section2.png">
-                </drag>
-              </p>
+                </p>
+              </draggable>
             </b-card-body>
-         </b-collapse>
+          </b-collapse>
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
@@ -58,14 +70,24 @@
 import draggable from "vuedraggable";
 
 export default {
-  name: 'Navbar',
-   data: () => ({
-     toShow: true
-  }),
-  methods:{
+  name: "Navbar",
+
+  methods: {
     goHome() {
-      this.$router.push('/')
+      this.$router.push("/");
     },
+    emitAddSection(evt) {
+      console.log(evt);
+
+      this.$emit("addSection", 1, "twoColsSection");
+    },
+    move(evt){
+            console.log(evt);
+
+    }
+  },
+  components: {
+    draggable
   }
 };
 </script>

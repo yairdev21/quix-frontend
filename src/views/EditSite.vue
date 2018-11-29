@@ -1,17 +1,15 @@
 <template>
   <div class="section-list">
-    <nav-bar v-if="isPanelOpen"></nav-bar>
+    <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
     <div v-if="sections">
       <draggable
         v-model="sections"
-        :options="{group:'sections'}"
+        :options="{group:'sections', animation: 200}"
         @start="drag=true"
         @end="drag=false"
       >
         <div class="section-items" v-for="(section, idx) in sections" :key="section._id">
-          <drop @drop="addSection(idx, ...arguments)">
-            <section-preview :section="section"></section-preview>
-          </drop>
+          <section-preview :section="section"></section-preview>
         </div>
       </draggable>
     </div>
@@ -27,6 +25,7 @@ import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
 import draggable from "vuedraggable";
+import sectionService from "../services/section-service.js";
 
 export default {
   data() {
@@ -40,6 +39,14 @@ export default {
     processEditOperation(operation) {
       return (this.text = operation.api.origElements.innerHTML);
     },
+<<<<<<< HEAD
+    addSection(idx = 0, sectionName) {
+      sectionService.getSectionByName(sectionName).then(section => {
+        this.site.sections.splice(idx, 0, section);
+      });
+    }
+  },
+=======
     addSection(idx, sectionName) {
       if (!sectionName) return;
       this.$store
@@ -61,6 +68,7 @@ export default {
   //   this.$dragging.$on('dragend', () => {
   //   })
   // },
+>>>>>>> 7f93dd2222f4fe4064b7c3628efc4eeb08098cfe
   created() {
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "editSite", siteId }).then(res => {
