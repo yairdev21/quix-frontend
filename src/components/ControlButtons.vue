@@ -11,6 +11,9 @@
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
+    <button class="save-icon icon" @click="goHome">
+      <i class="far fa-save"></i>
+    </button>
 
     
   </div>
@@ -36,8 +39,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .side-bar-btns {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   position: fixed;
-  left: 80%;
+  left: 45%;
   top: 90%;
 }
 .icon {

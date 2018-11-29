@@ -8,11 +8,7 @@
         @start="drag=true"
         @end="drag=false"
       >
-        <div
-          class="section-items"
-          v-for="(section, idx) in sections"
-          :key="section._id"
-        >
+        <div class="section-items" v-for="(section, idx) in sections" :key="section._id">
           <drop @drop="addSection(idx, ...arguments)">
             <section-preview :section="section"></section-preview>
           </drop>
@@ -37,7 +33,7 @@ export default {
     return {
       site: null,
       sections: null,
-      isPanelOpen:false
+      isPanelOpen: false
     };
   },
   methods: {
@@ -45,11 +41,18 @@ export default {
       return (this.text = operation.api.origElements.innerHTML);
     },
     addSection(idx, sectionName) {
-      if (!sectionName) return
-      this.$store.dispatch("addSection", { idx, sectionName })
-       .then(() => console.log(this.site));
+      if (!sectionName) return;
+      this.$store
+        .dispatch("addSection", { idx, sectionName })
+        .then(() => console.log(this.site));
     }
   },
+  // created() {
+  //   this.$store.dispatch({ type: "getSite" }).then(res => {
+  //     this.site = res;
+  //     this.sections = res.elements;
+  //   });
+  // },
   // mounted () {
   //   this.$dragging.$on('dragged', ({ value }) => {
   //     console.log(value.item)
@@ -59,9 +62,10 @@ export default {
   //   })
   // },
   created() {
-    this.$store.dispatch({ type: "getSite" }).then(res => {
-      this.site = res;
-      this.sections = res.elements;
+    let siteId = this.$route.params.siteId;
+    this.$store.dispatch({ type: "editSite", siteId }).then(res => {
+      this.site = res[0];
+      this.sections = res[0].sections;
     });
   },
   components: {

@@ -1,0 +1,74 @@
+<template>
+  <div class="card" style="width: 18rem">
+    <img class="card-img-top" :src="site.thumb" alt="Card image cap">
+    <div class="website-menu">
+      <i class="far fa-eye" @click="previewSite"></i>
+      <i class="far fa-edit" @click="editSite(site)"></i>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["site"],
+  data() {
+    return { imgHover: false };
+  },
+  methods: {
+    previewSite() {
+      
+    },
+    editSite(site) {
+          this.$router.push(`/edit/${site._id}`)
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+
+.card {
+  margin: 3rem;
+  min-width: 20%;
+  max-width: 100%;
+  transition: 0.4s;
+  background: ghostwhite;
+}
+
+.card:hover > .card-img-top {
+  transition: 0.4s;
+  cursor: pointer;
+  opacity: 0.4;
+  transform: scale(1.01);
+}
+
+.card:hover > .website-menu:hover {
+  opacity: 1;
+  transition: 0.4s;
+}
+.website-menu {
+  position: absolute;
+  opacity: 0;
+  transition: 0.4s;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.far {
+  bottom: 0;
+  display: block;
+  margin: 50% 20px;
+  transform: scale(1.8);
+  float: left;
+}
+.far:last-child {
+  float: right;
+}
+
+.far:hover {
+  transform: scale(2.01);
+  color: green;
+  cursor: pointer;
+}
+</style>

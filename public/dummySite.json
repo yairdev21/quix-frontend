@@ -1,40 +1,37 @@
 {
-    "name": "site2",
+    "name": "Bite",
     "_id": "123",
+    "thumb":"",
     "elements": [{
             "_id": "156156165",
             "type": "section",
             "name": "header",
-            "title": "גיתית רעפים בלי נדר",
+            "title": "Have a bite",
             "data": {
                 "sm": "12"
             },
             "style": {
                 "color": "white",
-                "background": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROaLRgntDGwfmxWQ7GMUZsr3gR15Ffj8icpyODKs15rzGacLQiHQ)",
-                "height": "550px",
+                "background": "url(https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=67fb2e7b1fbe39b18b51146234ef38aa&w=1000&q=80)",
+                "display": "block",
+                "height": "450px",
+                "margin": "0 auto",
                 "background-repeat": "no-repeat",
                 "background-size": "cover",
-                "padding": "15vh 0"
-            }
-        },
-        {
-            "type": "text",
-            "_id": "421412412",
-            "name": "oneColSection",
-            "title": "?נמאס לכם שהרעפים שלכם לא של גיתית",
-            "data": {
-                "sm": "12"
-            },
-            "style": {
-                "background": "white"
+                "padding": "10vh 0"
             },
             "elements": [{
-                "_id": "65465432",
-                "type": "img",
-                "name": "img",
+                "_id": "423432",
+                "type": "text",
+                "name": "p",
                 "data": {
-                    "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5fCxeQjT0NR_ibpN47elIFMW-iWo9s4Pfm_h7b2TrRO938rIiwA"
+                    "text": "We know you want to..."
+                },
+                "style": {
+                    "font-weight": "bolder",
+                    "color": "black",
+                    "font-size": "180%",
+                    "margin": "5rem auto"
                 }
             }]
         },
@@ -43,45 +40,87 @@
             "_id": "3123211234",
             "name": "towColsSection",
             "data": {
+                "sm": "6"
+            },
+            "style": {
+                "background": "white"
+            },
+            "elements": [{
+                    "_id": "4124211",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Gourmet food for the people"
+                    },
+                    "style": {
+                        "font-weight": "bolder",
+                        "color": "black",
+                        "font-size": "180%",
+                        "margin": "5rem auto"
+                    }
+                },
+                {
+                    "_id": "4124122",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Wasting only the finest ingredients!"
+                    },
+                    "style": {
+                        "font-weight": "bolder",
+                        "color": "black",
+                        "font-size": "180%",
+                        "margin": "5rem auto"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "_id": "421412412",
+            "name": "oneColSection",
+            "title": "Sample Menu:",
+            "data": {
                 "sm": "12"
             },
             "style": {
                 "background": "white"
             },
             "elements": [{
-                "_id": "4124122",
-                "type": "text",
-                "name": "p",
-                "data": {
-                    "text": "כל צרכי הריעוף לגבר ולאשה תחת קורת גג אחת"
+                    "_id": "6543654",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "(Can change if you pay us)"
+                    }
                 },
-                "style": {
-                    "font-weight": "bolder",
-                    "color": "black",
-                    "font-size": "180%",
-                    "margin": "5rem auto"
-                }
-            },
-            {
-                "_id": "vhrjfgfu",
-                "type": "video",
-                "name": "video",
-                "data": {
-                    "src": "https://www.youtube.com/watch?v=i4CkFhlLc7s"
+                {
+                    "_id": "65465432",
+                    "type": "img",
+                    "name": "img",
+                    "data": {
+                        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg0T6zAr6-VdNWcVwYVhsMHiCZcrVqAeFXsThNI6E1GYSNplql"
+                    }
                 },
-                "style": {}
-            },
-            {
-                "_id": "fvdgvdfg",
-                "type": "button",
-                "name": "btn",
-                "data": {
-                    "src": "https://www.google.com/not&found"
+                {
+                    "_id": "vhrjfgfu",
+                    "type": "video",
+                    "name": "video",
+                    "data": {
+                        "src": "https://www.youtube.com/watch?v=i4CkFhlLc7s"
+                    },
+                    "style": {}
                 },
-                "style": {}
+                {
+                    "_id": "fvdgvdfg",
+                    "type": "button",
+                    "name": "btn",
+                    "data": {
+                        "src": "https://www.google.com/not&found"
+                    },
+                    "style": {}
             }]
         },
-
         {
             "type": "section",
             "_id": "6156156",
