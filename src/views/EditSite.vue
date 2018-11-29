@@ -2,7 +2,6 @@
   <div class="section-list">
     <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
     <div v-if="sections">
-      <medium-editor :options="options"/>
       <draggable
         v-model="sections"
         :options="{group:'sections', animation: 200}"
@@ -25,30 +24,14 @@
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
-import MediumEditor from "vue2-medium-editor";
 import draggable from "vuedraggable";
 import sectionService from "../services/section-service.js";
 
-var options = {
-  toolbar: {
-    allowMultiParagraphSelection: true,
-    buttons: ["bold", "italic", "underline", "h2", "h3"],
-    diffLeft: 0,
-    diffTop: -10,
-    firstButtonClass: "medium-editor-button-first",
-    lastButtonClass: "medium-editor-button-last",
-    relativeContainer: null,
-    standardizeSelectionStart: false,
-    static: false,
-    align: "center"
-  }
-};
 export default {
   data() {
     return {
       site: null,
       sections: null,
-      options,
       isPanelOpen: false
     };
   },
@@ -56,12 +39,36 @@ export default {
     processEditOperation(operation) {
       return (this.text = operation.api.origElements.innerHTML);
     },
+<<<<<<< HEAD
     addSection(idx = 0, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
       });
     }
   },
+=======
+    addSection(idx, sectionName) {
+      if (!sectionName) return;
+      this.$store
+        .dispatch("addSection", { idx, sectionName })
+        // .then(() => console.log(this.site));
+    }
+  },
+  // created() {
+  //   this.$store.dispatch({ type: "getSite" }).then(res => {
+  //     this.site = res;
+  //     this.sections = res.elements;
+  //   });
+  // },
+  // mounted () {
+  //   this.$dragging.$on('dragged', ({ value }) => {
+  //     console.log(value.item)
+  //     console.log(value.list)
+  //   })
+  //   this.$dragging.$on('dragend', () => {
+  //   })
+  // },
+>>>>>>> 7f93dd2222f4fe4064b7c3628efc4eeb08098cfe
   created() {
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "editSite", siteId }).then(res => {
@@ -72,16 +79,18 @@ export default {
   components: {
     SectionPreview,
     NavBar,
-    MediumEditor,
     draggable,
     ControlButtons
-  }
+  },
 };
 </script>
 
 <style  scoped>
 .add-section {
   border: 1px dashed black;
+}
+.section-item {
+  border:none;
 }
 </style>
 
