@@ -1,118 +1,94 @@
-    {
-        "name": "site2",
-        "_id": "123",
-        "elements": [
-            {
-                "_id": "156156165",
-                "type": "section",
-                "name": "header",
-                "title": "Welcome to our website",
+{
+    "name": "site2",
+    "_id": "123",
+    "elements": [{
+            "_id": "156156165",
+            "type": "section",
+            "name": "header",
+            "title": "גיתית רעפים בלי נדר",
+            "data": {
+                "sm": "12"
+            },
+            "style": {
+                "color": "white",
+                "background": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROaLRgntDGwfmxWQ7GMUZsr3gR15Ffj8icpyODKs15rzGacLQiHQ)",
+                "height": "550px",
+                "background-repeat": "no-repeat",
+                "background-size": "cover",
+                "padding": "15vh 0"
+            }
+        },
+        {
+            "type": "section",
+            "_id": "421412412",
+            "name": "oneColSection",
+            "title": "?נמאס לכם שהרעפים שלכם לא של גיתית",
+            "data": {
+                "sm": "12"
+            },
+            "style": {
+                "background": "white"
+            },
+            "elements": [{
+                "_id": "65465432",
+                "type": "img",
+                "name": "img",
                 "data": {
-                    "sm": "12"
+                    "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5fCxeQjT0NR_ibpN47elIFMW-iWo9s4Pfm_h7b2TrRO938rIiwA"
+                }
+            }]
+        },
+        {
+            "type": "section",
+            "_id": "3123211234",
+            "name": "towColsSection",
+            "data": {
+                "sm": "12"
+            },
+            "style": {
+                "background": "white"
+            },
+            "elements": [{
+                "_id": "4124122",
+                "type": "text",
+                "name": "p",
+                "data": {
+                    "text": "כל צרכי הריעוף לגבר ולאשה תחת קורת גג אחת"
                 },
                 "style": {
-                    "backgroundImage": "backgroundImage: 'url(http://res.cloudinary.com/shuvy/image/upload/v1533294837/gipxbksdpgxiympki41h.png)'"
-                },
-                "elements": [
-                    {
-                        "_id": "423432",
-                        "type": "button",
-                        "name": "a",
-                        "data": {
-                            "text": "Go To Google!",
-                            "src": "http://google.com"
-                        }
-                    }
-                ]
+                    "font-weight": "bolder",
+                    "color": "black",
+                    "font-size": "180%",
+                    "margin": "5rem auto"
+                }
+            }]
+        },
+
+        {
+            "type": "section",
+            "_id": "6156156",
+            "name": "footer",
+            "data": {
+                "sm": "6"
             },
-            {
-                "type": "section",
-                "_id": "3123211234",
-                "name": "threeColsSection",
-                "data": {
-                    "sm": "4"
-                },
-                "style": {},
-                "elements": [
-                    {
-                        "_id": "4124211",
-                        "type": "text",
-                        "name": "p",
-                        "data": {
-                            "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
-                        }
-                    },
-                    {
-                        "_id": "4124122",
-                        "type": "text",
-                        "name": "p",
-                        "data": {
-                            "text": "Gorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
-                        }
-                    },
-                    {
-                        "_id": "65465432",
-                        "type": "img",
-                        "name": "img",
-                        "data": {
-                            "src": "https://loremflickr.com/cache/resized/2905_33903735972_51e13e379f_z_640_360_nofilter.jpg"
-                        }
+            "style": {},
+            "elements": [{
+                    "_id": "4124211",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
                     }
-                ]
-            },
-            {
-                "type": "section",
-                "_id": "421412412",
-                "name": "oneColSection",
-                "title": "Section Title",
-                "data": {
-                    "sm": "12"
                 },
-                "elements": [
-                    {
-                        "_id": "6543654",
-                        "type": "text",
-                        "name": "p",
-                        "data": {
-                            "text": "This is our logo"
-                        }
-                    },
-                    {
-                        "_id": "65465432",
-                        "type": "img",
-                        "name": "img",
-                        "data": {
-                            "src": "https://loremflickr.com/cache/resized/4439_36474864810_10fed24ec8_b_640_360_nofilter.jpg"
-                        }
+                {
+                    "_id": "65465432",
+                    "type": "map",
+                    "name": "map",
+                    "data": {
+                        "src": ""
                     }
-                ]
-            },
-            {
-                "type": "section",
-                "_id": "6156156",
-                "name": "footer",
-                "data": {
-                    "sm": "6"
-                },
-                "style": {},
-                "elements": [
-                    {
-                        "_id": "4124211",
-                        "type": "text",
-                        "name": "p",
-                        "data": {
-                            "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
-                        }
-                    },
-                    {
-                        "_id": "65465432",
-                        "type": "map",
-                        "name": "map",
-                        "data": {
-                            "src": ""
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                }
+            ]
+        }
+    ]
+}

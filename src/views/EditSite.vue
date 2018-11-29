@@ -1,57 +1,80 @@
 <template>
   <div class="section-list">
-    <nav-bar></nav-bar>
+    <nav-bar v-if="isPanelOpen"></nav-bar>
     <div v-if="sections">
-    <medium-editor :options="options"/>
-    <div
-      v-if="sections"
-      class="section-items"
-      v-for="(section, idx) in sections"
-      v-dragging="{ item: section, list: sections, group: 'section'}"
-      :key="section._id"
-       >
-         <section-preview :section="section" :idx="idx"></section-preview>
-       </div>
+      <medium-editor :options="options"/>
+      <draggable
+        v-model="sections"
+        :options="{group:'sections'}"
+        @start="drag=true"
+        @end="drag=false"
+      >
+        <div
+          class="section-items"
+          v-for="(section, idx) in sections"
+          :key="section._id"
+        >
+          <drop @drop="addSection(idx, ...arguments)">
+            <section-preview :section="section"></section-preview>
+          </drop>
+        </div>
+      </draggable>
     </div>
-      <section v-else class="add-section section-item">
-        <h1 class="text-center">Drag & Drop New Section Here</h1>
-      </section>
+    <section v-else class="add-section section-item">
+      <h1 class="text-center">Drag & Drop New Section Here</h1>
+    </section>
+    <control-buttons @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 
 import NavBar from '@/components/NavBar.vue'
 import SectionPreview from '@/components/SectionPreview.cmp.vue'
 import MediumEditor from 'vue2-medium-editor'
+=======
+import NavBar from "@/components/NavBar.vue";
+import SectionPreview from "@/components/SectionPreview.cmp.vue";
+import ControlButtons from "@/components/ControlButtons.vue";
+import MediumEditor from "vue2-medium-editor";
+import draggable from "vuedraggable";
+>>>>>>> 917fb766e215fccae2784633192b22fdd4614734
 
 var options = {
   toolbar: {
     allowMultiParagraphSelection: true,
-    buttons: ['bold', 'italic', 'underline',  'h2', 'h3'],
+    buttons: ["bold", "italic", "underline", "h2", "h3"],
     diffLeft: 0,
     diffTop: -10,
-    firstButtonClass: 'medium-editor-button-first',
-    lastButtonClass: 'medium-editor-button-last',
+    firstButtonClass: "medium-editor-button-first",
+    lastButtonClass: "medium-editor-button-last",
     relativeContainer: null,
     standardizeSelectionStart: false,
     static: false,
-    align: 'center',
+    align: "center"
   }
-}
+};
 export default {
-  data () {
+  data() {
     return {
-        site: null,
-        sections:null,
-        options
-    }
-  },  
-  methods:{
-    processEditOperation(operation) {
-      return this.text = operation.api.origElements.innerHTML
-    },
+      site: null,
+      sections: null,
+      options,
+      isPanelOpen:false
+    };
   },
+  methods: {
+    processEditOperation(operation) {
+      return (this.text = operation.api.origElements.innerHTML);
+    },
+    addSection(idx, sectionName) {
+      if (!sectionName) return
+      this.$store.dispatch("addSection", { idx, sectionName })
+       .then(() => console.log(this.site));
+    }
+  },
+<<<<<<< HEAD
 
   created(){
   this.$store.dispatch({type:'getSite'})
@@ -59,20 +82,35 @@ export default {
     this.site=res
     this.sections=res.elements
   })
+=======
+  // mounted () {
+  //   this.$dragging.$on('dragged', ({ value }) => {
+  //     console.log(value.item)
+  //     console.log(value.list)
+  //   })
+  //   this.$dragging.$on('dragend', () => {
+  //   })
+  // },
+  created() {
+    this.$store.dispatch({ type: "getSite" }).then(res => {
+      this.site = res;
+      this.sections = res.elements;
+    });
+>>>>>>> 917fb766e215fccae2784633192b22fdd4614734
   },
-  components:{
+  components: {
     SectionPreview,
     NavBar,
-    MediumEditor
+    MediumEditor,
+    draggable,
+    ControlButtons
   }
-}
+};
 </script>
 
 <style  scoped>
-
-.add-section{
-    border: 1px dashed black;
+.add-section {
+  border: 1px dashed black;
 }
-
 </style>
 

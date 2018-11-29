@@ -1,14 +1,12 @@
 <template>
-        <drop @drop="addSection(idx, ...arguments)">
-  <section class="hero-article section-item" :style="{style}">
+  <section class="hero-article section-item" :style="style">
     <h1 class="text-center" :v-if="section.title">{{section.title}}</h1>
     <b-row>
-      <b-col contenteditable="true" v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
+      <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <col-preview :col="col"></col-preview>
       </b-col>
     </b-row>
   </section>
-      </drop>
 </template>
 
 <script>
@@ -19,11 +17,7 @@ export default {
   data() {
     return {};
   },
-   methods:{
-     addSection(idx, sectionName){
-     this.$store.dispatch('addSection', {idx, sectionName} );
-     }
-   },
+  
   computed: {
     cols() {
       return this.section.elements;
@@ -32,6 +26,7 @@ export default {
       return this.section.style || null;
     }
   },
+ 
   components: {
     ColPreview
   }

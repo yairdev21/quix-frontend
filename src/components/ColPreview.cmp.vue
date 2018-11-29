@@ -1,5 +1,5 @@
 <template>
-  <div class="left-side" :style="{}" v-html="element">
+  <div class="left-side" :style="style" v-html="element">
     <!-- <div class="article" >
     </div>-->
   </div>
@@ -23,8 +23,12 @@ export default {
         default:
           return `<p> Nothing Found: ${this.col.data.src}</p>`;
       }
+    },
+    style() {
+      return this.col.style || null;
     }
   },
+ 
 };
 </script>
 
