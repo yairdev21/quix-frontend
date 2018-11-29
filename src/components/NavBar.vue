@@ -77,11 +77,8 @@ export default {
       this.$router.push("/");
     },
     emitAddSection(sectionName) {
-      this.$emit("addSection", sectionName, 1);
+      this.$emit("addSection", sectionName, 0);
     },
-    move(evt){
-            console.log(evt);
-    }
   },
   components: {
     draggable

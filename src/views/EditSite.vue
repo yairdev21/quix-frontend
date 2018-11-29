@@ -11,7 +11,7 @@
         <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview :section="section"></section-preview>
         </div>
-   </draggable>
+      </draggable>
     </div>
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
@@ -41,7 +41,6 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        console.log(section);
         this.site.sections.splice(idx, 0, section);
       });
     }
