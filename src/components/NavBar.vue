@@ -19,9 +19,17 @@
                   <img src="@/assets/img/section1.png">
                 </draggable>
               </p>
-              <p class="card-text">
-                <img src="@/assets/img/section2.png">
-              </p>
+                <draggable
+                :options="{group:{
+                name:'sections',
+                pull:false
+                }}"
+                @end="emitAddSection"
+              >
+                <p class="card-text">
+                  <img src="@/assets/img/section2.png">
+                </p>
+              </draggable>
             </b-card-body>
           </b-collapse>
         </b-card>

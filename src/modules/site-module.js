@@ -1,5 +1,4 @@
 import siteService from '../services/site-service.js'
-import sectionService from '../services/section-service.js'
 
 export default {
   state: {
@@ -12,19 +11,10 @@ export default {
     }) {
       state.site = site;
     },
-    loadSites(state, {
-      sites
-    }) {
+    loadSites(state, { sites }) {
       state.sites = sites;
     },
-    addSection(state, {
-      idx,
-      section
-    }) {
-      state.site.elements.splice(idx, 0, section)
-      // console.log(section);
-
-    },
+   
   },
   actions: {
     getSite(context) {
@@ -47,7 +37,7 @@ export default {
           return sites
         })
     },
-    editSite(context, {siteId}) {
+    editSite(context, { siteId }) {
       return siteService.getSiteById(siteId)
         .then(site => {
           context.commit({
@@ -57,20 +47,6 @@ export default {
           return site
         })
     },
-    addSection({
-      commit
-    }, {
-      idx,
-      sectionName
-    }) {
-      sectionService.getSectionByName(sectionName)
-        .then(section => {
-          commit({
-            type: 'addSection',
-            idx,
-            section
-          })
-        })
-    },
+ 
   }
 }

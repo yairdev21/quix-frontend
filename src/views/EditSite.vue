@@ -1,20 +1,16 @@
 <template>
   <div class="section-list">
-    <nav-bar v-if="isPanelOpen"  @addSection="addSection"></nav-bar>
+    <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
     <div v-if="sections">
       <medium-editor :options="options"/>
       <draggable
         v-model="sections"
-        :options="{group:'sections'}"
+        :options="{group:'sections', animation: 200}"
         @start="drag=true"
         @end="drag=false"
       >
-        <div
-          class="section-items"
-          v-for="(section, idx) in sections"
-          :key="section._id"
-        >
-            <section-preview :section="section"></section-preview>
+        <div class="section-items" v-for="(section, idx) in sections" :key="section._id">
+          <section-preview :section="section"></section-preview>
         </div>
       </draggable>
     </div>
@@ -31,6 +27,7 @@ import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
 import MediumEditor from "vue2-medium-editor";
 import draggable from "vuedraggable";
+import sectionService from "../services/section-service.js";
 
 var options = {
   toolbar: {
@@ -59,9 +56,10 @@ export default {
     processEditOperation(operation) {
       return (this.text = operation.api.origElements.innerHTML);
     },
-    addSection(idx, sectionName) {
-      this.$store.dispatch("addSection", { idx, sectionName })
-       .then(() => console.log(this.site, sectionName));
+    addSection(idx = 0, sectionName) {
+      sectionService.getSectionByName(sectionName).then(section => {
+        this.site.sections.splice(idx, 0, section);
+      });
     }
   },
   created() {
