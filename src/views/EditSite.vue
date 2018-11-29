@@ -1,6 +1,6 @@
 <template>
   <div class="section-list">
-    <nav-bar v-if="isPanelOpen"></nav-bar>
+    <nav-bar v-if="isPanelOpen"  @addSection="addSection"></nav-bar>
     <div v-if="sections">
       <medium-editor :options="options"/>
       <draggable
@@ -14,9 +14,7 @@
           v-for="(section, idx) in sections"
           :key="section._id"
         >
-          <drop @drop="addSection(idx, ...arguments)">
             <section-preview :section="section"></section-preview>
-          </drop>
         </div>
       </draggable>
     </div>
@@ -62,19 +60,10 @@ export default {
       return (this.text = operation.api.origElements.innerHTML);
     },
     addSection(idx, sectionName) {
-      if (!sectionName) return
       this.$store.dispatch("addSection", { idx, sectionName })
-       .then(() => console.log(this.site));
+       .then(() => console.log(this.site, sectionName));
     }
   },
-  // mounted () {
-  //   this.$dragging.$on('dragged', ({ value }) => {
-  //     console.log(value.item)
-  //     console.log(value.list)
-  //   })
-  //   this.$dragging.$on('dragend', () => {
-  //   })
-  // },
   created() {
     this.$store.dispatch({ type: "getSite" }).then(res => {
       this.site = res;
