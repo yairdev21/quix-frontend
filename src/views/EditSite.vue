@@ -8,7 +8,7 @@
         @start="drag=true"
         @end="drag=false"
       >
-        <div class="section-items" v-for="(section, idx) in sections" :key="section._id">
+        <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview :section="section"></section-preview>
         </div>
       </draggable>
@@ -39,19 +39,10 @@ export default {
     processEditOperation(operation) {
       return (this.text = operation.api.origElements.innerHTML);
     },
-<<<<<<< HEAD
     addSection(idx = 0, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
       });
-    }
-  },
-=======
-    addSection(idx, sectionName) {
-      if (!sectionName) return;
-      this.$store
-        .dispatch("addSection", { idx, sectionName })
-        // .then(() => console.log(this.site));
     }
   },
   // created() {
@@ -68,7 +59,6 @@ export default {
   //   this.$dragging.$on('dragend', () => {
   //   })
   // },
->>>>>>> 7f93dd2222f4fe4064b7c3628efc4eeb08098cfe
   created() {
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "editSite", siteId }).then(res => {
