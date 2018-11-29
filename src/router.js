@@ -17,7 +17,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/edit',
+      path: '/edit/:siteId?',
       name: 'edit',
       component: EditSite
     },

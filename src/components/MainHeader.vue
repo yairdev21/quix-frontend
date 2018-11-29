@@ -5,7 +5,7 @@
     </button>
     <div class="nav-btns">
       <button class="build-btn btn btn-outline-secondary">
-        <router-link to="/edit">Build</router-link>
+        <router-link to="/edit/0">Build</router-link>
       </button>
       <button class="login-btn btn btn-outline-secondary">
         <router-link to="/login">Login</router-link>

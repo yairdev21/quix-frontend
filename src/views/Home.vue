@@ -2,11 +2,8 @@
   <div class="home">
     <main-header></main-header>
     <section class="main">
-      <div class="container">
-
-
-      <img src="@/assets/img/homePage.png/"/>
-      </div>
+      <div class="container"></div>
+      <!-- <img src="@/assets/img/homePage.png/"/> -->
     </section>
 
     <card-section></card-section>
@@ -24,8 +21,7 @@ export default {
   name: "home",
 
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     HomeFooter,
@@ -37,16 +33,16 @@ export default {
 
 <style lang="scss" scoped>
 section {
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-    max-width: 100vw;
+  max-width: 100vw;
   &.main {
     position: relative;
-    // background-image: url("../assets/img/homePage.png");
-    // background-attachment: fixed;
-    // background-position: center center;
-    // background-repeat: no-repeat;
-    // background-size: cover ;
+    background-image: url("../assets/img/homePage.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 90vh;
     // max-width: 85vw;
 
@@ -61,6 +57,7 @@ section {
       width: 800px;
       max-width: 100%;
       margin: 0 auto;
+      display: flex;
 
       h1 {
         margin: 0 0 0.5em;
