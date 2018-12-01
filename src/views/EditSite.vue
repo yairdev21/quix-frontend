@@ -1,8 +1,8 @@
 <template>
   <div class="section-list">
     <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
-    <text-edit-buttons v-show="isTextSelected" :text="text"></text-edit-buttons>
-
+    <text-edit-buttons  @openLinkModal="showModal" v-show="isTextSelected" :text="text"></text-edit-buttons>
+    <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <draggable
         v-model="sections"
@@ -11,7 +11,11 @@
         @end="drag=false"
       >
         <div class="section-items" v-for="(section) in sections" :key="section._id">
-          <section-preview  @selectedText="editSelectedText" :section="section"></section-preview>
+          <section-preview
+            :showModal="showModal"
+            @selectedText="editSelectedText"
+            :section="section"
+          ></section-preview>
         </div>
       </draggable>
     </div>
@@ -29,6 +33,8 @@ import ControlButtons from "@/components/ControlButtons.vue";
 import draggable from "vuedraggable";
 import sectionService from "../services/section-service.js";
 import TextEditButtons from "@/components/TextEditButtons.vue";
+import createLinkModal from "@/components/textEdit/createLinkModal.vue";
+import { EventBus } from '@/event-bus.js';
 
 export default {
   data() {
@@ -37,7 +43,8 @@ export default {
       sections: null,
       isPanelOpen: false,
       text: "",
-      isTextSelected:false
+      isTextSelected: false,
+      isModalVisible: false,
     };
   },
   methods: {
@@ -47,9 +54,16 @@ export default {
       });
     },
     editSelectedText(data) {
-      if (data.toString().length=== 0) return this.isTextSelected = false
-      this.isTextSelected = true
+      if (data.toString().length === 0) return (this.isTextSelected = false);
+      this.isTextSelected = true;
       this.text = data;
+    },
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal(link) {
+      EventBus.$emit("link-for-edit", link);
+      this.isModalVisible = false;
     }
   },
   created() {
@@ -64,7 +78,9 @@ export default {
     NavBar,
     draggable,
     ControlButtons,
-    TextEditButtons
+    TextEditButtons,
+    createLinkModal,
+    
   }
 };
 </script>

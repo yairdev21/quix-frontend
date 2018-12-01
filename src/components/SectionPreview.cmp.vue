@@ -33,7 +33,7 @@ export default {
       this.$emit("selectedText", data);
     },
     doSomthing(sectionId) {
-      this.$store.dispatch({type:"delleteSection", sectionId})
+      this.$store.dispatch({ type: "delleteSection", sectionId });
     }
   },
   computed: {

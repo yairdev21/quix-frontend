@@ -7,7 +7,6 @@ export default {
     mutations: {
         loadSections(state, { sections }) {
             state.sections = sections;
-
         },
 
     },
