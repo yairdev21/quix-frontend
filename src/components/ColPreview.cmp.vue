@@ -1,21 +1,25 @@
 <template>
-  <div class="left-side" :style="style">
-    <component :is="element" :data="col.data"/>
+  <div @mousedown="editText" class="left-side" :style="style">
+      <component contenteditable="true" :is="element" :data="col.data"/>
     <!-- <div class="article" >
     </div>-->
   </div>
 </template>
 
 <script>
-import TxtEl from '../components/elements/txt.el'
-import ImgEl from '../components/elements/img.el'
-import MapEl from '../components/elements/map.el'
-import VideoEl from '../components/elements/video.el'
-import ButtonEl from '../components/elements/btn.el'
+document.designMode = "on";
+
+import TxtEl from "../components/elements/txt.el";
+import ImgEl from "../components/elements/img.el";
+import MapEl from "../components/elements/map.el";
+import VideoEl from "../components/elements/video.el";
+import ButtonEl from "../components/elements/btn.el";
 
 export default {
   props: ["col"],
-
+  data() {
+    return { isEdit: true, option: "" };
+  },
   components: {
     TextElement: TxtEl,
     ImgElement: ImgEl,
@@ -23,14 +27,21 @@ export default {
     VideoElement: VideoEl,
     ButtonElement: ButtonEl
   },
+  methods: {
+    editText() {
+      this.option = window.getSelection().getRangeAt(0);
+      this.$emit('selectedText',this.option)
+    },
+   
+  },
 
   computed: {
     element() {
       switch (this.col.type) {
         case "text":
-          return 'TextElement';
+          return "TextElement";
         case "img":
-          return  `ImgElement`;
+          return `ImgElement`;
         case "map":
           return `MapElement`;
         case "video":
@@ -38,17 +49,15 @@ export default {
         case "button":
           return `ButtonElement`;
         default:
-          return 'TextElement';
+          return "TextElement";
       }
     },
     style() {
       return this.col.style || null;
     }
-  },
- 
+  }
 };
 </script>
 
 <style>
-
 </style>

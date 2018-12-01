@@ -17,7 +17,7 @@
             return {
                 id: ID(),
                 content: this.data.text,
-                isEditable: true
+                isEditable: false
             }
         },
 

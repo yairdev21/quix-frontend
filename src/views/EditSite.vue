@@ -53,7 +53,7 @@ export default {
     SectionPreview,
     NavBar,
     draggable,
-    ControlButtons
+    ControlButtons,
   },
 };
 </script>
