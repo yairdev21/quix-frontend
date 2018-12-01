@@ -1,8 +1,6 @@
 <template>
-  <div @mousedown="editText" class="left-side" :style="style">
-      <component contenteditable="true" :is="element" :data="col.data"/>
-    <!-- <div class="article" >
-    </div>-->
+  <div @mouseup="editText"  class="left-side" :style="style">
+    <component contenteditable="true" :is="element" :data="col.data"/>
   </div>
 </template>
 
@@ -30,9 +28,8 @@ export default {
   methods: {
     editText() {
       this.option = window.getSelection().getRangeAt(0);
-      this.$emit('selectedText',this.option)
-    },
-   
+      this.$emit("selectedText", this.option);
+    }
   },
 
   computed: {
@@ -60,4 +57,7 @@ export default {
 </script>
 
 <style>
+.left-side {
+  cursor: initial;
+}
 </style>

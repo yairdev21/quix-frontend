@@ -6,6 +6,7 @@
 </template>
 
 <script>
+document.body.setAttribute('spellcheck', false)
     export default {
     name: 'app',
     }

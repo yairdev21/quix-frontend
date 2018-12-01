@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section contenteditable="false">
     <transition name="slide-fade">
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">

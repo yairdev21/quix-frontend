@@ -1,13 +1,26 @@
 <template>
   <div class="edit-buttons">
-      <button id="bold" @click="formatText('bold')">
-        <i class="fas fa-bold"></i>
-      </button>
-    <button id="bold" @click="formatText('italic')">
-      <i class="fas fa-italic"></i>
-    </button>
-
-    <button id="bold" @click="formatText('h1')">h1</button>
+    <ul>
+      <li>
+        <button id="bold" @click.prevent="formatText('bold')">
+          <!-- <b contenteditable="false">B</b> -->
+          <!-- <i class="fas fa-bold"></i> -->
+        </button>
+      </li>
+      <li>
+        <button id="italic" @click="formatText('italic')"></button>
+      </li>
+      <li>
+        <button id="underLine" @click="formatText('underline')"></button>
+      </li>
+      <!-- <li>
+        <button id="blockQuote" @click="formatText('quote')">
+        </button>
+      </li>
+      <li>
+        <button id="bigger" @click="formatText('h1')"></button>
+      </li>-->
+    </ul>
   </div>
 </template>
 
@@ -26,13 +39,32 @@ export default {
 </script>
 
 <style>
-
-button{
+ul {
+  list-style: none;
+}
+button {
+  color: white;
   height: 30px;
   width: 30px;
-  z-index:1;
+  z-index: 1;
+  background: rgb(54, 9, 9);
 }
-i {
-  z-index: 3;
+#bold::after {
+  content: "B";
+  font-weight: bold;
+}
+#underLine::after {
+  content: "U";
+  font-weight: bold;
+  text-decoration: underline;
+}
+#blockQuote::after {
+  content: "``";
+  font-weight: bold;
+}
+#italic::after {
+  content: "i";
+  font-style: italic;
+  font-weight: bold;
 }
 </style>

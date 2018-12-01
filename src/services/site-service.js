@@ -18,8 +18,8 @@ function getSites() {
 
 function getSiteById(siteId) {
     return axios.get('../sites.json')
-        .then(sites => 
+        .then(sites =>
             sites.data.filter(site => {
-            return site._id === siteId
-        }))
+                return site._id === siteId
+            }))
 }

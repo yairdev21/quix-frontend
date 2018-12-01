@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 18rem">
+  <div contenteditable="false" class="card" style="width: 18rem">
     <img class="card-img-top" :src="site.thumb" alt="Card image cap">
     <div class="website-menu">
       <i class="far fa-eye" @click="previewSite"></i>
