@@ -11,8 +11,11 @@
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
-    <button class="save-icon icon" @click="goHome">
+    <button class="save-icon icon" @click="save">
       <i class="far fa-save"></i>
+    </button>
+    <button class="save-icon icon" @click="publish">
+      <i class="fas fa-globe"></i>
     </button>
 
     
@@ -33,6 +36,12 @@ export default {
     openSideBar() {
       this.$emit("showPanel");
       return (this.isOpen = !this.isOpen);
+    },
+    save(){
+       this.$emit("save");
+    },
+    publish(){
+       this.$emit("publish");
     }
   }
 };

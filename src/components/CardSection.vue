@@ -16,7 +16,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch("getSites").then(res => {
+    this.$store.dispatch("query").then(res => {
       this.sites = res;
     });
   },

@@ -24,7 +24,7 @@ import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
 
 export default {
-  props: ["section", "idx"],
+  props: ["section"],
   data() {
     return {
       text: "",

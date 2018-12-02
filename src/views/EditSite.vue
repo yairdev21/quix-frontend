@@ -24,7 +24,7 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-    <control-buttons @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
+    <control-buttons @publish="publish" @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
   </div>
 </template>
 
@@ -89,7 +89,11 @@ export default {
     },
     getSectionById(sectionId) {
       return this.site.sections.filter(section => section._id === sectionId);
-    }
+    },
+    save(){
+       this.$store.dispatch({ type: "saveSite", site })
+       .then(() => alert('site saved!'))
+    },
   },
   created() {
     let siteId = this.$route.params.siteId;
@@ -101,6 +105,12 @@ export default {
         let section = this.getSectionById(this.sectionId)
         section[0].style.background=color
       })
+    this.$store.dispatch({ type: "getSiteById", siteId })
+    .then(res => {
+      this.site = res;
+      console.log(this.site);
+      this.sections =  res.sections;
+    });
   },
   components: {
     SectionPreview,

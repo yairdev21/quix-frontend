@@ -27,7 +27,7 @@
                   name:'sections',
                   pull:false
                  }}"
-                  @end="emitAddSection"
+                  @end="emitAddSection('twoColsSection')"
                 >
                   <img src="@/assets/img/section1.png">
                 </draggable>
@@ -124,6 +124,8 @@ export default {
       this.$router.push("/");
     },
     emitAddSection(evt) {
+      console.log(evt);
+      
       let section = evt.path[1].id;
       this.$emit("addSection", 1, `${section}`);
     },
