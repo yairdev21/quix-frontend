@@ -70,7 +70,7 @@ export default {
        .then(() => alert('site saved!'))
     },
     publish(){
-
+      
     }
   },
   created() {
