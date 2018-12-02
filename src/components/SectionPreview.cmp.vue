@@ -7,7 +7,11 @@
     :style="style"
     contenteditable="false"
   >
-    <edit-section-on-hover @delleteSection="doSomthing(section._id)" v-show="isBorder"></edit-section-on-hover>
+    <edit-section-on-hover 
+    @changeColorToSection="changeColorEmit(section._id)"
+    @delleteSection="sendDeleteSection(section._id)" 
+    v-show="isBorder"
+    ></edit-section-on-hover>
     <b-row>
       <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <col-preview @selectedText="emitSelected" :col="col"></col-preview>
@@ -32,8 +36,11 @@ export default {
     emitSelected(data) {
       this.$emit("selectedText", data);
     },
-    doSomthing(sectionId) {
-      this.$store.dispatch({ type: "delleteSection", sectionId });
+    sendDeleteSection(sectionId) {
+      this.$emit("deleteSection", sectionId);
+    },
+    changeColorEmit(sectionId){
+      this.$emit('colorChangeSectionId', sectionId)
     }
   },
   computed: {

@@ -1,6 +1,8 @@
 <template>
-  <div @mouseup="editText"  class="left-side" :style="style">
-    <component contenteditable="true" :is="element" :data="col.data"/>
+  <div>
+    <div @mouseup="editText" class="left-side" :style="style">
+      <component contenteditable="true" :is="element" :data="col.data"/>
+    </div>
   </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
     ImgElement: ImgEl,
     MapElement: MapEl,
     VideoElement: VideoEl,
-    ButtonElement: ButtonEl
+    ButtonElement: ButtonEl,
   },
   methods: {
     editText() {

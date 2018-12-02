@@ -61,6 +61,7 @@
                 "_id": "421412412",
                 "name": "oneColSection",
                 "title": "Section Title",
+                "style":{"background":"white"},
                 "data": {
                     "sm": "12"
                 },

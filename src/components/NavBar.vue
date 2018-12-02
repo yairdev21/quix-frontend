@@ -94,7 +94,7 @@
                  }}"
                   @end="emitAddSection"
                 >
-                  <img src="@/assets/img/section w vid.png">
+                  <img src="@/assets/img/socailBtns.png">
                 </draggable>
               </p>
             </b-card-body>
