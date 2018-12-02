@@ -33,18 +33,6 @@
                  }}"
                   @end="emitAddSection"
                 >
-                  <img src="@/assets/img/oneSection.png">
-                </draggable>
-              </p>
-              <p class="card-text" id="twoColsSection">
-                <draggable
-                  class="onCol"
-                  :options="{group:{
-                  name:'sections',
-                  pull:false
-                 }}"
-                  @end="emitAddSection('twoColsSection')"
-                >
                   <img src="@/assets/img/section1.png">
                 </draggable>
               </p>
@@ -157,8 +145,8 @@ export default {
     emitAddSection(evt) {
       let idx = evt.newIndex;
       let sectionName = evt.from.className;
+      if (sectionName==='oneColsSectionWithVid') {EventBus.$emit('getVideoUrl')}
       this.$emit("addSection", idx, sectionName);
-      if (sectionName===`oneColsSectionWithVid`) {EventBus.$emit('getVideoUrl')}
     },
     move(evt) {
       console.log(evt);

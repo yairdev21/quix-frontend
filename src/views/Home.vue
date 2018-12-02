@@ -30,7 +30,6 @@ export default {
     HomeFooter,
     MainHeader,
     CardSection,
-    SocialAcc
   }
 };
 </script>
