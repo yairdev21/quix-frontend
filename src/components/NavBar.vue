@@ -10,11 +10,13 @@
             <b-card-body>
               <p class="card-text" id="oneColsSection">
                 <draggable
-                  class="onCol"
+                  :list="sections"
+                  :move="checkMove"
+                  class="oneColsSection"
                   :options="{group:{
                   name:'sections',
-                  pull:false
-                 }}"
+                  pull:'clone'
+                   }}"
                   @end="emitAddSection"
                 >
                   <img src="@/assets/img/oneSection.png">
@@ -22,21 +24,26 @@
               </p>
               <p class="card-text" id="twoColsSection">
                 <draggable
-                  class="onCol"
+                  :list="sections"
+                  :move="checkMove"
+                  class="twoColsSection"
                   :options="{group:{
                   name:'sections',
-                  pull:false
+                  pull:'clone'
                  }}"
-                  @end="emitAddSection('twoColsSection')"
+                  @end="emitAddSection"
                 >
                   <img src="@/assets/img/section1.png">
                 </draggable>
               </p>
               <p class="card-text" id="threeColsSection">
                 <draggable
+                  :list="sections"
+                  :move="checkMove"
+                  class="threeColsSection"
                   :options="{group:{
                 name:'sections',
-                pull:false
+               pull:'clone'
                 }}"
                   @end="emitAddSection"
                 >
@@ -54,22 +61,26 @@
             <b-card-body>
               <p class="card-text" id="oneColsSectionWithMap">
                 <draggable
-                  class="onCol"
+                  :list="sections"
+                  :move="checkMove"
+                  class="oneColsSectionWithMap"
                   :options="{group:{
                   name:'sections',
-                  pull:false
+                 pull:'clone'
                  }}"
-                  @end="emitAddSection"
+                  @end="emitAddSection  "
                 >
                   <img src="@/assets/img/section w maps.png">
                 </draggable>
               </p>
-                    <p class="card-text" id="oneColsSectionWithVid">
+              <p class="card-text" id="oneColsSectionWithVid">
                 <draggable
-                  class="onCol"
+                  :list="sections"
+                  :move="checkMove"
+                  class="oneColsSectionWithVid"
                   :options="{group:{
                   name:'sections',
-                  pull:false
+              pull:'clone'
                  }}"
                   @end="emitAddSection"
                 >
@@ -85,12 +96,14 @@
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-                        <p class="card-text" id="socialBtns">
+              <p class="card-text" id="socialBtns">
                 <draggable
-                  class="onCol"
+                  :list="sections"
+                  :move="checkMove"
+                  class="socialBtns"
                   :options="{group:{
                   name:'sections',
-                  pull:false
+               pull:'clone'
                  }}"
                   @end="emitAddSection"
                 >
@@ -118,16 +131,22 @@ import draggable from "vuedraggable";
 
 export default {
   name: "Navbar",
-
+  props: ["sections"],
+  data() {
+    return { currIndexMove: 0, currSectionName: null };
+  },
   methods: {
+    checkMove(evt) {
+      console.log("MOVING");
+    },
     goHome() {
       this.$router.push("/");
     },
     emitAddSection(evt) {
-      console.log(evt);
-      
-      let section = evt.path[1].id;
-      this.$emit("addSection", 1, `${section}`);
+      let idx = evt.newIndex;
+      let sectionName = evt.from.className;
+      console.log("idx is " + idx);
+      this.$emit("addSection", idx, sectionName);
     },
     move(evt) {
       console.log(evt);

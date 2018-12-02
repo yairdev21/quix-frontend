@@ -1,12 +1,11 @@
-<template>
+  <template>
   <div class="section-list">
-    <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
+    <nav-bar :sections="sections" v-if="isPanelOpen" @addSection="addSection"></nav-bar>
     <text-edit-buttons @openLinkModal="showModal" v-show="isTextSelected" :text="text"></text-edit-buttons>
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <draggable
-        v-model="sections"
-        :options="{group:'sections', animation: 200}"
+        :options="{group:{name:'sections',  pull:false, animation: 200}}"
         @start="drag=true"
         @end="drag=false"
       >
@@ -28,7 +27,7 @@
   </div>
 </template>
 
-<script>
+  <script>
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
@@ -43,15 +42,17 @@ export default {
     return {
       site: null,
       sections: null,
+      sectionAdd: null,
       isPanelOpen: false,
       text: "",
       isTextSelected: false,
       isModalVisible: false,
-      sectionId: ""
+      sectionId: "",
+      draggables: null
     };
   },
   methods: {
-    addSection(idx = 0, sectionName) {
+    addSection(idx, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
       });
@@ -90,27 +91,24 @@ export default {
     getSectionById(sectionId) {
       return this.site.sections.filter(section => section._id === sectionId);
     },
-    save(){
-       this.$store.dispatch({ type: "saveSite", site })
-       .then(() => alert('site saved!'))
+    save() {
+      let site = this.site;
+      this.$store
+        .dispatch({ type: "saveSite", site })
+        .then(() => alert("site saved!"));
     },
+    publish() {}
   },
   created() {
     let siteId = this.$route.params.siteId;
-    this.$store.dispatch({ type: "editSite", siteId }).then(res => {
-      this.site = res[0];
-      this.sections = res[0].sections;
+    this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
+      this.site = res;
+      this.sections = res.sections;
     }),
       EventBus.$on("changeColor", color => {
-        let section = this.getSectionById(this.sectionId)
-        section[0].style.background=color
-      })
-    this.$store.dispatch({ type: "getSiteById", siteId })
-    .then(res => {
-      this.site = res;
-      console.log(this.site);
-      this.sections =  res.sections;
-    });
+        let section = this.getSectionById(this.sectionId);
+        return (section[0].style.background = color);
+      });
   },
   components: {
     SectionPreview,
@@ -123,7 +121,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+  <style lang="scss" scoped>
 .add-section {
   border: 1px dashed black;
 }
