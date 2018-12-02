@@ -29,7 +29,8 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection
+    CardSection,
+    SocialAcc
   }
 };
 </script>

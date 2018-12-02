@@ -33,6 +33,18 @@
                  }}"
                   @end="emitAddSection"
                 >
+                  <img src="@/assets/img/oneSection.png">
+                </draggable>
+              </p>
+              <p class="card-text" id="twoColsSection">
+                <draggable
+                  class="onCol"
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection('twoColsSection')"
+                >
                   <img src="@/assets/img/section1.png">
                 </draggable>
               </p>

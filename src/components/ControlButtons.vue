@@ -4,7 +4,7 @@
       <div v-show="isOpen">
         <i class="fas fa-minus"></i>
       </div>
-      <div v-show="!isOpen">
+      <div  v-show="!isOpen">
         <i class="fas fa-plus"></i>
       </div>
     </button>
