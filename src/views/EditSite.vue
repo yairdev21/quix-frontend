@@ -99,8 +99,7 @@ export default {
     }),
       EventBus.$on("changeColor", color => {
         let section = this.getSectionById(this.sectionId)
-        console.log(color, section);
-        
+        section[0].style.background=color
       })
   },
   components: {

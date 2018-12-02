@@ -29,7 +29,7 @@ export default {
     return {
       text: "",
       isBorder: false,
-      isTextSelected: false
+      isTextSelected: false,
     };
   },
   methods: {
@@ -40,6 +40,7 @@ export default {
       this.$emit("deleteSection", sectionId);
     },
     changeColorEmit(sectionId){
+      this.sectionId=sectionId
       this.$emit('colorChangeSectionId', sectionId)
     }
   },
@@ -51,11 +52,10 @@ export default {
       return this.section.style || null;
     }
   },
-
   components: {
     ColPreview,
     EditSectionOnHover
-  }
+  },
 };
 </script>
 
