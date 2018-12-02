@@ -22,7 +22,7 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-    <control-buttons @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
+    <control-buttons @publish="publish" @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
   </div>
 </template>
 
@@ -64,13 +64,22 @@ export default {
     closeModal(link) {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
+    },
+    save(){
+       this.$store.dispatch({ type: "saveSite", site })
+       .then(() => alert('site saved!'))
+    },
+    publish(){
+
     }
   },
   created() {
     let siteId = this.$route.params.siteId;
-    this.$store.dispatch({ type: "editSite", siteId }).then(res => {
-      this.site = res[0];
-      this.sections = res[0].sections;
+    this.$store.dispatch({ type: "getSiteById", siteId })
+    .then(res => {
+      this.site = res;
+      console.log(this.site);
+      this.sections =  res.sections;
     });
   },
   components: {
