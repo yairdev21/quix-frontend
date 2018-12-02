@@ -2,11 +2,21 @@ import siteService from '../services/site-service.js'
 
 export default {
     state: {
+        isEditMode: false,
         site: null,
         sites: [],
         editMode: null
     },
+    getters: {
+        getMode: state => state.isEditMode
+    },
     mutations: {
+        setEditMode(state) {
+            state.isEditMode = true;
+        },
+        setPreviewMode(state) {
+            state.isEditMode = false;
+        },
         loadSites(state, { site }) {
             state.site = site;
         },

@@ -1,7 +1,7 @@
 <template>
   <div class="section-list">
     <nav-bar v-if="isPanelOpen" @addSection="addSection"></nav-bar>
-    <text-edit-buttons  @openLinkModal="showModal" v-show="isTextSelected" :text="text"></text-edit-buttons>
+    <text-edit-buttons @openLinkModal="showModal" v-show="isTextSelected" :text="text"></text-edit-buttons>
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <draggable
@@ -15,6 +15,7 @@
             :showModal="showModal"
             @selectedText="editSelectedText"
             :section="section"
+            :isEditMode="isEditMode"
           ></section-preview>
         </div>
       </draggable>
@@ -22,7 +23,13 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-    <control-buttons @publish="publish" @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
+    <control-buttons
+      :isEditMode="isEditMode"
+      @preview="preview"
+      @save="save"
+      @publish="publish"
+      @showPanel="isPanelOpen=!isPanelOpen"
+    ></control-buttons>
   </div>
 </template>
 
@@ -34,7 +41,7 @@ import draggable from "vuedraggable";
 import sectionService from "../services/section-service.js";
 import TextEditButtons from "@/components/TextEditButtons.vue";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
-import { EventBus } from '@/event-bus.js';
+import { EventBus } from "@/event-bus.js";
 
 export default {
   data() {
@@ -45,6 +52,7 @@ export default {
       text: "",
       isTextSelected: false,
       isModalVisible: false,
+      isEditMode: null
     };
   },
   methods: {
@@ -65,21 +73,28 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    save(){
-       this.$store.dispatch({ type: "saveSite", site })
-       .then(() => alert('site saved!'))
+    save() {
+      site = this.site;
+      this.$store
+        .dispatch({ type: "saveSite", site })
+        .then(() => alert("site saved!"));
     },
-    publish(){
+    preview() {
+      let siteId = this.$route.params.siteId;
+      this.$router.push(`/${siteId}`);
+    },
+    publish() {
       
     }
   },
   created() {
+    this.$store.commit("setEditMode");
+    this.isEditMode = this.$store.getters.getMode;
     let siteId = this.$route.params.siteId;
-    this.$store.dispatch({ type: "getSiteById", siteId })
-    .then(res => {
+    this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       console.log(this.site);
-      this.sections =  res.sections;
+      this.sections = res.sections;
     });
   },
   components: {
@@ -88,8 +103,7 @@ export default {
     draggable,
     ControlButtons,
     TextEditButtons,
-    createLinkModal,
-    
+    createLinkModal
   }
 };
 </script>
