@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
+// import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
-import ControlButtons from "@/components/ControlButtons.vue";
-import draggable from "vuedraggable";
-import sectionService from "../services/section-service.js";
-import TextEditButtons from "@/components/TextEditButtons.vue";
-import createLinkModal from "@/components/textEdit/createLinkModal.vue";
-import { EventBus } from "@/event-bus.js";
+// import ControlButtons from "@/components/ControlButtons.vue";
+// import draggable from "vuedraggable";
+// import sectionService from "../services/section-service.js";
+// import TextEditButtons from "@/components/TextEditButtons.vue";
+// import createLinkModal from "@/components/textEdit/createLinkModal.vue";
+// import { EventBus } from "@/event-bus.js";
 
 export default {
   data() {
@@ -55,11 +55,11 @@ export default {
   },
   components: {
     SectionPreview,
-    NavBar,
-    draggable,
-    ControlButtons,
-    TextEditButtons,
-    createLinkModal
+    // NavBar,
+    // draggable,
+    // ControlButtons,
+    // TextEditButtons,
+    // createLinkModal
   }
 };
 </script>

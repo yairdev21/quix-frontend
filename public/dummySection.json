@@ -57,7 +57,7 @@
                     }
                 }
             ]
-        }, 
+        },
         {
             "type": "section",
             "_id": "2453543",
@@ -135,26 +135,25 @@
             "data": {
                 "sm": "4"
             },
-            "style": {},
+            "style": { "height": "6vh" },
             "elements": [{
-                "_id": "432423",
-                "type": "button",
-                "name": "btn",
-                "data": {
-                    "text": "Boom"
-                }},
-              {  "_id": "432423",
-                "type": "button",
-                "name": "btn",
-                "data": {
-                    "text": "Boom"
-                }},
-              {  "_id": "432423",
-                "type": "button",
-                "name": "btn",
-                "data": {
-                    "text": "Boom"
+                    "_id": "4312423",
+                    "type": "button",
+                    "name": "social-btn",
+                    "data": {}
+                },
+                {
+                    "_id": "4322423",
+                    "type": "button",
+                    "name": "social-btn",
+                    "data": {}
+                },
+                {
+                    "_id": "4332423",
+                    "type": "button",
+                    "name": "social-btn",
+                    "data": {}
                 }
-            }]
+            ]
         }
     ]
