@@ -18,6 +18,8 @@
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
+
+
 export default {
   name: "home",
 
@@ -27,7 +29,7 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection
+    CardSection,
   }
 };
 </script>
@@ -113,9 +115,9 @@ section {
     }
   }
 }
-main-header {
- display: flex;
- align-content: center; 
+.main-header {
+  display: flex;
+  align-content: center;
 }
 .footer {
   height: 50px;

@@ -1,5 +1,4 @@
-    [
-        {
+    [{
             "type": "section",
             "_id": "2452452",
             "name": "threeColsSection",
@@ -7,8 +6,7 @@
                 "sm": "4"
             },
             "style": {},
-            "elements": [
-                {
+            "elements": [{
                     "_id": "245254",
                     "type": "text",
                     "name": "p",
@@ -42,8 +40,7 @@
                 "sm": "6"
             },
             "style": {},
-            "elements": [
-                {
+            "elements": [{
                     "_id": "432423",
                     "type": "text",
                     "name": "p",
@@ -60,5 +57,104 @@
                     }
                 }
             ]
+        }, 
+        {
+            "type": "section",
+            "_id": "2453543",
+            "name": "oneColsSection",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                "_id": "432423",
+                "type": "text",
+                "name": "p",
+                "data": {
+                    "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                }
+            }]
+        },
+        {
+            "type": "section",
+            "_id": "2453543",
+            "name": "oneColsSectionWithMap",
+            "data": {
+                "sm": "6"
+            },
+            "style": {},
+            "elements": [{
+                    "_id": "432423",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                },
+                {
+                    "_id": "65465432",
+                    "type": "map",
+                    "name": "map",
+                    "data": {
+                        "lat": "32.0880288",
+                        "lng": "34.803230100000064"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "_id": "2453543",
+            "name": "oneColsSectionWithVid",
+            "data": {
+                "sm": "6"
+            },
+            "style": {},
+            "elements": [{
+                    "_id": "432423",
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
+                },
+                {
+                    "_id": "65465432",
+                    "type": "video",
+                    "name": "video",
+                    "data": {
+                        "src": "https://www.youtube.com/watch?v=n9SwtdrkVHE"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "_id": "2453543",
+            "name": "socialBtns",
+            "data": {
+                "sm": "4"
+            },
+            "style": {},
+            "elements": [{
+                "_id": "432423",
+                "type": "button",
+                "name": "btn",
+                "data": {
+                    "text": "Boom"
+                }},
+              {  "_id": "432423",
+                "type": "button",
+                "name": "btn",
+                "data": {
+                    "text": "Boom"
+                }},
+              {  "_id": "432423",
+                "type": "button",
+                "name": "btn",
+                "data": {
+                    "text": "Boom"
+                }
+            }]
         }
-        ]
+    ]

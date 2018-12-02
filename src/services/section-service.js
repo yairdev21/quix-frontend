@@ -2,7 +2,8 @@ import axios from "axios";
 
 export default {
     query,
-    getSectionByName
+    getSectionByName,
+    getExmapleSections
 }
 function query() {
     return axios.get('dummySection.json')
@@ -17,3 +18,6 @@ function getSectionByName(sectionName) {
         resolve(sections.find(section => sectionName === section.name))
     })
 }
+ function getExmapleSections(){
+     return require('../../public/dummySection.json')
+ }

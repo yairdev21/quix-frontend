@@ -5,7 +5,9 @@ export default {
         sections: null
     },
     mutations: {
-        loadSections(state, { sections }) {
+        loadSections(state, {
+            sections
+        }) {
             state.sections = sections;
         },
 
@@ -14,12 +16,12 @@ export default {
         getSections(context) {
             return sectionService.query()
                 .then(sections => {
-                    context.commit({ type: 'loadSections', sections });
+                    context.commit({
+                        type: 'loadSections',
+                        sections
+                    });
                     return sections;
                 })
         },
-        delleteSection(context, { sectionId }) {
-            console.log(sectionId);
-        }
     }
 }

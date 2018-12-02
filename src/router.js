@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import EditSite from './views/EditSite.vue'
 import UserLogin from './views/UserLogin.vue'
 import heroA from './components/elements/video.el.vue'
-
+import PreviewSite from './views/PreviewSite.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/:siteId?',
+      name: 'preview',
+      component: PreviewSite
     },
     {
       path: '/edit/:siteId?',

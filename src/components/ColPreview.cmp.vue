@@ -1,11 +1,10 @@
 <template>
   <div @mouseup="editText"  class="left-side" :style="style">
-    <component contenteditable="true" :is="element" :data="col.data"/>
+    <component contenteditable="isEditMode" :isEditMode="isEditMode" :is="element" :data="col.data"/>
   </div>
 </template>
 
 <script>
-document.designMode = "on";
 
 import TxtEl from "../components/elements/txt.el";
 import ImgEl from "../components/elements/img.el";
@@ -14,25 +13,30 @@ import VideoEl from "../components/elements/video.el";
 import ButtonEl from "../components/elements/btn.el";
 
 export default {
-  props: ["col"],
-  data() {
-    return { isEdit: true, option: "" };
-  },
+  props: ["col", "isEditMode"],
   components: {
     TextElement: TxtEl,
     ImgElement: ImgEl,
     MapElement: MapEl,
     VideoElement: VideoEl,
-    ButtonElement: ButtonEl
+    ButtonElement: ButtonEl,
   },
   methods: {
     editText() {
+      if  (!this.isEditMode) return
       this.option = window.getSelection().getRangeAt(0);
       this.$emit("selectedText", this.option);
     }
   },
-
+  created(){
+    document.designMode = this.checkEditMode;
+    
+  },
   computed: {
+   checkEditMode(){
+     if (this.isEditMode) return "on"
+     else return "off"
+   } ,
     element() {
       switch (this.col.type) {
         case "text":

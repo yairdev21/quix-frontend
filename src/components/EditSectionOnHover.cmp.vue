@@ -14,6 +14,8 @@
 
 <script>
 import ColorPicker from "@/components/textEdit/ColorPicker.cmp.vue";
+import { EventBus } from "@/event-bus.js";
+
 export default {
   data() {
     return { showColorPicker: false };
@@ -21,7 +23,9 @@ export default {
   methods: {
     setColor(color) {
       this.showColorPicker = false;
-      console.log(color);
+      this.$emit("changeColorToSection")
+      EventBus.$emit("changeColor", color)
+
     }
   },
   components: {

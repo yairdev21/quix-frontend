@@ -2,31 +2,34 @@ import siteService from '../services/site-service.js'
 
 export default {
     state: {
+        isEditMode: false,
         site: null,
         sites: [],
         editMode: null
     },
+    getters: {
+        getMode: state => state.isEditMode
+    },
     mutations: {
+        setEditMode(state) {
+            state.isEditMode = true;
+        },
+        setPreviewMode(state) {
+            state.isEditMode = false;
+        },
+        loadSites(state, { site }) {
+            state.site = site;
+        },
         loadSite(state, { site }) {
             state.site = site;
         },
-        loadSites(state, { sites }) {
-            state.sites = sites;
+        saveSite(state, { site }) {
+            state.site = site;
         },
     },
     actions: {
-        getSite(context) {
+        query(context) {
             return siteService.query()
-                .then(site => {
-                    context.commit({
-                        type: 'loadSite',
-                        site
-                    });
-                    return site;
-                })
-        },
-        getSites(context) {
-            return siteService.getSites()
                 .then(sites => {
                     context.commit({
                         type: 'loadSites',
@@ -35,11 +38,21 @@ export default {
                     return sites
                 })
         },
-        editSite(context, { siteId }) {
+        getSiteById(context, { siteId }) {
             return siteService.getSiteById(siteId)
                 .then(site => {
                     context.commit({
                         type: 'loadSite',
+                        site
+                    })
+                    return site
+                })
+        },
+        saveSite(context, { site }) {
+            return siteService.saveSite(site)
+                .then(site => {
+                    context.commit({
+                        type: 'saveSite',
                         site
                     })
                     return site
