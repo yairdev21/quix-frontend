@@ -16,6 +16,7 @@
             @selectedText="editSelectedText"
             @deleteSection="showAlert"
             :section="section"
+            :isEditMode="isEditMode"
           ></section-preview>
         </div>
       </draggable>
@@ -23,7 +24,13 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-    <control-buttons @publish="publish" @showPanel="isPanelOpen=!isPanelOpen"></control-buttons>
+    <control-buttons
+      :isEditMode="isEditMode"
+      @preview="preview"
+      @save="save"
+      @publish="publish"
+      @showPanel="isPanelOpen=!isPanelOpen"
+    ></control-buttons>
   </div>
 </template>
 
@@ -48,7 +55,8 @@ export default {
       isTextSelected: false,
       isModalVisible: false,
       sectionId: "",
-      draggables: null
+      draggables: null,
+      isEditMode: null
     };
   },
   methods: {
@@ -94,14 +102,22 @@ export default {
       });
     },
     save() {
-      let site = this.site;
+      site = this.site;
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() => alert("site saved!"));
     },
-    publish() {}
+    preview() {
+      let siteId = this.$route.params.siteId;
+      this.$router.push(`/${siteId}`);
+    },
+    publish() {
+      
+    }
   },
   created() {
+    this.$store.commit("setEditMode");
+    this.isEditMode = this.$store.getters.getMode;
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;

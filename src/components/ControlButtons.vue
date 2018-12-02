@@ -1,10 +1,10 @@
 <template>
   <div class="side-bar-btns">
-    <button class="menu-icon icon" @click="openSideBar">
+    <button  v-if="isEditMode" class="menu-icon icon" @click="openSideBar">
       <div v-show="isOpen">
         <i class="fas fa-minus"></i>
       </div>
-      <div v-show="!isOpen">
+      <div  v-show="!isOpen">
         <i class="fas fa-plus"></i>
       </div>
     </button>
@@ -14,16 +14,21 @@
     <button class="save-icon icon" @click="save">
       <i class="far fa-save"></i>
     </button>
-    <button class="save-icon icon" @click="publish">
+    <button v-if="!isEditMode" class="edit-icon icon" @click="edit">
+      <i class="far fa-edit" @click="edit"></i>
+    </button>
+    <button v-else class="preview-icon icon" @click="preview">
+          <i class="far fa-eye" ></i>
+    </button>
+    <button class="publsh-icon icon" @click="publish">
       <i class="fas fa-globe"></i>
     </button>
-
-    
   </div>
 </template>
 
 <script>
 export default {
+  props:['isEditMode'],
   data() {
     return {
       isOpen: false
@@ -36,6 +41,12 @@ export default {
     openSideBar() {
       this.$emit("showPanel");
       return (this.isOpen = !this.isOpen);
+    },
+    preview(){
+       this.$emit("preview");
+    },
+    edit(){
+       this.$emit("edit");
     },
     save(){
        this.$emit("save");
