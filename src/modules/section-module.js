@@ -1,23 +1,25 @@
 import sectionService from '../services/section-service.js'
 
-export default{
+export default {
     state: {
-      sections: null
-      },
-      mutations: {
+        sections: null
+    },
+    mutations: {
         loadSections(state, { sections }) {
-          state.sections = sections;
-          
+            state.sections = sections;
         },
-     
-      },
-      actions: {
+
+    },
+    actions: {
         getSections(context) {
-          return sectionService.query()
-            .then(sections => {
-              context.commit({ type: 'loadSections' , sections});
-              return sections;
-            })
+            return sectionService.query()
+                .then(sections => {
+                    context.commit({ type: 'loadSections', sections });
+                    return sections;
+                })
+        },
+        delleteSection(context, { sectionId }) {
+            console.log(sectionId);
         }
-      }
-} 
+    }
+}

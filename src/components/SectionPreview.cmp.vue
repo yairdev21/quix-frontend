@@ -1,23 +1,41 @@
 <template>
-  <section class="section-item" :style="style">
-    <h1 class="text-center" :v-if="section.title">{{section.title}}</h1>
+  <section
+    :class="{isBorder:isBorder}"
+    @mouseenter="isBorder=!isBorder"
+    @mouseleave="isBorder=!isBorder"
+    class="section-item"
+    :style="style"
+    contenteditable="false"
+  >
+    <edit-section-on-hover @delleteSection="doSomthing(section._id)" v-show="isBorder"></edit-section-on-hover>
     <b-row>
       <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
-        <col-preview :col="col"></col-preview>
+        <col-preview @selectedText="emitSelected" :col="col"></col-preview>
       </b-col>
     </b-row>
   </section>
 </template>
-
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
+import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
 
 export default {
   props: ["section"],
   data() {
-    return {};
+    return {
+      text: "",
+      isBorder: false,
+      isTextSelected: false
+    };
   },
-  
+  methods: {
+    emitSelected(data) {
+      this.$emit("selectedText", data);
+    },
+    doSomthing(sectionId) {
+      this.$store.dispatch({ type: "delleteSection", sectionId });
+    }
+  },
   computed: {
     cols() {
       return this.section.elements;
@@ -27,11 +45,19 @@ export default {
     }
   },
   components: {
-    ColPreview
+    ColPreview,
+    EditSectionOnHover
   }
 };
 </script>
 
 <style>
-
+.section-item {
+  border: 2px solid transparent;
+  cursor: move;
+}
+.isBorder {
+  display: block;
+  border: 2px dashed royalblue;
+}
 </style>

@@ -3,10 +3,12 @@
     <main-header></main-header>
     <section class="main">
       <div class="container"></div>
+      <h1 hidden>Quix</h1>
       <!-- <img src="@/assets/img/homePage.png/"/> -->
     </section>
 
     <card-section></card-section>
+    <social-acc></social-acc>
     <home-footer class="footer"></home-footer>
   </div>
 </template>
@@ -17,6 +19,9 @@
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
+import SocialAcc from '@/components/elements/socialAccordion.vue';
+
+
 export default {
   name: "home",
 
@@ -26,7 +31,8 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection
+    CardSection,
+    SocialAcc
   }
 };
 </script>
@@ -112,7 +118,10 @@ section {
     }
   }
 }
-
+.main-header {
+  display: flex;
+  align-content: center;
+}
 .footer {
   height: 50px;
 }

@@ -1,34 +1,41 @@
-[{
+[{  
         "name": "default",
         "_id": "0",
-        "thumb":"https://res-console.cloudinary.com/bebarefoot/thumbnails/v1/image/upload/v1543487789/eWR1ajl1dHRjd24zYWhvd2JwMzY=/preview",
+        "thumb":"http://res.cloudinary.com/bebarefoot/image/upload/v1543487789/yduj9uttcwn3ahowbp36.png",
         "sections": [{
                 "_id": "156156165",
                 "type": "text",
                 "name": "header",
-                "title": "Welcome to our website",
-                "data": {
+                "data": {   
                     "sm": "12"
                 },
-                "style": {
-                    "backgroundImage": "url(http://res.cloudinary.com/shuvy/image/upload/v1533294837/gipxbksdpgxiympki41h.png)"
-                },
                 "elements": [{
-                    "_id": "423432",
-                    "type": "button",
-                    "name": "a",
+                    "_id": "4124211",
+                    "type": "text",
+                    "name": "h1",
                     "data": {
-                        "text": "Go To DooDLE!",
-                        "src": "http://google.com"
+                        "text": "BotiQucumber"
+                    },
+                    "style": {
+                        "color":"white",
+                        "margin-top":"90px",
+                        "font-size":"500%"
                     }
-                }]
+                }],
+                "style": {
+                    "backgroundImage": "url(https://data2.1freewallpapers.com/detail/cucumbers-pickles-salted.jpg)",
+                    "height": "450px",
+                    "background-repeat": "no-repeat",
+                    "background-size": "cover",
+                    "padding": "15vh 0"
+                }
             },
             {
                 "type": "section",
                 "_id": "3123211234",
                 "name": "threeColsSection",
                 "data": {
-                    "sm": "4"
+                    "sm": "6"
                 },
                 "style": {},
                 "elements": [{
@@ -36,7 +43,7 @@
                         "type": "text",
                         "name": "p",
                         "data": {
-                            "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                            "text": "A place where all of your cucumber dreams come true!"
                         }
                     },
                     {
@@ -45,14 +52,6 @@
                         "name": "p",
                         "data": {
                             "text": "Gorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
-                        }
-                    },
-                    {
-                        "_id": "65465432",
-                        "type": "img",
-                        "name": "img",
-                        "data": {
-                            "src": "https://loremflickr.com/cache/resized/2905_33903735972_51e13e379f_z_640_360_nofilter.jpg"
                         }
                     }
                 ]
@@ -78,7 +77,7 @@
                         "type": "img",
                         "name": "img",
                         "data": {
-                            "src": "https://loremflickr.com/cache/resized/4439_36474864810_10fed24ec8_b_640_360_nofilter.jpg"
+                            "src": "https://res.cloudinary.com/bebarefoot/image/upload/v1543412980/samples/ecommerce/leather-bag-gray.jpg"
                         }
                     }
                 ]
@@ -106,6 +105,14 @@
                         "data": {
                             "lat": "32.0880288",
                             "lng": "34.803230100000064"
+                        }
+                    },
+                    {
+                        "_id": "65465432",
+                        "type": "video",
+                        "name": "video",
+                        "data": {
+                            "src":"https://www.youtube.com/watch?v=n9SwtdrkVHE"
                         }
                     }
                 ]
