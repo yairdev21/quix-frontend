@@ -145,7 +145,6 @@ export default {
     emitAddSection(evt) {
       let idx = evt.newIndex;
       let sectionName = evt.from.className;
-      console.log("idx is " + idx);
       this.$emit("addSection", idx, sectionName);
     },
     move(evt) {

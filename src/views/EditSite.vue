@@ -89,7 +89,9 @@ export default {
       this.sectionId = sectionId;
     },
     getSectionById(sectionId) {
-      return this.site.sections.filter(section => section._id === sectionId);
+      return this.site.sections.filter(section => {
+        return section._id === sectionId;
+      });
     },
     save() {
       let site = this.site;
@@ -104,11 +106,13 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-    }),
-      EventBus.$on("changeColor", color => {
-        let section = this.getSectionById(this.sectionId);
-        return (section[0].style.background = color);
-      });
+    });
+  },
+  mounted() {
+    EventBus.$on("changeColor", color => {
+      let section = this.getSectionById(this.sectionId);
+      return (section[0].style.background = color);
+    });
   },
   components: {
     SectionPreview,
