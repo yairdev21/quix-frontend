@@ -8,8 +8,21 @@
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <p class="card-text">
+              <p class="card-text" id="oneColsSection">
                 <draggable
+                  class="onCol"
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection"
+                >
+                  <img src="@/assets/img/oneSection.png">
+                </draggable>
+              </p>
+              <p class="card-text" id="twoColsSection">
+                <draggable
+                  class="onCol"
                   :options="{group:{
                   name:'sections',
                   pull:false
@@ -19,17 +32,17 @@
                   <img src="@/assets/img/section1.png">
                 </draggable>
               </p>
+              <p class="card-text" id="threeColsSection">
                 <draggable
-                :options="{group:{
+                  :options="{group:{
                 name:'sections',
                 pull:false
                 }}"
-                @end="emitAddSection"
-              >
-                <p class="card-text">
+                  @end="emitAddSection"
+                >
                   <img src="@/assets/img/section2.png">
-                </p>
-              </draggable>
+                </draggable>
+              </p>
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -39,7 +52,30 @@
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <p class="card-text">coming soon..</p>
+              <p class="card-text" id="oneColsSectionWithMap">
+                <draggable
+                  class="onCol"
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection"
+                >
+                  <img src="@/assets/img/section w maps.png">
+                </draggable>
+              </p>
+                    <p class="card-text" id="oneColsSectionWithVid">
+                <draggable
+                  class="onCol"
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection"
+                >
+                  <img src="@/assets/img/section w vid.png">
+                </draggable>
+              </p>
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -49,7 +85,18 @@
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-              <p class="card-text">coming soon..</p>
+                        <p class="card-text" id="socialBtns">
+                <draggable
+                  class="onCol"
+                  :options="{group:{
+                  name:'sections',
+                  pull:false
+                 }}"
+                  @end="emitAddSection"
+                >
+                  <img src="@/assets/img/section w vid.png">
+                </draggable>
+              </p>
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -74,15 +121,14 @@ export default {
 
   methods: {
     goHome() {
-      this.$router.push("/")
+      this.$router.push("/");
     },
     emitAddSection(evt) {
-      console.log(evt)
-      this.$emit("addSection", 1, "twoColsSection")
+      let section = evt.path[1].id;
+      this.$emit("addSection", 1, `${section}`);
     },
-    move(evt){
-            console.log(evt);
-
+    move(evt) {
+      console.log(evt);
     }
   },
   components: {

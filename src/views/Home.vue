@@ -8,6 +8,7 @@
     </section>
 
     <card-section></card-section>
+    <social-acc></social-acc>
     <home-footer class="footer"></home-footer>
   </div>
 </template>
@@ -18,6 +19,9 @@
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
+import SocialAcc from '@/components/elements/socialAccordion.vue';
+
+
 export default {
   name: "home",
 
@@ -27,7 +31,8 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection
+    CardSection,
+    SocialAcc
   }
 };
 </script>
@@ -113,9 +118,9 @@ section {
     }
   }
 }
-main-header {
- display: flex;
- align-content: center; 
+.main-header {
+  display: flex;
+  align-content: center;
 }
 .footer {
   height: 50px;

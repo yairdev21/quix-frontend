@@ -1,11 +1,8 @@
 <template>
-  <div class="edit-buttons">
+  <div class="edit-buttons" contenteditable="false">
     <ul>
       <li>
-        <button id="bold" @click.stop="formatText('bold')">
-          <!-- <b contenteditable="false">B</b> -->
-          <!-- <i class="fas fa-bold"></i> -->
-        </button>
+        <button id="bold" @click.stop="formatText('bold')"></button>
       </li>
       <li>
         <button id="italic" @click.stop="formatText('italic')"></button>
@@ -14,7 +11,9 @@
         <button id="underline" @click.stop="formatText('underline')"></button>
       </li>
       <li>
-        <button id="link" @click.stop="foramtLink('link')"><i class="fas fa-link"></i></button>
+        <button id="link" @click.stop="foramtLink('link')">
+          <i class="fas fa-link"></i>
+        </button>
       </li>
       <li>
         <button id="title" @click.stop="formatSize('h3')"></button>

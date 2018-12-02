@@ -43,10 +43,10 @@ Vue.use(VueSweetalert2)
 // Vue Fontaswame
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faFont, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook , faYoutube, faInstagram} from '@fortawesome/free-brands-svg-icons'
 // import { faUserSecret } from  '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faUserSecret, faFont, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette)
+library.add(faUserSecret, faFont, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette,faFacebook,faYoutube,faInstagram)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import { dom } from '@fortawesome/fontawesome-svg-core'
 dom.watch()
