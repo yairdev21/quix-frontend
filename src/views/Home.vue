@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <main-header></main-header>
+    <main-header class="main-header"></main-header>
     <section class="main">
       <div class="container"></div>
       <h1 hidden>Quix</h1>
@@ -29,7 +29,7 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection,
+    CardSection
   }
 };
 </script>
@@ -47,7 +47,16 @@ section {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
-    // max-width: 85vw;
+
+    @media (max-width: 900px) {
+      background-size: contain;
+      background-position: center;
+    }
+    @media (max-width: 600px) {
+      background-size: contain;
+      background-position: center;
+      height: 90vh;
+    }
 
     &::before {
       content: "";
@@ -60,6 +69,9 @@ section {
       max-width: 100%;
       margin: 0 auto;
       display: flex;
+      @media (max-width: 900px) {
+        padding-top: 0;
+      }
     }
   }
 }
@@ -75,4 +87,5 @@ h1 {
   font-family: Palatino;
   // margin-top: 30px;
 }
+
 </style>

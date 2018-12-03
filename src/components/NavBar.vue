@@ -4,7 +4,7 @@
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion1 variant="info">Add Sections</b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info"><p class="navbar-names">Sections</p></b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -55,7 +55,7 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Add Components</b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion2 variant="info"><p class="navbar-names">Components</p></b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -92,7 +92,7 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion3 variant="info">Extra</b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion3 variant="info"><p class="navbar-names">Buttons</p></b-btn>
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -182,5 +182,17 @@ main {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(-10px);
   opacity: 0;
+}
+.acordion-header {
+  height: 2.6rem;
+@media (max-width:680px){
+height: 5.5vw;
+}
+}
+.navbar-names{
+@media (max-width:680px){
+  font-size: 2.5vw
+}
+
 }
 </style>
