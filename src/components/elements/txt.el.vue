@@ -34,11 +34,8 @@ export default {
       return this.content;
     },
     saveText(ev) {
-      console.log('ON');
-      
       this.content = ev.target.innerText;
       this.data.text =  this.content
-      console.log('work', this.data.text);
     }
   }
 };

@@ -130,8 +130,6 @@
   </section>
 </template>
 
-
-
 <script>
 import draggable from "vuedraggable";
 import { EventBus } from "@/event-bus.js";
@@ -143,7 +141,8 @@ export default {
     return { currIndexMove: 0, currSectionName: null };
   },
   methods: {
-    checkMove() {},
+    checkMove() {
+    },
     goHome() {
       this.$router.push("/");
     },

@@ -5,6 +5,7 @@
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <draggable
+        :move="checkMove"
         :options="{group:{name:'sections',  pull:false, animation: 200}}"
         @start="drag=true"
         @end="drag=false"
@@ -56,11 +57,21 @@ export default {
       isTextSelected: false,
       isModalVisible: false,
       sectionId: "",
-      draggables: null,
-      isEditMode: null
+      isEditMode: null,
+      index:null
     };
   },
   methods: {
+    checkMove(evt) {
+      console.log('ONNNNNN');
+      
+    //   let fromSection = evt.draggedContext.index
+    //   let toSection =evt.relatedContext.index
+    //   let Site= this.site.sections
+    // [Site[fromSection], Site[toSection]] = [Site[toSection], Site[fromSection]]
+    //   console.log(Site);
+      
+    },
     addSection(idx, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
@@ -104,10 +115,9 @@ export default {
     },
     save() {
       let site = this.site;
-      console.log(site);
       this.$store
         .dispatch({ type: "saveSite", site })
-        .then(() =>  this.$swal('Saved!'));
+        .then(() => this.$swal("Saved!"));
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -138,7 +148,6 @@ export default {
   mounted() {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
-      console.log(color, this.sectionId);
       return (section[0].style.background = color);
     });
   },
