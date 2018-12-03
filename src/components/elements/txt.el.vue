@@ -1,5 +1,7 @@
 <template>
+<div>
   <p class="text" :contenteditable="isEditMode" v-text="content" @blur="saveText"></p>
+</div>
 </template>
 
 <script>
@@ -12,8 +14,7 @@ export default {
       required: true
     },
     isEditMode: {
-      type: Boolean,
-      required: true
+      type: Boolean
     }
   },
 
@@ -26,6 +27,7 @@ export default {
 
   created() {
     document.designMode = this.checkEditMode;
+    
   },
 
   methods: {

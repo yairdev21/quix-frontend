@@ -10,7 +10,7 @@
     <edit-section-on-hover 
     @changeColorToSection="changeColorEmit(section._id)"
     @delleteSection="sendDeleteSection(section._id)" 
-    v-show="isBorder"
+    v-show="isBorder & isEditMode"
     ></edit-section-on-hover>
     <b-row>
       <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">

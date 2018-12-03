@@ -19,6 +19,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "query-string": "^6.2.0",
     "register-service-worker": "^1.0.0",
+    "v-drag-drop": "^0.2.0",
     "vee-validate": "^2.1.3",
     "vue": "^2.5.17",
     "vue-drag-drop": "^1.1.4",
