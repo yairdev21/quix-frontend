@@ -68,6 +68,11 @@
                 "type": "section",
                 "_id": "421412412",
                 "name": "oneColSection",
+<<<<<<< HEAD
+=======
+                "title": "Section Title",
+                "style":{"background":"white"},
+>>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
                 "data": {
                     "sm": "12"
                 },
@@ -88,7 +93,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "25465432",
                         "type": "img",
                         "name": "img",
                         "data": {
@@ -114,13 +119,24 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "65425432",
                         "type": "map",
                         "name": "map",
                         "data": {
                             "lat": "32.0880288",
                             "lng": "34.803230100000064"
                         }
+<<<<<<< HEAD
+=======
+                    },
+                    {
+                        "_id": "65865432",
+                        "type": "video",
+                        "name": "video",
+                        "data": {
+                            "src":"https://www.youtube.com/watch?v=n9SwtdrkVHE"
+                        }
+>>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
                     }
                 ]
             }
@@ -159,7 +175,7 @@
                     "background": "white"
                 },
                 "elements": [{
-                    "_id": "65465432",
+                    "_id": "65461432",
                     "type": "img",
                     "name": "img",
                     "data": {
@@ -210,7 +226,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "65465492",
                         "type": "map",
                         "name": "map",
                         "data": {
@@ -319,7 +335,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "60465432",
                         "type": "img",
                         "name": "img",
                         "data": {
@@ -345,7 +361,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "62465432",
                         "type": "map",
                         "name": "map",
                         "data": {
@@ -445,7 +461,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "65465832",
                         "type": "img",
                         "name": "img",
                         "data": {
@@ -471,7 +487,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "55465432",
                         "type": "map",
                         "name": "map",
                         "data": {
@@ -597,7 +613,7 @@
                         }
                     },
                     {
-                        "_id": "65465432",
+                        "_id": "65465430",
                         "type": "map",
                         "name": "map",
                         "data": {

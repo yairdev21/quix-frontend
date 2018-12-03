@@ -4,11 +4,12 @@
     <section class="main">
       <div class="container"></div>
       <h1 hidden>Quix</h1>
-      <!-- <img src="@/assets/img/homePage.png/"/> -->
     </section>
-
-    <card-section></card-section>
-    <home-footer class="footer"></home-footer>
+    <section class="template-section">
+      <h1 class="title">Choose a template and start Quixly!</h1>
+      <card-section></card-section>
+      <home-footer class="footer"></home-footer>
+    </section>
   </div>
 </template>
 
@@ -18,6 +19,7 @@
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
+
 export default {
   name: "home",
 
@@ -27,7 +29,7 @@ export default {
   components: {
     HomeFooter,
     MainHeader,
-    CardSection
+    CardSection,
   }
 };
 </script>
@@ -39,12 +41,12 @@ section {
   max-width: 100vw;
   &.main {
     position: relative;
-    background-image: url("../assets/img/homePage.png");
+    background-image: url("../assets/img/homePage2.png");
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 100vh;
     // max-width: 85vw;
 
     &::before {
@@ -52,72 +54,25 @@ section {
       position: absolute;
       z-index: -1;
     }
-
     .container {
       padding: 80px;
       width: 800px;
       max-width: 100%;
       margin: 0 auto;
       display: flex;
-
-      h1 {
-        margin: 0 0 0.5em;
-        font-size: 3em;
-        font-weight: bold;
-        line-height: 1.25;
-        text-align: center;
-        color: #fff;
-        text-shadow: #000 0 0 5px;
-      }
-
-      p {
-        margin: 0 0 1.5em;
-        font-size: 1.75em;
-        line-height: 1.5;
-        color: #fff;
-      }
-
-      button {
-        font-size: 1.5em;
-        // border-color: #fff;
-        color: #fff;
-        &:hover {
-          color: black;
-          transform: scale(1.2);
-          background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        a {
-          color: #fff;
-          text-decoration: none;
-        }
-      }
-    }
-
-    .container {
-      width: 1000px;
-      max-width: 100%;
-      margin: 0 auto;
-
-      h2 {
-        margin-top: 0;
-        font-size: 1.75em;
-        font-weight: bold;
-      }
-
-      p {
-        margin-bottom: 0;
-        font-size: 2.25em;
-        font-weight: 300;
-      }
     }
   }
 }
-main-header {
- display: flex;
- align-content: center; 
+.template-section {
+  background-image: url("../assets/img/7968.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.footer {
-  height: 50px;
+h1 {
+  background: transparent;
+  font-family: Palatino;
+  // margin-top: 30px;
 }
 </style>

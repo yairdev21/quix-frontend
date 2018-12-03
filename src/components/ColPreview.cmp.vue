@@ -1,36 +1,48 @@
 <template>
-  <div class="left-side" :style="style">
-    <component :is="element" :data="col.data"/>
-    <!-- <div class="article" >
-    </div>-->
+  <div @mouseup="editText"  class="left-side" :style="style">
+    <component contenteditable="isEditMode" :isEditMode="isEditMode" :is="element" :data="col.data"/>
   </div>
 </template>
 
 <script>
-import TxtEl from '../components/elements/txt.el'
-import ImgEl from '../components/elements/img.el'
-import MapEl from '../components/elements/map.el'
-import VideoEl from '../components/elements/video.el'
-import ButtonEl from '../components/elements/btn.el'
+
+import TxtEl from "../components/elements/txt.el";
+import ImgEl from "../components/elements/img.el";
+import MapEl from "../components/elements/map.el";
+import VideoEl from "../components/elements/video.el";
+import ButtonEl from "../components/elements/btn.el";
 
 export default {
-  props: ["col"],
-
+  props: ["col", "isEditMode"],
   components: {
     TextElement: TxtEl,
     ImgElement: ImgEl,
     MapElement: MapEl,
     VideoElement: VideoEl,
-    ButtonElement: ButtonEl
+    ButtonElement: ButtonEl,
   },
-
+  methods: {
+    editText() {
+      if  (!this.isEditMode) return
+      this.option = window.getSelection().getRangeAt(0);
+      this.$emit("selectedText", this.option);
+    }
+  },
+  created(){
+    document.designMode = this.checkEditMode;
+    
+  },
   computed: {
+   checkEditMode(){
+     if (this.isEditMode) return "on"
+     else return "off"
+   } ,
     element() {
       switch (this.col.type) {
         case "text":
-          return 'TextElement';
+          return "TextElement";
         case "img":
-          return  `ImgElement`;
+          return `ImgElement`;
         case "map":
           return `MapElement`;
         case "video":
@@ -38,17 +50,18 @@ export default {
         case "button":
           return `ButtonElement`;
         default:
-          return 'TextElement';
+          return "TextElement";
       }
     },
     style() {
       return this.col.style || null;
     }
-  },
- 
+  }
 };
 </script>
 
 <style>
-
+.left-side {
+  cursor: initial;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <b-button variant="outline-success" :href="link">
-        {{link}}
-    </b-button>
+<section contenteditable="false">
+    <b-button variant="outline-success" :href="link">{{link}}</b-button>
+</section>
 </template>
 
 <script>
