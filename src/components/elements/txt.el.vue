@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p class="text" :contenteditable="isEditMode" v-text="content" @blur="saveText"></p>
+  <p class="text" :contenteditable="isEditMode" v-text="content"   @mouseleave="saveText"></p>
 </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
 
   created() {
     document.designMode = this.checkEditMode;
-    
   },
 
   methods: {
@@ -36,6 +35,8 @@ export default {
     },
     saveText(ev) {
       this.content = ev.target.innerText;
+      this.data.text =  this.content
+      console.log('work', this.data.text);
     }
   }
 };

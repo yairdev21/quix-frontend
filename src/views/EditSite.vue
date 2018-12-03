@@ -104,6 +104,7 @@ export default {
     },
     save() {
       let site = this.site;
+      console.log(site);
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() =>  this.$swal('Saved!'));
