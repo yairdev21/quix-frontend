@@ -25,6 +25,6 @@ function saveSite(site) {
         .then(() => console.log('site saved!'))
     else {
         return axios.post(`${BASE_URL}`, site)
-        .then(() => console.log('site saved!'))
+        .then(() => console.log('site not saved!'))
     }
 }

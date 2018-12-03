@@ -28,24 +28,12 @@ export default {
     document.designMode = this.checkEditMode;
   },
 
-<<<<<<< HEAD
-        methods: {
-            getContent() {               
-                return this.content
-            },
-            saveText(ev) {
-                console.log(ev)
-                this.content = ev.target.innerText;
-            }
-        }
-=======
   methods: {
     getContent() {
       return this.content;
     },
     saveText(ev) {
       this.content = ev.target.innerText;
->>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
     }
   }
 };
