@@ -25,14 +25,6 @@ export default new Router({
       component: Home
     },
     {
-<<<<<<< HEAD
-      path: '/login',
-      name: 'login',
-      component: UserLogin
-    },
-    {
-=======
->>>>>>> 1ffc2781df50a89d0a30d7b3a7febad7c6a001f4
       path: '/preview/:siteId?',
       name: 'preview',
       component: PreviewSite
@@ -42,13 +34,5 @@ export default new Router({
       name: 'edit',
       component: EditSite
     },
-<<<<<<< HEAD
-    {
-      path: '/test',
-      name: 'hero',
-      component: heroA
-    },
-=======
->>>>>>> 1ffc2781df50a89d0a30d7b3a7febad7c6a001f4
   ]
 })

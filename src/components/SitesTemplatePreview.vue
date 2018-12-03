@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     previewSite(site) {
-  this.$router.push(`/${site._id}`)
+  this.$router.push(`/preview/${site._id}`)
     },
     editSite(site) {
           this.$router.push(`/edit/${site._id}`)

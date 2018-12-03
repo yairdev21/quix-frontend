@@ -8,11 +8,7 @@
         <router-link class="btn" to="/login">Login</router-link>
       </button>
       <button class="login-btn btn btn-outline-secondary">
-<<<<<<< HEAD
-        <router-link  to="/login">Login</router-link>
-=======
         <router-link class="btn" to="/about">About</router-link>
->>>>>>> 1ffc2781df50a89d0a30d7b3a7febad7c6a001f4
       </button>
     </div>
   </div>
