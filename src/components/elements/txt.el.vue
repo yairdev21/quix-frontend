@@ -36,7 +36,6 @@ export default {
     },
     saveText(ev) {
       this.content = ev.target.innerText;
-      
     }
   }
 };

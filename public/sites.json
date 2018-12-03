@@ -68,11 +68,6 @@
                 "type": "section",
                 "_id": "421412412",
                 "name": "oneColSection",
-<<<<<<< HEAD
-=======
-                "title": "Section Title",
-                "style":{"background":"white"},
->>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
                 "data": {
                     "sm": "12"
                 },
@@ -126,17 +121,6 @@
                             "lat": "32.0880288",
                             "lng": "34.803230100000064"
                         }
-<<<<<<< HEAD
-=======
-                    },
-                    {
-                        "_id": "65865432",
-                        "type": "video",
-                        "name": "video",
-                        "data": {
-                            "src":"https://www.youtube.com/watch?v=n9SwtdrkVHE"
-                        }
->>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
                     }
                 ]
             }

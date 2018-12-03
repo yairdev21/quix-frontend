@@ -106,7 +106,7 @@ export default {
       let site = this.site;
       this.$store
         .dispatch({ type: "saveSite", site })
-        .then(() => alert("site saved!"));
+        .then(() =>  this.$swal('Saved!'));
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -137,6 +137,7 @@ export default {
   mounted() {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
+      console.log(color, this.sectionId);
       return (section[0].style.background = color);
     });
   },

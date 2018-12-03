@@ -25,7 +25,6 @@ export default {
       this.showColorPicker = false;
       this.$emit("changeColorToSection")
       EventBus.$emit("changeColor", color)
-
     }
   },
   components: {

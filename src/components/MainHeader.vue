@@ -1,14 +1,18 @@
 <template>
-  <div id="nav">
+  <div id="nav" contenteditable="false">
     <button class="logo">
       <router-link to="/">QuiX</router-link>
     </button>
     <div class="nav-btns">
-      <button class="build-btn btn btn-outline-secondary">
-        <router-link to="/edit/0">Build</router-link>
+      <button class="login-btn btn btn-outline-secondary">
+        <router-link class="btn" to="/login">Login</router-link>
       </button>
       <button class="login-btn btn btn-outline-secondary">
+<<<<<<< HEAD
         <router-link  to="/login">Login</router-link>
+=======
+        <router-link class="btn" to="/about">About</router-link>
+>>>>>>> 1ffc2781df50a89d0a30d7b3a7febad7c6a001f4
       </button>
     </div>
   </div>
@@ -45,6 +49,11 @@ export default {};
   margin: 0 20px;
   float: right;
   border-radius: 50px;
+  @media (max-width: 600px) {
+    margin: 0;
+    transform: scale(0.95);
+    height: 40%;
+  }
 }
 
 .login-btn {
