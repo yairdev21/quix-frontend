@@ -104,9 +104,10 @@ export default {
     },
     save() {
       let site = this.site;
+     
       this.$store
         .dispatch({ type: "saveSite", site })
-        .then(() => alert("site saved!"));
+        .then(() =>  this.$swal('Saved!'));
     },
     preview() {
       let siteId = this.$route.params.siteId;
