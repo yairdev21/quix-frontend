@@ -1,5 +1,7 @@
 <template>
+<div>
   <p class="text" :contenteditable="isEditMode" v-text="content" @blur="saveText"></p>
+</div>
 </template>
 
 <script>
@@ -12,8 +14,7 @@ export default {
       required: true
     },
     isEditMode: {
-      type: Boolean,
-      required: true
+      type: Boolean
     }
   },
 
@@ -26,26 +27,16 @@ export default {
 
   created() {
     document.designMode = this.checkEditMode;
+    
   },
 
-<<<<<<< HEAD
-        methods: {
-            getContent() {               
-                return this.content
-            },
-            saveText(ev) {
-                console.log(ev)
-                this.content = ev.target.innerText;
-            }
-        }
-=======
   methods: {
     getContent() {
       return this.content;
     },
     saveText(ev) {
       this.content = ev.target.innerText;
->>>>>>> f0d1ce98dc3a1f0e633bedd4bb9cbe8babce0d09
+      
     }
   }
 };
