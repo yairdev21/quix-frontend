@@ -7,12 +7,14 @@
       <draggable
         :move="checkMove"
         :options="{group:{name:'sections',  pull:false, animation: 200}}"
+        v-model="sections"
         @start="drag=true"
         @end="drag=false"
       >
         <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview
             @colorChangeSectionId="changeSectionColor"
+            @imgChangeSectionId="changeSectionImg"
             :showModal="showModal"
             @selectedText="editSelectedText"
             @deleteSection="showAlert"
@@ -108,6 +110,9 @@ export default {
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;
     },
+    changeSectionImg(url, sectionId) {
+       this.sectionId = sectionId;
+    },
     getSectionById(sectionId) {
       return this.site.sections.filter(section => {
         return section._id === sectionId;
@@ -149,6 +154,11 @@ export default {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
       return (section[0].style.background = color);
+    });
+    EventBus.$on("changeBgImg", url => {
+      let section = this.getSectionById(this.sectionId);
+      console.log(section);
+      return (section[0].style['background-image'] = `url(${url})`);
     });
   },
   components: {

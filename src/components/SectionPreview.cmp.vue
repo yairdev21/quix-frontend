@@ -9,6 +9,7 @@
   >
     <edit-section-on-hover
       @changeColorToSection="changeColorEmit(section._id)"
+      @changeBgImgToSection="changeBgImgEmit"
       @delleteSection="sendDeleteSection(section._id)"
       v-show="isBorder & isEditMode"
     ></edit-section-on-hover>
@@ -40,8 +41,16 @@ export default {
       this.$emit("deleteSection", sectionId);
     },
     changeColorEmit(sectionId) {
-      this.sectionId = sectionId;
       this.$emit("colorChangeSectionId", sectionId);
+    },
+    changeBgImgEmit(url) {
+      this.$emit("imgChangeSectionId", url, this.section._id);
+    },
+    changeSectionColor(sectionId) {
+      this.sectionId = sectionId;
+    },
+    changeSectionImg(url, sectionId) {
+      this.sectionId = sectionId;
     }
   },
   computed: {
