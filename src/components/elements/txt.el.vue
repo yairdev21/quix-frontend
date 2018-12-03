@@ -26,6 +26,7 @@
                 return this.content
             },
             saveText(ev) {
+                console.log(ev)
                 this.content = ev.target.innerText;
             }
         }

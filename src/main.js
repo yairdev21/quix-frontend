@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import VeeValidate from 'vee-validate';
 import store from './store'
 import '@/assets/scss/main.scss'
 import './registerServiceWorker'
+
+Vue.use(VeeValidate)
 
 // Vue Material
 import { MdButton, MdContent, MdTabs , MdApp, MdIcon} from 'vue-material/dist/components'

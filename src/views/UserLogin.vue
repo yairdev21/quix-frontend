@@ -2,64 +2,117 @@
   <div class="user-login">
     <main-header></main-header>
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+      <div class="row justify-content-md-center">
+        <div class="col-md-8">
           <div class="panel panel-login">
             <div class="panel-heading">
               <hr>
             </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-lg-12">
+                <div class="col">
                   <form
+                    enctype="multipart/form-data"
                     id="login-form"
                     role="form"
                     style="display: block;"
+                    @submit.prevent="handleSubmit"
                   >
+                  <p v-show="errors.items.length">
+                    <b>Please correct the following error(s):</b>
+                    <ul>
+                      <li v-for="(error, idx) in errors.items" :key="idx">{{ error.msg }}</li>
+                    </ul>
+                  </p>
+
                     <div class="form-group">
                       <input
-                        type="text"
-                        name="username"
+                        type="email"
+                        v-validate="{ required: true, email: true }" 
+                        data-vv-as="email"
+                        v-model="userInfo.email"
+                        name="email"
+                        key="email-input"
                         tabindex="1"
-                        class="form-control"
-                        placeholder="Username"
-                        value
+                        :class="emailClass"
+                        placeholder="Your Email"
                       >
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" v-if="isNewRagistrater">
+                      <input
+                        v-validate="{ required: true, min: 5 }" 
+                        data-vv-as="user name"
+                        key="username-input"
+                        type="text"
+                        name="username"
+                        v-model="userInfo.userName"
+                        tabindex="2"
+                        :class="usernameClass"
+                        placeholder="User Name"
+                      >
+                    </div>
+
+                    <div class="form-group" >
                       <input
                         type="password"
+                        data-vv-as="password"
                         name="password"
-                        tabindex="2"
-                        class="form-control"
+                        v-validate="{ required: true, min: 6 }" 
+                        v-model="userInfo.password"
+                        tabindex="3"
+                        :class="passwordClass"
                         placeholder="Password"
                       >
                     </div>
-                    <div class="form-group text-center">
-                      <input type="checkbox" tabindex="3" class name="remember" id="remember">
-                      <label for="remember">Remember Me</label>
+                    <div class="form-group" v-if="isNewRagistrater">
+                      <input
+                        type="password"
+                        v-validate="{ is: userInfo.password }"
+                        data-vv-as="password"
+                        name="confirm-password"
+                        id="confirm-password"
+                        tabindex="4"
+                        :class="confirmClass"
+                        placeholder="Confirm Password"
+                      >
                     </div>
+
+                    <div class="custom-file form-group" v-if="isNewRagistrater">
+                      <input 
+                          type="file" 
+                          :class="fileInputClass" 
+                          ref="fileInput"
+                          v-validate="'mimes:image/*'" 
+                          name="image"
+                          data-vv-as="image">
+
+                      <label class="custom-file-label" for="validatedCustomFile">{{imgText}}</label>
+                    </div>
+
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
                           <input
                             type="submit"
                             name="login-submit"
-                            tabindex="4"
+                            tabindex="5"
                             class="form-control btn btn-login"
-                            value="Log In"
+                            :value="(isNewRagistrater) ? 'Register' : 'Log In'"
                           >
                         </div>
+
                         <div class="col-sm-6 col-sm-offset-3">
                           <input
-                            type="submit"
-                            name="login-submit"
-                            tabindex="4"
+                            @click="() => isNewRagistrater = !isNewRagistrater"
+                            type="button"
+                            tabindex="6"
                             class="form-control btn btn-login"
-                            value="REGISTER"
+                            :value="(isNewRagistrater) ? 'Existing User?' : 'New User?'"
                           >
                         </div>
                       </div>
+
+                      <Spinner v-show="isLoading" message="Creating new account..." />
+
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -75,73 +128,8 @@
                       </div>
                     </div>
                   </form>
-                  <form
-                    id="register-form"
-                    method="post"
-                    role="form"
-                    style="display: none;"
-                  >
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Username"
-                        value
-                      >
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        tabindex="1"
-                        class="form-control"
-                        placeholder="Email Address"
-                        value
-                      >
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        tabindex="2"
-                        class="form-control"
-                        placeholder="Password"
-                      >
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="password"
-                        name="confirm-password"
-                        id="confirm-password"
-                        tabindex="2"
-                        class="form-control"
-                        placeholder="Confirm Password"
-                      >
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                          <input
-                            type="submit"
-                            name="register-submit"
-                            id="register-submit"
-                            tabindex="4"
-                            class="form-control btn btn-register"
-                            value="Register Now"
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </form>
                 </div>
               </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -149,16 +137,81 @@
 </template>
 
 <script>
+import uploadImg from '@/services/cloudinary.service.js';
+import {logIn} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
+import Spinner from 'vue-simple-spinner'
 
 export default {
   components: {
-    MainHeader
+    MainHeader,
+    Spinner
+  },
+
+  data() {
+    return {
+      isNewRagistrater: false,
+      isLoading: false,
+      userInfo: {
+        userName: '',
+        password: '',
+        email: ''
+      }
+    }
+  },
+
+  methods: {
+    async handleSubmit() {
+      const { email, password } = this.userInfo;
+
+      const res = await logIn({ email, password });
+      console.log(res);
+    },
+
+    async createUser() {
+      this.isLoading = true;
+      const imgUrl = await uploadImg(this.$refs.fileInput);
+      this.isLoading = false;
+
+      console.log(imgUrl)
+    }
+  },
+
+  computed: {
+    usernameClass() {
+      return ( this.userInfo.userName === '') ? 'form-control' : (this.errors.has('username')) ? 'form-control is-invalid' : 'form-control is-valid';
+    },
+
+    emailClass() {
+      return ( this.userInfo.email === '') ? 'form-control' : (this.errors.has('email')) ? 'form-control is-invalid' : 'form-control is-valid';
+    },
+
+    confirmClass() {
+      return ( this.userInfo.password === '') ? 'form-control' : (this.errors.has('confirm-password')) ? 'form-control is-invalid' : 'form-control is-valid';
+    },
+
+    passwordClass() {
+      return ( this.userInfo.password === '') ? 'form-control' : (this.errors.has('password')) ? 'form-control is-invalid' : 'form-control is-valid';      
+    },
+
+    fileInputClass() {
+      return ( this.userInfo.password === '') ? 'custom-file-input' : (this.errors.has('image')) ? 'custom-file-input is-invalid' : 'custom-file-input is-valid';      
+    },
+
+    imgText() {
+      if(!this.$refs.fileInput) return 'Upload Image...';
+
+      return (this.$refs.fileInput.files.length > 0) ? 'file selected' : 'upload image...';
+    }
   }
 };
 </script>
 
+
 <style>
+.custom-file {
+  margin-bottom: 10px;
+}
 .container {
   padding-top: 150px;
 }
@@ -279,5 +332,12 @@ export default {
   color: #fff;
   background-color: #1ca347;
   border-color: #1ca347;
+}
+
+#login-form {
+  margin: 10px 0;
+}
+.is-invalid {
+  border-color: red !important;
 }
 </style>
