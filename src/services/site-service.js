@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const BASE_URL = (process.env.NODE_ENV !== 'development')
-    ? '/sites/'
-    : '//localhost:3000/sites';
+    ? '/'
+    : '//localhost:3000';
 
 export default {
     query,
@@ -11,17 +11,17 @@ export default {
 }
 
 function query() {
-    return axios.get(BASE_URL)
+    return axios.get(BASE_URL+'/sites')
         .then(res => res.data.templates)
 }
 
 function getSiteById(siteId) {
-    return axios.get(BASE_URL + '/' + siteId)
+    return axios.get(BASE_URL + '/sites/' + siteId)
         .then(res => res.data.tamplate)
 }
 
 function saveSite(site) {
-    if (site._id) return axios.put(BASE_URL + '/' + site._id, site)
+    if (site._id) return axios.put(BASE_URL + '/sites/' + site._id, site)
         .then(() => console.log('site saved!'))
     else {
         return axios.post(`${BASE_URL}`, site)

@@ -110,11 +110,22 @@ export default {
     },
     preview() {
       let siteId = this.$route.params.siteId;
-      this.$router.push(`/${siteId}`);
+      this.$router.push(`/preview/${siteId}`);
     },
-    publish() {}
+    publish() {
+      const url =
+        window.location.protocol +
+        "//" +
+        window.location.host +
+        window.location.pathname;
+      this.$swal({
+        title: "Got It!",
+        html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
+      });
+    }
   },
   created() {
+    EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
     this.isEditMode = this.$store.getters.getMode;
     let siteId = this.$route.params.siteId;

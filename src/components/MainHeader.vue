@@ -8,7 +8,7 @@
         <router-link to="/edit/0">Build</router-link>
       </button>
       <button class="login-btn btn btn-outline-secondary">
-        <router-link to="/login">Login</router-link>
+        <router-link  to="/login">Login</router-link>
       </button>
     </div>
   </div>

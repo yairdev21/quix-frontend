@@ -16,7 +16,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/:siteId?',
+      path: '/login',
+      name: 'login',
+      component: UserLogin
+    },
+    {
+      path: '/preview/:siteId?',
       name: 'preview',
       component: PreviewSite
     },
@@ -29,11 +34,6 @@ export default new Router({
       path: '/test',
       name: 'hero',
       component: heroA
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: UserLogin
     },
   ]
 })
