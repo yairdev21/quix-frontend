@@ -135,24 +135,35 @@
             "data": {
                 "sm": "4"
             },
-            "style": { "height": "6vh" },
+            "style": {
+                "height": "6vh"
+            },
             "elements": [{
                     "_id": "4312423",
-                    "type": "button",
+                    "type": "socialBtn",
                     "name": "social-btn",
-                    "data": {}
+                    "data": {
+                        "src": "facebook.com",
+                        "img": "facebook.png"
+                    }
                 },
                 {
                     "_id": "4322423",
-                    "type": "button",
+                    "type": "socialBtn",
                     "name": "social-btn",
-                    "data": {}
+                    "data": {
+                        "src": "instagram.com",
+                        "img": "gmail.png"
+                    }
+
                 },
                 {
                     "_id": "4332423",
-                    "type": "button",
+                    "type": "socialBtn",
                     "name": "social-btn",
-                    "data": {}
+                    "data": {
+                        "src": "facebook.com"
+                    }
                 }
             ]
         }
