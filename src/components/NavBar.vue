@@ -4,7 +4,9 @@
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info"><p class="navbar-names">Sections</p></b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
+              <p class="navbar-names">Sections</p>
+            </b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -55,7 +57,9 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion2 variant="info"><p class="navbar-names">Components</p></b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion2 variant="info">
+              <p class="navbar-names">Components</p>
+            </b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -92,7 +96,9 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion3 variant="info"><p class="navbar-names">Buttons</p></b-btn>
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion3 variant="info">
+              <p class="navbar-names">Buttons</p>
+            </b-btn>
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -137,15 +143,16 @@ export default {
     return { currIndexMove: 0, currSectionName: null };
   },
   methods: {
-    checkMove() {
-    },
+    checkMove() {},
     goHome() {
       this.$router.push("/");
     },
     emitAddSection(evt) {
       let idx = evt.newIndex;
       let sectionName = evt.from.className;
-      if (sectionName==='oneColsSectionWithVid') {EventBus.$emit('getVideoUrl')}
+      if (sectionName === "oneColsSectionWithVid") {
+        EventBus.$emit("getVideoUrl");
+      }
       this.$emit("addSection", idx, sectionName);
     },
     move(evt) {
@@ -185,14 +192,13 @@ main {
 }
 .acordion-header {
   height: 2.6rem;
-@media (max-width:680px){
-height: 5.5vw;
+  @media (max-width: 680px) {
+    height: 5.5vw;
+  }
 }
-}
-.navbar-names{
-@media (max-width:680px){
-  font-size: 2.5vw
-}
-
+.navbar-names {
+  @media (max-width: 680px) {
+    font-size: 2.5vw;
+  }
 }
 </style>
