@@ -71,7 +71,8 @@ section {
   background-size: cover;
 }
 h1 {
+  background: transparent;
   font-family: Palatino;
-  margin-top: 30px;
+  // margin-top: 30px;
 }
 </style>
