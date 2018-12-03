@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     editText() {
-      if  (!isEditMode) return
+      if  (!this.isEditMode) return
       this.option = window.getSelection().getRangeAt(0);
       this.$emit("selectedText", this.option);
     }

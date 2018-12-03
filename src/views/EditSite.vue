@@ -102,7 +102,7 @@ export default {
       });
     },
     save() {
-      site = this.site;
+      let site = this.site;
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() => alert("site saved!"));
