@@ -6,12 +6,14 @@
     <div v-if="sections">
       <draggable
         :options="{group:{name:'sections',  pull:false, animation: 200}}"
+        v-model="sections"
         @start="drag=true"
         @end="drag=false"
       >
         <div class="section-items" v-for="(section) in sections" :key="section._id">
           <section-preview
             @colorChangeSectionId="changeSectionColor"
+            @imgChangeSectionId="changeSectionImg"
             :showModal="showModal"
             @selectedText="editSelectedText"
             @deleteSection="showAlert"
@@ -97,6 +99,9 @@ export default {
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;
     },
+    changeSectionImg(url, sectionId) {
+       this.sectionId = sectionId;
+    },
     getSectionById(sectionId) {
       return this.site.sections.filter(section => {
         return section._id === sectionId;
@@ -107,7 +112,7 @@ export default {
       console.log(site);
       this.$store
         .dispatch({ type: "saveSite", site })
-        .then(() =>  this.$swal('Saved!'));
+        .then(() => this.$swal("Saved!"));
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -138,8 +143,12 @@ export default {
   mounted() {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
-      console.log(color, this.sectionId);
       return (section[0].style.background = color);
+    });
+    EventBus.$on("changeBgImg", url => {
+      let section = this.getSectionById(this.sectionId);
+      console.log(section);
+      return (section[0].style['background-image'] = `url(${url})`);
     });
   },
   components: {

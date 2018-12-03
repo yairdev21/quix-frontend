@@ -47,8 +47,8 @@ export default {
       showCancelButton: true,
       confirmButtonText: "Enter",
       showLoaderOnConfirm: true,
-      preConfirm: login => {
-        this.data.src = login;
+      preConfirm: url => {
+        this.data.src = url;
       },
       allowOutsideClick: () => !this.$swal.isLoading()
     }).then(result => {

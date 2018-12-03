@@ -2,12 +2,16 @@
   <section class="hover-section">
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
-      <button @click="$emit('delleteSection')">
+      <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>
-      <button @click="showColorPicker=!showColorPicker">
+      <button title="Choose Background Color" @click="showColorPicker=!showColorPicker">
         <i class="fas fa-palette"></i>
       </button>
+      <button title="Choose Background Image" @click="uploadImage">
+        <i class="fas fa-file-image"></i>
+      </button>
+      <input ref="file" type="file">
     </div>
   </section>
 </template>
@@ -15,6 +19,7 @@
 <script>
 import ColorPicker from "@/components/textEdit/ColorPicker.cmp.vue";
 import { EventBus } from "@/event-bus.js";
+import cloudinaryService from "../services/cloudinary.service.js";
 
 export default {
   data() {
@@ -23,8 +28,15 @@ export default {
   methods: {
     setColor(color) {
       this.showColorPicker = false;
-      this.$emit("changeColorToSection")
-      EventBus.$emit("changeColor", color)
+      this.$emit("changeColorToSection");
+      EventBus.$emit("changeColor", color);
+    },
+    uploadImage() {
+      cloudinaryService(this.$refs.file)
+      .then(url=>{
+        this.$emit("changeBgImgToSection", url)
+         EventBus.$emit("changeBgImg", url);
+      })
     }
   },
   components: {
