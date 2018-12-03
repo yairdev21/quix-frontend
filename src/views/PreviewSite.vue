@@ -15,7 +15,7 @@
 <script>
 // import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
-// import ControlButtons from "@/components/ControlButtons.vue";
+import ControlButtons from "@/components/ControlButtons.vue";
 // import draggable from "vuedraggable";
 // import sectionService from "../services/section-service.js";
 // import TextEditButtons from "@/components/TextEditButtons.vue";
@@ -57,7 +57,7 @@ export default {
     SectionPreview,
     // NavBar,
     // draggable,
-    // ControlButtons,
+    ControlButtons,
     // TextEditButtons,
     // createLinkModal
   }
