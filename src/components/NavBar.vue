@@ -4,7 +4,7 @@
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion1 variant="info">Sections</b-btn>
+            <b-btn block href="#" v-b-toggle.accordion1 variant="info">Add Sections</b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -55,7 +55,7 @@
         </b-card>
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Components</b-btn>
+            <b-btn block href="#" v-b-toggle.accordion2 variant="info">Add Components</b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
@@ -128,6 +128,7 @@
 
 <script>
 import draggable from "vuedraggable";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   name: "Navbar",
@@ -136,8 +137,7 @@ export default {
     return { currIndexMove: 0, currSectionName: null };
   },
   methods: {
-    checkMove(evt) {
-      console.log("MOVING");
+    checkMove() {
     },
     goHome() {
       this.$router.push("/");
@@ -145,6 +145,7 @@ export default {
     emitAddSection(evt) {
       let idx = evt.newIndex;
       let sectionName = evt.from.className;
+      if (sectionName==='oneColsSectionWithVid') {EventBus.$emit('getVideoUrl')}
       this.$emit("addSection", idx, sectionName);
     },
     move(evt) {

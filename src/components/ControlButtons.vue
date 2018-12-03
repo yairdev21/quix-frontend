@@ -1,6 +1,6 @@
 <template>
-  <div class="side-bar-btns">
-    <button  v-if="isEditMode" class="menu-icon icon" @click="openSideBar">
+  <div class="side-bar-btns" contenteditable="false">
+    <button v-if="isEditMode" class="menu-icon icon" @click="openSideBar">
       <div v-show="isOpen">
         <i class="fas fa-minus"></i>
       </div>
@@ -18,7 +18,7 @@
       <i class="far fa-edit" @click="edit"></i>
     </button>
     <button v-else class="preview-icon icon" @click="preview">
-          <i class="far fa-eye" ></i>
+      <i class="far fa-eye"></i>
     </button>
     <button class="publsh-icon icon" @click="publish">
       <i class="fas fa-globe"></i>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  props:['isEditMode'],
+  props: ["isEditMode"],
   data() {
     return {
       isOpen: false
@@ -42,28 +42,26 @@ export default {
       this.$emit("showPanel");
       return (this.isOpen = !this.isOpen);
     },
-    preview(){
-       this.$emit("preview");
+    preview() {
+      this.$emit("preview");
     },
-    edit(){
-       this.$emit("edit");
+    edit() {
+      this.$emit("edit");
     },
-    save(){
-       this.$emit("save");
+    save() {
+      this.$emit("save");
     },
-    publish(){
-       this.$emit("publish");
+    publish() {
+      this.$emit("publish");
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .side-bar-btns {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
   position: fixed;
-  left: 45%;
+  right: 0;
+  left: 0;
   top: 90%;
 }
 .icon {
@@ -82,5 +80,10 @@ export default {
   cursor: pointer;
   color: black;
 }
-
+@media (max-width: 800px) {
+  .icon {
+    transform: scale(1.8);
+    margin: 15px;
+  }
+}
 </style>

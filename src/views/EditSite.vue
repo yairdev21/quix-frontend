@@ -25,6 +25,7 @@
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
     <control-buttons
+      class="control-buttons"
       :isEditMode="isEditMode"
       @preview="preview"
       @save="save"
@@ -111,9 +112,7 @@ export default {
       let siteId = this.$route.params.siteId;
       this.$router.push(`/${siteId}`);
     },
-    publish() {
-      
-    }
+    publish() {}
   },
   created() {
     this.$store.commit("setEditMode");
@@ -145,6 +144,7 @@ export default {
 .add-section {
   border: 1px dashed black;
 }
+
 .edit-buttons {
   position: fixed;
   display: flex;

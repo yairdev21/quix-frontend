@@ -1,5 +1,5 @@
 <template>
-  <div class="main-footer">-->
+  <div class="main-footer">
     <p>&#9760; Quixly international 2018 &#9760;</p>
   </div>
 </template>
