@@ -254,6 +254,7 @@ export default {
 }
 
 .open-panel-btn {
+  z-index: 10;
   position: fixed;
   left: 0;
   margin: 20px;

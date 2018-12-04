@@ -186,6 +186,14 @@
             }
         },
         {
+            "style": {},
+            "type": "text",
+            "name": "text",
+            "data": {
+                "text": "Your Words Here"
+            }
+        },
+        {
             "type": "section",
             "name": "contactComponent",
             "data": {

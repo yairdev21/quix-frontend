@@ -1,4 +1,7 @@
 import axios from "axios";
+import {
+    EventBus
+} from "@/event-bus.js";
 
 export default {
     query,
@@ -14,6 +17,9 @@ function query() {
 }
 
 function getSectionByName(sectionName) {
+    if (sectionName === "video" || sectionName === "oneColsSectionWithVid") {
+        EventBus.$emit("getVideoUrl")
+    }
     const sections = require('../../public/dummySection.json')
     return new Promise((resolve) => {
         resolve(sections.find(section => sectionName === section.name))

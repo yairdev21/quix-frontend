@@ -52,11 +52,12 @@ export default {
   color: whitesmoke;
   border: 1px solid transparent;
   border-radius: 5px;
-  background: forestgreen;
+  background: #17a2b8;
   position: relative;
   width: 30px;
   transform: scale(2);
-  margin: 30px;
+  margin: 10px 30px;
+  
 }
 
 .icon:hover {
