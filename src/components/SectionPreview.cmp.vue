@@ -9,6 +9,7 @@
   >
     <edit-section-on-hover
       @isDraggable="$emit('isDraggable')"
+      @notDraggable="$emit('notDraggable')"
       @changeColorToSection="changeColorEmit(section._id)"
       @changeBgImgToSection="changeBgImgEmit"
       @delleteSection="sendDeleteSection(section._id)"

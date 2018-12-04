@@ -26,9 +26,10 @@
     <div v-if="sections">
       <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
         <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+          <drag :transfer-data="{method: 'sort', data: idx}">
             <section-preview
               @isDraggable="isDraggable=true"
+              @notDraggable="isDraggable=false"
               @emitHandleDrop="handleDrop"
               @colorChangeSectionId="changeSectionColor"
               @imgChangeSectionId="changeSectionImg"
@@ -69,7 +70,7 @@ export default {
     return {
       site: null,
       sections: null,
-      isDraggable:false,
+      isDraggable: false,
       isPanelOpen: false,
       text: "",
       isTextSelected: false,
@@ -81,18 +82,14 @@ export default {
     };
   },
   methods: {
-    // checkIsDraggable(){
-    //   console.log('isDraggable', this.isDraggable);
-      
-    // },
     handleDrop(dragElement, idx) {
-      console.log('drop', dragElement, idx);
-      
-      this.isDraggable=false
-      if (dragElement.method === "add")
+      this.isDraggable = false;
+      if (dragElement.method === "addSection")
         return this.addSection(dragElement.data, idx);
       if (dragElement.method === "sort")
         return this.sortSections(dragElement.data, idx);
+      if (dragElement.method === "addElement")
+        return this.addElement(dragElement.data, idx);
     },
     sortSections(dragedIdx, dropedIdx) {
       console.log(dragedIdx, dropedIdx);
@@ -104,19 +101,31 @@ export default {
         );
         this.site.sections.splice(dragedIdx, 1);
       } else if (dragedIdx > dropedIdx) {
-        this.site.sections.splice(
-          dropedIdx,
-          0,
-          this.site.sections[dragedIdx]
-        );
-        this.site.sections.splice(dragedIdx+1, 1);
+        this.site.sections.splice(dropedIdx, 0, this.site.sections[dragedIdx]);
+        this.site.sections.splice(dragedIdx + 1, 1);
       }
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
-      console.log( this.site.sections);
-        
+        console.log(this.site.sections);
+      });
+    },
+    addElement(elementName, idx) {
+      sectionService.getSectionByName(elementName).then(element => {
+        switch (this.site.sections[idx].data.sm) {
+          case "12":
+             (this.site.sections[idx].data.sm = "6");
+             break
+          case "6":
+             (this.site.sections[idx].data.sm = "4");
+             break
+          case "4":
+            return this.$swal(
+              "Too many elements in one section. Please drop the element in another section!"
+            )
+        }
+        this.site.sections[idx].elements.push(element);
       });
     },
     editSelectedText(data, id) {

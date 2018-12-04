@@ -1,6 +1,6 @@
 <template>
   <div @mouseup="editText"  class="left-side" :style="style">
-    <component :contenteditable="isEditMode" :isEditMode="isEditMode" :is="element" :data="col.data"/>
+    <component :draggable="false" :contenteditable="isEditMode" :isEditMode="isEditMode" :is="element" :data="col.data"/>
   </div>
 </template>
 

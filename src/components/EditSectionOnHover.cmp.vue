@@ -3,7 +3,9 @@
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
       <div>
-        <button title="drag section" @mousedown="$emit('isDraggable')">
+        <button title="drag section" @mousedown="$emit('isDraggable')"
+          @mouseup="$emit('notDraggable')"
+          >
           <i class="fas fa-arrows-alt"></i>
         </button>
       </div>
