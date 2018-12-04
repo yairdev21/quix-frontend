@@ -19,8 +19,15 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
-    // 
+// 
+import * as VueGoogleMaps from "vue2-google-maps";
 
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: "AIzaSyDZzqik5JAq6HK7gloZt8_BvLvh04DFjYs",
+        libraries: "places" 
+    }
+});
 
 // import VueSplit from 'vue-split-panel';
 // Vue.use(VueSplit)
@@ -29,15 +36,38 @@ import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2)
 
 // Vue Fontaswame
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFileImage, faUserSecret, faFont, faArrowsAlt, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook , faYoutube, faInstagram} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faFileImage,faUserSecret, faFont,faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette,faFacebook,faYoutube,faInstagram, faGlobe)
+import {
+    library
+} from '@fortawesome/fontawesome-svg-core'
+import {
+    faFileImage,
+    faUserSecret,
+    faFont,
+    faArrowsAlt,
+    faHome,
+    faPlus,
+    faMinus,
+    faBold,
+    faItalic,
+    faLink,
+    faPalette,
+    faGlobe
+} from '@fortawesome/free-solid-svg-icons'
+import {
+    faFacebook,
+    faYoutube,
+    faInstagram
+} from '@fortawesome/free-brands-svg-icons'
+import {
+    FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
+library.add(faFileImage, faUserSecret, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-import { dom } from '@fortawesome/fontawesome-svg-core'
+import {
+    dom
+} from '@fortawesome/fontawesome-svg-core'
 dom.watch()
-    // 
+// 
 
 Vue.config.productionTip = false
 

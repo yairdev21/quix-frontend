@@ -1,5 +1,5 @@
 <template>
-<div>
+<div contenteditable="false">
     <main-header></main-header>
 <section class="about-container">
          <h1>

@@ -1,6 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <nav-bar c v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
+    <nav-bar v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -66,6 +66,10 @@ export default {
   },
   methods: {
     handleDrop(dragElement, idx) {
+      if (dragElement.data === "oneColsSectionWithVid") {
+        EventBus.$emit("getVideoUrl");
+      }
+
       if (dragElement.method === "add")
         return this.addSection(dragElement.data, idx);
       if (dragElement.method === "sort")
@@ -81,19 +85,14 @@ export default {
         );
         this.site.sections.splice(dragedIdx, 1);
       } else if (dragedIdx > dropedIdx) {
-        this.site.sections.splice(
-          dropedIdx,
-          0,
-          this.site.sections[dragedIdx]
-        );
-        this.site.sections.splice(dragedIdx+1, 1);
+        this.site.sections.splice(dropedIdx, 0, this.site.sections[dragedIdx]);
+        this.site.sections.splice(dragedIdx + 1, 1);
       }
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
-      console.log( this.site.sections);
-        
+        console.log(this.site.sections);
       });
     },
     editSelectedText(data, id) {
