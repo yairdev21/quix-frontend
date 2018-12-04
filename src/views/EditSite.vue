@@ -92,6 +92,8 @@ export default {
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
+      console.log( this.site.sections);
+        
       });
     },
     editSelectedText(data, id) {
