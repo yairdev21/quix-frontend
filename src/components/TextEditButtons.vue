@@ -2,33 +2,30 @@
   <div class="edit-buttons" contenteditable="false">
     <ul>
       <li>
-        <button id="bold" @click.stop="formatText('bold')"></button>
+        <button id="bold" @click.stop="formatText('bold')" title="Bold Text"></button>
       </li>
       <li>
-        <button id="italic" @click.stop="formatText('italic')"></button>
+        <button id="italic" @click.stop="formatText('italic')" title="Italic Text"></button>
       </li>
       <li>
-        <button id="underline" @click.stop="formatText('underline')"></button>
+        <button id="underline" @click.stop="formatText('underline')" title="Underline Text"></button>
       </li>
       <li>
-        <button id="link" @click.stop="foramtLink('link')">
+        <button id="link" @click.stop="foramtLink('link')" title="Make Link">
           <i class="fas fa-link"></i>
         </button>
       </li>
       <li>
-        <button id="regular" @click.stop="formatStyle(1)"></button>
+        <button id="title" @click.stop="formatStyle(0.1)" title="Text Size Up"></button>
       </li>
       <li>
-        <button id="title" @click.stop="formatStyle(3)"></button>
+        <button id="mid" @click.stop="formatStyle(-0.1)" title="Text Size Down"></button>
       </li>
       <li>
-        <button id="mid" @click.stop="formatStyle(2)"></button>
+        <button id="blackorwhite" @click.stop="changeFontColor" title="Black Or White Text"></button>
       </li>
       <li>
-        <button id="blackorwhite" @click.stop="changeFontColor"></button>
-      </li>
-      <li>
-        <button id="font" @click.stop="changeFont"></button>
+        <button id="font" @click.stop="changeFont" title="Change Font"></button>
       </li>
     </ul>
   </div>
@@ -59,12 +56,12 @@ export default {
   },
   methods: {
     formatStyle(data) {
-      if (data > 0) {
-        this.fontCurrSize = data;
+      if (data) {
+        this.fontCurrSize += data;
       }
       this.getText().filter(text => {
         text.style = {
-          transform: `scale(${this.fontCurrSize})`,
+          "font-size": `calc(${this.fontCurrSize}*1vw`,
           color: `${this.fontColor}`,
           "font-family": `${this.fontFamily[this.fontNum]}`
         };
@@ -83,8 +80,8 @@ export default {
     },
     changeFont() {
       this.fontNum++;
-      if(this.fontNum=== this.fontFamily.length) this.fontNum=0
-      this.formatStyle()
+      if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
+      this.formatStyle();
     },
     getText() {
       let data = this.text;
@@ -130,12 +127,15 @@ ul {
   background: rgb(54, 9, 9);
   transition: 0.3 ease;
 }
+
 .edit-buttons button:hover {
   transition: 0.3 ease;
   cursor: pointer;
   color: brown;
   background: rgb(129, 127, 127);
 }
+
+
 #bold::after {
   content: "B";
   font-weight: bold;
@@ -150,19 +150,15 @@ ul {
   font-weight: bold;
 }
 #title::after {
-  content: "h1";
+  content: "+";
   font-weight: bold;
 }
 #mid::after {
-  content: "h2";
-  font-weight: bold;
-}
-#regular::after {
-  content: "p";
+  content: "-";
   font-weight: bold;
 }
 #font::after {
-  content: "f";
+  content: "F";
   font-weight: bold;
 }
 #blackorwhite::after {

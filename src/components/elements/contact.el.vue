@@ -6,21 +6,19 @@
 
       <div v-if="isSending" class="loading">Sending...</div>
 
-      <form class="form">
+      <form class="form" type="submit" onSubmit="onSubmit">
         <input
-          required
           placeholder="Name"
           type="text"
           autocomplete="off"
         >
         <input
-          required
           placeholder="E-mail"
           type="email"
           autocomplete="off"
         >
         <textarea name="message" rows="4" placeholder="Message"></textarea>
-        <button class="button">Send</button>
+        <button class="button" type="submit" >Send</button>
       </form>
     </div>
   </div>
@@ -60,7 +58,9 @@ export default {
       this.content = ev.target.innerText;
     },
     onSubmit(){
-      
+      console.log('sent');
+      return
+      // this.$swal('Email Sent Biatch')
     }
   }
 };

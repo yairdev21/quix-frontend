@@ -10,6 +10,11 @@
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
+              <drag :transfer-data="{method: 'add', data:'emptySection'}">
+                <p class="card-text" id="emptySection">
+                  <img src="@/assets/img/emptySection.png">
+                </p>
+              </drag>
               <drag :transfer-data="{method: 'add', data:'oneColsSection'}">
                 <p class="card-text" id="oneColsSection">
                   <img src="@/assets/img/oneSection.png">
@@ -46,6 +51,8 @@
                 <p class="card-text" id="oneColsSectionWithVid">
                   <img src="@/assets/img/section w vid.png">
                 </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'contactComponent'}">
                 <p class="card-text" id="contactComponent">
                   <img src="@/assets/img/contact.png">
                 </p>
