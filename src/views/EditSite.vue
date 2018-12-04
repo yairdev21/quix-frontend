@@ -1,5 +1,5 @@
   <template>
-  <div class="section-list">
+  <div class="section-list" @keyup.esc="isTextSelected=false">
     <nav-bar c v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
