@@ -11,7 +11,7 @@
       <button title="Choose Background Image" @click="uploadImage">
         <i class="fas fa-file-image"></i>
       </button>
-      <input hidden id="uploadImg" ref="file" type="file">
+      <input hidden id="uploadImg" ref="file" type="file" @change="getUrl">
     </div>
   </section>
 </template>
@@ -32,8 +32,11 @@ export default {
       EventBus.$emit("changeColor", color);
     },
     uploadImage() {
-       document.getElementById('uploadImg').click();
+      document.getElementById("uploadImg").click();
+    },
+    getUrl() {
       cloudinaryService(this.$refs.file).then(url => {
+        console.dir(this.$refs.file);
         this.$emit("changeBgImgToSection", url);
         EventBus.$emit("changeBgImg", url);
       });
@@ -71,5 +74,4 @@ export default {
   margin-right: 0.6rem;
   z-index: 5;
 }
-
 </style>

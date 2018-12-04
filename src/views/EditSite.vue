@@ -1,6 +1,20 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <nav-bar c v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
+      <button
+        contenteditable="false"
+        v-if="isEditMode" 
+        class="menu-icon icon open-panel-btn" 
+        @click="isPanelOpen=!isPanelOpen"
+        title="Add New Element"
+        >
+      <div v-show="isPanelOpen">
+        <i class="fas fa-minus"></i>
+      </div>
+      <div  v-show="!isPanelOpen">
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
+    <nav-bar   v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -35,7 +49,7 @@
       @preview="preview"
       @save="save"
       @publish="publish"
-      @showPanel="isPanelOpen=!isPanelOpen"
+    
     ></control-buttons>
   </div>
 </template>
@@ -202,6 +216,30 @@ export default {
   right: 5%;
   transform: scale(1.5);
   z-index: 5;
+}
+
+.icon {
+  color: whitesmoke;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #17a2b8;
+  position: relative;
+  width: 30px;
+  transform: scale(2);
+  margin: 30px;
+}
+
+.icon:hover {
+  border: 1px solid whitesmoke;
+  cursor: pointer;
+  color: black;
+}
+
+.open-panel-btn{
+  position: fixed;
+  left: 0;
+  margin:20px;
+
 }
 </style>
 
