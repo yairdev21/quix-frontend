@@ -16,13 +16,19 @@
         </button>
       </li>
       <li>
-        <button id="title" @click.stop="formatSize(3)"></button>
+        <button id="regular" @click.stop="formatStyle(1)"></button>
       </li>
       <li>
-        <button id="mid" @click.stop="formatSize(2)"></button>
+        <button id="title" @click.stop="formatStyle(3)"></button>
       </li>
       <li>
-        <button id="regular" @click.stop="formatSize(1)"></button>
+        <button id="mid" @click.stop="formatStyle(2)"></button>
+      </li>
+      <li>
+        <button id="blackorwhite" @click.stop="changeFontColor"></button>
+      </li>
+      <li>
+        <button id="font" @click.stop="changeFont"></button>
       </li>
     </ul>
   </div>
@@ -34,34 +40,78 @@ import { EventBus } from "@/event-bus.js";
 export default {
   props: ["text", "section"],
   data() {
-    return {};
+    return {
+      fontCurrSize: 1,
+      fontColor: "black",
+      fontFamily: [
+        "Courier New",
+        "Franklin Gothic Medium",
+        "Gill Sans",
+        "Times New Roman",
+        "Lucida Sans Regular",
+        "Verdana",
+        "Tahoma",
+        "sans-serif",
+        "cursive"
+      ],
+      fontNum: 0
+    };
   },
   methods: {
-    formatSize(size) {
-      console.log(this.section[0].elements);
-      
-      let data=this.text
-      return this.section[0].elements
-        .filter(element => {
-          return element.data.text.includes(data);
-        })
-        .filter(text => {
-          text.style = { transform: `scale(${size})` };
-        });
+    formatStyle(data) {
+      if (data > 0) {
+        this.fontCurrSize = data;
+      }
+      this.getText().filter(text => {
+        text.style = {
+          transform: `scale(${this.fontCurrSize})`,
+          color: `${this.fontColor}`,
+          "font-family": `${this.fontFamily[this.fontNum]}`
+        };
+      });
     },
     formatText(data) {
       document.execCommand(`${data}`);
     },
     foramtLink() {
       this.$emit("openLinkModal");
+    },
+    changeFontColor() {
+      if (this.fontColor === "black") this.fontColor = "white";
+      else this.fontColor = "black";
+      this.formatStyle();
+    },
+    changeFont() {
+      this.fontNum++;
+      if(this.fontNum=== this.fontFamily.length) this.fontNum=0
+      this.formatStyle()
+    },
+    getText() {
+      let data = this.text;
+      return this.section[0].elements.filter(element => {
+        if (element.data.text) {
+          return element.data.text.includes(data);
+        } else return;
+      });
     }
   },
   created() {
+    let data = this.text;
     EventBus.$on("link-for-edit", link => {
       let element = document.createElement("a");
       element.setAttribute("contenteditable", "false");
+      element.setAttribute("target", "_blank");
       element.setAttribute("href", `https://${link}`);
+      console.log(this.text.toString());
       this.text.surroundContents(element);
+      return this.section[0].elements
+        .filter(element => {
+          if (element.data.text) {
+          } else return;
+        })
+        .filter(text => {
+          text.data.text = this.text;
+        });
     });
   }
 };
@@ -109,6 +159,15 @@ ul {
 }
 #regular::after {
   content: "p";
+  font-weight: bold;
+}
+#font::after {
+  content: "f";
+  font-weight: bold;
+}
+#blackorwhite::after {
+  font-size: 70%;
+  content: "b/w";
   font-weight: bold;
 }
 
