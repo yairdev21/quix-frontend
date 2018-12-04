@@ -28,6 +28,7 @@
         <drop @drop="handleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
             <section-preview
+              @emitHandleDrop="handleDrop"
               @colorChangeSectionId="changeSectionColor"
               @imgChangeSectionId="changeSectionImg"
               :showModal="showModal"
