@@ -109,7 +109,6 @@ export default {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
         console.log(this.site.sections);
-<<<<<<< HEAD
       });
     },
     addElement(elementName, idx) {
@@ -127,8 +126,6 @@ export default {
             )
         }
         this.site.sections[idx].elements.push(element);
-=======
->>>>>>> 4fb7e88c27786fa8527eff809840860c94e54747
       });
     },
     editSelectedText(data, id) {
