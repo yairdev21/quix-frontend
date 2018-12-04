@@ -1,6 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <nav-bar c v-if="isPanelOpen" @addSection="addSection"></nav-bar>
+    <nav-bar c v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -10,23 +10,21 @@
     ></text-edit-buttons>
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
-      <draggable
-        :options="{group:{name:'sections',  pull:false, animation: 200}}"
-        @start="drag=true"
-        @end="drag=false"
-      >
-        <div class="section-items" v-for="(section) in sections" :key="section._id">
-          <section-preview
-            @colorChangeSectionId="changeSectionColor"
-            @imgChangeSectionId="changeSectionImg"
-            :showModal="showModal"
-            @selectedText="editSelectedText"
-            @deleteSection="showAlert"
-            :section="section"
-            :isEditMode="isEditMode"
-          ></section-preview>
-        </div>
-      </draggable>
+      <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+        <drop @drop="handleDrop(arguments[0], idx)">
+          <drag :transfer-data="{method: 'sort', data: idx}">
+            <section-preview
+              @colorChangeSectionId="changeSectionColor"
+              @imgChangeSectionId="changeSectionImg"
+              :showModal="showModal"
+              @selectedText="editSelectedText"
+              @deleteSection="deleteSection"
+              :section="section"
+              :isEditMode="isEditMode"
+            ></section-preview>
+          </drag>
+        </drop>
+      </div>
     </div>
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
@@ -46,9 +44,8 @@
 import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
-import draggable from "vuedraggable";
-import sectionService from "../services/section-service.js";
 import TextEditButtons from "@/components/TextEditButtons.vue";
+import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
 
@@ -57,33 +54,53 @@ export default {
     return {
       site: null,
       sections: null,
-      sectionAdd: null,
       isPanelOpen: false,
       text: "",
       isTextSelected: false,
       isModalVisible: false,
       sectionId: "",
       isEditMode: null,
-      index: null,
       editedParagraph: null,
-      textEditSection:null
+      textEditSection: null
     };
   },
   methods: {
-    checkMove(evt) {
-      console.log("ONNNNNN");
+    handleDrop(dragElement, idx) {
+      if (dragElement.method === "add")
+        return this.addSection(dragElement.data, idx);
+      if (dragElement.method === "sort")
+        return this.sortSections(dragElement.data, idx);
     },
-    addSection(idx, sectionName) {
+    sortSections(dragedIdx, dropedIdx) {
+      console.log(dragedIdx, dropedIdx);
+      if (dragedIdx < dropedIdx) {
+        this.site.sections.splice(
+          dropedIdx + 1,
+          0,
+          this.site.sections[dragedIdx]
+        );
+        this.site.sections.splice(dragedIdx, 1);
+      } else if (dragedIdx > dropedIdx) {
+        this.site.sections.splice(
+          dropedIdx,
+          0,
+          this.site.sections[dragedIdx]
+        );
+        this.site.sections.splice(dragedIdx+1, 1);
+      }
+    },
+    addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
+      console.log( this.site.sections);
+        
       });
     },
     editSelectedText(data, id) {
-      this.textEditSection= this.getSectionById(...id);
+      this.textEditSection = this.getSectionById(...id);
       if (data.toString().length === 0) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
-     
     },
     showModal() {
       this.isModalVisible = true;
@@ -92,7 +109,7 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    showAlert(sectionId) {
+    deleteSection(sectionId) {
       this.$swal({
         title: "Delete section?",
         text: "It will be gone FOREVER!",
@@ -165,7 +182,6 @@ export default {
   components: {
     SectionPreview,
     NavBar,
-    draggable,
     ControlButtons,
     TextEditButtons,
     createLinkModal
