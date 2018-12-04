@@ -91,6 +91,20 @@
                   <img src="@/assets/img/section w vid.png">
                 </draggable>
               </p>
+              <p class="card-text" id="contactComponent">
+                <draggable
+                  :list="sections"
+                  :move="checkMove"
+                  class="contactComponent"
+                  :options="{group:{
+                  name:'sections',
+              pull:'clone'
+                 }}"
+                  @end="emitAddSection"
+                >
+                  <img src="@/assets/img/contact.png">
+                </draggable>
+              </p>
             </b-card-body>
           </b-collapse>
         </b-card>

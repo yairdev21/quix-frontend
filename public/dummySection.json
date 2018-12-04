@@ -166,5 +166,24 @@
                     }
                 }
             ]
+        },
+        {
+            "type": "section",
+            "_id": "1153543",
+            "name": "contactComponent",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                    "_id": "AQS2e23",
+                    "type": "contact",
+                    "name": "div",
+                    "data": {
+                    },
+                    "style": {}
+                }
+               
+            ]
         }
     ]
