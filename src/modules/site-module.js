@@ -17,11 +17,6 @@ export default {
         setPreviewMode(state) {
             state.isEditMode = false;
         },
-        loadSites(state, {
-            site
-        }) {
-            state.site = site;
-        },
         loadSite(state, {
             site
         }) {

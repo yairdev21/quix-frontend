@@ -8,17 +8,10 @@ import './registerServiceWorker'
 
 Vue.use(VeeValidate)
 
-// Vue Material
-import { MdButton, MdContent, MdTabs, MdApp, MdIcon } from 'vue-material/dist/components'
-Vue.use(MdButton)
-Vue.use(MdContent)
-Vue.use(MdTabs)
-Vue.use(MdApp)
-Vue.use(MdIcon)
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-Vue.use(VueMaterial)
-    // 
+// vue-drag-drop
+import VueDragDrop from 'vue-drag-drop';
+Vue.use(VueDragDrop);
+// 
 
 // Vue Bootstrap
 import BootstrapVue from 'bootstrap-vue'
@@ -28,8 +21,8 @@ Vue.use(BootstrapVue)
     // 
 
 
-import VueSplit from 'vue-split-panel';
-Vue.use(VueSplit)
+// import VueSplit from 'vue-split-panel';
+// Vue.use(VueSplit)
 
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2)
@@ -38,7 +31,6 @@ Vue.use(VueSweetalert2)
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFileImage, faUserSecret, faFont, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook , faYoutube, faInstagram} from '@fortawesome/free-brands-svg-icons'
-// import { faUserSecret } from  '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faFileImage,faUserSecret, faFont, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette,faFacebook,faYoutube,faInstagram, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
