@@ -86,6 +86,8 @@ export default {
       
     // },
     handleDrop(dragElement, idx) {
+      console.log('drop', dragElement, idx);
+      
       this.isDraggable=false
       if (dragElement.method === "add")
         return this.addSection(dragElement.data, idx);
