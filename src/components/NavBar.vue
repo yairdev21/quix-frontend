@@ -12,7 +12,7 @@
             <b-card-body>
               <p class="card-text" id="oneColsSection">
                 <draggable
-                  :list="sections"
+                  v-model="sections"
                   :move="checkMove"
                   class="oneColsSection"
                   :options="{group:{
@@ -141,7 +141,9 @@ export default {
     return { currIndexMove: 0, currSectionName: null };
   },
   methods: {
-    checkMove() {
+    checkMove(evt) {
+      let fromSection = evt.draggedContext.index;
+      let toSection = evt.relatedContext.index;
     },
     goHome() {
       this.$router.push("/");

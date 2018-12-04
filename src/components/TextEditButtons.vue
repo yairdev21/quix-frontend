@@ -16,10 +16,13 @@
         </button>
       </li>
       <li>
-        <button id="title" @click.stop="formatSize('h3')"></button>
+        <button id="title" @click.stop="formatSize(3)"></button>
       </li>
       <li>
-        <button id="mid" @click.stop="formatSize('h5')"></button>
+        <button id="mid" @click.stop="formatSize(2)"></button>
+      </li>
+      <li>
+        <button id="regular" @click.stop="formatSize(1)"></button>
       </li>
     </ul>
   </div>
@@ -29,14 +32,22 @@
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["text"],
+  props: ["text", "section"],
   data() {
     return {};
   },
   methods: {
     formatSize(size) {
-      let element = document.createElement(`${size}`);
-      document.execCommand(this.text.surroundContents(element));
+      console.log(this.section[0].elements);
+      
+      let data=this.text
+      return this.section[0].elements
+        .filter(element => {
+          return element.data.text.includes(data);
+        })
+        .filter(text => {
+          text.style = { transform: `scale(${size})` };
+        });
     },
     formatText(data) {
       document.execCommand(`${data}`);
@@ -94,6 +105,10 @@ ul {
 }
 #mid::after {
   content: "h2";
+  font-weight: bold;
+}
+#regular::after {
+  content: "p";
   font-weight: bold;
 }
 

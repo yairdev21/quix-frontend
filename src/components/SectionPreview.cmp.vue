@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     emitSelected(data) {
-      this.$emit("selectedText", data);
+      this.$emit("selectedText", data, [this.section._id]);
     },
     sendDeleteSection(sectionId) {
       this.$emit("deleteSection", sectionId);

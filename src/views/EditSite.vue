@@ -1,13 +1,17 @@
   <template>
   <div class="section-list">
-    <nav-bar :sections="sections" v-if="isPanelOpen" @addSection="addSection"></nav-bar>
-    <text-edit-buttons @openLinkModal="showModal" v-show="isTextSelected" :text="text"></text-edit-buttons>
+    <nav-bar c v-if="isPanelOpen" @addSection="addSection"></nav-bar>
+    <text-edit-buttons
+      @openLinkModal="showModal"
+      v-show="isTextSelected"
+      :text="text"
+      :section="textEditSection"
+      :editedParagraph="editedParagraph"
+    ></text-edit-buttons>
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <draggable
-        :move="checkMove"
         :options="{group:{name:'sections',  pull:false, animation: 200}}"
-        v-model="sections"
         @start="drag=true"
         @end="drag=false"
       >
@@ -60,29 +64,26 @@ export default {
       isModalVisible: false,
       sectionId: "",
       isEditMode: null,
-      index:null
+      index: null,
+      editedParagraph: null,
+      textEditSection:null
     };
   },
   methods: {
     checkMove(evt) {
-      console.log('ONNNNNN');
-      
-    //   let fromSection = evt.draggedContext.index
-    //   let toSection =evt.relatedContext.index
-    //   let Site= this.site.sections
-    // [Site[fromSection], Site[toSection]] = [Site[toSection], Site[fromSection]]
-    //   console.log(Site);
-      
+      console.log("ONNNNNN");
     },
     addSection(idx, sectionName) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
       });
     },
-    editSelectedText(data) {
+    editSelectedText(data, id) {
+      this.textEditSection= this.getSectionById(...id);
       if (data.toString().length === 0) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
+     
     },
     showModal() {
       this.isModalVisible = true;
@@ -111,7 +112,7 @@ export default {
       this.sectionId = sectionId;
     },
     changeSectionImg(url, sectionId) {
-       this.sectionId = sectionId;
+      this.sectionId = sectionId;
     },
     getSectionById(sectionId) {
       return this.site.sections.filter(section => {
@@ -158,7 +159,7 @@ export default {
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       console.log(section);
-      return (section[0].style['background-image'] = `url(${url})`);
+      return (section[0].style["background-image"] = `url(${url})`);
     });
   },
   components: {
