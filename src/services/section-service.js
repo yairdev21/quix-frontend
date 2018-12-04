@@ -14,7 +14,6 @@ function query() {
 }
 
 function getSectionByName(sectionName) {
-    console.log(sectionName);
     const sections = require('../../public/dummySection.json')
     return new Promise((resolve) => {
         resolve(sections.find(section => sectionName === section.name))

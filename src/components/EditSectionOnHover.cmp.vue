@@ -2,6 +2,9 @@
   <section class="hover-section">
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
+      <button title="draggable" @click="$emit('draggable')">
+   <i class="fas fa-arrows-alt"></i>
+      </button>
       <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>

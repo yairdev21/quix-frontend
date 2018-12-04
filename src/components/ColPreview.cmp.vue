@@ -13,6 +13,7 @@ import VideoEl from "../components/elements/video.el";
 import ButtonEl from "../components/elements/btn.el";
 import SocialEl from "../components/elements/social-btn.el";
 import ContactEl from "../components/elements/contact.el";
+import EmptyEl from "../components/elements/empty.el";
 
 export default {
   props: ["col", "isEditMode"],
@@ -23,7 +24,8 @@ export default {
     VideoElement: VideoEl,
     ButtonElement: ButtonEl,
     ContactElement:ContactEl,
-    SocialElement:SocialEl
+    SocialElement:SocialEl,
+    EmptyElement:EmptyEl,
   },
   methods: {
     editText() {
@@ -57,6 +59,8 @@ export default {
           return `SocialElement`;
         case "contact":
           return `ContactElement`;
+        case "empty":
+          return `EmptyElement`;
         default:
           return "TextElement";
       }

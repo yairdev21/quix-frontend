@@ -167,5 +167,39 @@
                     }
                 }
             ]
+        },
+        {
+            "type": "section",
+            "name": "contactComponent",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                    "type": "contact",
+                    "name": "div",
+                    "data": {
+                    },
+                    "style": {}
+                }
+               
+            ]
+        },
+        {
+            "type": "section",
+            "name": "emptySection",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                    "type": "empty",
+                    "name": "div",
+                    "data": {
+                    },
+                    "style": {}
+                }
+               
+            ]
         }
     ]

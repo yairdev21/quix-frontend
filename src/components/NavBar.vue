@@ -10,22 +10,26 @@
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
-            <drag :transfer-data="{method: 'add', data:'oneColsSection'}">
-              <p class="card-text" id="oneColsSection">
-                 <img src="@/assets/img/oneSection.png">
-              </p>
-            </drag>
-            <drag :transfer-data="{method: 'add', data:'twoColsSection'}">
-              <p class="card-text" id="twoColsSection">
+              <drag :transfer-data="{method: 'add', data:'emptySection'}">
+                <p class="card-text" id="emptySection">
+                  <img src="@/assets/img/emptySection.png">
+                </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'oneColsSection'}">
+                <p class="card-text" id="oneColsSection">
+                  <img src="@/assets/img/oneSection.png">
+                </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'twoColsSection'}">
+                <p class="card-text" id="twoColsSection">
                   <img src="@/assets/img/section1.png">
-              </p>
-            </drag>
-             <drag :transfer-data="{method: 'add', data:'threeColsSection'}">
-              <p class="card-text" id="threeColsSection">
+                </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'threeColsSection'}">
+                <p class="card-text" id="threeColsSection">
                   <img src="@/assets/img/section2.png">
-              </p>
-            </drag>
-
+                </p>
+              </drag>
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -38,17 +42,21 @@
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-            <drag :transfer-data="{method: 'add', data:'oneColsSectionWithMap'}">
-              <p class="card-text" id="oneColsSectionWithMap">
-                 <img src="@/assets/img/section w maps.png">
-              </p>
-            </drag>
-            <drag :transfer-data="{method: 'add', data:'oneColsSectionWithVid'}">
-              <p class="card-text" id="oneColsSectionWithVid">
+              <drag :transfer-data="{method: 'add', data:'oneColsSectionWithMap'}">
+                <p class="card-text" id="oneColsSectionWithMap">
+                  <img src="@/assets/img/section w maps.png">
+                </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'oneColsSectionWithVid'}">
+                <p class="card-text" id="oneColsSectionWithVid">
                   <img src="@/assets/img/section w vid.png">
-              </p>
-            </drag>
-
+                </p>
+              </drag>
+              <drag :transfer-data="{method: 'add', data:'contactComponent'}">
+                <p class="card-text" id="contactComponent">
+                  <img src="@/assets/img/contact.png">
+                </p>
+              </drag>
             </b-card-body>
           </b-collapse>
         </b-card>
@@ -61,17 +69,15 @@
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
             <b-card-body>
-            <drag :transfer-data="{method: 'add', data:'socialBtns'}">
-              <p class="card-text" id="socialBtns">
+              <drag :transfer-data="{method: 'add', data:'socialBtns'}">
+                <p class="card-text" id="socialBtns">
                   <img src="@/assets/img/socailBtns.png">
-              </p>
-            </drag>
-
+                </p>
+              </drag>
             </b-card-body>
           </b-collapse>
         </b-card>
       </div>
-
     </transition>
     <div class="side-bar-btns">
       <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
@@ -91,8 +97,8 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -102,8 +108,8 @@ export default {
   width: 25%;
   top: 70px;
   z-index: 999;
- img{
-     width: 100%;
+  img {
+    width: 100%;
   }
 }
 
