@@ -1,5 +1,19 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
+    <button
+      contenteditable="false"
+      v-if="isEditMode"
+      class="menu-icon icon open-panel-btn"
+      @click="isPanelOpen=!isPanelOpen"
+      title="Add New Element"
+    >
+      <div v-show="isPanelOpen">
+        <i class="fas fa-minus"></i>
+      </div>
+      <div v-show="!isPanelOpen">
+        <i class="fas fa-plus"></i>
+      </div>
+    </button>
     <nav-bar v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
@@ -12,8 +26,10 @@
     <div v-if="sections">
       <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
         <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :transfer-data="{method: 'sort', data: idx}">
+          <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
             <section-preview
+              @isDraggable="isDraggable=true"
+              @emitHandleDrop="handleDrop"
               @colorChangeSectionId="changeSectionColor"
               @imgChangeSectionId="changeSectionImg"
               :showModal="showModal"
@@ -35,7 +51,6 @@
       @preview="preview"
       @save="save"
       @publish="publish"
-      @showPanel="isPanelOpen=!isPanelOpen"
     ></control-buttons>
   </div>
 </template>
@@ -54,6 +69,7 @@ export default {
     return {
       site: null,
       sections: null,
+      isDraggable:false,
       isPanelOpen: false,
       text: "",
       isTextSelected: false,
@@ -65,11 +81,14 @@ export default {
     };
   },
   methods: {
+    // checkIsDraggable(){
+    //   console.log('isDraggable', this.isDraggable);
+      
+    // },
     handleDrop(dragElement, idx) {
-      if (dragElement.data === "oneColsSectionWithVid") {
-        EventBus.$emit("getVideoUrl");
-      }
-
+      console.log('drop', dragElement, idx);
+      
+      this.isDraggable=false
       if (dragElement.method === "add")
         return this.addSection(dragElement.data, idx);
       if (dragElement.method === "sort")
@@ -201,6 +220,29 @@ export default {
   right: 5%;
   transform: scale(1.5);
   z-index: 5;
+}
+
+.icon {
+  color: whitesmoke;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #17a2b8;
+  position: relative;
+  width: 30px;
+  transform: scale(2);
+  margin: 30px;
+}
+
+.icon:hover {
+  border: 1px solid whitesmoke;
+  cursor: pointer;
+  color: black;
+}
+
+.open-panel-btn {
+  position: fixed;
+  left: 0;
+  margin: 20px;
 }
 </style>
 

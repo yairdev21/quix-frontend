@@ -106,7 +106,7 @@ export default {
 .sidebar {
   position: fixed;
   width: 25%;
-  top: 0;
+  top: 70px;
   z-index: 999;
   img {
     width: 100%;

@@ -2,9 +2,11 @@
   <section class="hover-section">
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
-      <button title="draggable" @click="$emit('draggable')">
-   <i class="fas fa-arrows-alt"></i>
-      </button>
+      <div>
+        <button title="drag section" @mousedown="$emit('isDraggable')">
+          <i class="fas fa-arrows-alt"></i>
+        </button>
+      </div>
       <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>
@@ -14,7 +16,7 @@
       <button title="Choose Background Image" @click="uploadImage">
         <i class="fas fa-file-image"></i>
       </button>
-      <input hidden id="uploadImg" ref="file" type="file">
+      <input hidden id="uploadImg" ref="file" type="file" @change="getUrl">
     </div>
   </section>
 </template>
@@ -35,8 +37,11 @@ export default {
       EventBus.$emit("changeColor", color);
     },
     uploadImage() {
-       document.getElementById('uploadImg').click();
+      document.getElementById("uploadImg").click();
+    },
+    getUrl() {
       cloudinaryService(this.$refs.file).then(url => {
+        console.dir(this.$refs.file);
         this.$emit("changeBgImgToSection", url);
         EventBus.$emit("changeBgImg", url);
       });
@@ -52,8 +57,8 @@ export default {
 .edit-on-hover button:hover {
   transition: 0.3 ease;
   cursor: pointer;
-  color: brown;
-  background: rgb(129, 127, 127);
+  color: black;
+  background: #1cc5df;
 }
 .edit-on-hover button {
   border: none;
@@ -61,7 +66,7 @@ export default {
   height: 30px;
   width: 30px;
   z-index: 1;
-  background: rgb(122, 36, 36);
+  background: #17a2b8;
   transition: 0.3 ease;
   margin-top: 0.2rem;
   border-radius: 3px;
@@ -74,5 +79,4 @@ export default {
   margin-right: 0.6rem;
   z-index: 5;
 }
-
 </style>
