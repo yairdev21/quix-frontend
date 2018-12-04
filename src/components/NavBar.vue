@@ -3,6 +3,9 @@
     <transition name="slide-fade">
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
+          <div class="close-btn">
+              <i  @click="$emit('ClosePanel')" class="far  fa-window-close"></i>
+          </div>
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
               <p class="navbar-names">Sections</p>
@@ -96,7 +99,6 @@
 </template>
 
 <script>
-// import { EventBus } from "@/event-bus.js";
 
 export default {
   name: "Navbar",
@@ -110,10 +112,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.close-btn{
+  display: flex;
+  button{
+    height: 1.8rem;
+    width: 1.5rem;
+  }
+
+}
+
 .sidebar {
   position: fixed;
   width: 25%;
-  top: 70px;
   z-index: 999;
   img {
     width: 100%;

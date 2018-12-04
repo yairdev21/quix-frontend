@@ -41,7 +41,6 @@ import {
 } from '@fortawesome/fontawesome-svg-core'
 import {
     faFileImage,
-    faUserSecret,
     faFont,
     faArrowsAlt,
     faHome,
@@ -51,7 +50,8 @@ import {
     faItalic,
     faLink,
     faPalette,
-    faGlobe
+    faGlobe,
+    faWindowClose
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faFacebook,
@@ -61,7 +61,7 @@ import {
 import {
     FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
-library.add(faFileImage, faUserSecret, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
+library.add(faFileImage, faWindowClose, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import {
     dom

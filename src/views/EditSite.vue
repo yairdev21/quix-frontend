@@ -7,14 +7,11 @@
       @click="isPanelOpen=!isPanelOpen"
       title="Add New Element"
     >
-      <div v-show="isPanelOpen">
-        <i class="fas fa-minus"></i>
-      </div>
       <div v-show="!isPanelOpen">
         <i class="fas fa-plus"></i>
       </div>
     </button>
-    <nav-bar v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
+    <nav-bar v-if="isPanelOpen" @ClosePanel="isPanelOpen=!isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -234,23 +231,6 @@ export default {
   right: 5%;
   transform: scale(1.5);
   z-index: 5;
-}
-
-.icon {
-  color: whitesmoke;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: #17a2b8;
-  position: relative;
-  width: 30px;
-  transform: scale(2);
-  margin: 30px;
-}
-
-.icon:hover {
-  border: 1px solid whitesmoke;
-  cursor: pointer;
-  color: black;
 }
 
 .open-panel-btn {

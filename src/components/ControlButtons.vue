@@ -48,26 +48,5 @@ export default {
   left: 0;
   top: 90%;
 }
-.icon {
-  color: whitesmoke;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: forestgreen;
-  position: relative;
-  width: 30px;
-  transform: scale(2);
-  margin: 30px;
-}
 
-.icon:hover {
-  border: 1px solid whitesmoke;
-  cursor: pointer;
-  color: black;
-}
-@media (max-width: 800px) {
-  .icon {
-    transform: scale(1.8);
-    margin: 15px;
-  }
-}
 </style>
