@@ -22,6 +22,7 @@
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
             <col-preview
+              @deleteElement="deleteElement(col._id, section._id  )"
               @selectedText="emitSelected"
               :col="col"
               :isEditMode="isEditMode"
@@ -35,7 +36,11 @@
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
+<<<<<<< HEAD
 // v-show="isBorder & isEditMode"
+=======
+import { EventBus } from "@/event-bus.js";
+>>>>>>> 21382e9824b70d963c7603d22c9c2f75d4a49fb1
 
 export default {
   props: ["section", "isEditMode"],
@@ -71,6 +76,9 @@ export default {
     },
     changeSectionImg(url, sectionId) {
       this.sectionId = sectionId;
+    },
+    deleteElement(elId, sectionId) {
+    this.$emit("deleteElement", {"elId":elId, "sectionId":sectionId});
     }
   },
   computed: {
@@ -92,7 +100,8 @@ export default {
   components: {
     ColPreview,
     EditSectionOnHover
-  }
+  },
+  created() {}
 };
 </script>
 
