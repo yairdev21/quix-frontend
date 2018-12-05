@@ -1,13 +1,14 @@
-    [{
+    [
+        {
             "type": "section",
-            "_id": "2452452",
             "name": "threeColsSection",
             "data": {
                 "sm": "4"
             },
             "style": {},
-            "elements": [{
-                    "_id": "245254",
+            "elements": [
+                {
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -15,7 +16,7 @@
                     }
                 },
                 {
-                    "_id": "654654",
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -23,7 +24,7 @@
                     }
                 },
                 {
-                    "_id": "65423452",
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -34,14 +35,14 @@
         },
         {
             "type": "section",
-            "_id": "2453543",
             "name": "twoColsSection",
             "data": {
                 "sm": "6"
             },
             "style": {},
-            "elements": [{
-                    "_id": "432423",
+            "elements": [
+                {
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -49,7 +50,7 @@
                     }
                 },
                 {
-                    "_id": "e32e23",
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -60,31 +61,32 @@
         },
         {
             "type": "section",
-            "_id": "2453543",
             "name": "oneColsSection",
             "data": {
                 "sm": "12"
             },
             "style": {},
-            "elements": [{
-                "_id": "432423",
-                "type": "text",
-                "name": "p",
-                "data": {
-                    "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+            "elements": [
+                {
+                    "style": {},
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab laboriosam aliquam, porro harum libero assumenda modi illum placeat iusto, sed quidem ut dolore iure corrupti expedita. Enim, velit necessitatibus! Mollitia!"
+                    }
                 }
-            }]
+            ]
         },
         {
             "type": "section",
-            "_id": "2453543",
             "name": "oneColsSectionWithMap",
             "data": {
                 "sm": "6"
             },
             "style": {},
-            "elements": [{
-                    "_id": "432423",
+            "elements": [
+                {
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -92,7 +94,7 @@
                     }
                 },
                 {
-                    "_id": "65465432",
+                    "style": {},
                     "type": "map",
                     "name": "map",
                     "data": {
@@ -104,14 +106,14 @@
         },
         {
             "type": "section",
-            "_id": "2453543",
             "name": "oneColsSectionWithVid",
             "data": {
                 "sm": "6"
             },
             "style": {},
-            "elements": [{
-                    "_id": "432423",
+            "elements": [
+                {
+                    "style": {},
                     "type": "text",
                     "name": "p",
                     "data": {
@@ -119,7 +121,7 @@
                     }
                 },
                 {
-                    "_id": "65465432",
+                    "style": {},
                     "type": "video",
                     "name": "video",
                     "data": {
@@ -130,30 +132,99 @@
         },
         {
             "type": "section",
-            "_id": "2453543",
             "name": "socialBtns",
             "data": {
                 "sm": "4"
             },
-            "style": { "height": "6vh" },
-            "elements": [{
-                    "_id": "4312423",
-                    "type": "button",
+            "style": {
+                "height": "6vh"
+            },
+            "elements": [
+                {
+                    "style": {},
+                    "type": "socialBtn",
                     "name": "social-btn",
-                    "data": {}
+                    "data": {
+                        "src": "facebook.com",
+                        "img": "facebook.png"
+                    }
                 },
                 {
-                    "_id": "4322423",
-                    "type": "button",
-                    "name": "social-btn",
-                    "data": {}
+                    "style": {},
+                    "type": "text",
+                    "name": "text",
+                    "data": {
+                        "src": "facebook.com",
+                        "img": "facebook.png"
+                    }
                 },
                 {
-                    "_id": "4332423",
-                    "type": "button",
+                    "style": {},
+                    "type": "socialBtn",
                     "name": "social-btn",
-                    "data": {}
+                    "data": {
+                        "src": "instagram.com",
+                        "img": "gmail.png"
+                    }
+                },
+                {
+                    "style": {},
+                    "type": "socialBtn",
+                    "name": "social-btn",
+                    "data": {
+                        "src": "facebook.com"
+                    }
                 }
+            ]
+        },
+        {
+            "style": {},
+            "type": "video",
+            "name": "video",
+            "data": {
+                "src": "https://www.youtube.com/watch?v=n9SwtdrkVHE"
+            }
+        },
+        {
+            "style": {},
+            "type": "text",
+            "name": "text",
+            "data": {
+                "text": "Your Words Here"
+            }
+        },
+        {
+            "type": "section",
+            "name": "contactComponent",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                    "type": "contact",
+                    "name": "div",
+                    "data": {
+                    },
+                    "style": {}
+                }
+               
+            ]
+        },
+        {
+            "type": "section",
+            "name": "emptySection",
+            "data": {
+                "sm": "12"
+            },
+            "style": {},
+            "elements": [{
+                    "type": "empty",
+                    "name": "div",
+                    "data": {
+                    },
+                    "style": {}
+                }
+               
             ]
         }
     ]

@@ -13,14 +13,9 @@
 </template>
 
 <script>
-// import NavBar from "@/components/NavBar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
-// import draggable from "vuedraggable";
-// import sectionService from "../services/section-service.js";
-// import TextEditButtons from "@/components/TextEditButtons.vue";
-// import createLinkModal from "@/components/textEdit/createLinkModal.vue";
-// import { EventBus } from "@/event-bus.js";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   data() {
@@ -41,11 +36,13 @@ export default {
         .dispatch({ type: "saveSite", site })
         .then(() => alert("site saved!"));
     },
-    publish() {}
+    publish() {
+      EventBus.$emit("publish");
+    }
   },
   created() {
     this.$store.commit("setPreviewMode");
-    this.isEditMode = this.$store.getters.getMode
+    this.isEditMode = this.$store.getters.getMode;
     let siteId = this.$route.params.siteId;
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
@@ -55,11 +52,7 @@ export default {
   },
   components: {
     SectionPreview,
-    // NavBar,
-    // draggable,
-    ControlButtons,
-    // TextEditButtons,
-    // createLinkModal
+    ControlButtons
   }
 };
 </script>

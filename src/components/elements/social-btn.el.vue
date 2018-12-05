@@ -1,9 +1,9 @@
 <template>
-<section contenteditable="false">
-    <b-button variant="outline-success" :href="link">FACEBNOOK</b-button>
+<section >
+    <b-button contenteditable="false" variant="outline-success" :href="link"><img src="imgs/gmail.png"/></b-button>
+
 </section>
 </template>
-
 <script>
    import { ID } from '../../services/utils.js'
 
@@ -24,6 +24,9 @@
         computed: {
             link() {
                 return this.data.src || '#'
+            },
+            img() {
+                return `../../public/img/icons/gmail.png` || '#'
             }
         }
     }

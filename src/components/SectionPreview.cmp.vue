@@ -7,14 +7,21 @@
     :style="style"
     contenteditable="false"
   >
-    <edit-section-on-hover 
-    @changeColorToSection="changeColorEmit(section._id)"
-    @delleteSection="sendDeleteSection(section._id)" 
-    v-show="isBorder & isEditMode"
+    <edit-section-on-hover
+      @isDraggable="$emit('isDraggable')"
+      @notDraggable="$emit('notDraggable')"
+      @changeColorToSection="changeColorEmit(section._id)"
+      @changeBgImgToSection="changeBgImgEmit"
+      @delleteSection="sendDeleteSection(section._id)"
+      v-show="isBorder & isEditMode"
     ></edit-section-on-hover>
     <b-row>
-      <b-col v-for="col in cols" cols="12" :sm="section.data.sm" :key="col._id">
+      <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
+        <drop @drop="emitHandleDrop(arguments[0], idx)">
+          <drag  :transfer-data="{method: 'sort', data: idx}">
         <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
+          </drag>
+        </drop>
       </b-col>
     </b-row>
   </section>
@@ -29,19 +36,30 @@ export default {
     return {
       text: "",
       isBorder: false,
-      isTextSelected: false,
+      isTextSelected: false
     };
   },
   methods: {
+    emitHandleDrop(dragElement, idx){
+       this.$emit("handleDrop", dragElement, idx);
+    },
     emitSelected(data) {
-      this.$emit("selectedText", data);
+      this.$emit("selectedText", data, [this.section._id]);
     },
     sendDeleteSection(sectionId) {
       this.$emit("deleteSection", sectionId);
     },
-    changeColorEmit(sectionId){
-      this.sectionId=sectionId
-      this.$emit('colorChangeSectionId', sectionId)
+    changeColorEmit(sectionId) {
+      this.$emit("colorChangeSectionId", sectionId);
+    },
+    changeBgImgEmit(url) {
+      this.$emit("imgChangeSectionId", url, this.section._id);
+    },
+    changeSectionColor(sectionId) {
+      this.sectionId = sectionId;
+    },
+    changeSectionImg(url, sectionId) {
+      this.sectionId = sectionId;
     }
   },
   computed: {
@@ -51,24 +69,25 @@ export default {
     style() {
       return this.section.style || null;
     },
-    borderStyle(){
-      if (this.isEditMode) return {isBorder:this.isBorder}
-      else return false
+    borderStyle() {
+      if (this.isEditMode) return { isBorder: this.isBorder };
+      else return false;
     }
   },
   components: {
     ColPreview,
     EditSectionOnHover
-  },
+  }
 };
 </script>
 
 <style>
 .section-item {
+  resize: vertical;
+  overflow: hidden;
   border: 2px solid transparent;
 }
 .isBorder {
-  cursor: move;
   display: block;
   border: 2px dashed royalblue;
 }

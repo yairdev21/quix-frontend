@@ -2,12 +2,23 @@
   <section class="hover-section">
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
-      <button @click="$emit('delleteSection')">
+      <div>
+        <button title="drag section" @mousedown="$emit('isDraggable')"
+          @mouseup="$emit('notDraggable')"
+          >
+          <i class="fas fa-arrows-alt"></i>
+        </button>
+      </div>
+      <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>
-      <button @click="showColorPicker=!showColorPicker">
+      <button title="Choose Background Color" @click="showColorPicker=!showColorPicker">
         <i class="fas fa-palette"></i>
       </button>
+      <button title="Choose Background Image" @click="uploadImage">
+        <i class="fas fa-file-image"></i>
+      </button>
+      <input hidden id="uploadImg" ref="file" type="file" @change="getUrl">
     </div>
   </section>
 </template>
@@ -15,6 +26,7 @@
 <script>
 import ColorPicker from "@/components/textEdit/ColorPicker.cmp.vue";
 import { EventBus } from "@/event-bus.js";
+import cloudinaryService from "../services/cloudinary.service.js";
 
 export default {
   data() {
@@ -23,9 +35,18 @@ export default {
   methods: {
     setColor(color) {
       this.showColorPicker = false;
-      this.$emit("changeColorToSection")
-      EventBus.$emit("changeColor", color)
-
+      this.$emit("changeColorToSection");
+      EventBus.$emit("changeColor", color);
+    },
+    uploadImage() {
+      document.getElementById("uploadImg").click();
+    },
+    getUrl() {
+      cloudinaryService(this.$refs.file).then(url => {
+        console.dir(this.$refs.file);
+        this.$emit("changeBgImgToSection", url);
+        EventBus.$emit("changeBgImg", url);
+      });
     }
   },
   components: {
@@ -38,8 +59,8 @@ export default {
 .edit-on-hover button:hover {
   transition: 0.3 ease;
   cursor: pointer;
-  color: brown;
-  background: rgb(129, 127, 127);
+  color: black;
+  background: #1cc5df;
 }
 .edit-on-hover button {
   border: none;
@@ -47,7 +68,7 @@ export default {
   height: 30px;
   width: 30px;
   z-index: 1;
-  background: rgb(122, 36, 36);
+  background: #17a2b8;
   transition: 0.3 ease;
   margin-top: 0.2rem;
   border-radius: 3px;

@@ -1,13 +1,6 @@
 <template>
   <div class="side-bar-btns" contenteditable="false">
-    <button v-if="isEditMode" class="menu-icon icon" @click="openSideBar">
-      <div v-show="isOpen">
-        <i class="fas fa-minus"></i>
-      </div>
-      <div  v-show="!isOpen">
-        <i class="fas fa-plus"></i>
-      </div>
-    </button>
+  
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
@@ -29,18 +22,9 @@
 <script>
 export default {
   props: ["isEditMode"],
-  data() {
-    return {
-      isOpen: false
-    };
-  },
   methods: {
     goHome() {
       this.$router.push("/");
-    },
-    openSideBar() {
-      this.$emit("showPanel");
-      return (this.isOpen = !this.isOpen);
     },
     preview() {
       this.$emit("preview");
@@ -68,11 +52,12 @@ export default {
   color: whitesmoke;
   border: 1px solid transparent;
   border-radius: 5px;
-  background: forestgreen;
+  background: #17a2b8;
   position: relative;
   width: 30px;
   transform: scale(2);
-  margin: 30px;
+  margin: 10px 30px;
+  
 }
 
 .icon:hover {

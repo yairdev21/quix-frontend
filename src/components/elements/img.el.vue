@@ -21,8 +21,11 @@
 
         computed: {
             imgSrc() {
-                return this.data.src || 'http://via.placeholder.com/1200x600?text=My%20Awsome%20Image'
+                return this.style || 'http://via.placeholder.com/1200x600?text=My%20Awsome%20Image'
             }
+        },
+        created(){
+            
         }
     }
 </script> 

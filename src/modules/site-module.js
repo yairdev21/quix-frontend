@@ -17,13 +17,14 @@ export default {
         setPreviewMode(state) {
             state.isEditMode = false;
         },
-        loadSites(state, { site }) {
+        loadSite(state, {
+            site
+        }) {
             state.site = site;
         },
-        loadSite(state, { site }) {
-            state.site = site;
-        },
-        saveSite(state, { site }) {
+        saveSite(state, {
+            site
+        }) {
             state.site = site;
         },
     },
@@ -38,7 +39,9 @@ export default {
                     return sites
                 })
         },
-        getSiteById(context, { siteId }) {
+        getSiteById(context, {
+            siteId
+        }) {
             return siteService.getSiteById(siteId)
                 .then(site => {
                     context.commit({
@@ -48,15 +51,20 @@ export default {
                     return site
                 })
         },
-        saveSite(context, { site }) {
-            return siteService.saveSite(site)
+        saveSite(context, {site}) {
+            siteService.saveSite(site)
                 .then(site => {
+                    
                     context.commit({
                         type: 'saveSite',
                         site
                     })
-                    return site
                 })
+                
         },
+        updateSite(context, {site}){ 
+            console.log(site);
+            
+        }
     }
 }

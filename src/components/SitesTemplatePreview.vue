@@ -2,7 +2,7 @@
   <div contenteditable="false" class="card" style="width: 18rem">
     <img class="card-img-top" :src="site.thumb" alt="Card image cap">
     <div class="website-menu">
-      <i class="far fa-eye" @click="previewSite"></i>
+      <i class="far fa-eye" @click="previewSite(site)"></i>
       <i class="far fa-edit" @click="editSite(site)"></i>
     </div>
   </div>
@@ -15,8 +15,8 @@ export default {
     return { imgHover: false };
   },
   methods: {
-    previewSite() {
-      
+    previewSite(site) {
+  this.$router.push(`/preview/${site._id}`)
     },
     editSite(site) {
           this.$router.push(`/edit/${site._id}`)
@@ -40,6 +40,7 @@ export default {
   cursor: pointer;
   opacity: 0.4;
   transform: scale(1.01);
+  
 }
 
 .card:hover > .website-menu:hover {
@@ -70,5 +71,10 @@ export default {
   transform: scale(4);
   color: green;
   cursor: pointer;
+}
+
+.card-img-top{
+  transition: 0.5s;
+
 }
 </style>
