@@ -34,15 +34,8 @@ import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["col", "isEditMode"],
-<<<<<<< HEAD
-  data(){
-    return{
-       isFocus: false
-    }
-=======
   data() {
     return { isShowControl: false };
->>>>>>> 21382e9824b70d963c7603d22c9c2f75d4a49fb1
   },
   components: {
     TextElement: TxtEl,

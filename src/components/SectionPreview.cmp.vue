@@ -36,11 +36,7 @@
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
-<<<<<<< HEAD
-// v-show="isBorder & isEditMode"
-=======
 import { EventBus } from "@/event-bus.js";
->>>>>>> 21382e9824b70d963c7603d22c9c2f75d4a49fb1
 
 export default {
   props: ["section", "isEditMode"],
