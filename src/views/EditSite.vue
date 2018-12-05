@@ -131,7 +131,7 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    deleteElement(data) {
+    deleteElement(colIdx, sectionIdx) {
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -141,16 +141,16 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let section = this.getSectionById(data.sectionId);
-          let Idx = this.site.sections.indexOf(...section);
-          let newSection = this.site.sections[Idx].elements.filter(element => {
-            return element._id !== data.elId;
-          });
-          if (this.site.sections[Idx].data.sm === "4") {
-            this.site.sections[Idx].data.sm = "6";
-          } else this.site.sections[Idx].data.sm = "12";
-          console.log(this.site.sectons[Idx].data.sm);
-          this.site.sections[Idx].elements = newSection;
+          this.site.sections[sectionIdx].elements.splice(colIdx, 1);
+          switch (this.site.sections[sectionIdx].data.sm) {
+            case "12":
+              return;
+            case "6":
+              this.site.sections[sectionIdx].data.sm = "12";
+              break;
+            case "4":
+              this.site.sections[sectionIdx].data.sm = "6";
+          }
         } else return;
       });
     },
