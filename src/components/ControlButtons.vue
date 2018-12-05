@@ -12,8 +12,11 @@
     <button v-else class="preview-icon icon" @click="preview">
       <i class="far fa-eye"></i>
     </button>
-    <button class="publsh-icon icon" @click="publish">
-      <i class="fas fa-globe"></i>
+    <button class="publish-icon" @click="publish">
+      <div>
+        <i class="fas fa-globe fa-2x"></i>
+      </div>
+      <div>PUBLISH!</div>
     </button>
   </div>
 </template>
@@ -45,7 +48,24 @@ export default {
   position: fixed;
   right: 0;
   left: 0;
-  top: 90%;
+  top: 85%;
 }
 
+.publish-icon {
+  color: whitesmoke;
+  border-radius: 5px;
+  background: #17a2b8;
+  position: absolute;
+  right: 0;
+  width: 80px;
+  height: 60px;
+  margin: 30px;
+  transition: 0.3s;
+}
+
+.publish-icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  color: black;
+}
 </style>

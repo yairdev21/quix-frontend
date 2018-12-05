@@ -1,6 +1,5 @@
 <template>
   <section
-   
     class="section-item"
     :class="borderStyle"
     @mouseenter="isBorder=!isBorder"
@@ -50,7 +49,7 @@ export default {
   methods: {
     checkIsFocus() {
       console.log(this.isFocus);
-      this.isFocus=false
+      this.isFocus = false;
     },
     emitHandleDrop(dragElement, idx) {
       this.$emit("handleDrop", dragElement, idx);
@@ -72,7 +71,7 @@ export default {
     },
     changeSectionImg(url, sectionId) {
       this.sectionId = sectionId;
-    },
+    }
   },
   computed: {
     cols() {
@@ -86,7 +85,7 @@ export default {
       else return false;
     },
     isShow() {
-      if (this.isBorder) return { visibility: "visible" };
+      if (this.isBorder & this.isEditMode) return { visibility: "visible" };
       else return { visibility: "hidden" };
     }
   },

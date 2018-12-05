@@ -184,10 +184,7 @@ export default {
     },
     publish() {
       const url =
-        window.location.protocol +
-        "//" +
-        window.location.host +
-        window.location.pathname;
+        `${window.location.protocol}//${window.location.host}/preview/${this.site._id}`
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
@@ -234,7 +231,7 @@ main {
   position: fixed;
   right: 0;
   left: 18vw;
-  top: 90%;
+  top:85%;
 }
 
 @media (max-width: 730px) {
@@ -242,7 +239,7 @@ main {
     position: fixed;
     right: 0;
     left: 18vw;
-    top: 90%;
+    top: 85%;
   }
 }
 .add-section {

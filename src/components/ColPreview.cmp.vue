@@ -6,7 +6,7 @@
     @mouseover="isShowControl=true"
     @mouseleave="(isShowControl=false)"
   >
-    <div contenteditable="false" class="edit-video" v-show="isShowControl">
+    <div contenteditable="false" class="edit-video" v-show="isShowControl & isEditMode">
       <button title="Delete" @click="$emit('deleteElement')">
         <i class="far fa-trash-alt"></i>
       </button>
