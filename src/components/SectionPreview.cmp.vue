@@ -22,7 +22,7 @@
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
             <col-preview
-              @deleteElement="deleteElement(col._id, section._id  )"
+              @deleteElement="$emit('deleteElement', idx)"
               @selectedText="emitSelected"
               :col="col"
               :isEditMode="isEditMode"
@@ -73,9 +73,6 @@ export default {
     changeSectionImg(url, sectionId) {
       this.sectionId = sectionId;
     },
-    deleteElement(elId, sectionId) {
-    this.$emit("deleteElement", {"elId":elId, "sectionId":sectionId});
-    }
   },
   computed: {
     cols() {

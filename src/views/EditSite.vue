@@ -1,46 +1,45 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <sidebar  @addSection="addSection" :sections="sections"></sidebar>
-  <main>
- 
-    <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
-    <div v-if="sections">
-      <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-        <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
-            <section-preview
-              @isDraggable="isDraggable=true"
-              @notDraggable="isDraggable=false"
-              @emitHandleDrop="handleDrop"
-              @colorChangeSectionId="changeSectionColor"
-              @imgChangeSectionId="changeSectionImg"
-              :showModal="showModal"
-              @selectedText="editSelectedText"
-              @deleteSection="deleteSection"
-              @deleteElement="deleteElement"
-              :section="section"
-              :isEditMode="isEditMode"
-            ></section-preview>
-          </drag>
-        </drop>
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+    <main>
+      <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
+      <div v-if="sections">
+        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+          <drop @drop="handleDrop(arguments[0], idx)">
+            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+              <section-preview
+                @isDraggable="isDraggable=true"
+                @notDraggable="isDraggable=false"
+                @emitHandleDrop="handleDrop"
+                @colorChangeSectionId="changeSectionColor"
+                @imgChangeSectionId="changeSectionImg"
+                :showModal="showModal"
+                @selectedText="editSelectedText"
+                @deleteSection="deleteSection"
+                @deleteElement="deleteElement(arguments[0], idx)"
+                :section="section"
+                :isEditMode="isEditMode"
+              ></section-preview>
+            </drag>
+          </drop>
+        </div>
       </div>
-    </div>
-    <section v-else class="add-section section-item">
-      <h1 class="text-center">Drag & Drop New Section Here</h1>
-    </section>
-    <control-buttons
-      class="control-buttons"
-      :isEditMode="isEditMode"
-      @preview="preview"
-      @save="save"
-      @publish="publish"
-    ></control-buttons>
-  </main>
+      <section v-else class="add-section section-item">
+        <h1 class="text-center">Drag & Drop New Section Here</h1>
+      </section>
+      <control-buttons
+        class="control-buttons"
+        :isEditMode="isEditMode"
+        @preview="preview"
+        @save="save"
+        @publish="publish"
+      ></control-buttons>
+    </main>
   </div>
 </template>
 
   <script>
-      // v-show="isTextSelected"
+// v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
@@ -123,7 +122,7 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    deleteElement(data) {
+    deleteElement(colIdx, sectionIdx) {
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -133,16 +132,16 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let section = this.getSectionById(data.sectionId);
-          let Idx = this.site.sections.indexOf(...section);
-          let newSection = this.site.sections[Idx].elements.filter(element => {
-            return element._id !== data.elId;
-          });
-          if (this.site.sections[Idx].data.sm === "4") {
-            this.site.sections[Idx].data.sm = "6";
-          } else this.site.sections[Idx].data.sm = "12";
-          console.log(this.site.sectons[Idx].data.sm);
-          this.site.sections[Idx].elements = newSection;
+          this.site.sections[sectionIdx].elements.splice(colIdx, 1);
+          switch (this.site.sections[sectionIdx].data.sm) {
+            case "12":
+              return;
+            case "6":
+              this.site.sections[sectionIdx].data.sm = "12";
+              break;
+            case "4":
+              this.site.sections[sectionIdx].data.sm = "6";
+          }
         } else return;
       });
     },
@@ -228,8 +227,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-main{
-  overflow-y: hidden; 
+main {
+  overflow-y: hidden;
 }
 .control-buttons {
   position: fixed;
@@ -237,9 +236,6 @@ main{
   left: 18vw;
   top: 90%;
 }
-
-
-
 
 @media (max-width: 730px) {
   .control-buttons {
@@ -252,7 +248,6 @@ main{
 .add-section {
   border: 1px dashed black;
 }
-
 
 .section-items {
   float: right;
