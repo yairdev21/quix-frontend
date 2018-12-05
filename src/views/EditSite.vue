@@ -22,6 +22,7 @@
               :showModal="showModal"
               @selectedText="editSelectedText"
               @deleteSection="deleteSection"
+              @deleteElement="deleteElement"
               :section="section"
               :isEditMode="isEditMode"
             ></section-preview>
@@ -78,7 +79,6 @@ export default {
         return this.addElement(dragElement.data, idx);
     },
     sortSections(dragedIdx, dropedIdx) {
-      console.log(dragedIdx, dropedIdx);
       if (dragedIdx < dropedIdx) {
         this.site.sections.splice(
           dropedIdx + 1,
@@ -94,11 +94,11 @@ export default {
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
-        console.log(this.site.sections);
       });
     },
     addElement(elementName, idx) {
       sectionService.getSectionByName(elementName).then(element => {
+        console.log(this.site.sections[idx].data.sm);
         switch (this.site.sections[idx].data.sm) {
           case "12":
             this.site.sections[idx].data.sm = "6";
@@ -127,7 +127,7 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    deleteElement(elementName, sectionId) {
+    deleteElement(data) {
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -137,11 +137,15 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let section = this.getSectionById(sectionId);
+          let section = this.getSectionById(data.sectionId);
           let Idx = this.site.sections.indexOf(...section);
           let newSection = this.site.sections[Idx].elements.filter(element => {
-            return element.name !== elementName;
+            return element._id !== data.elId;
           });
+          if (this.site.sections[Idx].data.sm === "4") {
+            this.site.sections[Idx].data.sm = "6";
+          } else this.site.sections[Idx].data.sm = "12";
+          console.log(this.site.sectons[Idx].data.sm);
           this.site.sections[Idx].elements = newSection;
         } else return;
       });

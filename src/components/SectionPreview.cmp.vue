@@ -20,7 +20,12 @@
       <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
-            <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
+            <col-preview
+              @deleteElement="deleteElement(col._id, section._id  )"
+              @selectedText="emitSelected"
+              :col="col"
+              :isEditMode="isEditMode"
+            ></col-preview>
           </drag>
         </drop>
       </b-col>
@@ -62,6 +67,9 @@ export default {
     },
     changeSectionImg(url, sectionId) {
       this.sectionId = sectionId;
+    },
+    deleteElement(elId, sectionId) {
+    this.$emit("deleteElement", {"elId":elId, "sectionId":sectionId});
     }
   },
   computed: {
@@ -80,11 +88,7 @@ export default {
     ColPreview,
     EditSectionOnHover
   },
-  created() {
-    EventBus.$on("deleteVideo", name => {
-      EventBus.$emit("deleteElement", {'elementName':name, 'sectionId':this.section._id});
-    });
-  }
+  created() {}
 };
 </script>
 

@@ -1,16 +1,13 @@
 <template>
   <div
+    @mouseover="isVideo=true"
+    @mouseleave="isVideo=false"
     contenteditable="false"
     class="embed-container"
     :style="{ height: '100%' }"
-    @mouseover="(isShowControl=true)"
-    @mouseleave="(isShowControl=false)"
   >
-    <div contenteditable="false" class="edit-video" v-show="isShowControl">
-      <button title="Delete" @click="emitDelete">
-        <i class="far fa-trash-alt"></i>
-      </button>
-      <button id="link" @click.stop="changeLink" title="Change Link">
+    <div contenteditable="false" class="edit-video">
+      <button id="link" v-show="isVideo" @click.stop="changeLink" title="Change Link">
         <i class="fas fa-link"></i>
       </button>
     </div>
@@ -37,13 +34,10 @@ export default {
   data() {
     return {
       id: ID(),
-      isShowControl: false
+      isVideo: false
     };
   },
-  methods: {
-    emitDelete() {
-      EventBus.$emit("deleteVideo", 'video');
-    },
+  computed: {
     changeLink() {
       this.$swal({
         title: "Enter youtube link",
@@ -61,9 +55,7 @@ export default {
       }).then(result => {
         return result;
       });
-    }
-  },
-  computed: {
+    },
     video() {
       const video =
         this.data.src || "https://www.youtube.com/watch?v=e7sw5xA066Y";
@@ -90,13 +82,13 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
-
 .edit-video button:hover {
   cursor: pointer;
   color: brown;
   background: white;
 }
 .edit-video button {
+  position: relative;
   border: none;
   color: white;
   height: 30px;
@@ -104,16 +96,11 @@ export default {
   z-index: 1;
   background: brown;
   transition: 0.3 ease;
-  margin-top: 0.2rem;
   border-radius: 3px;
 }
 
 .edit-video {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 5;
+  padding-right: 1rem;
+  z-index: 4;
 }
 </style>
