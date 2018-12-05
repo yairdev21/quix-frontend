@@ -10,14 +10,12 @@ const config = {
 const baseUrl = `http://localhost:3000/user/`
 
 export const logIn = async (user) => {    
-    try {
-        const URL = `${baseUrl}signin`;
-<<<<<<< HEAD
-        const { data } = await axios.post(URL, queryString.stringify(user), config)
+    const URL = `${baseUrl}signin`;
+    const { data } = await axios.post(URL, queryString.stringify(user), config)
 
-        localStorage.setItem('jwt', data.token);
+    localStorage.setItem('jwt', data.token);
 
-        return data;
+    return data;
 }
 
 export const signUp = async (user) => {        
@@ -43,13 +41,5 @@ export const getUser = async () => {
 }
 
 export const logOut = async () => {    
-    localStorage.clear()
-=======
-        const res = await axios.post(URL, queryString.stringify(user), config);
-    
-        return res;
-    } catch (err) {
-        console.log(err);        
-    }
->>>>>>> b342ab003d4604030efa65a0599e41ec8ae5f441
+    localStorage.removeItem('jwt')
 }

@@ -34,6 +34,17 @@ Vue.use(VueGoogleMaps, {
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2)
 
+
+import VueAWN from "vue-awesome-notifications"
+ 
+Vue.use(VueAWN, {
+    labels: {
+        warning: 'Something went wrong',
+        success: 'Welcome'
+    },
+    duration: 2500
+});
+
 // Vue Fontaswame
 import {
     library
