@@ -18,20 +18,16 @@ export default {
       user: this.$store.getters.getUser
     }
   },
-
   computed: {
     userPage() {
       return (this.user) ? '/userboard' : '/login'
     },
-
     userLog() {
       return (this.$store.getters.getUser) ? 'Profile' : 'Log In'
     },
-
     userImg() {
       return (this.$store.getters.getUser) ? this.$store.getters.getUser.image : ''
     },
-
     user() {      
       return (this.$store.getters.getUser) ? true : false
     }
@@ -61,7 +57,6 @@ export default {
   color: black;
   text-decoration: none;
 }
-
 #nav .btn {
   margin: 0 20px;
   float: right;
@@ -72,7 +67,6 @@ export default {
     height: 40%;
   }
 }
-
 .login-btn {
   border: 1px solid black;
 }

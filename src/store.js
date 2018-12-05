@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import Vuex, { Store } from 'vuex'
+import Vuex from 'vuex'
 import siteModule from './modules/site-module.js'
-import userModule from './modules/user-module.js'
 import sectionModule from './modules/section-module.js'
+import userModule from './modules/user-module.js'
 
 Vue.use(Vuex)
 
-export default new Store({
+export default new Vuex.Store({
   modules: {
     siteModule,
     sectionModule,

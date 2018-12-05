@@ -3,7 +3,7 @@ const queryString = require('query-string');
 
 const config = {
     headers: {
-      ['Content-Type']: 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
 };
 

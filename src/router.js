@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import EditSite from './views/EditSite.vue'
 import UserLogin from './views/UserLogin.vue'
-import UserPage from './views/UserPage.vue'
 import PreviewSite from './views/PreviewSite.vue'
 import About from './views/About.vue'
 Vue.use(Router)
@@ -39,15 +38,5 @@ export default new Router({
       name: 'userPreview',
       component: PreviewSite
     },
-    {
-      path: '/user/:siteId?',
-      name: 'edit',
-      component: EditSite
-    },
-    {
-      path: '/userboard',
-      name: 'userBoard',
-      component: UserPage
-    }
   ]
 })

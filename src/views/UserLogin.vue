@@ -138,10 +138,10 @@
 
 <script>
 import uploadImg from '@/services/cloudinary.service.js';
-import {logIn} from '@/services/api.service.js';
+import {logIn, signUp} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
-import Spinner from 'vue-simple-spinner';
-import { LOAD_USER } from '../modules/user-module';
+import Spinner from 'vue-simple-spinner'
+export const LOAD_USER = 'LOAD_USER';
 
 export default {
   components: {
@@ -171,7 +171,6 @@ export default {
             try {
               const { email, password } = this.userInfo;
               const data  = await logIn({ email, password });
-              debugger
               const { userName, id, image } = data;
 
               this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
@@ -237,7 +236,8 @@ export default {
 </script>
 
 
-<style <style lang="scss">
+<style lang="scss">
+
 @import '~vue-awesome-notifications/dist/styles/style.scss';
 .custom-file {
   margin-bottom: 10px;
