@@ -5,10 +5,8 @@ const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`
 export default function uploadImg(imgInput) {   
     function onSuccess(res) {
         console.log('uploadedImg', res);
-
         return res.url;
     }
-
     return new Promise((resolve) => resolve(doUploadImg(imgInput, onSuccess)))
 }
 

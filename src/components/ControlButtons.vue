@@ -42,12 +42,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.side-bar-btns {
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 90%;
-}
+
 .icon {
   color: whitesmoke;
   border: 1px solid transparent;

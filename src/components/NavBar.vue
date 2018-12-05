@@ -120,8 +120,7 @@ export default {
 .sidebar {
   overflow-y: scroll hidden;
   position: fixed;
-  width: 20%;
-  top: 70px;
+  width: 20vw;
   z-index: 999;
   img {
     width: 100%;
