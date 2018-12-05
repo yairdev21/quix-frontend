@@ -1,18 +1,13 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <nav-bar @addSection="addSection" :sections="sections"></nav-bar>
-    <text-edit-buttons
-      @openLinkModal="showModal"
-      v-show="isTextSelected"
-      :text="text"
-      :section="textEditSection"
-      :editedParagraph="editedParagraph"
-    ></text-edit-buttons>
+    <sidebar  @addSection="addSection" :sections="sections"></sidebar>
+  <main>
+ 
     <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
     <div v-if="sections">
       <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
         <drop @drop="handleDrop(arguments[0], idx)">
-          <drag draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+          <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
             <section-preview
               @isDraggable="isDraggable=true"
               @notDraggable="isDraggable=false"
@@ -39,14 +34,15 @@
       @save="save"
       @publish="publish"
     ></control-buttons>
+  </main>
   </div>
 </template>
 
   <script>
-import NavBar from "@/components/NavBar.vue";
+      // v-show="isTextSelected"
+import Sidebar from "@/components/Sidebar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
-import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
@@ -199,62 +195,43 @@ export default {
   },
   components: {
     SectionPreview,
-    NavBar,
+    Sidebar,
     ControlButtons,
-    TextEditButtons,
     createLinkModal
   }
 };
 </script>
 
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
+main{
+  overflow-y: hidden; 
+}
 .control-buttons {
   position: fixed;
   right: 0;
-  left: 19vw;
+  left: 18vw;
   top: 90%;
 }
 
-nav-bar {
-  top: 0;
-}
+
+
 
 @media (max-width: 730px) {
   .control-buttons {
     position: fixed;
     right: 0;
-    left: 19vw;
+    left: 18vw;
     top: 90%;
-  }
-
-  nav-bar {
-    top: 0;
   }
 }
 .add-section {
   border: 1px dashed black;
 }
 
-.edit-buttons {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 45%;
-  right: 5%;
-  transform: scale(1.5);
-  z-index: 5;
-}
-
-.open-panel-btn {
-  z-index: 10;
-  position: fixed;
-  left: 0;
-  margin: 20px;
-}
 
 .section-items {
   float: right;
-  width: 79vw;
+  width: 80vw;
 }
 </style>
 

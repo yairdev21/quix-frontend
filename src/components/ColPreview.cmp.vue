@@ -1,6 +1,12 @@
 <template>
-  <div @mouseup="editText"  class="left-side" :style="style">
-    <component :draggable="false" :contenteditable="isEditMode" :isEditMode="isEditMode" :is="element" :data="col.data"/>
+  <div  @click.native="isFocus=false" @mouseup="editText"  class="left-side" :style="style">
+    <component :draggable="false"
+    @showButtons="isFocus=true"
+    :isFocus="isFocus"
+    :contenteditable="isEditMode"
+    :isEditMode="isEditMode"
+    :is="element" 
+    :data="col.data"/>
   </div>
 </template>
 
@@ -17,6 +23,11 @@ import EmptyEl from "../components/elements/empty.el";
 
 export default {
   props: ["col", "isEditMode"],
+  data(){
+    return{
+       isFocus: false
+    }
+  },
   components: {
     TextElement: TxtEl,
     ImgElement: ImgEl,

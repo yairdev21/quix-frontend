@@ -118,6 +118,16 @@ export default {
 ul {
   list-style: none;
 }
+
+.edit-buttons {
+  /* position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 45%;
+  right: 5%;
+  transform: scale(1.5);
+  z-index: 5; */
+}
 .edit-buttons button {
   border: none;
   color: white;
