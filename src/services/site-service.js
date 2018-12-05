@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = (process.env.NODE_ENV !== 'development') ?
-    '/' :
+    'https://quix-site-creator.herokuapp.com' :
     '//localhost:3000';
 
 export default {
