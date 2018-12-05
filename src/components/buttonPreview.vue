@@ -21,7 +21,7 @@ import draggable from "vuedraggable";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  name: "Navbar",
+  name: "Sidebar",
   props: ["sections"],
   data() {
     return { currIndexMove: 0, currSectionName: null };
@@ -85,7 +85,7 @@ main {
     height: 5.5vw;
   }
 }
-.navbar-names {
+.sidebar-names {
   @media (max-width: 680px) {
     font-size: 2.5vw;
   }

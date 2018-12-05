@@ -8,18 +8,24 @@
     contenteditable="false"
   >
     <edit-section-on-hover
+      class="hover-control"
       @isDraggable="$emit('isDraggable')"
       @notDraggable="$emit('notDraggable')"
       @changeColorToSection="changeColorEmit(section._id)"
       @changeBgImgToSection="changeBgImgEmit"
       @delleteSection="sendDeleteSection(section._id)"
-      v-show="isBorder & isEditMode"
+      :style="isShow"
     ></edit-section-on-hover>
     <b-row>
       <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <drop @drop="emitHandleDrop(arguments[0], idx)">
-          <drag  :transfer-data="{method: 'sort', data: idx}">
-        <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
+          <drag :transfer-data="{method: 'sort', data: idx}">
+            <col-preview
+              @deleteElement="$emit('deleteElement', idx)"
+              @selectedText="emitSelected"
+              :col="col"
+              :isEditMode="isEditMode"
+            ></col-preview>
           </drag>
         </drop>
       </b-col>
@@ -29,6 +35,7 @@
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["section", "isEditMode"],
@@ -40,8 +47,12 @@ export default {
     };
   },
   methods: {
-    emitHandleDrop(dragElement, idx){
-       this.$emit("handleDrop", dragElement, idx);
+    checkIsFocus() {
+      console.log(this.isFocus);
+      this.isFocus = false;
+    },
+    emitHandleDrop(dragElement, idx) {
+      this.$emit("handleDrop", dragElement, idx);
     },
     emitSelected(data) {
       this.$emit("selectedText", data, [this.section._id]);
@@ -72,17 +83,24 @@ export default {
     borderStyle() {
       if (this.isEditMode) return { isBorder: this.isBorder };
       else return false;
+    },
+    isShow() {
+      if (this.isBorder & this.isEditMode) return { visibility: "visible" };
+      else return { visibility: "hidden" };
     }
   },
   components: {
     ColPreview,
     EditSectionOnHover
-  }
+  },
+  created() {}
 };
 </script>
 
 <style>
 .section-item {
+  padding: 3rem;
+  padding-top: 2rem;
   resize: vertical;
   overflow: hidden;
   border: 2px solid transparent;

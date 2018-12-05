@@ -6,7 +6,6 @@
 
 <script>
 import { ID } from "../../services/utils.js";
-
 export default {
   props: {
     data: {
@@ -17,18 +16,15 @@ export default {
       type: Boolean
     }
   },
-
   data() {
     return {
       id: ID(),
       content: this.data.text
     };
   },
-
   created() {
     document.designMode = this.checkEditMode;
   },
-
   methods: {
     getContent() {
       return this.content;

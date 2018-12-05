@@ -5,15 +5,6 @@ import VeeValidate from 'vee-validate';
 import store from './store'
 import '@/assets/scss/main.scss'
 import './registerServiceWorker'
-import VueAWN from "vue-awesome-notifications"
-
-Vue.use(VueAWN, {
-    duration: 2000,
-    labels: {
-        success: 'Welcome',
-        warning: 'Oops..'
-    }
-});
 
 Vue.use(VeeValidate)
 
@@ -21,7 +12,6 @@ Vue.use(VeeValidate)
 import VueDragDrop from 'vue-drag-drop';
 Vue.use(VueDragDrop);
 // 
-//
 
 // Vue Bootstrap
 import BootstrapVue from 'bootstrap-vue'
@@ -50,7 +40,6 @@ import {
 } from '@fortawesome/fontawesome-svg-core'
 import {
     faFileImage,
-    faUserSecret,
     faFont,
     faArrowsAlt,
     faHome,
@@ -60,7 +49,8 @@ import {
     faItalic,
     faLink,
     faPalette,
-    faGlobe
+    faGlobe,
+    faWindowClose
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faFacebook,
@@ -70,7 +60,7 @@ import {
 import {
     FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
-library.add(faFileImage, faUserSecret, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
+library.add(faFileImage, faWindowClose, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import {
     dom

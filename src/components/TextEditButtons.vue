@@ -1,43 +1,49 @@
+
 <template>
-  <div class="edit-buttons" contenteditable="false">
-    <ul>
-      <li>
-        <button id="bold" @click.stop="formatText('bold')" title="Bold Text"></button>
-      </li>
-      <li>
-        <button id="italic" @click.stop="formatText('italic')" title="Italic Text"></button>
-      </li>
-      <li>
-        <button id="underline" @click.stop="formatText('underline')" title="Underline Text"></button>
-      </li>
-      <li>
-        <button id="link" @click.stop="foramtLink('link')" title="Make Link">
-          <i class="fas fa-link"></i>
-        </button>
-      </li>
-      <li>
-        <button id="title" @click.stop="formatStyle(0.1)" title="Text Size Up"></button>
-      </li>
-      <li>
-        <button id="mid" @click.stop="formatStyle(-0.1)" title="Text Size Down"></button>
-      </li>
-      <li>
-        <button id="blackorwhite" @click.stop="changeFontColor" title="Black Or White Text"></button>
-      </li>
-      <li>
-        <button id="font" @click.stop="changeFont" title="Change Font"></button>
-      </li>
-    </ul>
-  </div>
+  <section>
+    <div v-bind:style="{ left: width, top: height }" class="edit-buttons" contenteditable="false">
+      <ul @mousedown="isMenu=false"
+      >
+        <li>
+          <button id="bold" @click.stop="formatText('bold')" title="Bold Text"></button>
+        </li>
+        <li>
+          <button id="italic" @click.stop="formatText('italic')" title="Italic Text"></button>
+        </li>
+        <li>
+          <button id="underline" @click.stop="formatText('underline')" title="Underline Text"></button>
+        </li>
+        <li>
+          <button id="link" @click.stop="foramtLink('link')" title="Make Link">
+            <i class="fas fa-link"></i>
+          </button>
+        </li>
+        <li>
+          <button id="title" @click.stop="formatStyle(0.1)" title="Text Size Up"></button>
+        </li>
+        <li>
+          <button id="mid" @click.stop="formatStyle(-0.1)" title="Text Size Down"></button>
+        </li>
+        <li>
+          <button id="blackorwhite" @click.stop="changeFontColor" title="Black Or White Text"></button>
+        </li>
+        <li>
+          <button id="font" @click.stop="changeFont" title="Change Font"></button>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
 import { EventBus } from "@/event-bus.js";
-
 export default {
   props: ["text", "section"],
   data() {
     return {
+      width: 0,
+      isMenu: true,
+      height: 0,
       fontCurrSize: 1,
       fontColor: "black",
       fontFamily: [
@@ -56,6 +62,7 @@ export default {
   },
   methods: {
     formatStyle(data) {
+      this.isMenu = false;
       if (data) {
         this.fontCurrSize += data;
       }
@@ -67,10 +74,17 @@ export default {
         };
       });
     },
+    mouseClick(e) {
+      if (this.isMenu === false) return this.isMenu=true
+      this.width = `${e.pageX-120}px`;
+      this.height = `${e.pageY+20}px`;
+    },
     formatText(data) {
+       this.isMenu = false;
       document.execCommand(`${data}`);
     },
     foramtLink() {
+       this.isMenu = false;
       this.$emit("openLinkModal");
     },
     changeFontColor() {
@@ -92,6 +106,7 @@ export default {
       });
     }
   },
+
   created() {
     let data = this.text;
     EventBus.$on("link-for-edit", link => {
@@ -99,7 +114,6 @@ export default {
       element.setAttribute("contenteditable", "false");
       element.setAttribute("target", "_blank");
       element.setAttribute("href", `https://${link}`);
-      console.log(this.text.toString());
       this.text.surroundContents(element);
       return this.section[0].elements
         .filter(element => {
@@ -109,14 +123,25 @@ export default {
         .filter(text => {
           text.data.text = this.text;
         });
-    });
-  }
+    }),
+      window.addEventListener("mouseup", this.mouseClick);
+  },
+  destroyed: function() {}
 };
 </script>
 
 <style>
 ul {
+    display: flex;
+  flex-direction: row;
   list-style: none;
+}
+
+.edit-buttons {
+
+  transition: 0.8s ease-in-out;
+  position: absolute;
+  z-index: 10;
 }
 .edit-buttons button {
   border: none;
@@ -127,15 +152,12 @@ ul {
   background: rgb(54, 9, 9);
   transition: 0.3 ease;
 }
-
 .edit-buttons button:hover {
   transition: 0.3 ease;
   cursor: pointer;
   color: brown;
   background: rgb(129, 127, 127);
 }
-
-
 #bold::after {
   content: "B";
   font-weight: bold;
@@ -166,7 +188,6 @@ ul {
   content: "b/w";
   font-weight: bold;
 }
-
 #italic::after {
   content: "i";
   font-style: italic;

@@ -1,20 +1,5 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false">
-    <button
-      contenteditable="false"
-      v-if="isEditMode"
-      class="menu-icon icon open-panel-btn"
-      @click="isPanelOpen=!isPanelOpen"
-      title="Add New Element"
-    >
-      <div v-show="isPanelOpen">
-        <i class="fas fa-minus"></i>
-      </div>
-      <div v-show="!isPanelOpen">
-        <i class="fas fa-plus"></i>
-      </div>
-    </button>
-    <nav-bar v-if="isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
+  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -22,42 +7,47 @@
       :section="textEditSection"
       :editedParagraph="editedParagraph"
     ></text-edit-buttons>
-    <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
-    <div v-if="sections">
-      <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-        <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :transfer-data="{method: 'sort', data: idx}">
-            <section-preview
-              @isDraggable="isDraggable=true"
-              @notDraggable="isDraggable=false"
-              @emitHandleDrop="handleDrop"
-              @colorChangeSectionId="changeSectionColor"
-              @imgChangeSectionId="changeSectionImg"
-              :showModal="showModal"
-              @selectedText="editSelectedText"
-              @deleteSection="deleteSection"
-              :section="section"
-              :isEditMode="isEditMode"
-            ></section-preview>
-          </drag>
-        </drop>
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+    <main>
+      <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
+      <div v-if="sections">
+        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+          <drop @drop="handleDrop(arguments[0], idx)">
+            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+              <section-preview
+                @isDraggable="isDraggable=true"
+                @notDraggable="isDraggable=false"
+                @emitHandleDrop="handleDrop"
+                @colorChangeSectionId="changeSectionColor"
+                @imgChangeSectionId="changeSectionImg"
+                :showModal="showModal"
+                @selectedText="editSelectedText"
+                @deleteSection="deleteSection"
+                @deleteElement="deleteElement"
+                :section="section"
+                :isEditMode="isEditMode"
+              ></section-preview>
+            </drag>
+          </drop>
+        </div>
       </div>
-    </div>
-    <section v-else class="add-section section-item">
-      <h1 class="text-center">Drag & Drop New Section Here</h1>
-    </section>
-    <control-buttons
-      class="control-buttons"
-      :isEditMode="isEditMode"
-      @preview="preview"
-      @save="save"
-      @publish="publish"
-    ></control-buttons>
+      <section v-else class="add-section section-item">
+        <h1 class="text-center">Drag & Drop New Section Here</h1>
+      </section>
+      <control-buttons
+        class="control-buttons"
+        :isEditMode="isEditMode"
+        @preview="preview"
+        @save="save"
+        @publish="publish"
+      ></control-buttons>
+    </main>
   </div>
 </template>
 
   <script>
-import NavBar from "@/components/NavBar.vue";
+// v-show="isTextSelected"
+import Sidebar from "@/components/Sidebar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
@@ -78,7 +68,8 @@ export default {
       sectionId: "",
       isEditMode: null,
       editedParagraph: null,
-      textEditSection: null
+      textEditSection: null,
+      currPos: null
     };
   },
   methods: {
@@ -92,7 +83,6 @@ export default {
         return this.addElement(dragElement.data, idx);
     },
     sortSections(dragedIdx, dropedIdx) {
-      console.log(dragedIdx, dropedIdx);
       if (dragedIdx < dropedIdx) {
         this.site.sections.splice(
           dropedIdx + 1,
@@ -108,29 +98,29 @@ export default {
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
         this.site.sections.splice(idx, 0, section);
-        console.log(this.site.sections);
       });
     },
     addElement(elementName, idx) {
       sectionService.getSectionByName(elementName).then(element => {
+        console.log(this.site.sections[idx].data.sm);
         switch (this.site.sections[idx].data.sm) {
           case "12":
-             (this.site.sections[idx].data.sm = "6");
-             break
+            this.site.sections[idx].data.sm = "6";
+            break;
           case "6":
-             (this.site.sections[idx].data.sm = "4");
-             break
+            this.site.sections[idx].data.sm = "4";
+            break;
           case "4":
             return this.$swal(
               "Too many elements in one section. Please drop the element in another section!"
-            )
+            );
         }
         this.site.sections[idx].elements.push(element);
       });
     },
     editSelectedText(data, id) {
       this.textEditSection = this.getSectionById(...id);
-      if (data.toString().length === 0) return (this.isTextSelected = false);
+      if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
     },
@@ -140,6 +130,29 @@ export default {
     closeModal(link) {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
+    },
+    deleteElement(colIdx, sectionIdx) {
+      this.$swal({
+        title: "Delete Element?",
+        text: "You can always add another one later!",
+        icon: "warning",
+        showCancelButton: true,
+        buttons: ["No, Dont!", "Yes, It's all good"],
+        dangerMode: true
+      }).then(isConfirm => {
+        if (isConfirm.value) {
+          this.site.sections[sectionIdx].elements.splice(colIdx, 1);
+          switch (this.site.sections[sectionIdx].data.sm) {
+            case "12":
+              return;
+            case "6":
+              this.site.sections[sectionIdx].data.sm = "12";
+              break;
+            case "4":
+              this.site.sections[sectionIdx].data.sm = "6";
+          }
+        } else return;
+      });
     },
     deleteSection(sectionId) {
       this.$swal({
@@ -180,14 +193,15 @@ export default {
     },
     publish() {
       const url =
-        window.location.protocol +
-        "//" +
-        window.location.host +
-        window.location.pathname;
+        `${window.location.protocol}//${window.location.host}/preview/${this.site._id}`
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
+    },
+    checkData() {
+      if (this.currPos === this.text) return (this.isTextSelected = false);
+      this.currPos = this.text;
     }
   },
   created() {
@@ -207,57 +221,48 @@ export default {
     });
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
-      console.log(section);
       return (section[0].style["background-image"] = `url(${url})`);
-    });
+    }),
+      EventBus.$on("deleteElement", id => {
+        this.deleteElement(id.elementName, id.sectionId);
+      });
   },
   components: {
     SectionPreview,
-    NavBar,
+    Sidebar,
     ControlButtons,
-    TextEditButtons,
-    createLinkModal
+    createLinkModal,
+    TextEditButtons
   }
 };
 </script>
 
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
+main {
+  overflow-y: hidden;
+}
+.control-buttons {
+  position: fixed;
+  right: 0;
+  left: 18vw;
+  top:85%;
+}
+
+@media (max-width: 730px) {
+  .control-buttons {
+    position: fixed;
+    right: 0;
+    left: 18vw;
+    top: 85%;
+  }
+}
 .add-section {
   border: 1px dashed black;
 }
 
-.edit-buttons {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 45%;
-  right: 5%;
-  transform: scale(1.5);
-  z-index: 5;
-}
-
-.icon {
-  color: whitesmoke;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: #17a2b8;
-  position: relative;
-  width: 30px;
-  transform: scale(2);
-  margin: 30px;
-}
-
-.icon:hover {
-  border: 1px solid whitesmoke;
-  cursor: pointer;
-  color: black;
-}
-
-.open-panel-btn {
-  z-index: 10;
-  position: fixed;
-  left: 0;
-  margin: 20px;
+.section-items {
+  float: right;
+  width: 80vw;
 }
 </style>
 
