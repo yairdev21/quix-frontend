@@ -145,7 +145,8 @@
 import uploadImg from '@/services/cloudinary.service.js';
 import {logIn, signUp} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
-import Spinner from 'vue-simple-spinner'
+import Spinner from 'vue-simple-spinner';
+import { LOAD_USER } from '../modules/user-module';
 
 export default {
   components: {
@@ -169,17 +170,18 @@ export default {
     async handleSubmit() {
       if(this.errors.items.length > 0) return;
       
-
       if( this.isNewRagistrater ) {
         this.createUser();
 
       } else {
           try {
             const { email, password } = this.userInfo;
-            const { data } = await logIn({ email, password });
+            const data  = await logIn({ email, password });
+            const { userName, id, image } = data;
 
-
-            this.$awn.success(`Welcome ${data.userName}`);
+            this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
+            
+            this.$awn.success(`Welcome ${userName}`);
             this.$router.history.push('/');
 
           } catch({ response }) {
@@ -201,9 +203,10 @@ export default {
         user.image = url;
       }
 
-      const { data } = await signUp(user);
-      console.log(data);
+      const { image, id } = await signUp(user);
       
+      this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
+
       this.$awn.success(`Welcome ${userName}`);
       this.$router.history.push('/');
     }
