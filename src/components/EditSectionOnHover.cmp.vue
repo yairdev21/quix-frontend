@@ -1,14 +1,9 @@
 <template>
   <section class="hover-section">
+    <Spinner message="Uploading Image..." v-show="isLoading"/>
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
-      <div>
-        <button title="drag section" @mousedown="$emit('isDraggable')"
-          @mouseup="$emit('notDraggable')"
-          >
-          <i class="fas fa-arrows-alt"></i>
-        </button>
-      </div>
+     
       <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>
@@ -19,6 +14,13 @@
         <i class="fas fa-file-image"></i>
       </button>
       <input hidden id="uploadImg" ref="file" type="file" @change="getUrl">
+      <button
+      title="drag section"
+      @mousedown="$emit('isDraggable')"
+      @mouseup="$emit('notDraggable')"
+      >
+      <i class="fas fa-arrows-alt"></i>
+    </button>
     </div>
   </section>
 </template>
@@ -27,10 +29,10 @@
 import ColorPicker from "@/components/textEdit/ColorPicker.cmp.vue";
 import { EventBus } from "@/event-bus.js";
 import cloudinaryService from "../services/cloudinary.service.js";
-
+import Spinner from "vue-simple-spinner";
 export default {
   data() {
-    return { showColorPicker: false };
+    return { showColorPicker: false, isLoading: false };
   },
   methods: {
     setColor(color) {
@@ -42,15 +44,18 @@ export default {
       document.getElementById("uploadImg").click();
     },
     getUrl() {
+      this.isLoading = true;
+      console.log("IS LOADING- ", this.isLoading);
       cloudinaryService(this.$refs.file).then(url => {
-        console.dir(this.$refs.file);
         this.$emit("changeBgImgToSection", url);
         EventBus.$emit("changeBgImg", url);
+        this.isLoading = false;
       });
     }
   },
   components: {
-    ColorPicker
+    ColorPicker,
+    Spinner
   }
 };
 </script>
@@ -67,6 +72,7 @@ export default {
   color: white;
   height: 30px;
   width: 30px;
+  margin: 2px;
   z-index: 1;
   background: #17a2b8;
   transition: 0.3 ease;
@@ -75,10 +81,10 @@ export default {
 }
 .edit-on-hover {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  right: 0;
-  margin-right: 0.6rem;
+  position: relative;
+  width: 73vw;
+  top: -30px;
+  justify-content: flex-end;
   z-index: 5;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div class="side-bar-btns" contenteditable="false">
-  
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
@@ -13,8 +12,11 @@
     <button v-else class="preview-icon icon" @click="preview">
       <i class="far fa-eye"></i>
     </button>
-    <button class="publsh-icon icon" @click="publish">
-      <i class="fas fa-globe"></i>
+    <button class="publish-icon" @click="publish">
+      <div>
+        <i class="fas fa-globe fa-2x"></i>
+      </div>
+      <div>PUBLISH!</div>
     </button>
   </div>
 </template>
@@ -46,29 +48,25 @@ export default {
   position: fixed;
   right: 0;
   left: 0;
-  top: 90%;
-}
-.icon {
-  color: whitesmoke;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: #17a2b8;
-  position: relative;
-  width: 30px;
-  transform: scale(2);
-  margin: 10px 30px;
-  
+  top: 85%;
 }
 
-.icon:hover {
-  border: 1px solid whitesmoke;
+.publish-icon {
+  color: whitesmoke;
+  border-radius: 5px;
+  background: #17a2b8;
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  width: 80px;
+  height: 60px;
+  margin: 30px;
+  transition: 0.3s;
+}
+
+.publish-icon:hover {
+  transform: scale(1.2);
   cursor: pointer;
   color: black;
-}
-@media (max-width: 800px) {
-  .icon {
-    transform: scale(1.8);
-    margin: 15px;
-  }
 }
 </style>

@@ -5,7 +5,7 @@
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
-              <p class="navbar-names">Sections</p>
+              <p class="sidebar-names">Sections</p>
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
@@ -37,7 +37,7 @@
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn class="acordion-header" block href="#" v-b-toggle.accordion2 variant="info">
-              <p class="navbar-names">Components</p>
+              <p class="sidebar-names">Components</p>
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
@@ -64,7 +64,7 @@
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn class="acordion-header" block href="#" v-b-toggle.accordion3 variant="info">
-              <p class="navbar-names">Elements</p>
+              <p class="sidebar-names">Elements</p>
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
@@ -74,15 +74,11 @@
                   <img src="@/assets/img/socailBtns.png">
                 </p>
               </drag>
-            </b-card-body>
-            <b-card-body>
               <drag :transfer-data="{method: 'addElement', data:'video'}">
                 <p class="card-text" id="video">
                   <img src="@/assets/img/video.png">
                 </p>
               </drag>
-            </b-card-body>
-            <b-card-body>
               <drag :transfer-data="{method: 'addElement', data:'text'}">
                 <p class="card-text" id="text">
                   <img src="@/assets/img/textCmp.png">
@@ -93,20 +89,13 @@
         </b-card>
       </div>
     </transition>
-    <!-- <div class="side-bar-btns">
-      <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
-      <b-button class="home-icon icon" @click="goHome">
-        <i class="fas fa-home"></i>
-      </b-button>
-    </div> -->
   </section>
 </template>
 
 <script>
-// import { EventBus } from "@/event-bus.js";
 
 export default {
-  name: "Navbar",
+  name: "Sidebar",
   props: ["sections"],
   methods: {
     goHome() {
@@ -117,20 +106,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+  display: flex;
+}
+
 .sidebar {
-  overflow-y: scroll hidden;
+
   position: fixed;
-  width: 20%;
-  top: 70px;
+  width: 20vw;
   z-index: 999;
   img {
     width: 100%;
   }
 }  
 
-section {
-  display: flex;
-}
 
 .slide-fade-enter-active {
   transition: all 0.3s ease;
@@ -149,9 +138,10 @@ section {
     height: 5.5vw;
   }
 }
-.navbar-names {
+.sidebar-names {
   @media (max-width: 680px) {
     font-size: 2.5vw;
   }
 }
+
 </style>
