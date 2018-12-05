@@ -57,6 +57,7 @@ export default {
   background: #17a2b8;
   position: absolute;
   right: 0;
+  bottom: 5px;
   width: 80px;
   height: 60px;
   margin: 30px;
