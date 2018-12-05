@@ -1,5 +1,12 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false">
+  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
+    <text-edit-buttons
+      @openLinkModal="showModal"
+      v-show="isTextSelected"
+      :text="text"
+      :section="textEditSection"
+      :editedParagraph="editedParagraph"
+    ></text-edit-buttons>
     <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
@@ -16,7 +23,7 @@
                 :showModal="showModal"
                 @selectedText="editSelectedText"
                 @deleteSection="deleteSection"
-                @deleteElement="deleteElement(arguments[0], idx)"
+                @deleteElement="deleteElement"
                 :section="section"
                 :isEditMode="isEditMode"
               ></section-preview>
@@ -43,6 +50,7 @@
 import Sidebar from "@/components/Sidebar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
+import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
@@ -60,7 +68,8 @@ export default {
       sectionId: "",
       isEditMode: null,
       editedParagraph: null,
-      textEditSection: null
+      textEditSection: null,
+      currPos: null
     };
   },
   methods: {
@@ -111,7 +120,7 @@ export default {
     },
     editSelectedText(data, id) {
       this.textEditSection = this.getSectionById(...id);
-      if (data.toString().length === 0) return (this.isTextSelected = false);
+      if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
     },
@@ -189,6 +198,10 @@ export default {
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
+    },
+    checkData() {
+      if (this.currPos === this.text) return (this.isTextSelected = false);
+      this.currPos = this.text;
     }
   },
   created() {
@@ -218,7 +231,8 @@ export default {
     SectionPreview,
     Sidebar,
     ControlButtons,
-    createLinkModal
+    createLinkModal,
+    TextEditButtons
   }
 };
 </script>
