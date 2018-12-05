@@ -5,6 +5,15 @@ import VeeValidate from 'vee-validate';
 import store from './store'
 import '@/assets/scss/main.scss'
 import './registerServiceWorker'
+import VueAWN from "vue-awesome-notifications"
+
+Vue.use(VueAWN, {
+    duration: 2000,
+    labels: {
+        success: 'Welcome',
+        warning: 'Oops..'
+    }
+});
 
 Vue.use(VeeValidate)
 

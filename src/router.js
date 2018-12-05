@@ -16,7 +16,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/:siteId?',
+      path: '/preview/:siteId?',
       name: 'preview',
       component: PreviewSite
     },

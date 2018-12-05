@@ -6,10 +6,16 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 document.body.setAttribute('spellcheck', false)
-    export default {
+  export default {
     name: 'app',
-    }
+    created() {
+      axios.get(`http://localhost:3000/user/`)
+            .then(res => console.log(res))
+    },
+  }
 </script>
 
 <style lang="scss">
