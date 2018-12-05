@@ -1,6 +1,5 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -8,6 +7,7 @@
       :section="textEditSection"
       :editedParagraph="editedParagraph"
     ></text-edit-buttons>
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">

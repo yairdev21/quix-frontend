@@ -1,26 +1,24 @@
 <template>
-  <section>
-    <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
+  <div
+    @mouseup="editText"
+    class="left-side"
+    :style="style"
+    @mouseover="isShowControl=true"
+    @mouseleave="(isShowControl=false)"
+  >
+    <div contenteditable="false" class="edit-video" v-show="isShowControl & isEditMode">
       <button title="Delete" @click="$emit('deleteElement')">
         <i class="far fa-trash-alt"></i>
       </button>
     </div>
-    <div
-      @mouseup="editText"
-      class="left-side"
-      :style="style"
-      @mouseover.stop="isShowControl=true"
-      @mouseleave="(isShowControl=false)"
-    >
-      <component
-        :draggable="false"
-        :contenteditable="isEditMode"
-        :isEditMode="isEditMode"
-        :is="element"
-        :data="col.data"
-      />
-    </div>
-  </section>
+    <component
+      :draggable="false"
+      :contenteditable="isEditMode"
+      :isEditMode="isEditMode"
+      :is="element"
+      :data="col.data"
+    />
+  </div>
 </template>
 
 <script>
@@ -32,7 +30,6 @@ import ButtonEl from "../components/elements/btn.el";
 import SocialEl from "../components/elements/social-btn.el";
 import ContactEl from "../components/elements/contact.el";
 import EmptyEl from "../components/elements/empty.el";
-import HeaderEl from "../components/elements/header-fixed.el";
 import { EventBus } from "@/event-bus.js";
 
 export default {
@@ -48,8 +45,7 @@ export default {
     ButtonElement: ButtonEl,
     ContactElement: ContactEl,
     SocialElement: SocialEl,
-    EmptyElement: EmptyEl,
-    HeaderElement: HeaderEl
+    EmptyElement: EmptyEl
   },
   methods: {
     editText() {
@@ -85,8 +81,6 @@ export default {
           return `ContactElement`;
         case "empty":
           return `EmptyElement`;
-        case "header":
-          return `HeaderElement`;
         default:
           return "TextElement";
       }
@@ -99,13 +93,12 @@ export default {
 </script>
 
 <style>
-.trash-btn button:hover {
+.edit-video button:hover {
   cursor: pointer;
   color: brown;
   background: white;
 }
-.trash-btn button {
-  z-index: 8;
+.edit-video button {
   border: none;
   color: white;
   height: 30px;
@@ -117,12 +110,13 @@ export default {
   border-radius: 3px;
 }
 
-.trash-btn {
+.edit-video {
   display: flex;
   flex-direction: row;
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 5;
 }
 .left-side {
   cursor: initial;

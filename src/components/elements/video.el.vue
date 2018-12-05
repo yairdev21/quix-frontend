@@ -52,10 +52,9 @@ export default {
           this.data.src = url;
         },
         allowOutsideClick: () => !this.$swal.isLoading()
-      })
-      .then(result => {
+      }).then(result => {
         return result;
-      })
+      });
     },
     video() {
       const video =
