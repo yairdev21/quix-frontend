@@ -30,6 +30,7 @@
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["section", "isEditMode"],
@@ -78,6 +79,11 @@ export default {
   components: {
     ColPreview,
     EditSectionOnHover
+  },
+  created() {
+    EventBus.$on("deleteVideo", name => {
+      EventBus.$emit("deleteElement", {'elementName':name, 'sectionId':this.section._id});
+    });
   }
 };
 </script>
@@ -92,5 +98,4 @@ export default {
   display: block;
   border: 2px dashed royalblue;
 }
-
 </style>

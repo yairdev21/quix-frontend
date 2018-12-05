@@ -127,6 +127,25 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
+    deleteElement(elementName, sectionId) {
+      this.$swal({
+        title: "Delete Element?",
+        text: "You can always add another one later!",
+        icon: "warning",
+        showCancelButton: true,
+        buttons: ["No, Dont!", "Yes, It's all good"],
+        dangerMode: true
+      }).then(isConfirm => {
+        if (isConfirm.value) {
+          let section = this.getSectionById(sectionId);
+          let Idx = this.site.sections.indexOf(...section);
+          let newSection = this.site.sections[Idx].elements.filter(element => {
+            return element.name !== elementName;
+          });
+          this.site.sections[Idx].elements = newSection;
+        } else return;
+      });
+    },
     deleteSection(sectionId) {
       this.$swal({
         title: "Delete section?",
@@ -193,9 +212,11 @@ export default {
     });
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
-      console.log(section);
       return (section[0].style["background-image"] = `url(${url})`);
-    });
+    }),
+      EventBus.$on("deleteElement", id => {
+        this.deleteElement(id.elementName, id.sectionId);
+      });
   },
   components: {
     SectionPreview,

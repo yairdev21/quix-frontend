@@ -1,5 +1,19 @@
 <template>
-  <div contenteditable="false" class="embed-container" :style="{ height: '100%' }">
+  <div
+    contenteditable="false"
+    class="embed-container"
+    :style="{ height: '100%' }"
+    @mouseover="(isShowControl=true)"
+    @mouseleave="(isShowControl=false)"
+  >
+    <div contenteditable="false" class="edit-video" v-show="isShowControl">
+      <button title="Delete" @click="emitDelete">
+        <i class="far fa-trash-alt"></i>
+      </button>
+      <button id="link" @click.stop="changeLink" title="Change Link">
+        <i class="fas fa-link"></i>
+      </button>
+    </div>
     <iframe
       class="embed-container-iframe"
       :src="`https://www.youtube.com/embed/${video}`"
@@ -22,10 +36,33 @@ export default {
   },
   data() {
     return {
-      id: ID()
+      id: ID(),
+      isShowControl: false
     };
   },
-
+  methods: {
+    emitDelete() {
+      EventBus.$emit("deleteVideo", 'video');
+    },
+    changeLink() {
+      this.$swal({
+        title: "Enter youtube link",
+        input: "text",
+        inputAttributes: {
+          autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Enter",
+        showLoaderOnConfirm: true,
+        preConfirm: url => {
+          this.data.src = url;
+        },
+        allowOutsideClick: () => !this.$swal.isLoading()
+      }).then(result => {
+        return result;
+      });
+    }
+  },
   computed: {
     video() {
       const video =
@@ -38,22 +75,10 @@ export default {
     }
   },
   created() {
-    EventBus.$on('getVideoUrl', ()=>{this.$swal({
-      title: "Enter youtube link",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off"
-      },
-      showCancelButton: true,
-      confirmButtonText: "Enter",
-      showLoaderOnConfirm: true,
-      preConfirm: url => {
-        this.data.src = url;
-      },
-      allowOutsideClick: () => !this.$swal.isLoading()
-    }).then(result => {
-      return result;
-    })})
+    EventBus.$on("getVideoUrl", () => {
+      if (this.video) return;
+      else this.changeLink();
+    });
   }
 };
 </script>
@@ -64,5 +89,31 @@ export default {
   overflow: hidden;
   max-width: 100%;
   max-height: 100%;
+}
+
+.edit-video button:hover {
+  cursor: pointer;
+  color: brown;
+  background: white;
+}
+.edit-video button {
+  border: none;
+  color: white;
+  height: 30px;
+  width: 30px;
+  z-index: 1;
+  background: brown;
+  transition: 0.3 ease;
+  margin-top: 0.2rem;
+  border-radius: 3px;
+}
+
+.edit-video {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
 }
 </style>
