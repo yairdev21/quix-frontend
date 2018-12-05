@@ -10,17 +10,12 @@ const config = {
 const baseUrl = `http://localhost:3000/user/`
 
 export const logIn = async (user) => {    
+    try {
         const URL = `${baseUrl}signin`;
-        const res = await axios.post(URL, queryString.stringify(user), config)
-
-        return res;
-}
-
-export const signUp = async (user) => {    
-    console.log(user);
+        const res = await axios.post(URL, queryString.stringify(user), config);
     
-    const URL = `${baseUrl}signup`;
-    const res = await axios.post(URL, queryString.stringify(user), config)
-
-    return res;
+        return res;
+    } catch (err) {
+        console.log(err);        
+    }
 }

@@ -34,7 +34,6 @@
                         tabindex="1"
                         :class="emailClass"
                         placeholder="Your Email"
-                        required
                       >
                     </div>
 
@@ -49,7 +48,6 @@
                         tabindex="2"
                         :class="usernameClass"
                         placeholder="User Name"
-                        required
                       >
                     </div>
 
@@ -63,7 +61,6 @@
                         tabindex="3"
                         :class="passwordClass"
                         placeholder="Password"
-                        required
                       >
                     </div>
                     <div class="form-group" v-if="isNewRagistrater">
@@ -76,7 +73,6 @@
                         tabindex="4"
                         :class="confirmClass"
                         placeholder="Confirm Password"
-                        required
                       >
                     </div>
 
@@ -87,8 +83,7 @@
                           ref="fileInput"
                           v-validate="'mimes:image/*'" 
                           name="image"
-                          data-vv-as="image"
-                      >
+                          data-vv-as="image">
 
                       <label class="custom-file-label" for="validatedCustomFile">{{imgText}}</label>
                     </div>
@@ -143,7 +138,7 @@
 
 <script>
 import uploadImg from '@/services/cloudinary.service.js';
-import {logIn, signUp} from '@/services/api.service.js';
+import {logIn} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
 import Spinner from 'vue-simple-spinner'
 
@@ -160,52 +155,25 @@ export default {
       userInfo: {
         userName: '',
         password: '',
-        email: '',
+        email: ''
       }
     }
   },
 
   methods: {
     async handleSubmit() {
-      if(this.errors.items.length > 0) return;
-      
+      const { email, password } = this.userInfo;
 
-      if( this.isNewRagistrater ) {
-        this.createUser();
-
-      } else {
-          try {
-            const { email, password } = this.userInfo;
-            const { data } = await logIn({ email, password });
-
-
-            this.$awn.success(`Welcome ${data.userName}`);
-            this.$router.history.push('/');
-
-          } catch({ response }) {
-            this.$awn.warning( response.data.message );
-          }
-        }
+      const res = await logIn({ email, password });
+      console.log(res);
     },
 
     async createUser() {
-      console.log('in', this.$refs.fileInput.files.length > 0);
-      
-      const { email, userName, password } = this.userInfo;
-      const user = { email, userName, password };
+      this.isLoading = true;
+      const imgUrl = await uploadImg(this.$refs.fileInput);
+      this.isLoading = false;
 
-      if(this.$refs.fileInput.files.length > 0) {
-        this.isLoading = true;
-        const { url } = await uploadImg(this.$refs.fileInput);
-        this.isLoading = false;
-        user.image = url;
-      }
-
-      const { data } = await signUp(user);
-      console.log(data);
-      
-      this.$awn.success(`Welcome ${userName}`);
-      this.$router.history.push('/');
+      console.log(imgUrl)
     }
   },
 
@@ -236,13 +204,11 @@ export default {
       return (this.$refs.fileInput.files.length > 0) ? 'file selected' : 'upload image...';
     }
   }
-}
-
+};
 </script>
 
 
-<style lang="scss">
-@import '~vue-awesome-notifications/dist/styles/style.scss';
+<style>
 .custom-file {
   margin-bottom: 10px;
 }
