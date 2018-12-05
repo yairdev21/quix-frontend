@@ -22,9 +22,8 @@ function getSiteById(siteId) {
 
 function saveSite(site) {
     if (site._id) {
-             return axios.put(`${BASE_URL}/sites/${site._id}`, site)
-    }
-    else {
+        return axios.put(`${BASE_URL}/sites/${site._id}`, site)
+    } else {
         return axios.post(`${BASE_URL}`, site)
     }
 }

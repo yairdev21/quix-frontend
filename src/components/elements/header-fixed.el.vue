@@ -1,7 +1,7 @@
 <template>
   <section class="header">
-    <h1 class="header-title">{{content.title}}</h1>
-    <p class="header-text">{{content.text}}</p>
+    <h1 v-text="content" class="header-title"></h1>
+    <p v-text="content" class="header-text"></p>
   </section>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       id: ID(),
-      content: this.data
+      content: this.data.text
     };
   },
   created() {
