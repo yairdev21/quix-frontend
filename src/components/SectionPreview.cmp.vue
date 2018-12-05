@@ -21,7 +21,7 @@
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
             <col-preview
-              @deleteElement="$emit('deleteElement', idx)"
+              @deleteElement="$emit('deleteElement', idx, section._id)"
               @selectedText="emitSelected"
               :col="col"
               :isEditMode="isEditMode"
@@ -107,6 +107,6 @@ export default {
 }
 .isBorder {
   display: block;
-  border: 2px dashed royalblue;
+  border: 2px dashed rgb(147, 160, 199);
 }
 </style>

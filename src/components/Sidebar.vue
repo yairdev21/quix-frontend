@@ -12,7 +12,7 @@
             <b-card-body>
               <drag :transfer-data="{method: 'addSection', data:'header'}">
                 <p class="card-text" id="header">
-                  <img src="@/assets/img/emptySection.png">
+                  <img src="@/assets/img/header.png">
                 </p>
               </drag>
               <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
@@ -115,6 +115,12 @@ section {
   background: black;
 }
 
+.sidebar img:hover {
+cursor: grab
+}
+.sidebar img:active {
+cursor: grabbing  
+}
 .sidebar {
   width: 18vw;
 

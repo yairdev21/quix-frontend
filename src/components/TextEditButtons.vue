@@ -137,8 +137,8 @@ ul {
 }
 
 .edit-buttons {
-
-  transition: 0.8s ease-in-out;
+  border-radius: 6px;
+  transition: 0.8s;
   position: absolute;
   z-index: 10;
 }

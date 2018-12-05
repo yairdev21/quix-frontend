@@ -1,10 +1,5 @@
 <template>
   <section>
-    <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
-      <button title="Delete" @click="$emit('deleteElement')">
-        <i class="far fa-trash-alt"></i>
-      </button>
-    </div>
     <div
       @mouseup="editText"
       class="left-side"
@@ -12,6 +7,11 @@
       @mouseover.stop="isShowControl=true"
       @mouseleave="(isShowControl=false)"
     >
+      <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
+        <button title="Delete" @click="$emit('deleteElement')">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </div>
       <component
         :draggable="false"
         :contenteditable="isEditMode"
@@ -117,9 +117,14 @@ export default {
   border-radius: 3px;
 }
 
+.trash-btn i {
+  position: sticky;
+  font-size: 20px;
+}
 .trash-btn {
   display: flex;
   flex-direction: row;
+  align-content: center;
   position: absolute;
   right: 0;
   top: 0;
