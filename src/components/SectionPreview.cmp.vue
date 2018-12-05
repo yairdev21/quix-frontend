@@ -20,7 +20,12 @@
       <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
-            <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
+            <col-preview
+              @deleteElement="deleteElement(col._id, section._id  )"
+              @selectedText="emitSelected"
+              :col="col"
+              :isEditMode="isEditMode"
+            ></col-preview>
           </drag>
         </drop>
       </b-col>
@@ -30,6 +35,7 @@
 <script>
 import ColPreview from "@/components/ColPreview.cmp.vue";
 import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["section", "isEditMode"],
@@ -61,6 +67,9 @@ export default {
     },
     changeSectionImg(url, sectionId) {
       this.sectionId = sectionId;
+    },
+    deleteElement(elId, sectionId) {
+    this.$emit("deleteElement", {"elId":elId, "sectionId":sectionId});
     }
   },
   computed: {
@@ -78,7 +87,8 @@ export default {
   components: {
     ColPreview,
     EditSectionOnHover
-  }
+  },
+  created() {}
 };
 </script>
 
@@ -92,5 +102,4 @@ export default {
   display: block;
   border: 2px dashed royalblue;
 }
-
 </style>

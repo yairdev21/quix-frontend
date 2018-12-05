@@ -1,6 +1,5 @@
 <template>
   <div class="side-bar-btns" contenteditable="false">
-  
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
