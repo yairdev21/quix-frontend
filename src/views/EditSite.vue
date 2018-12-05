@@ -23,7 +23,7 @@
     <div v-if="sections">
       <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
         <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :transfer-data="{method: 'sort', data: idx}">
+          <drag draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
             <section-preview
               @isDraggable="isDraggable=true"
               @notDraggable="isDraggable=false"
