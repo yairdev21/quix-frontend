@@ -1,49 +1,56 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false">
-    <sidebar  @addSection="addSection" :sections="sections"></sidebar>
-  <main>
- 
-    <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
-    <div v-if="sections">
-      <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-        <drop @drop="handleDrop(arguments[0], idx)">
-          <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
-            <section-preview
-              @isDraggable="isDraggable=true"
-              @notDraggable="isDraggable=false"
-              @emitHandleDrop="handleDrop"
-              @colorChangeSectionId="changeSectionColor"
-              @imgChangeSectionId="changeSectionImg"
-              :showModal="showModal"
-              @selectedText="editSelectedText"
-              @deleteSection="deleteSection"
-              @deleteElement="deleteElement"
-              :section="section"
-              :isEditMode="isEditMode"
-            ></section-preview>
-          </drag>
-        </drop>
+  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
+    <text-edit-buttons
+      @openLinkModal="showModal"
+      v-show="isTextSelected"
+      :text="text"
+      :section="textEditSection"
+      :editedParagraph="editedParagraph"
+    ></text-edit-buttons>
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+    <main>
+      <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
+      <div v-if="sections">
+        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+          <drop @drop="handleDrop(arguments[0], idx)">
+            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+              <section-preview
+                @isDraggable="isDraggable=true"
+                @notDraggable="isDraggable=false"
+                @emitHandleDrop="handleDrop"
+                @colorChangeSectionId="changeSectionColor"
+                @imgChangeSectionId="changeSectionImg"
+                :showModal="showModal"
+                @selectedText="editSelectedText"
+                @deleteSection="deleteSection"
+                @deleteElement="deleteElement"
+                :section="section"
+                :isEditMode="isEditMode"
+              ></section-preview>
+            </drag>
+          </drop>
+        </div>
       </div>
-    </div>
-    <section v-else class="add-section section-item">
-      <h1 class="text-center">Drag & Drop New Section Here</h1>
-    </section>
-    <control-buttons
-      class="control-buttons"
-      :isEditMode="isEditMode"
-      @preview="preview"
-      @save="save"
-      @publish="publish"
-    ></control-buttons>
-  </main>
+      <section v-else class="add-section section-item">
+        <h1 class="text-center">Drag & Drop New Section Here</h1>
+      </section>
+      <control-buttons
+        class="control-buttons"
+        :isEditMode="isEditMode"
+        @preview="preview"
+        @save="save"
+        @publish="publish"
+      ></control-buttons>
+    </main>
   </div>
 </template>
 
   <script>
-      // v-show="isTextSelected"
+// v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
+import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
@@ -61,7 +68,8 @@ export default {
       sectionId: "",
       isEditMode: null,
       editedParagraph: null,
-      textEditSection: null
+      textEditSection: null,
+      currPos: null
     };
   },
   methods: {
@@ -112,7 +120,7 @@ export default {
     },
     editSelectedText(data, id) {
       this.textEditSection = this.getSectionById(...id);
-      if (data.toString().length === 0) return (this.isTextSelected = false);
+      if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
     },
@@ -193,6 +201,10 @@ export default {
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
+    },
+    checkData() {
+      if (this.currPos === this.text) return (this.isTextSelected = false);
+      this.currPos = this.text;
     }
   },
   created() {
@@ -222,14 +234,15 @@ export default {
     SectionPreview,
     Sidebar,
     ControlButtons,
-    createLinkModal
+    createLinkModal,
+    TextEditButtons
   }
 };
 </script>
 
 <style lang="scss" scoped>
-main{
-  overflow-y: hidden; 
+main {
+  overflow-y: hidden;
 }
 .control-buttons {
   position: fixed;
@@ -237,9 +250,6 @@ main{
   left: 18vw;
   top: 90%;
 }
-
-
-
 
 @media (max-width: 730px) {
   .control-buttons {
@@ -252,7 +262,6 @@ main{
 .add-section {
   border: 1px dashed black;
 }
-
 
 .section-items {
   float: right;
