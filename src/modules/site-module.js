@@ -27,9 +27,6 @@ export default {
         }) {
             state.site = site;
         },
-        loadSites(state, {sites}) {
-            state.sites = sites
-        }
     },
     actions: {
         query(context) {

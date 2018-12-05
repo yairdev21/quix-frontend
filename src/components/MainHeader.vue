@@ -4,39 +4,18 @@
       <router-link to="/">QuiX</router-link>
     </button>
     <div class="nav-btns">
-      <button class="btn btn-log">
-        <router-link class="btn" :to="userPage">{{userLog}}</router-link>
+      <button class="login-btn btn btn-outline-secondary">
+        <router-link class="btn" to="/login">Login</router-link>
+      </button>
+      <button class="login-btn btn btn-outline-secondary">
+        <router-link class="btn" to="/about">About</router-link>
       </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  state() {
-    return {
-      user: this.$store.getters.getUser
-    }
-  },
-
-  computed: {
-    userPage() {
-      return (this.user) ? '/userboard' : '/login'
-    },
-
-    userLog() {
-      return (this.$store.getters.getUser) ? 'Profile' : 'Log In'
-    },
-
-    userImg() {
-      return (this.$store.getters.getUser) ? this.$store.getters.getUser.image : ''
-    },
-
-    user() {      
-      return (this.$store.getters.getUser) ? true : false
-    }
-  }
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>

@@ -140,8 +140,7 @@
 import uploadImg from '@/services/cloudinary.service.js';
 import {logIn} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
-import Spinner from 'vue-simple-spinner';
-import { LOAD_USER } from '../modules/user-module';
+import Spinner from 'vue-simple-spinner'
 
 export default {
   components: {
@@ -163,25 +162,7 @@ export default {
 
   methods: {
     async handleSubmit() {
-<<<<<<< HEAD
-      if(this.errors.items.length > 0) return;
-      
-      if( this.isNewRagistrater ) {
-        this.createUser();
-
-      } else {
-          try {
-            const { email, password } = this.userInfo;
-            const data  = await logIn({ email, password });
-            const { userName, id, image } = data;
-
-            this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
-            
-            this.$awn.success(`Welcome ${userName}`);
-            this.$router.history.push('/');
-=======
       const { email, password } = this.userInfo;
->>>>>>> b342ab003d4604030efa65a0599e41ec8ae5f441
 
       const res = await logIn({ email, password });
       console.log(res);
@@ -192,23 +173,7 @@ export default {
       const imgUrl = await uploadImg(this.$refs.fileInput);
       this.isLoading = false;
 
-<<<<<<< HEAD
-      if(this.$refs.fileInput.files.length > 0) {
-        this.isLoading = true;
-        const { url } = await uploadImg(this.$refs.fileInput);
-        this.isLoading = false;
-        user.image = url;
-      }
-
-      const { image, id } = await signUp(user);
-      
-      this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
-
-      this.$awn.success(`Welcome ${userName}`);
-      this.$router.history.push('/');
-=======
       console.log(imgUrl)
->>>>>>> b342ab003d4604030efa65a0599e41ec8ae5f441
     }
   },
 
