@@ -10,6 +10,11 @@
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
+              <drag :transfer-data="{method: 'addSection', data:'header'}">
+                <p class="card-text" id="header">
+                  <img src="@/assets/img/emptySection.png">
+                </p>
+              </drag>
               <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
                 <p class="card-text" id="emptySection">
                   <img src="@/assets/img/emptySection.png">
@@ -93,7 +98,6 @@
 </template>
 
 <script>
-
 export default {
   name: "Sidebar",
   props: ["sections"],
@@ -108,18 +112,18 @@ export default {
 <style lang="scss" scoped>
 section {
   display: flex;
+  background: black;
 }
 
 .sidebar {
+  width: 18vw;
 
   position: fixed;
-  width: 20vw;
   z-index: 999;
   img {
     width: 100%;
   }
-}  
-
+}
 
 .slide-fade-enter-active {
   transition: all 0.3s ease;
@@ -127,8 +131,8 @@ section {
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
- {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
 }
@@ -143,5 +147,4 @@ section {
     font-size: 2.5vw;
   }
 }
-
 </style>

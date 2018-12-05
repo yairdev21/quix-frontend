@@ -126,7 +126,6 @@ export default {
     }),
       window.addEventListener("mouseup", this.mouseClick);
   },
-  destroyed: function() {}
 };
 </script>
 
