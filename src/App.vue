@@ -5,10 +5,18 @@
 </template>
 
 <script>
+import {LOAD_USER} from './modules/user-module.js';
+
 document.body.setAttribute('spellcheck', false)
     export default {
     name: 'app',
+
+    async mounted() {
+      const user = await this.$store.dispatch({ type: LOAD_USER });
+      console.log(user);
+      
     }
+  }
 </script>
 
 <style lang="scss">
