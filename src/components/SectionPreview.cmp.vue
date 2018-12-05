@@ -8,6 +8,7 @@
     contenteditable="false"
   >
     <edit-section-on-hover
+      class="hover-control"
       @isDraggable="$emit('isDraggable')"
       @notDraggable="$emit('notDraggable')"
       @changeColorToSection="changeColorEmit(section._id)"
@@ -18,8 +19,8 @@
     <b-row>
       <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <drop @drop="emitHandleDrop(arguments[0], idx)">
-          <drag  :transfer-data="{method: 'sort', data: idx}">
-        <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
+          <drag :transfer-data="{method: 'sort', data: idx}">
+            <col-preview @selectedText="emitSelected" :col="col" :isEditMode="isEditMode"></col-preview>
           </drag>
         </drop>
       </b-col>
@@ -40,8 +41,8 @@ export default {
     };
   },
   methods: {
-    emitHandleDrop(dragElement, idx){
-       this.$emit("handleDrop", dragElement, idx);
+    emitHandleDrop(dragElement, idx) {
+      this.$emit("handleDrop", dragElement, idx);
     },
     emitSelected(data) {
       this.$emit("selectedText", data, [this.section._id]);
@@ -91,4 +92,5 @@ export default {
   display: block;
   border: 2px dashed royalblue;
 }
+
 </style>

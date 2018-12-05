@@ -12,7 +12,6 @@ Vue.use(VeeValidate)
 import VueDragDrop from 'vue-drag-drop';
 Vue.use(VueDragDrop);
 // 
-//
 
 // Vue Bootstrap
 import BootstrapVue from 'bootstrap-vue'

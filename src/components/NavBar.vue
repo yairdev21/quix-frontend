@@ -85,16 +85,23 @@
                 </p>
               </drag>
             </b-card-body>
+            <b-card-body>
+              <drag :transfer-data="{method: 'addElement', data:'text'}">
+                <p class="card-text" id="text">
+                  <img src="@/assets/img/textCmp.png">
+                </p>
+              </drag>
+            </b-card-body>
           </b-collapse>
         </b-card>
       </div>
     </transition>
-    <div class="side-bar-btns">
+    <!-- <div class="side-bar-btns">
       <b-button class="menu-icon icon" @click="toShow=!toShow">+</b-button>
       <b-button class="home-icon icon" @click="goHome">
         <i class="fas fa-home"></i>
       </b-button>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -122,20 +129,19 @@ export default {
 }
 
 .sidebar {
+  overflow-y: scroll hidden;
   position: fixed;
-  width: 25%;
+  width: 20vw;
   z-index: 999;
   img {
     width: 100%;
   }
-}
+}  
 
 section {
   display: flex;
 }
-main {
-  width: 80vw;
-}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
@@ -143,7 +149,7 @@ main {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+ {
   transform: translateX(-10px);
   opacity: 0;
 }

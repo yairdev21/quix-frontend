@@ -1,17 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false">
-    <button
-      contenteditable="false"
-      v-if="isEditMode"
-      class="menu-icon icon open-panel-btn"
-      @click="isPanelOpen=!isPanelOpen"
-      title="Add New Element"
-    >
-      <div v-show="!isPanelOpen">
-        <i class="fas fa-plus"></i>
-      </div>
-    </button>
-    <nav-bar v-if="isPanelOpen" @ClosePanel="isPanelOpen=!isPanelOpen" @addSection="addSection" :sections="sections"></nav-bar>
+    <nav-bar @addSection="addSection" :sections="sections"></nav-bar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -112,15 +101,15 @@ export default {
       sectionService.getSectionByName(elementName).then(element => {
         switch (this.site.sections[idx].data.sm) {
           case "12":
-             (this.site.sections[idx].data.sm = "6");
-             break
+            this.site.sections[idx].data.sm = "6";
+            break;
           case "6":
-             (this.site.sections[idx].data.sm = "4");
-             break
+            this.site.sections[idx].data.sm = "4";
+            break;
           case "4":
             return this.$swal(
               "Too many elements in one section. Please drop the element in another section!"
-            )
+            );
         }
         this.site.sections[idx].elements.push(element);
       });
@@ -219,6 +208,29 @@ export default {
 </script>
 
   <style lang="scss" scoped>
+.control-buttons {
+  position: fixed;
+  right: 0;
+  left: 19vw;
+  top: 90%;
+}
+
+nav-bar {
+  top: 0;
+}
+
+@media (max-width: 730px) {
+  .control-buttons {
+    position: fixed;
+    right: 0;
+    left: 19vw;
+    top: 90%;
+  }
+
+  nav-bar {
+    top: 0;
+  }
+}
 .add-section {
   border: 1px dashed black;
 }
@@ -234,9 +246,15 @@ export default {
 }
 
 .open-panel-btn {
+  z-index: 10;
   position: fixed;
   left: 0;
   margin: 20px;
+}
+
+.section-items {
+  float: right;
+  width: 79vw;
 }
 </style>
 
