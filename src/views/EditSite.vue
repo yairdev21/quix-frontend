@@ -193,10 +193,14 @@ export default {
       });
     },
     save() {
-      console.log('THIS USER IS ', user);
       const user = this.$store.getters.getUser
-      
-      let site = this.site;
+     
+  if (!user)   {
+     this.$swal("Please login first")
+    this.$router.push(`/login`)
+    return
+  }
+      const site = {...this.site, user: user.id};
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() => {
