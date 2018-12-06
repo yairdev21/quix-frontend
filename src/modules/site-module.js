@@ -11,7 +11,8 @@ export default {
     },
     getters: {
         getMode: state => state.isEditMode,
-        getIsNew: state => state.isNewSite
+        getIsNew: state => state.isNewSite,
+        getSite: state => state.site
     },
     mutations: {
         setEditMode(state) {
