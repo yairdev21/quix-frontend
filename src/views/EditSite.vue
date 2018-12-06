@@ -217,7 +217,7 @@ export default {
       const user = this.site.user || "templates";
       const url = `${window.location.protocol}//${  
         window.location.host
-      }/${user}/${this.site._id}`;
+      }/sites/${user}/${this.site._id}`;
         this.isEditMode=false
       this.$swal({
         title: "Got It!",
@@ -239,6 +239,8 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
+      console.log('site', this.site);
+      
 
       if(!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false })
