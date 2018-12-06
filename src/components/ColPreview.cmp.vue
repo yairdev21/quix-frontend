@@ -20,7 +20,6 @@
         :data="col.data"
       />
     </div>
-<<<<<<< HEAD
     <component
       :draggable="false"
       :contenteditable="isEditMode"
@@ -29,9 +28,6 @@
       :data="col.data"
     />
   </div>
-=======
-  </section>
->>>>>>> 5a6a4caa4d0b88cd7ba519f2a78fe782bfae2225
 </template>
 
 <script>
