@@ -7,7 +7,7 @@
     :style="{ height: '100%' }"
   >
     <div contenteditable="false" class="edit-video">
-      <button id="link" v-show="isVideo" @click.stop="changeLink" title="Change Link">
+      <button id="link" v-if="isVideo &isEditMode" @click.stop="changeLink" title="Change Link">
         <i class="fas fa-link"></i>
       </button>
     </div>
@@ -26,6 +26,10 @@ import { EventBus } from "@/event-bus.js";
 
 export default {
   props: {
+    isEditMode: {
+      type: Boolean,
+      required: true
+    },
     data: {
       type: Object,
       required: true
@@ -37,7 +41,7 @@ export default {
       isVideo: false
     };
   },
-  computed: {
+  methods: {
     changeLink() {
       this.$swal({
         title: "Enter youtube link",
@@ -67,6 +71,7 @@ export default {
     }
   },
   created() {
+    document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("getVideoUrl", () => {
       if (this.video) return;
       else this.changeLink();

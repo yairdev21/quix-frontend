@@ -1,5 +1,5 @@
 <template>
-  <div class="side-bar-btns" contenteditable="false">
+  <div class="side-bar-btns" contenteditable="false" :style="middle">
     <button class="home-icon icon" @click="goHome">
       <i class="fas fa-home"></i>
     </button>
@@ -17,7 +17,7 @@
         <i class="fas fa-globe"></i>
       </div>
     </button>
-    <div class="background"></div>
+    <div class="background" :style="middle"></div>
   </div>
 </template>
 
@@ -39,6 +39,11 @@ export default {
     },
     publish() {
       this.$emit("publish");
+    }
+  },
+  computed:{
+    middle(){
+      if (!this.isEditMode) return {"left": "0"}
     }
   }
 };
@@ -64,15 +69,19 @@ export default {
   position: fixed;
   margin: 0 auto;
   right: 0;
-  left: 0;
+  left: 18vw;
+  top: 90%;
   width: 45%;
 }
-@media (max-width: 600px) {
+@media (max-width: 730px) {
   .side-bar-btns {
+    position: fixed;
+    right: 0;
+    left: 18vw;
+    top: 85%;
     width: fit-content;
   }
 }
-
 .publish-icon:hover {
   cursor: pointer;
   color: black;

@@ -1,6 +1,7 @@
 <template>
   <section>
     <div class="card-container">
+    <!-- <img src="@/assets/img/newsite.png" width=100/> -->
       <sites-template-preview :site="site"  v-for="site of sites" :key="site.id"></sites-template-preview>
     </div>
   </section>
