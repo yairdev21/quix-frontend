@@ -52,8 +52,7 @@ export default {
   },
   created() {
     document.designMode = "off";
-    if (this.isNewImg) this.data.src="";
-   
+    if (this.isNewImg) this.data.src = "";
   }
 };
 </script> 
@@ -61,6 +60,10 @@ export default {
 <style lang="scss" scoped>
 .img {
   width: 150px;
+  height: 85vh;
+}
+.img-div {
+  object-fit: contain;
 }
 // #uploadSmallImg{
 //      position: absolute;

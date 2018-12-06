@@ -242,7 +242,10 @@
         {
             "name": "image",
             "type": "image",
-            "style": {},
+            "style": {
+                "max-height": "75vh",
+                "padding":"3vw"
+            },
             "data": {
                 "src": ""
             }
