@@ -7,7 +7,7 @@
     :style="{ height: '100%' }"
   >
     <div contenteditable="false" class="edit-video">
-      <button id="link" v-if="isVideo &isEditMode" @click.stop="changeLink" title="Change Link">
+      <button id="link" v-show="isVideo" @click.stop="changeLink" title="Change Link">
         <i class="fas fa-link"></i>
       </button>
     </div>
@@ -23,13 +23,8 @@
 <script>
 import { ID } from "../../services/utils.js";
 import { EventBus } from "@/event-bus.js";
-
 export default {
   props: {
-    isEditMode: {
-      type: Boolean,
-      required: true
-    },
     data: {
       type: Object,
       required: true
@@ -41,7 +36,7 @@ export default {
       isVideo: false
     };
   },
-  methods: {
+  computed: {
     changeLink() {
       this.$swal({
         title: "Enter youtube link",
@@ -66,12 +61,10 @@ export default {
       const videoId = video.match(
         /(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/
       );
-
       return videoId[1];
     }
   },
   created() {
-    document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("getVideoUrl", () => {
       if (this.video) return;
       else this.changeLink();
@@ -87,7 +80,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
-.edit-video button:hover {
+.edit-video i:hover {
   cursor: pointer;
   color: brown;
   background: white;
@@ -103,7 +96,6 @@ export default {
   transition: 0.3 ease;
   border-radius: 3px;
 }
-
 .edit-video {
   padding-right: 1rem;
   z-index: 4;

@@ -24,6 +24,7 @@
               @deleteElement="$emit('deleteElement', idx, section._id)"
               @selectedText="emitSelected"
               :col="col"
+              :idx="section"
               :isEditMode="isEditMode"
             ></col-preview>
           </drag>
@@ -47,9 +48,6 @@ export default {
     };
   },
   methods: {
-    checkIsFocus() {
-      this.isFocus = false;
-    },
     emitHandleDrop(dragElement, idx) {
       this.$emit("handleDrop", dragElement, idx);
     },

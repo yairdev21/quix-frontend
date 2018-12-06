@@ -240,13 +240,14 @@
             ]
         },
         {
-            "type": "img",
-            "name": "img",
-            "data": {
-                "sm": "4"
-            },
+            "name": "image",
+            "type": "image",
             "style": {
-           
+                "max-height": "75vh",
+                "padding":"3vw"
+            },
+            "data": {
+                "src": ""
             }
         }
     ]

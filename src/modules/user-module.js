@@ -11,8 +11,6 @@ export default {
     },
     mutations: {
         [LOAD_USER](state, { user }) {
-            console.log('mutate',user);
-
             state.user = user
         },
         

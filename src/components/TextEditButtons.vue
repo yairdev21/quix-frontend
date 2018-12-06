@@ -65,10 +65,10 @@ export default {
       this.isMenu = false;
       if (data) {
         this.fontCurrSize += data;
-      }
+      } 
       this.getText().filter(text => {
         text.style = {
-          "font-size": `calc(${this.fontCurrSize}*1vw`,
+          "font-size": `calc(${this.fontCurrSize}*4vw`,
           color: `${this.fontColor}`,
           "font-family": `${this.fontFamily[this.fontNum]}`
         };

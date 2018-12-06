@@ -1,5 +1,10 @@
 <template>
   <section>
+    <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
+      <button title="Delete" @click="$emit('deleteElement')" @mouseover="isShowControl=true">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
     <div
       @mouseup="editText"
       class="left-side"
@@ -7,17 +12,15 @@
       @mouseover.stop="isShowControl=true"
       @mouseleave="(isShowControl=false)"
     >
-      <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
-        <button title="Delete" @click="$emit('deleteElement')">
-          <i class="far fa-trash-alt"></i>
-        </button>
-      </div>
       <component
         :draggable="false"
         :contenteditable="isEditMode"
         :isEditMode="isEditMode"
+        :isNewImg="isNewImg"
         :is="element"
         :data="col.data"
+        :col="col"
+        :idx="idx"
       />
     </div>
   </section>
@@ -36,9 +39,9 @@ import HeaderEl from "../components/elements/header-fixed.el";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["col", "isEditMode"],
+  props: ["col", "isEditMode", "idx"],
   data() {
-    return { isShowControl: false };
+    return { isShowControl: false, isNewImg: false };
   },
   components: {
     TextElement: TxtEl,
@@ -67,7 +70,8 @@ export default {
       switch (this.col.type) {
         case "text":
           return "TextElement";
-        case "img":
+        case "image":
+          this.isNewImg = true;
           return `ImgElement`;
         case "map":
           return `MapElement`;
@@ -114,7 +118,7 @@ export default {
 }
 
 .trash-btn i {
-  position: sticky;
+  position: relative;
   font-size: 20px;
 }
 .trash-btn {
@@ -122,7 +126,7 @@ export default {
   flex-direction: row;
   align-content: center;
   position: absolute;
-  right: 0;
+  right: 15px;
   top: 0;
 }
 .left-side {
