@@ -6,6 +6,7 @@
       <h1 hidden>Quix</h1>
     </section>
     <section class="template-section">
+      <br>
       <h1 class="title">Choose a template and start Quixly!</h1>
       <card-section></card-section>
       <home-footer class="footer"></home-footer>
@@ -75,6 +76,14 @@ section {
     }
   }
 }
+.title {
+  font-weight: bold;  
+  bottom: 0;
+  background: transparent;
+   background: transparent;
+  font-family: Palatino;
+
+}
 .template-section {
   background-image: url("../assets/img/7968.jpg");
   background-attachment: fixed;
@@ -82,10 +91,6 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
 }
-h1 {
-  background: transparent;
-  font-family: Palatino;
-  // margin-top: 30px;
-}
+
 
 </style>

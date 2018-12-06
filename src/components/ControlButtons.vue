@@ -12,12 +12,12 @@
     <button v-else class="preview-icon icon" @click="preview">
       <i class="far fa-eye"></i>
     </button>
-    <button class="publish-icon" @click="publish">
+    <button class="publish-icon icon" @click="publish">
       <div>
-        <i class="fas fa-globe fa-2x"></i>
+        <i class="fas fa-globe"></i>
       </div>
-      <div>PUBLISH!</div>
     </button>
+    <div class="background"></div>
   </div>
 </template>
 
@@ -44,28 +44,36 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.background {
+  position: fixed;
+  margin: 0 auto;
+  margin-bottom: 500px;
+  padding-bottom: 80px;
+  background: gray;
+  opacity: 0.4;
+  z-index: -1;
+  left:18vw;
+  right: 0;
+  width: 36%;
+  height: 200px;
+  top: 90%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 .side-bar-btns {
   position: fixed;
+  margin: 0 auto;
   right: 0;
   left: 0;
-  top: 85%;
+  width: 45%;
 }
-
-.publish-icon {
-  color: whitesmoke;
-  border-radius: 5px;
-  background: #17a2b8;
-  position: absolute;
-  right: 0;
-  bottom: 5px;
-  width: 80px;
-  height: 60px;
-  margin: 30px;
-  transition: 0.3s;
+@media (max-width: 600px) {
+  .side-bar-btns {
+    width: fit-content;
+  }
 }
 
 .publish-icon:hover {
-  transform: scale(1.2);
   cursor: pointer;
   color: black;
 }

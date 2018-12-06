@@ -65,7 +65,7 @@ export default {
   transition: 0.3 ease;
   cursor: pointer;
   color: black;
-  background: #1cc5df;
+  background: white;
 }
 .edit-on-hover button {
   border: none;
@@ -74,7 +74,7 @@ export default {
   width: 30px;
   margin: 2px;
   z-index: 1;
-  background: #17a2b8;
+  background:rgb(56, 44, 44);
   transition: 0.3 ease;
   margin-top: 0.2rem;
   border-radius: 3px;

@@ -88,7 +88,7 @@ export default {
   background: white;
 }
 .edit-video button {
-  position: relative;
+  position: absolute;
   border: none;
   color: white;
   height: 30px;
