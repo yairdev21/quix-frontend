@@ -46,6 +46,9 @@ export default {
   padding: 10px;
   background: linear-gradient(to right, #ece9e6, #ffffff);
   color: #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #nav .logo {
   cursor: pointer;

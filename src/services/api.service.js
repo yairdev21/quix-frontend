@@ -32,9 +32,9 @@ export const getUser = async () => {
         config.headers.Authorization = `bearer ${localStorage.getItem('jwt')}`;
 
         const {data} = await axios.get(baseUrl, config);
-        const { email, userName, id, image } = data;
+        const { email, userName, id, image, sites } = data;
 
-        return { email, userName, id, image };
+        return { email, userName, id, image, sites };
     }
 
     return undefined;
