@@ -176,7 +176,7 @@ export default {
               this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
               
               this.$awn.success(`Welcome ${userName}`);
-              this.$router.history.push('/');
+              this.$router.history.go(-1);
 
           } catch({ response }) {
             console.log(response);
@@ -187,21 +187,21 @@ export default {
     },
 
     async createUser() {
-      console.log('in', this.$refs.fileInput.files.length > 0);
-      
       const { email, userName, password } = this.userInfo;
       const user = { email, userName, password };
+
       if(this.$refs.fileInput.files.length > 0) {
         this.isLoading = true;
         const { url } = await uploadImg(this.$refs.fileInput);
         this.isLoading = false;
         user.image = url;
       }
+      
       const { image, id } = await signUp(user);
       
       this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
       this.$awn.success(`Welcome ${userName}`);
-      this.$router.history.push('/');
+      this.$router.history.go(-1);
     }
   },
 

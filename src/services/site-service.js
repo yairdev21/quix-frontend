@@ -7,7 +7,9 @@ const BASE_URL =  process.env.NODE_ENV === 'production' ?
 export default {
     query,
     getSiteById,
-    saveSite
+    saveSite,
+    saveNewSite,
+    updateSite
 }
 
 function query() {
@@ -21,17 +23,33 @@ function getSiteById(siteId) {
 }
 
 function saveSite(site) {
-    if (site._id) {
+    if (!site.date) {
         return axios.put(`${BASE_URL}/sites/${site._id}`, site)
     } else {
         return axios.post(`${BASE_URL}`, site)
     }
 }
 
-const _clearIds = (site) => {
-    const surtedSite = Object.assign({}, (site) => {
-        return [...site].filter( site => Object.keys(site)[0] !== '_id')
-    })
-    
-    return surtedSite;
+function updateSite(site) {
+    return axios.put(`${BASE_URL}/sites/${site._id}`, site)
+}
+
+function saveNewSite(site) {
+    const Site = _clearIds(site);
+
+    return axios.post(`${BASE_URL}/sites/${site.user}`, Site);
+}
+
+function _clearIds(obj) {
+    return Object.keys(obj).reduce((acc, next) => {
+         if (typeof obj[next] === 'object') {
+             acc[next] = _clearIds(obj[next])
+         } else {
+             if (next !== '_id') {
+                 acc[next] = obj[next]
+             }
+         }
+
+         return acc;         
+     },{})
 }

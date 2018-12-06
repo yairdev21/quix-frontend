@@ -56,6 +56,7 @@ import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
+import { SET_IS_NEW } from '../modules/site-module.js';
 
 export default {
   data() {
@@ -195,11 +196,12 @@ export default {
     save() {
       const user = this.$store.getters.getUser
      
-  if (!user)   {
-     this.$swal("Please login first")
-    this.$router.push(`/login`)
-    return
-  }
+      if (!user)   {
+        this.$swal("Please login first")
+        this.$router.push(`/login`)
+        return
+      }
+
       const site = {...this.site, user: user.id};
       this.$store
         .dispatch({ type: "saveSite", site })
@@ -231,7 +233,7 @@ export default {
     }
   },
   created() {
-        document.designMode = this.checkEditMode ? "on" : "off";
+    document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
     this.isEditMode = this.$store.getters.getMode;
@@ -239,6 +241,14 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
+
+      if(!!this.site.user) {
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false })
+      } else {
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true })
+      }
+
+      console.log(this.$store.getters.getIsNew);
     });
   },
   mounted() {
@@ -252,10 +262,10 @@ export default {
       section[0].style["background-size"] = "cover";
       return section[0].style;
     }),
-      EventBus.$on("deleteElement", id => {
-        // this.deleteElement(id.elementName, id.sectionId);
-      }),
-      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false)
+      // EventBus.$on("deleteElement", id => {
+      //   // this.deleteElement(id.elementName, id.sectionId);
+      // }),
+      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false);   
   },
   components: {
     SectionPreview,

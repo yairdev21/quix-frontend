@@ -1,14 +1,17 @@
 import siteService from '../services/site-service.js'
+export const SET_IS_NEW = 'SET_IS_NEW';
 
 export default {
     state: {
         isEditMode: false,
         site: null,
         sites: [],
-        editMode: null
+        editMode: null,
+        isNewSite: undefined
     },
     getters: {
-        getMode: state => state.isEditMode
+        getMode: state => state.isEditMode,
+        getIsNew: state => state.isNewSite
     },
     mutations: {
         setEditMode(state) {
@@ -29,6 +32,9 @@ export default {
         },
         loadSites(state, { sites }) {
             state.sites = sites
+        },
+        [SET_IS_NEW](state, {isNewSite}) {
+            state.isNewSite = isNewSite
         }
     },
     actions: {
@@ -55,7 +61,9 @@ export default {
                 })
         },
         saveSite(context, { site }) {
-            siteService.saveSite(site)
+            const isNew = (context.isNewSite) ? 'saveSite' : 'updateSite';
+
+            siteService[isNew](site)
                 .then(site => {
                     context.commit({
                         type: 'saveSite',
@@ -64,7 +72,15 @@ export default {
                 })
 
         },
-        updateSite(context, { site }) {
+        // updateSite(context, { site }) {
+        // },
+        [SET_IS_NEW]({ commit }, { isNewSite }) {
+            console.log(isNewSite);
+            
+            commit({
+                type: SET_IS_NEW,
+                isNewSite
+            })
         }
     }
 }
