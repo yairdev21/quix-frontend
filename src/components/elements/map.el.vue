@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      isGettingLocation: true,
+      isGettingLocation:true,
       id: ID(),
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
@@ -48,10 +48,10 @@ export default {
 
   methods: {
     setPlace(place) {
+      console.log(place);
       this.currentPlace = place;
       this.isGettingLocation = false;
-      this.addMarker()
-
+      this.addMarker();
     },
     addMarker() {
       if (this.currentPlace) {
@@ -73,6 +73,6 @@ export default {
         };
       });
     }
-  },
+  }
 };
 </script>
