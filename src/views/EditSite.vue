@@ -55,6 +55,8 @@ import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
+import { ID } from "../services/utils.js";
+
 
 export default {
   data() {
@@ -98,6 +100,7 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
+        section._id= ID()
         if (idx === -1) this.site.sections.splice(0, 1, section);
         else this.site.sections.splice(idx, 0, section);
       });
@@ -225,6 +228,11 @@ export default {
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
+    }
+  },
+  computed:{
+    key(){
+      return ID()
     }
   },
   created() {
