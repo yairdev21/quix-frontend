@@ -1,5 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -7,7 +8,6 @@
       :section="textEditSection"
       :editedParagraph="editedParagraph"
     ></text-edit-buttons>
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
@@ -106,7 +106,6 @@ export default {
     },
     addElement(elementName, idx) {
       sectionService.getSectionByName(elementName).then(element => {
-        console.log(this.site.sections[idx].data.sm);
         switch (this.site.sections[idx].data.sm) {
           case "12":
             this.site.sections[idx].data.sm = "6";
@@ -135,7 +134,9 @@ export default {
       EventBus.$emit("link-for-edit", link);
       this.isModalVisible = false;
     },
-    deleteElement(colIdx, sectionIdx) {
+    deleteElement(colIdx, sectionId) {
+      let section = this.getSectionById(sectionId)
+      let sectionIdx = this.site.sections.indexOf(...section)
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -192,6 +193,7 @@ export default {
         .then(() => this.$swal("Saved!"));
     },
     preview() {
+      this.save();
       let siteId = this.$route.params.siteId;
       this.$router.push(`/preview/${siteId}`);
     },
@@ -226,10 +228,13 @@ export default {
     });
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
-      return (section[0].style["background-image"] = `url(${url})`);
+      section[0].style["background-image"] = `url(${url}`
+      section[0].style["background-size"] = "cover"
+      return section[0].style
     }),
       EventBus.$on("deleteElement", id => {
-        this.deleteElement(id.elementName, id.sectionId);
+        console.log('ELEMENT', id);
+        // this.deleteElement(id.elementName, id.sectionId);
       });
   },
   components: {
@@ -243,14 +248,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.section-list {
+  background: whitesmoke;
+}
 main {
   overflow-y: hidden;
 }
 .control-buttons {
   position: fixed;
+  margin: 0 auto;
   right: 0;
   left: 18vw;
-  top:85%;
+  top: 90%;
 }
 
 @media (max-width: 730px) {

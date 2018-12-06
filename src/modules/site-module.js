@@ -27,6 +27,9 @@ export default {
         }) {
             state.site = site;
         },
+        loadSites(state, { sites }) {
+            state.sites = sites
+        }
     },
     actions: {
         query(context) {
@@ -51,20 +54,20 @@ export default {
                     return site
                 })
         },
-        saveSite(context, {site}) {
+        saveSite(context, { site }) {
             siteService.saveSite(site)
                 .then(site => {
-                    
+                    console.log(site);
+
                     context.commit({
                         type: 'saveSite',
                         site
                     })
                 })
-                
+
         },
-        updateSite(context, {site}){ 
-            console.log(site);
-            
+        updateSite(context, { site }) {
+            console.log("updating: ", site);
         }
     }
 }

@@ -138,9 +138,10 @@
 
 <script>
 import uploadImg from '@/services/cloudinary.service.js';
-import {logIn} from '@/services/api.service.js';
+import {logIn, signUp} from '@/services/api.service.js';
 import MainHeader from "@/components/MainHeader.vue";
 import Spinner from 'vue-simple-spinner'
+export const LOAD_USER = 'LOAD_USER';
 
 export default {
   components: {
@@ -161,19 +162,46 @@ export default {
   },
 
   methods: {
-    async handleSubmit() {
-      const { email, password } = this.userInfo;
+      async handleSubmit() {
+        if(this.errors.items.length > 0) return;
+        
+        if( this.isNewRagistrater ) {
+          this.createUser();
+        } else {
+            try {
+              const { email, password } = this.userInfo;
+              const data  = await logIn({ email, password });
+              const { userName, id, image } = data;
 
-      const res = await logIn({ email, password });
-      console.log(res);
+              this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
+              
+              this.$awn.success(`Welcome ${userName}`);
+              this.$router.history.push('/');
+
+          } catch({ response }) {
+            console.log(response);
+            
+            this.$awn.warning( response.data.message );
+          }
+        }
     },
 
     async createUser() {
-      this.isLoading = true;
-      const imgUrl = await uploadImg(this.$refs.fileInput);
-      this.isLoading = false;
-
-      console.log(imgUrl)
+      console.log('in', this.$refs.fileInput.files.length > 0);
+      
+      const { email, userName, password } = this.userInfo;
+      const user = { email, userName, password };
+      if(this.$refs.fileInput.files.length > 0) {
+        this.isLoading = true;
+        const { url } = await uploadImg(this.$refs.fileInput);
+        this.isLoading = false;
+        user.image = url;
+      }
+      const { image, id } = await signUp(user);
+      
+      this.$store.commit({ type: LOAD_USER, user: { userName, email, id, image } });
+      this.$awn.success(`Welcome ${userName}`);
+      this.$router.history.push('/');
     }
   },
 
@@ -208,7 +236,9 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
+
+@import '~vue-awesome-notifications/dist/styles/style.scss';
 .custom-file {
   margin-bottom: 10px;
 }

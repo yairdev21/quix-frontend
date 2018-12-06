@@ -10,12 +10,36 @@ const config = {
 const baseUrl = `http://localhost:3000/user/`
 
 export const logIn = async (user) => {    
-    try {
-        const URL = `${baseUrl}signin`;
-        const res = await axios.post(URL, queryString.stringify(user), config);
+    const URL = `${baseUrl}signin`;
+    const { data } = await axios.post(URL, queryString.stringify(user), config)
+
+    localStorage.setItem('jwt', data.token);
+
+    return data;
+}
+
+export const signUp = async (user) => {        
+    const URL = `${baseUrl}signup`;
+    const { data } = await axios.post(URL, queryString.stringify(user), config);
     
-        return res;
-    } catch (err) {
-        console.log(err);        
+    localStorage.setItem('jwt', data.token);
+
+    return data;
+}
+
+export const getUser = async () => {
+    if(localStorage.getItem('jwt')) {
+        config.headers.Authorization = `bearer ${localStorage.getItem('jwt')}`;
+
+        const {data} = await axios.get(baseUrl, config);
+        const { email, userName, id, image } = data;
+
+        return { email, userName, id, image };
     }
+
+    return undefined;
+}
+
+export const logOut = async () => {    
+    localStorage.removeItem('jwt')
 }
