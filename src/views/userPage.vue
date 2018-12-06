@@ -27,12 +27,9 @@
           </div>
         </div>
         <p class="desc">Welcome! this is your oun profile, here you can see all your active sites.</p>
-        <!-- <div class="social">
-          <i class="fa fa-facebook-square" aria-hidden="true"></i>
-          <i class="fa fa-twitter-square" aria-hidden="true"></i>
-          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
-          <i class="fa fa-tumblr-square" aria-hidden="true"></i>
-        </div> -->
+        <div class="social">
+            <router-link to="/" active-class="link">Go back</router-link>
+        </div>
       </div>
       <div class="right col-lg-8">
         <ul class="nav">
@@ -69,12 +66,31 @@
         computed: {
             user() {
                 return this.$store.getters.getUser;
+            },
+            style() {
+                return {
+                    'background-image': 'url(".")'
+                }
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+.link {
+    text-decoration: none;
+    border: none;
+    padding: 0 5px;
+    color: #bbb;
+    border-bottom: 1px solid  #bbb;
+    transition: all .3s;
+}
+.link:hover {
+    text-decoration: none;
+    color: #fff;
+    border-bottom: none;
+    background-color: #bbb;
+}
 
 .container {
   max-width: 1250px;
@@ -87,11 +103,10 @@
 
 header {
   background: #eee;
-  background-image: url("https://image.noelshack.com/fichiers/2017/38/2/1505775648-annapurnafocus.jpg");
+  background-image: url("https://res.cloudinary.com/dqk87o0m5/image/upload/v1544083456/quix/userCover.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-color: red;
   height: 250px;
 }
 
