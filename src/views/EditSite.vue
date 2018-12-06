@@ -191,7 +191,6 @@ export default {
     },
     save() {
       const user = this.$store.getters.getUser
-     
       if (!user)   {
         this.$swal("Please login first")
         this.$router.push(`/login`)
@@ -199,8 +198,6 @@ export default {
       }
 
       const site = {...this.site, user: user.id};
-      console.log(this.site);
-      
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() => {

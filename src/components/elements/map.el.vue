@@ -21,6 +21,7 @@
 
 <script>
 import { ID } from "../../services/utils.js";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   name: "GoogleMap",
@@ -70,16 +71,14 @@ export default {
       });
     },
     savePlace(place) {
-      console.log(this.col);
-      //   let site = this.$store.getters.getSite;
-      //   let El = site.sections[this.idx].elements.filter(element => {
-      //     console.log(element);
-
-      //     return element._id === this.col._id;
-      //   });
-      //   console.log(El);
-      //   El[0].data.place = place;
-      //   this.$store.dispatch("saveSite", site);
+      // let site = this.$store.getters.getSite;
+      // console.log('idx is ' , this.idx._id);
+      // let section = site.elements.filter(section=> console.log(section)
+      // )
+      // let El = site.sections[2].elements.filter(element => {
+      //   return element._id === this.col._id;
+      // });
+      // El[0].data.place = place;
     }
   },
   mounted() {
