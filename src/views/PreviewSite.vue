@@ -5,9 +5,6 @@
         <section-preview :section="section" :isEditMode="isEditMode"></section-preview>
       </div>
     </div>
-    <section v-else class="add-section section-item">
-      <h1 class="text-center">Drag & Drop New Section Here</h1>
-    </section>
     <control-buttons
       v-if="!isPublishMode"
       @edit="edit"
