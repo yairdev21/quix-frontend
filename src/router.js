@@ -30,13 +30,14 @@ export default new Router({
       name: 'preview',
       component: PreviewSite
     },
+    
     {
       path: '/edit/:siteId?',
       name: 'edit',
       component: EditSite
     },{
-      path: '/:user/:siteName',
-      name: 'userPreview',
+      path: '/:user/:siteId',
+      name: 'published',
       component: PreviewSite
     },{
       path: '/userboard',

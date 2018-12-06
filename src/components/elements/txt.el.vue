@@ -23,7 +23,7 @@ export default {
     };
   },
   created() {
-    document.designMode = this.checkEditMode;
+    document.designMode = this.checkEditMode ? "on" : "off";
   },
   methods: {
     getContent() {

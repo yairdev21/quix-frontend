@@ -57,8 +57,6 @@ export default {
         saveSite(context, { site }) {
             siteService.saveSite(site)
                 .then(site => {
-                    console.log(site);
-
                     context.commit({
                         type: 'saveSite',
                         site
@@ -67,7 +65,6 @@ export default {
 
         },
         updateSite(context, { site }) {
-            console.log("updating: ", site);
         }
     }
 }

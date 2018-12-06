@@ -8,7 +8,12 @@
     <section v-else class="add-section section-item">
       <h1 class="text-center">Drag & Drop New Section Here</h1>
     </section>
-    <control-buttons @edit="edit" @publish="publish" :isEditMode="isEditMode	"></control-buttons>
+    <control-buttons
+      v-if="!isPublishMode"
+      @edit="edit"
+      @publish="publish"
+      :isEditMode="isEditMode	"
+    ></control-buttons>
   </div>
 </template>
 
@@ -22,7 +27,8 @@ export default {
     return {
       site: null,
       sections: null,
-      isEditMode: null
+      isEditMode: null,
+      isPublishMode: null
     };
   },
   methods: {
@@ -37,16 +43,25 @@ export default {
         .then(() => alert("site saved!"));
     },
     publish() {
-      EventBus.$emit("publish");
+      const user = this.site.user || "templates";
+      const url = `${window.location.protocol}//${
+        window.location.host
+      }/${user}/${this.site._id}`;
+      this.$swal({
+        title: "Got It!",
+        html: `<span>Your Website link is:  <a href='${url}' target="_blank">${url}</a></span>`
+
+      });
     }
   },
   created() {
     this.$store.commit("setPreviewMode");
     this.isEditMode = this.$store.getters.getMode;
     let siteId = this.$route.params.siteId;
+    let user = this.$route.params.user;
+    this.isPublishMode = user ? true : false;
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
-      console.log(this.site);
       this.sections = res.sections;
     });
   },

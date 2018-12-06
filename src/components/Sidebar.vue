@@ -89,6 +89,11 @@
                   <img src="@/assets/img/textCmp.png">
                 </p>
               </drag>
+              <drag :transfer-data="{method: 'addElement', data:'img'}">
+                <p class="card-text" id="img">
+                  <img src="@/assets/img/image.png">
+                </p>
+              </drag>
             </b-card-body>
           </b-collapse>
         </b-card>

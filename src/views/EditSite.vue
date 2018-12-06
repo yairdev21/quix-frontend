@@ -31,11 +31,13 @@
           </drop>
         </div>
       </div>
-      <section v-else class="add-section section-item">
-        <h1 class="text-center">Drag & Drop New Section Here</h1>
-      </section>
+      <drop v-else @drop="handleDrop(arguments[0], -1)">
+        <section class="add-section section-item">
+          <h1 class="text-center">Drag & Drop New Section Here</h1>
+        </section>
+      </drop>
+
       <control-buttons
-        class="control-buttons"
         :isEditMode="isEditMode"
         @preview="preview"
         @save="save"
@@ -97,7 +99,8 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        this.site.sections.splice(idx, 0, section);
+        if (idx === -1) this.site.sections.splice(0, 1, section);
+        else this.site.sections.splice(idx, 0, section);
       });
     },
     addElement(elementName, idx) {
@@ -110,9 +113,12 @@ export default {
             this.site.sections[idx].data.sm = "4";
             break;
           case "4":
-            return this.$swal(
+            this.isEditMode = false;
+            this.$swal(
               "Too many elements in one section. Please drop the element in another section!"
             );
+            this.isEditMode = true;
+            break;
         }
         this.site.sections[idx].elements.push(element);
       });
@@ -131,8 +137,9 @@ export default {
       this.isModalVisible = false;
     },
     deleteElement(colIdx, sectionId) {
-      let section = this.getSectionById(sectionId)
-      let sectionIdx = this.site.sections.indexOf(...section)
+      let section = this.getSectionById(sectionId);
+      let sectionIdx = this.site.sections.indexOf(...section);
+      this.isEditMode = false;
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -152,10 +159,12 @@ export default {
             case "4":
               this.site.sections[sectionIdx].data.sm = "6";
           }
-        } else return;
+          this.isEditMode = true;
+        } else return (this.isEditMode = true);
       });
     },
     deleteSection(sectionId) {
+      this.isEditMode = false;
       this.$swal({
         title: "Delete section?",
         text: "It will be gone FOREVER!",
@@ -168,7 +177,8 @@ export default {
           let section = this.getSectionById(sectionId);
           let Idx = this.site.sections.indexOf(...section);
           this.site.sections.splice(Idx, 1);
-        } else return;
+          this.isEditMode = true;
+        } else return (this.isEditMode = true);
       });
     },
     changeSectionColor(sectionId) {
@@ -183,24 +193,37 @@ export default {
       });
     },
     save() {
-      let site = this.site;
+      const user = this.$store.getters.getUser
+     
+  if (!user)   {
+     this.$swal("Please login first")
+    this.$router.push(`/login`)
+    return
+  }
+      const site = {...this.site, user: user.id};
       this.$store
         .dispatch({ type: "saveSite", site })
-        .then(() => this.$swal("Saved!"));
+        .then(() => {
+            this.isEditMode=false
+          this.$swal("Saved!")
+            this.isEditMode=true
+          });
     },
     preview() {
-      this.save();
       let siteId = this.$route.params.siteId;
       this.$router.push(`/preview/${siteId}`);
     },
     publish() {
-      const url = `${window.location.protocol}//${
+      const user = this.site.user || "templates";
+      const url = `${window.location.protocol}//${  
         window.location.host
-      }/preview/${this.site._id}`;
+      }/${user}/${this.site._id}`;
+        this.isEditMode=false
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
+        this.isEditMode=true
     },
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
@@ -208,6 +231,7 @@ export default {
     }
   },
   created() {
+        document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
     this.isEditMode = this.$store.getters.getMode;
@@ -224,15 +248,14 @@ export default {
     });
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
-      section[0].style["background-image"] = `url(${url}`
-      section[0].style["background-size"] = "cover"
-      console.log(section[0].style);
-      return section[0].style
+      section[0].style["background-image"] = `url(${url}`;
+      section[0].style["background-size"] = "cover";
+      return section[0].style;
     }),
       EventBus.$on("deleteElement", id => {
-        console.log('ELEMENT', id);
         // this.deleteElement(id.elementName, id.sectionId);
-      });
+      }),
+      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false)
   },
   components: {
     SectionPreview,
@@ -251,29 +274,14 @@ export default {
 main {
   overflow-y: hidden;
 }
-.control-buttons {
-  position: fixed;
-  margin: 0 auto;
-  right: 0;
-  left: 18vw;
-  top: 90%;
-}
 
-@media (max-width: 730px) {
-  .control-buttons {
-    position: fixed;
-    right: 0;
-    left: 18vw;
-    top: 85%;
-  }
-}
 .add-section {
   border: 1px dashed black;
 }
 
 .section-items {
   float: right;
-  width: 80vw;
+  width: 78.5vw;
 }
 </style>
 

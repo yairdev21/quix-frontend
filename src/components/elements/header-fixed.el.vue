@@ -1,7 +1,7 @@
 <template>
-  <section class="header">
-    <h1 v-text="content" class="header-title"></h1>
-    <p v-text="content" class="header-text"></p>
+  <section class="header" @mouseleave="saveText">
+    <p v-text="content" class="header-title text"></p>
+    <p v-text="content" class="header-text text"></p>
   </section>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     };
   },
   created() {
-    document.designMode = this.checkEditMode;
+    document.designMode = this.checkEditMode ? "on" : "off";
   },
   methods: {
     getContent() {
