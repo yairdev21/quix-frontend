@@ -1,6 +1,7 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+       <sidebar  @addSection="addSection" :sections="sections"></sidebar>
+
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -11,25 +12,28 @@
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
-        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-          <drop @drop="handleDrop(arguments[0], idx)">
-            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
-              <section-preview
-                @isDraggable="isDraggable=true"
-                @notDraggable="isDraggable=false"
-                @emitHandleDrop="handleDrop"
-                @colorChangeSectionId="changeSectionColor"
-                @imgChangeSectionId="changeSectionImg"
-                :showModal="showModal"
-                @selectedText="editSelectedText"
-                @deleteSection="deleteSection"
-                @deleteElement="deleteElement"
-                :section="section"
-                :isEditMode="isEditMode"
-              ></section-preview>
-            </drag>
-          </drop>
-        </div>
+        <transition-group name="list-complete" tag="p">
+          <div class="section-items list-complete-item" v-for="(section,idx) in sections" :key="section._id">
+            <drop @drop="handleDrop(arguments[0], idx)">
+              <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+                <section-preview
+                 
+                  @isDraggable="isDraggable=true"
+                  @notDraggable="isDraggable=false"
+                  @emitHandleDrop="handleDrop"
+                  @colorChangeSectionId="changeSectionColor"
+                  @imgChangeSectionId="changeSectionImg"
+                  :showModal="showModal"
+                  @selectedText="editSelectedText"
+                  @deleteSection="deleteSection"
+                  @deleteElement="deleteElement"
+                  :section="section"
+                  :isEditMode="isEditMode"
+                ></section-preview>
+              </drag>
+            </drop>
+          </div>
+        </transition-group>
       </div>
       <drop v-else @drop="handleDrop(arguments[0], -1)">
         <section class="add-section section-item">
@@ -37,12 +41,7 @@
         </section>
       </drop>
 
-      <control-buttons
-        :isEditMode="isEditMode"
-        @preview="preview"
-        @save="save"
-        @publish="publish"
-      ></control-buttons>
+      <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     </main>
   </div>
 </template>
@@ -193,21 +192,19 @@ export default {
       });
     },
     save() {
-      const user = this.$store.getters.getUser
-     
-  if (!user)   {
-     this.$swal("Please login first")
-    this.$router.push(`/login`)
-    return
-  }
-      const site = {...this.site, user: user.id};
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => {
-            this.isEditMode=false
-          this.$swal("Saved!")
-            this.isEditMode=true
-          });
+      const user = this.$store.getters.getUser;
+
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
+      }
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
+        this.$swal("Saved!");
+        this.isEditMode = true;
+      });
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -215,15 +212,15 @@ export default {
     },
     publish() {
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${  
+      const url = `${window.location.protocol}//${
         window.location.host
       }/${user}/${this.site._id}`;
-        this.isEditMode=false
+      this.isEditMode = false;
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
-        this.isEditMode=true
+      this.isEditMode = true;
     },
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
@@ -231,7 +228,7 @@ export default {
     }
   },
   created() {
-        document.designMode = this.checkEditMode ? "on" : "off";
+    document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
     this.isEditMode = this.$store.getters.getMode;
@@ -255,7 +252,7 @@ export default {
       EventBus.$on("deleteElement", id => {
         // this.deleteElement(id.elementName, id.sectionId);
       }),
-      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false)
+      EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
     SectionPreview,
@@ -268,6 +265,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
 .section-list {
   background: whitesmoke;
 }
