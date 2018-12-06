@@ -224,7 +224,10 @@ export default {
     });
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
-      return (section[0].style["background-image"] = `url(${url})`);
+      section[0].style["background-image"] = `url(${url}`
+      section[0].style["background-size"] = "cover"
+      console.log(section[0].style);
+      return section[0].style
     }),
       EventBus.$on("deleteElement", id => {
         console.log('ELEMENT', id);

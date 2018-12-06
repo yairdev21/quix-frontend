@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   min-height: 55vh;
-  background-size: auto;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;

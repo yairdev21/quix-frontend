@@ -233,7 +233,10 @@
             "data": {
                 "sm": "12"
             },
-            "style": {},
+            "style": {
+                "background":"cover",
+                "background-repeat":"norepeat"
+            },
             "elements": [{
                     "type": "header",
                     "name": "header",
