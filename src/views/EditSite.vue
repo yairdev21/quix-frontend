@@ -193,6 +193,9 @@ export default {
       });
     },
     save() {
+      console.log('THIS USER IS ', user);
+      const user = this.$store.getters.getUser
+      
       let site = this.site;
       this.$store
         .dispatch({ type: "saveSite", site })
@@ -208,7 +211,7 @@ export default {
     },
     publish() {
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${
+      const url = `${window.location.protocol}//${  
         window.location.host
       }/${user}/${this.site._id}`;
         this.isEditMode=false
@@ -246,7 +249,6 @@ export default {
       return section[0].style;
     }),
       EventBus.$on("deleteElement", id => {
-        console.log("ELEMENT", id);
         // this.deleteElement(id.elementName, id.sectionId);
       }),
       EventBus.$on('closeEditorButtons', () => this.isTextSelected=false)

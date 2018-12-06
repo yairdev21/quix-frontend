@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     checkIsFocus() {
-      console.log(this.isFocus);
       this.isFocus = false;
     },
     emitHandleDrop(dragElement, idx) {
