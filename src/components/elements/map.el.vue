@@ -71,16 +71,15 @@ export default {
     },
     savePlace(place) {
       console.log(this.col);
-      
-    //   let site = this.$store.getters.getSite;
-    //   let El = site.sections[this.idx].elements.filter(element => {
-    //     console.log(element);
-        
-    //     return element._id === this.col._id;
-    //   });
-    //   console.log(El);
-    //   El[0].data.place = place;
-    //   this.$store.dispatch("saveSite", site);
+      //   let site = this.$store.getters.getSite;
+      //   let El = site.sections[this.idx].elements.filter(element => {
+      //     console.log(element);
+
+      //     return element._id === this.col._id;
+      //   });
+      //   console.log(El);
+      //   El[0].data.place = place;
+      //   this.$store.dispatch("saveSite", site);
     }
   },
   mounted() {

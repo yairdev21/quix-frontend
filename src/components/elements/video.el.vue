@@ -80,7 +80,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
-.edit-video button:hover {
+.edit-video i:hover {
   cursor: pointer;
   color: brown;
   background: white;

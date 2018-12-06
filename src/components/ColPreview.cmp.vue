@@ -1,5 +1,10 @@
 <template>
   <section>
+    <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
+      <button title="Delete" @click="$emit('deleteElement')" @mouseover="isShowControl=true">
+        <i class="far fa-trash-alt"></i>
+      </button>
+    </div>
     <div
       @mouseup="editText"
       class="left-side"
@@ -7,11 +12,6 @@
       @mouseover.stop="isShowControl=true"
       @mouseleave="(isShowControl=false)"
     >
-      <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
-        <button title="Delete" @click="$emit('deleteElement')">
-          <i class="far fa-trash-alt"></i>
-        </button>
-      </div>
       <component
         :draggable="false"
         :contenteditable="isEditMode"
@@ -38,7 +38,7 @@ import HeaderEl from "../components/elements/header-fixed.el";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["col", "isEditMode","idx"],
+  props: ["col", "isEditMode", "idx"],
   data() {
     return { isShowControl: false };
   },
@@ -116,7 +116,7 @@ export default {
 }
 
 .trash-btn i {
-  position: sticky;
+  position: relative;
   font-size: 20px;
 }
 .trash-btn {
@@ -124,7 +124,7 @@ export default {
   flex-direction: row;
   align-content: center;
   position: absolute;
-  right: 0;
+  right: 15px;
   top: 0;
 }
 .left-side {
