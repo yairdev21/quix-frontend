@@ -18,6 +18,8 @@
         :isEditMode="isEditMode"
         :is="element"
         :data="col.data"
+        :col="col"
+        :idx="idx"
       />
     </div>
   </section>
@@ -36,7 +38,7 @@ import HeaderEl from "../components/elements/header-fixed.el";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["col", "isEditMode"],
+  props: ["col", "isEditMode","idx"],
   data() {
     return { isShowControl: false };
   },

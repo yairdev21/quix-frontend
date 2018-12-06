@@ -13,8 +13,6 @@ document.body.setAttribute('spellcheck', false)
 
     async mounted() {
       const user = await this.$store.dispatch({ type: LOAD_USER });
-      console.log(user);
-      
     }
   }
 </script>

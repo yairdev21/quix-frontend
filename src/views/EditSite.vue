@@ -201,6 +201,8 @@ export default {
     return
   }
       const site = {...this.site, user: user.id};
+      console.log(this.site);
+      
       this.$store
         .dispatch({ type: "saveSite", site })
         .then(() => {

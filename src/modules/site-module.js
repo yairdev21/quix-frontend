@@ -8,7 +8,8 @@ export default {
         editMode: null
     },
     getters: {
-        getMode: state => state.isEditMode
+        getMode: state => state.isEditMode,
+        getSite: state => state.site
     },
     mutations: {
         setEditMode(state) {

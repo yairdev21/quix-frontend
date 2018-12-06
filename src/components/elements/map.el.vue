@@ -31,9 +31,10 @@ export default {
       getMap: false
     }
   },
+  props: ["idx", "col"],
   data() {
     return {
-      isGettingLocation:true,
+      isGettingLocation: true,
       id: ID(),
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
@@ -41,14 +42,9 @@ export default {
       currentPlace: null
     };
   },
-
-  mounted() {
-    this.geolocate();
-  },
-
   methods: {
     setPlace(place) {
-      console.log(place);
+      this.savePlace(place);
       this.currentPlace = place;
       this.isGettingLocation = false;
       this.addMarker();
@@ -72,7 +68,23 @@ export default {
           lng: position.coords.longitude
         };
       });
+    },
+    savePlace(place) {
+      console.log(this.col);
+      
+    //   let site = this.$store.getters.getSite;
+    //   let El = site.sections[this.idx].elements.filter(element => {
+    //     console.log(element);
+        
+    //     return element._id === this.col._id;
+    //   });
+    //   console.log(El);
+    //   El[0].data.place = place;
+    //   this.$store.dispatch("saveSite", site);
     }
+  },
+  mounted() {
+    this.geolocate();
   }
 };
 </script>
