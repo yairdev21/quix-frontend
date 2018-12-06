@@ -31,9 +31,12 @@
           </drop>
         </div>
       </div>
-      <section v-else class="add-section section-item">
+      <drop v-else @drop="handleDrop(arguments[0], -1)">
+      <section  class="add-section section-item">
         <h1 class="text-center">Drag & Drop New Section Here</h1>
       </section>
+      </drop>
+
       <control-buttons
         class="control-buttons"
         :isEditMode="isEditMode"
@@ -97,7 +100,8 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        this.site.sections.splice(idx, 0, section);
+        if (idx === -1) this.site.sections.splice(0, 1, section);
+        else this.site.sections.splice(idx, 0, section);
       });
     },
     addElement(elementName, idx) {
@@ -192,8 +196,9 @@ export default {
       this.$router.push(`/preview/${siteId}`);
     },
     publish() {
+      const user = this.site.user || 'templates'
       const url =
-        `${window.location.protocol}//${window.location.host}/preview/${this.site._id}`
+        `${window.location.protocol}//${window.location.host}/${user}/${this.site._id}`
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
@@ -262,7 +267,7 @@ main {
 
 .section-items {
   float: right;
-  width: 80vw;
+  width: 78.5vw;
 }
 </style>
 

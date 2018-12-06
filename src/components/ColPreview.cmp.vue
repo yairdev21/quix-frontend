@@ -14,8 +14,8 @@
     <component
       :draggable="false"
       :contenteditable="isEditMode"
-      :isEditMode="isEditMode"
       :is="element"
+      :isEditMode="isEditMode"
       :data="col.data"
     />
   </div>

@@ -6,8 +6,9 @@
     class="embed-container"
     :style="{ height: '100%' }"
   >
+  {{isEditMode}}
     <div contenteditable="false" class="edit-video">
-      <button id="link" v-show="isVideo" @click.stop="changeLink" title="Change Link">
+      <button id="link" v-if="isVideo &isEditMode" @click.stop="changeLink" title="Change Link">
         <i class="fas fa-link"></i>
       </button>
     </div>
@@ -26,6 +27,10 @@ import { EventBus } from "@/event-bus.js";
 
 export default {
   props: {
+    isEditMode:{
+       type: Boolean,
+        required: true
+    },
     data: {
       type: Object,
       required: true

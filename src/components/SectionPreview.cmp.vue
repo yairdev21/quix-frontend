@@ -101,11 +101,12 @@ export default {
 .section-item {
   padding: 3rem;
   padding-top: 2rem;
-  resize: vertical;
   overflow: hidden;
   border: 2px solid transparent;
 }
+
 .isBorder {
+  resize: vertical;
   display: block;
   border: 2px dashed royalblue;
 }
