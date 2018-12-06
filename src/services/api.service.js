@@ -6,8 +6,9 @@ const config = {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
 };
-
-const baseUrl = `http://localhost:3000/user/`
+const baseUrl =  process.env.NODE_ENV === 'production' ?
+    '/user/' :
+    '//localhost:3000/user/';
 
 export const logIn = async (user) => {    
     const URL = `${baseUrl}signin`;
