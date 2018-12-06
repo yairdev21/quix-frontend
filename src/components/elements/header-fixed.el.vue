@@ -1,7 +1,7 @@
 <template>
-  <section class="header" @mouseleave="saveText">
-    <p v-text="content" class="header-title text"></p>
-    <p v-text="content" class="header-text text"></p>
+  <section class="header">
+    <p v-text="content" class="header-title text" @mouseleave="saveText"></p>
+    <p v-text="content" class="header-text text" @mouseleave="saveText"></p>
   </section>
 </template>
 
