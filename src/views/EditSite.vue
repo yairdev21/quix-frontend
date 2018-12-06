@@ -232,7 +232,8 @@ export default {
       EventBus.$on("deleteElement", id => {
         console.log('ELEMENT', id);
         // this.deleteElement(id.elementName, id.sectionId);
-      });
+      }),
+      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false)
   },
   components: {
     SectionPreview,

@@ -3,22 +3,12 @@
     <div id="contact-form" class="contact-form">
       <h1 class="contact-form_title">Contact Us</h1>
       <div class="separator"></div>
-
       <div v-if="isSending" class="loading">Sending...</div>
-
-      <form class="form" type="submit" onSubmit="onSubmit">
-        <input
-          placeholder="Name"
-          type="text"
-          autocomplete="off"
-        >
-        <input
-          placeholder="E-mail"
-          type="email"
-          autocomplete="off"
-        >
+      <form  @click="emitCloseModal" class="form" type="submit" onSubmit="onSubmit">
+        <input placeholder="Name" type="text" autocomplete="off">
+        <input placeholder="E-mail" type="email" autocomplete="off">
         <textarea name="message" rows="4" placeholder="Message"></textarea>
-        <button class="button" type="submit" >Send</button>
+        <button class="button" type="submit">Send</button>
       </form>
     </div>
   </div>
@@ -26,6 +16,7 @@
 
 <script>
 import { ID } from "../../services/utils.js";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: {
@@ -40,9 +31,9 @@ export default {
 
   data() {
     return {
-      isSending:false,
+      isSending: false,
       id: ID(),
-      content: this.data.text,
+      content: this.data.text
     };
   },
 
@@ -57,10 +48,13 @@ export default {
     saveText(ev) {
       this.content = ev.target.innerText;
     },
-    onSubmit(){
-      console.log('sent');
-      return
+    onSubmit() {
+      console.log("sent");
+      return;
       // this.$swal('Email Sent Biatch')
+    },
+    emitCloseModal() {
+EventBus.$emit('closeEditorButtons')
     }
   }
 };
@@ -108,19 +102,18 @@ export default {
 .contact-form .button {
   background: #93d667;
   border: solid 1px #da552f;
-  color: white; 
+  color: white;
   cursor: pointer;
   padding: 10px 50px;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.3s
+  transition: 0.3s;
 }
 
 .contact-form .button:hover {
   background: #ea532a;
   border: solid 1px #ea532a;
-  transition: 0.3s
-
+  transition: 0.3s;
 }
 
 .contact-form input[type="email"],

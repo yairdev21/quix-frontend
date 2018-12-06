@@ -12,7 +12,6 @@ export default function uploadImg(imgInput) {
 
 function doUploadImg(imgInput, onSuccess) {
     const formData = new FormData();
-
     formData.append('file', imgInput.files[0])
     formData.append('upload_preset', 'djzbvtlj');
 
