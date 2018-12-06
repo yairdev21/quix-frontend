@@ -89,6 +89,9 @@ export default {
       else return { visibility: "hidden" };
     }
   },
+  created() {
+    document.designMode = this.checkEditMode ? "on" : "off";
+  },
   components: {
     ColPreview,
     EditSectionOnHover

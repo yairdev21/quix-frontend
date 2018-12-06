@@ -20,14 +20,7 @@
         :data="col.data"
       />
     </div>
-    <component
-      :draggable="false"
-      :contenteditable="isEditMode"
-      :is="element"
-      :isEditMode="isEditMode"
-      :data="col.data"
-    />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -66,14 +59,10 @@ export default {
     }
   },
   created() {
-    document.designMode = this.checkEditMode;
+    document.designMode = this.checkEditMode ? "on" : "off";
   },
 
   computed: {
-    checkEditMode() {
-      if (this.isEditMode) return "on";
-      else return "off";
-    },
     element() {
       switch (this.col.type) {
         case "text":

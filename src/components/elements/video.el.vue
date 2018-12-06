@@ -6,7 +6,6 @@
     class="embed-container"
     :style="{ height: '100%' }"
   >
-  {{isEditMode}}
     <div contenteditable="false" class="edit-video">
       <button id="link" v-if="isVideo &isEditMode" @click.stop="changeLink" title="Change Link">
         <i class="fas fa-link"></i>
@@ -27,9 +26,9 @@ import { EventBus } from "@/event-bus.js";
 
 export default {
   props: {
-    isEditMode:{
-       type: Boolean,
-        required: true
+    isEditMode: {
+      type: Boolean,
+      required: true
     },
     data: {
       type: Object,
@@ -42,7 +41,7 @@ export default {
       isVideo: false
     };
   },
-  computed: {
+  methods: {
     changeLink() {
       this.$swal({
         title: "Enter youtube link",
@@ -72,6 +71,7 @@ export default {
     }
   },
   created() {
+    document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("getVideoUrl", () => {
       if (this.video) return;
       else this.changeLink();
