@@ -27,3 +27,11 @@ function saveSite(site) {
         return axios.post(`${BASE_URL}`, site)
     }
 }
+
+const _clearIds = (site) => {
+    const surtedSite = Object.assign({}, (site) => {
+        return [...site].filter( site => Object.keys(site)[0] !== '_id')
+    })
+    
+    return surtedSite;
+}
