@@ -26,19 +26,14 @@
                 @deleteElement="deleteElement"
                 :section="section"
                 :isEditMode="isEditMode"
+                :sectionIdx="idx"
               ></section-preview>
             </drag>
           </drop>
         </div>
       </div>
-     
 
-      <control-buttons
-        :isEditMode="isEditMode"
-        @preview="preview"
-        @save="save"
-        @publish="publish"
-      ></control-buttons>
+      <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     </main>
   </div>
 </template>
@@ -52,7 +47,7 @@ import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
-import { SET_IS_NEW } from '../modules/site-module.js';
+import { SET_IS_NEW } from "../modules/site-module.js";
 
 export default {
   data() {
@@ -190,21 +185,19 @@ export default {
       });
     },
     save() {
-      const user = this.$store.getters.getUser
-      if (!user)   {
-        this.$swal("Please login first")
-        this.$router.push(`/login`)
-        return
+      const user = this.$store.getters.getUser;
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
       }
 
-      const site = {...this.site, user: user.id};
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => {
-            this.isEditMode=false
-          this.$swal("Saved!")
-            this.isEditMode=true
-          });
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
+        this.$swal("Saved!");
+        this.isEditMode = true;
+      });
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -212,15 +205,15 @@ export default {
     },
     publish() {
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${  
+      const url = `${window.location.protocol}//${
         window.location.host
       }/sites/${user}/${this.site._id}`;
-        this.isEditMode=false
+      this.isEditMode = false;
       this.$swal({
         title: "Got It!",
         html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
-        this.isEditMode=true
+      this.isEditMode = true;
     },
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
@@ -236,13 +229,12 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-      console.log('site', this.site);
-      
+      console.log("site", this.site);
 
-      if(!!this.site.user) {
-        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false })
+      if (!!this.site.user) {
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
-        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true })
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true });
       }
 
       console.log(this.$store.getters.getIsNew);
@@ -253,16 +245,21 @@ export default {
       let section = this.getSectionById(this.sectionId);
       return (section[0].style.background = color);
     });
+
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       section[0].style["background-image"] = `url(${url}`;
       section[0].style["background-size"] = "cover";
       return section[0].style;
-    }),
-      // EventBus.$on("deleteElement", id => {
-      //   // this.deleteElement(id.elementName, id.sectionId);
-      // }),
-      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false);   
+    });
+    EventBus.$on("updateLocation",(place, sectionIdx) =>{
+      console.log('mmmaaapppp', place, sectionIdx);
+      
+      // (this.site.section[sectionIdx]= false)
+
+    })
+
+    EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
     SectionPreview,

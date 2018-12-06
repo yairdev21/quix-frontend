@@ -30,9 +30,14 @@ export default {
       type: Object,
       required: true,
       getMap: false
+    },
+    sectionIdx: {
+      type: Number
+    },
+    col: {
+      type: Object
     }
   },
-  props: ["idx", "col"],
   data() {
     return {
       isGettingLocation: true,
@@ -71,6 +76,8 @@ export default {
       });
     },
     savePlace(place) {
+      EventBus.$emit("updateLocation", place, this.sectionIdx);
+
       // let site = this.$store.getters.getSite;
       // console.log('idx is ' , this.idx._id);
       // let section = site.elements.filter(section=> console.log(section)

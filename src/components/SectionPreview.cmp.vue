@@ -24,7 +24,7 @@
               @deleteElement="$emit('deleteElement', idx, section._id)"
               @selectedText="emitSelected"
               :col="col"
-              :idx="section"
+              :sectionIdx="sectionIdx"
               :isEditMode="isEditMode"
             ></col-preview>
           </drag>
@@ -39,7 +39,7 @@ import EditSectionOnHover from "@/components/EditSectionOnHover.cmp.vue";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["section", "isEditMode"],
+  props: ["section", "isEditMode", "sectionIdx"],
   data() {
     return {
       text: "",
