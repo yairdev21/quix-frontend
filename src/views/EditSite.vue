@@ -31,12 +31,6 @@
           </drop>
         </div>
       </div>
-      <drop v-else @drop="handleDrop(arguments[0], -1)">
-        <section class="add-section section-item">
-          <h1 class="text-center">Drag & Drop New Section Here</h1>
-        </section>
-      </drop>
-
       <control-buttons
         :isEditMode="isEditMode"
         @preview="preview"

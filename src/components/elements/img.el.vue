@@ -1,6 +1,6 @@
 <template>
   <div contenteditable="false" class="img-div">
-    <img :src="data.src" alt="image" contenteditable="false">
+    <img :src="data.src" class="img" alt="image" contenteditable="false">
     <input v-if="!isSrc" type="file" id="uploadSmallImg" ref="img" @change="getUrl">
   </div>
 </template>
@@ -59,8 +59,9 @@ export default {
 
 <style lang="scss" scoped>
 .img {
-  width: 150px;
-  height: 85vh;
+  width: 300px;
+  height: 300px;
+// transform: scale(0.8)
 }
 .img-div {
   object-fit: contain;

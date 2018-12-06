@@ -1,18 +1,18 @@
 <template>
   <div class="side-bar-btns" contenteditable="false" :style="middle">
-    <button class="home-icon icon" @click="goHome">
+    <button class="home-icon icon" @click="goHome" title="Home" > 
       <i class="fas fa-home"></i>
     </button>
     <button class="save-icon icon" @click="save">
       <i class="far fa-save"></i>
     </button>
-    <button v-if="!isEditMode" class="edit-icon icon" @click="edit">
+    <button v-if="!isEditMode" class="edit-icon icon" @click="edit" title="Edit" >
       <i class="far fa-edit" @click="edit"></i>
     </button>
-    <button v-else class="preview-icon icon" @click="preview">
+    <button v-else class="preview-icon icon" @click="preview" title="Preview">
       <i class="far fa-eye"></i>
     </button>
-    <button class="publish-icon icon" @click="publish">
+    <button class="publish-icon icon" @click="publish" title="PUBLISH!">
       <div>
         <i class="fas fa-globe"></i>
       </div>
