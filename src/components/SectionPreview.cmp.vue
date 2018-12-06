@@ -47,9 +47,6 @@ export default {
     };
   },
   methods: {
-    checkIsFocus() {
-      this.isFocus = false;
-    },
     emitHandleDrop(dragElement, idx) {
       this.$emit("handleDrop", dragElement, idx);
     },

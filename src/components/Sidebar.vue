@@ -89,7 +89,7 @@
                   <img src="@/assets/img/textCmp.png">
                 </p>
               </drag>
-              <drag :transfer-data="{method: 'addElement', data:'img'}">
+              <drag :transfer-data="{method: 'addElement', data:'image'}">
                 <p class="card-text" id="img">
                   <img src="@/assets/img/image.png">
                 </p>
@@ -105,7 +105,6 @@
 <script>
 export default {
   name: "Sidebar",
-  props: ["sections"],
   methods: {
     goHome() {
       this.$router.push("/");

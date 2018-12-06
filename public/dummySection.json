@@ -240,13 +240,11 @@
             ]
         },
         {
-            "type": "img",
-            "name": "img",
+            "name": "image",
+            "type": "image",
+            "style": {},
             "data": {
-                "sm": "4"
-            },
-            "style": {
-           
+                "src": ""
             }
         }
     ]

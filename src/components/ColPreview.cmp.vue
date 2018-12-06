@@ -16,6 +16,7 @@
         :draggable="false"
         :contenteditable="isEditMode"
         :isEditMode="isEditMode"
+        :isNewImg="isNewImg"
         :is="element"
         :data="col.data"
       />
@@ -38,7 +39,7 @@ import { EventBus } from "@/event-bus.js";
 export default {
   props: ["col", "isEditMode"],
   data() {
-    return { isShowControl: false };
+    return { isShowControl: false, isNewImg: false };
   },
   components: {
     TextElement: TxtEl,
@@ -67,7 +68,8 @@ export default {
       switch (this.col.type) {
         case "text":
           return "TextElement";
-        case "img":
+        case "image":
+          this.isNewImg = true;
           return `ImgElement`;
         case "map":
           return `MapElement`;
