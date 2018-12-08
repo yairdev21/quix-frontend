@@ -30,9 +30,14 @@ export default {
       type: Object,
       required: true,
       getMap: false
+    },
+    sectionIdx: {
+      type: Number
+    },
+    col: {
+      type: Object
     }
   },
-  props: ["idx", "col"],
   data() {
     return {
       isGettingLocation: true,
@@ -71,14 +76,7 @@ export default {
       });
     },
     savePlace(place) {
-      // let site = this.$store.getters.getSite;
-      // console.log('idx is ' , this.idx._id);
-      // let section = site.elements.filter(section=> console.log(section)
-      // )
-      // let El = site.sections[2].elements.filter(element => {
-      //   return element._id === this.col._id;
-      // });
-      // El[0].data.place = place;
+      EventBus.$emit("updateLocation", place, this.sectionIdx);
     }
   },
   mounted() {

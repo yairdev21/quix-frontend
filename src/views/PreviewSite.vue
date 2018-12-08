@@ -5,9 +5,6 @@
         <section-preview :section="section" :isEditMode="isEditMode"></section-preview>
       </div>
     </div>
-    <section v-else class="add-section section-item">
-      <h1 class="text-center">Drag & Drop New Section Here</h1>
-    </section>
     <control-buttons
       v-if="!isPublishMode"
       @edit="edit"
@@ -44,15 +41,16 @@ export default {
     },
     publish() {
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${
+      const url = `${window.location.protocol}//${  
         window.location.host
-      }/${user}/${this.site._id}`;
+      }/sites/${user}/${this.site._id}`;
+        this.isEditMode=false
       this.$swal({
         title: "Got It!",
-        html: `<span>Your Website link is:  <a href='${url}' target="_blank">${url}</a></span>`
-
+        html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
       });
-    }
+        this.isEditMode=true
+    },
   },
   created() {
     this.$store.commit("setPreviewMode");

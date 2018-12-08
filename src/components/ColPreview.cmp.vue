@@ -20,7 +20,7 @@
         :is="element"
         :data="col.data"
         :col="col"
-        :idx="idx"
+        :sectionIdx="sectionIdx"
       />
     </div>
   </section>
@@ -39,7 +39,7 @@ import HeaderEl from "../components/elements/header-fixed.el";
 import { EventBus } from "@/event-bus.js";
 
 export default {
-  props: ["col", "isEditMode", "idx"],
+  props: ["col", "isEditMode", "sectionIdx"],
   data() {
     return { isShowControl: false, isNewImg: false };
   },
