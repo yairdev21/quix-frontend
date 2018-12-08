@@ -15,11 +15,6 @@
                   <img src="@/assets/img/header.png">
                 </p>
               </drag>
-              <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
-                <p class="card-text" id="emptySection">
-                  <img src="@/assets/img/emptySection.png">
-                </p>
-              </drag>
               <drag :transfer-data="{method: 'addSection', data:'oneColsSection'}">
                 <p class="card-text" id="oneColsSection">
                   <img src="@/assets/img/oneSection.png">
@@ -47,6 +42,11 @@
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body>
+              <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
+                <p class="card-text" id="emptySection">
+                  <img src="@/assets/img/emptySection.png">
+                </p>
+              </drag>
               <drag :transfer-data="{method: 'addSection', data:'oneColsSectionWithMap'}">
                 <p class="card-text" id="oneColsSectionWithMap">
                   <img src="@/assets/img/section w maps.png">
@@ -119,15 +119,19 @@ section {
   background: black;
 }
 
+.sidebar p:hover {
+  color: black;
+  transition: 0.3s ease;
+}
+
 .sidebar img:hover {
-cursor: grab
+  transition: 0.3s ease;
 }
 .sidebar img:active {
-cursor: grabbing  
+  cursor: grabbing;
 }
 .sidebar {
-  width: 18vw;
-
+  width: 19vw;
   position: fixed;
   z-index: 999;
   img {
@@ -135,6 +139,10 @@ cursor: grabbing
   }
 }
 
+.card-body {
+  max-height: 50vh;
+  overflow: auto;
+}
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }

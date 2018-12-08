@@ -1,6 +1,7 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
     <sidebar @addSection="addSection" :sections="sections"></sidebar>
+    <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -32,8 +33,6 @@
           </drop>
         </div>
       </div>
-
-      <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     </main>
   </div>
 </template>
@@ -254,7 +253,7 @@ export default {
         element => element.name === "map"
       );
       El[0].data.place = Place;
-      let site = this.site
+      let site = this.site;
       this.$store.dispatch({ type: "saveSite", site });
     });
 
@@ -275,6 +274,7 @@ export default {
   background: whitesmoke;
 }
 main {
+  margin: 1rem;
   overflow-y: hidden;
 }
 
@@ -283,6 +283,7 @@ main {
 }
 
 .section-items {
+  padding-left: 1rem;
   float: right;
   width: 78.5vw;
 }
