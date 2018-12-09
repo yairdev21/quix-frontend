@@ -11,26 +11,28 @@
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
-        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-          <drop @drop="handleDrop(arguments[0], idx)">
-            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
-              <section-preview
-                @isDraggable="isDraggable=true"
-                @notDraggable="isDraggable=false"
-                @emitHandleDrop="handleDrop"
-                @colorChangeSectionId="changeSectionColor"
-                @imgChangeSectionId="changeSectionImg"
-                :showModal="showModal"
-                @selectedText="editSelectedText"
-                @deleteSection="deleteSection"
-                @deleteElement="deleteElement"
-                :section="section"
-                :isEditMode="isEditMode"
-                :sectionIdx="idx"
-              ></section-preview>
-            </drag>
-          </drop>
-        </div>
+        <transition-group name="list-complete" tag="p">
+          <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+            <drop @drop="handleDrop(arguments[0], idx)">
+              <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+                <section-preview
+                  @isDraggable="isDraggable=true"
+                  @notDraggable="isDraggable=false"
+                  @emitHandleDrop="handleDrop"
+                  @colorChangeSectionId="changeSectionColor"
+                  @imgChangeSectionId="changeSectionImg"
+                  :showModal="showModal"
+                  @selectedText="editSelectedText"
+                  @deleteSection="deleteSection"
+                  @deleteElement="deleteElement"
+                  :section="section"
+                  :isEditMode="isEditMode"
+                  :sectionIdx="idx"
+                ></section-preview>
+              </drag>
+            </drop>
+        </transition-group>
+          </div>
       </div>
 
       <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
@@ -48,6 +50,8 @@ import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
 import { SET_IS_NEW } from "../modules/site-module.js";
+import { ID } from '../services/utils.js'
+
 
 export default {
   data() {
@@ -91,8 +95,8 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        if (idx === -1) this.site.sections.splice(0, 1, section);
-        else this.site.sections.splice(idx, 0, section);
+        section._id = ID()
+        this.site.sections.splice(idx, 0, section);
       });
     },
     addElement(elementName, idx) {
