@@ -138,7 +138,7 @@ section {
   height: 100%;
   width: 19vw;
   position: fixed;
-  z-index: 999;
+  z-index: 10;
   img {
     width: 100%;
   }

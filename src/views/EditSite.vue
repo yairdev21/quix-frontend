@@ -143,7 +143,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-            break;
+              break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -205,34 +205,32 @@ export default {
     publish() {
       const user = this.$store.getters.getUser;
 
-      if (!user)   {
-        this.$swal("Please login first")
-        this.$router.push(`/login`)
-        return
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
       }
 
-      const site = {...this.site, user: user.id};
+      const site = { ...this.site, user: user.id };
       console.log(this.site);
-      
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => {
-          this.isEditMode=false
+
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
       });
 
-      const url = `${window.location.protocol}//${  
-        window.location.host
-      }/${user.id}/${this.site._id}`;
+      const url = `${window.location.protocol}//${window.location.host}/${
+        user.id
+      }/${this.site._id}`;
 
-      this.isEditMode=false
+      this.isEditMode = false;
       this.$swal({
         title: "Got It!",
         html: `<span><a href='${url}'>Your new Website is ready</a></span>`
       });
 
-      this.isEditMode=true
+      this.isEditMode = true;
     },
-    
+
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -247,7 +245,6 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-
       if (!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
