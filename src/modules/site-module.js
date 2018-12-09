@@ -65,24 +65,15 @@ export default {
                     return site
                 })
         },
-        saveSite({
-            commit
-        }, {
-            site
-        }) {
+        async saveSite({ commit }, { site}) {
             const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';
+            const Site = await siteService[func](site);
 
-            siteService[func](site)
-                .then(site => {
-                    commit({
-                        type: 'saveSite',
-                        site
-                    })
-                })
+            commit({type: 'saveSite', Site});
 
+            return Site._id;
         },
-        // updateSite(context, { site }) {
-        // },
+
         [SET_IS_NEW]({
             commit
         }, {
