@@ -220,7 +220,7 @@ this.isEditMode=true
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site });
     },
-    publish() {
+    async publish() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -230,11 +230,9 @@ this.isEditMode=true
       }
 
       const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site }).then(() => {
-        this.isEditMode = false;
-      });
+      const siteId = await this.$store.dispatch({ type: "saveSite", site })
 
-      const route = `/sites/${user.id}/${this.site._id}`;
+      const route = `/sites/${user.id}/${siteId}`;
 
       this.$swal({
         title: "Site Saved!",
