@@ -17,7 +17,6 @@
             <drop @drop="handleDrop(arguments[0], idx)">
               <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
                 <section-preview
-                 
                   @isDraggable="isDraggable=true"
                   @notDraggable="isDraggable=false"
                   @emitHandleDrop="handleDrop"
