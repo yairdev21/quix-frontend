@@ -83,8 +83,8 @@ export default {
     };
   },
   methods: {
-    edit(){
-this.isEditMode=true
+    edit() {
+      this.isEditMode = true;
     },
     handleDrop(dragElement, idx) {
       this.isDraggable = false;
@@ -206,7 +206,7 @@ this.isEditMode=true
     },
 
     preview() {
-      this.isEditMode= false
+      this.isEditMode = false;
       // let siteId = this.$route.params.siteId;
       // this.$router.push(`/preview/${siteId}`);
     },
@@ -230,7 +230,7 @@ this.isEditMode=true
       }
 
       const site = { ...this.site, user: user.id };
-      const siteId = await this.$store.dispatch({ type: "saveSite", site })
+      const siteId = await this.$store.dispatch({ type: "saveSite", site });
 
       const route = `/sites/${user.id}/${siteId}`;
 

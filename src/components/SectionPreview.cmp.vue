@@ -1,6 +1,6 @@
 <template>
   <section
-    class="section-item"
+    class="preview-section-item"
     :class="borderStyle"
     @mouseenter="isBorder=!isBorder"
     @mouseleave="isBorder=!isBorder"
