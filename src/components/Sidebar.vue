@@ -127,6 +127,8 @@ section {
 .sidebar img:hover {
   transition: 0.3s ease;
   cursor: grab;
+  transform: scale(1.02);
+  border: 1px solid black
 
 }
 .sidebar img:active {

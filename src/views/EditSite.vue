@@ -143,7 +143,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-              return;
+            break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -271,7 +271,7 @@ export default {
 
 <style lang="scss" scoped>
 .section-list {
-  background: whitesmoke;
+  background: white;
 }
 main {
   margin: 1rem;

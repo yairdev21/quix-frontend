@@ -212,7 +212,9 @@
                     "type": "empty",
                     "name": "div",
                     "data": {},
-                    "style": {}
+                    "style": {
+                        "height":"25vh"
+                    }
                 }
 
             ]
