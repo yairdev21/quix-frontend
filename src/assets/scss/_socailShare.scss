@@ -1,0 +1,18 @@
+.social-share {
+    display: inline-block;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    position: fixed;
+    background-color: white;
+    top: 93vh;
+    background: transparent;
+}
+
+.share-item {
+    margin-right: 2em;
+}
+
+.share-item:hover {
+    cursor: pointer;
+}

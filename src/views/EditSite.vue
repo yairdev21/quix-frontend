@@ -8,7 +8,7 @@
       @save="save"
       @publish="publish"
     ></control-buttons>
-    <social-share v-if="showShareBtns" :url="url"></social-share>
+    <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -83,6 +83,9 @@ export default {
     };
   },
   methods: {
+    edit(){
+this.isEditMode=true
+    },
     handleDrop(dragElement, idx) {
       this.isDraggable = false;
       if (dragElement.method === "addSection")
@@ -203,8 +206,9 @@ export default {
     },
 
     preview() {
-      let siteId = this.$route.params.siteId;
-      this.$router.push(`/preview/${siteId}`);
+      this.isEditMode= false
+      // let siteId = this.$route.params.siteId;
+      // this.$router.push(`/preview/${siteId}`);
     },
     save() {
       const user = this.$store.getters.getUser;

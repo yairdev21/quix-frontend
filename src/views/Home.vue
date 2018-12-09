@@ -8,7 +8,7 @@
     <section class="template-section">
       <br>
       <h1 class="title">Choose a template and start Quixly!</h1>
-      <card-section></card-section>
+      <card-section style="background:transparent"></card-section>
       <home-footer class="footer"></home-footer>
     </section>
   </div>

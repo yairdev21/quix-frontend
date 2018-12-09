@@ -4,7 +4,9 @@
     
   </header>
   <main>
-    <div class="row">
+    <div v-if="!user"></div>
+
+    <div v-else class="row">
       <div class="left col-lg-4">
         <div class="photo-left">
           <img class="photo" :src="user.image"/>
@@ -22,14 +24,16 @@
             <p class="desc-stat">Following</p>
           </div>
           <div class="stat col-xs-4" style="padding-left: 50px;">
-            <p class="number-stat">38</p>
+            <p class="number-stat">{{user.sites.length}}</p>
             <p class="desc-stat">Uploads</p>
           </div>
         </div>
         <p class="desc">Welcome! this is your oun profile, here you can see all your active sites.</p>
         <div class="social">
             <router-link to="/" active-class="link">Go back</router-link>
+            <!-- <button class="link" @click="handleSignOut">Sign Out</button> -->
         </div>
+
       </div>
       <div class="right col-lg-8">
         <ul class="nav">
@@ -62,18 +66,24 @@
 </template>
 
 <script>
-    export default {
-        computed: {
-            user() {
-                return this.$store.getters.getUser;
-            },
-            style() {
-                return {
-                    'background-image': 'url(".")'
-                }
-            }
-        }
+import { GET_USER_SITES } from '../modules/user-module.js';
+
+export default {
+  state() {
+    return {
+      user: null
     }
+  },
+
+  async mounted() {
+    this.user = this.$store.getters.getUser;
+    console.log(this);
+
+    const { data } = (this.user) ? await this.$store.dispatch({ type: GET_USER_SITES, id: this.user.id }) : {};
+    console.log(data);
+    
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -155,7 +165,7 @@ main {
   position: absolute;
   right: calc(50% - 70px);
   top: 75px;
-  background-color: #FFC107;
+  background-color: rgb(106, 255, 7);
   border: 3px solid #fff;
 }
 
@@ -219,7 +229,9 @@ main {
 .social {
   margin: 5px 0 12px 0;
   text-align: center;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   font-size: 20pt;
 }
 
