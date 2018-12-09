@@ -1,0 +1,75 @@
+section {
+    display: flex;
+    background: black;
+  }
+  
+  .sidebar p:hover {
+    color: black;
+    transition: 0.3s ease;
+  }
+  
+  .sidebar img:hover {
+    transition: 0.3s ease;
+    cursor: grab;
+    transform: scale(1.02);
+    border: 1px solid black
+  
+  }
+  .sidebar img:active {
+    cursor: grabbing;
+  }
+  .sidebar {
+    height: 100%;
+    width: 18vw;
+    position: fixed;
+    z-index: 10;
+    img {
+      width: 100%;
+    }
+  }
+  
+  .card-body {
+    max-height: 58vh;
+    overflow: none;
+  }
+  @media (min-width: 1250px) {
+    .card-body {
+      transform: scale(0.9);
+      padding-top: 0;
+      max-height: 60vh;
+      overflow: none;
+    }
+    .sidebar {
+      height: 100%;
+      width: 18vw;
+      position: fixed;
+      z-index: 10;
+      img {
+        width: 100%;
+        margin-bottom: -5px;
+      }
+    }
+  }
+  
+  .slide-fade-enter-active {
+    transition: all 0.3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  .slide-fade-enter,
+  .slide-fade-leave-to {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  .acordion-header {
+    height: 2.6rem;
+    @media (max-width: 680px) {
+      height: 5.5vw;
+    }
+  }
+  .sidebar-names {
+    @media (max-width: 680px) {
+      font-size: 2.5vw;
+    }
+  }

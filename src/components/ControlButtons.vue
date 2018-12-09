@@ -1,40 +1,27 @@
 <template>
   <div class="side-bar-btns" contenteditable="false" :style="middle">
-    <button class="home-icon icon" @click="goHome" title="Home">
+    <button class="home-icon icon" @click="$router.push('/')" title="Home">
       <i class="fas fa-home"></i>
     </button>
-    <button class="save-icon icon" @click="publish" title="Save">
+    <button class="save-icon icon" @click="$emit('publish')" title="Save">
       <i class="far fa-save"></i>
     </button>
-    <button v-if="!isEditMode" class="edit-icon icon" @click="edit" title="Edit">
-      <i class="far fa-edit" @click="edit"></i>
+    <button v-if="!isEditMode" class="edit-icon icon" @click="$emit('edit')" title="Edit">
+      <i class="far fa-edit"></i>
     </button>
-    <button v-else class="preview-icon icon" @click="preview" title="Preview">
+    <button v-else class="preview-icon icon" @click="$emit('preview')" title="Preview">
       <i class="far fa-eye"></i>
     </button>
-    <button class="publish-icon icon" @click="publish" title="Share">
+    <button class="share-icon icon" @click="$emit('share')" title="Share">
       <i class="fas fa-share-alt"></i>
     </button>
+    
   </div>
 </template>
 
 <script>
 export default {
   props: ["isEditMode"],
-  methods: {
-    goHome() {
-      this.$router.push("/");
-    },
-    preview() {
-      this.$emit("preview");
-    },
-    edit() {
-      this.$emit("edit");
-    },
-    publish() {
-      this.$emit("publish");
-    }
-  },
   computed: {
     middle() {
       if (!this.isEditMode) return { left: "0" };

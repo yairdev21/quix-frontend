@@ -3,7 +3,7 @@
     <div v-if="isGettingLocation" contenteditable="false">
       <h2>Add Your Location</h2>
       <label>
-        <gmap-autocomplete @place_changed="setPlace"></gmap-autocomplete>
+        <gmap-autocomplete @place_changed="savePlace"></gmap-autocomplete>
         <button @click="addMarker">Add</button>
       </label>
       <br>
@@ -42,15 +42,19 @@ export default {
     return {
       isGettingLocation: true,
       id: ID(),
-      center: { lat: 45.508, lng: -73.587 },
+      center: {},
       markers: [],
       places: [],
       currentPlace: null
     };
   },
   methods: {
+    savePlace(place) {
+      EventBus.$emit("updateLocation", place, this.sectionIdx);
+      this.setPlace(place);
+    },
     setPlace(place) {
-      this.savePlace(place);
+      console.log('place that is going', place);
       this.currentPlace = place;
       this.isGettingLocation = false;
       this.addMarker();
@@ -74,12 +78,15 @@ export default {
           lng: position.coords.longitude
         };
       });
-    },
-    savePlace(place) {
-      EventBus.$emit("updateLocation", place, this.sectionIdx);
     }
   },
   mounted() {
+    const site = this.$store.getters.getSite;
+    let place = this.col.data.place
+    console.log("THIS IS THE PLACE: ", place);
+    if (this.col.data.place) {
+      this.setPlace(place);
+    }
     this.geolocate();
   }
 };

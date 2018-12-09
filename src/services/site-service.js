@@ -1,7 +1,7 @@
 import axios from "axios";
 const queryString = require('query-string');
 
-const BASE_URL =  process.env.NODE_ENV === 'production' ?
+const BASE_URL = process.env.NODE_ENV === 'production' ?
     '' :
     '//localhost:3000';
 const config = {
@@ -33,9 +33,10 @@ function getSiteById(siteId) {
 
 async function saveSite(site) {
     const Site = _clearIds(site);
-    
-    debugger
-    const { data } = await axios.post(`${BASE_URL}/sites/`, Site);
+
+    const {
+        data
+    } = await axios.post(`${BASE_URL}/sites/`, Site);
     console.log(data);
     return data;
 }
@@ -46,7 +47,6 @@ function updateSite(site) {
 
 function saveNewSite(site) {
     const Site = _clearIds(site);
-
     return axios.post(`${BASE_URL}/sites/${site.user}`, Site);
 }
 
@@ -59,14 +59,14 @@ async function getUserTemplate(id) {
 
 function _clearIds(obj) {
     return Object.keys(obj).reduce((acc, next) => {
-         if (typeof obj[next] === 'object' && Object.prototype.toString.call( obj[next] ) !== '[object Array]') {
-             acc[next] = _clearIds(obj[next])
-         } else {
-             if (next !== '_id') {
-                 acc[next] = obj[next]
-             }
-         }
+        if (typeof obj[next] === 'object' && Object.prototype.toString.call(obj[next]) !== '[object Array]') {
+            acc[next] = _clearIds(obj[next])
+        } else {
+            if (next !== '_id') {
+                acc[next] = obj[next]
+            }
+        }
 
-         return acc;         
-     },{})
+        return acc;
+    }, {})
 }

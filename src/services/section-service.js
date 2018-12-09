@@ -20,9 +20,9 @@ function getSectionByName(sectionName) {
     if (sectionName === "video" || sectionName === "oneColsSectionWithVid") {
         EventBus.$emit("getVideoUrl")
     }
-    const sections = require('../../public/dummySection.json')
+    const dummySections = require('../../public/dummySection.json')
     return new Promise((resolve) => {
-        resolve(sections.find(section => sectionName === section.name))
+        resolve(dummySections.find(section => sectionName === section.name))
     })
 }
 

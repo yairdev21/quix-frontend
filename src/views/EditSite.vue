@@ -1,7 +1,14 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
     <sidebar @addSection="addSection" :sections="sections"></sidebar>
-    <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
+    <control-buttons
+      :isEditMode="isEditMode"
+      @share="showShareBtns = !showShareBtns"
+      @preview="preview"
+      @save="save"
+      @publish="publish"
+    ></control-buttons>
+    <social-share v-if="showShareBtns" :url="url"></social-share>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -12,26 +19,32 @@
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
-        <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
-          <drop @drop="handleDrop(arguments[0], idx)">
-            <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
-              <section-preview
-                @isDraggable="isDraggable=true"
-                @notDraggable="isDraggable=false"
-                @emitHandleDrop="handleDrop"
-                @colorChangeSectionId="changeSectionColor"
-                @imgChangeSectionId="changeSectionImg"
-                :showModal="showModal"
-                @selectedText="editSelectedText"
-                @deleteSection="deleteSection"
-                @deleteElement="deleteElement"
-                :section="section"
-                :isEditMode="isEditMode"
-                :sectionIdx="idx"
-              ></section-preview>
-            </drag>
-          </drop>
-        </div>
+        <transition-group name="list-complete" tag="p">
+          <div
+            class="section-items list-complete-item"
+            v-for="(section,idx) in sections"
+            :key="section._id"
+          >
+            <drop @drop="handleDrop(arguments[0], idx)">
+              <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
+                <section-preview
+                  @isDraggable="isDraggable=true"
+                  @notDraggable="isDraggable=false"
+                  @emitHandleDrop="handleDrop"
+                  @colorChangeSectionId="changeSectionColor"
+                  @imgChangeSectionId="changeSectionImg"
+                  :showModal="showModal"
+                  @selectedText="editSelectedText"
+                  @deleteSection="deleteSection"
+                  @deleteElement="deleteElement"
+                  :section="section"
+                  :isEditMode="isEditMode"
+                  :sectionIdx="idx"
+                ></section-preview>
+              </drag>
+            </drop>
+          </div>
+        </transition-group>
       </div>
     </main>
   </div>
@@ -40,6 +53,7 @@
   <script>
 // v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
+import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
@@ -47,14 +61,17 @@ import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
 import { SET_IS_NEW } from "../modules/site-module.js";
+import { ID } from "../services/utils.js";
 
 export default {
   data() {
     return {
       site: null,
       sections: null,
+      url: null,
       isDraggable: false,
       isPanelOpen: false,
+      showShareBtns: false,
       text: "",
       isTextSelected: false,
       isModalVisible: false,
@@ -90,6 +107,7 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
+        section._id = ID();
         if (idx === -1) this.site.sections.splice(0, 1, section);
         else this.site.sections.splice(idx, 0, section);
       });
@@ -109,7 +127,7 @@ export default {
               "Too many elements in one section. Please drop the element in another section!"
             );
             this.isEditMode = true;
-            break;
+            return;
         }
         this.site.sections[idx].elements.push(element);
       });
@@ -143,7 +161,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-            break;
+              break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -183,8 +201,24 @@ export default {
         return section._id === sectionId;
       });
     },
+
+    preview() {
+      let siteId = this.$route.params.siteId;
+      this.$router.push(`/preview/${siteId}`);
+    },
     save() {
       const user = this.$store.getters.getUser;
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
+      }
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site });
+    },
+    publish() {
+      const user = this.$store.getters.getUser;
+
       if (!user) {
         this.$swal("Please login first");
         this.$router.push(`/login`);
@@ -194,44 +228,30 @@ export default {
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site }).then(() => {
         this.isEditMode = false;
-        this.$swal("Saved!");
-        this.isEditMode = true;
-      });
-    },
-    preview() {
-      let siteId = this.$route.params.siteId;
-      this.$router.push(`/preview/${siteId}`);
-    },
-    publish() {
-      const user = this.$store.getters.getUser;
-
-      if (!user)   {
-        this.$swal("Please login first")
-        this.$router.push(`/login`)
-        return
-      }
-
-      const site = {...this.site, user: user.id};
-      console.log(this.site);
-      
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => {
-          this.isEditMode=false
       });
 
-      const url = `${window.location.protocol}//${  
-        window.location.host
-      }/sites/${user.id}/${this.site._id}`;
+      const route = `/sites/${user.id}/${this.site._id}`;
 
       this.$swal({
-        title: "Got It!",
-        html: `<span><a href='${url}'>Your new Website is ready</a></span>`
+        title: "Site Saved!",
+        showCancelButton: true,
+        confirmButtonText: "Go To Your Website!",
+        dangerMode: true
+      }).then(isConfirm => {
+        if (isConfirm.value) {
+          let routeData = this.$router.resolve({ path: route });
+          window.open(routeData.href, "_blank");
+          this.url =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            routeData.href;
+          this.isEditMode = true;
+        } else return (this.isEditMode = true);
       });
 
-      this.isEditMode=true
+      this.isEditMode = true;
     },
-    
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -246,7 +266,6 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-
       if (!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
@@ -270,11 +289,10 @@ export default {
       let El = this.site.sections[sectionIdx].elements.filter(
         element => element.name === "map"
       );
-      El[0].data.place = Place;
+      El[0].data.place;
       let site = this.site;
       this.$store.commit({ type: "saveSite", site });
     });
-
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
@@ -282,28 +300,12 @@ export default {
     Sidebar,
     ControlButtons,
     createLinkModal,
-    TextEditButtons
+    TextEditButtons,
+    SocialShare
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.section-list {
-  background: white;
-}
-main {
-  margin: 1rem;
-  overflow-y: hidden;
-}
-
-.add-section {
-  border: 1px dashed black;
-}
-
-.section-items {
-  padding-left: 1rem;
-  float: right;
-  width: 78.5vw;
-}
 </style>
 

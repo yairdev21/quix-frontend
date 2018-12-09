@@ -7,12 +7,12 @@ export default {
         site: null,
         sites: [],
         editMode: null,
-        isNewSite: undefined
+        isNewSite: undefined,
     },
     getters: {
         getMode: state => state.isEditMode,
         getIsNew: state => state.isNewSite,
-        getSite: state => state.site
+        getSite: state => state.site,
     },
     mutations: {
         setEditMode(state) {
@@ -31,10 +31,14 @@ export default {
         }) {
             state.site = site;
         },
-        loadSites(state, { sites }) {
+        loadSites(state, {
+            sites
+        }) {
             state.sites = sites
         },
-        [SET_IS_NEW](state, {isNewSite}) {
+        [SET_IS_NEW](state, {
+            isNewSite
+        }) {
             state.isNewSite = isNewSite
         }
     },
@@ -61,8 +65,12 @@ export default {
                     return site
                 })
         },
-        saveSite({ commit }, { site }) {
-            const func = ( this.getters.getIsNew ) ? 'saveSite' : 'updateSite';
+        saveSite({
+            commit
+        }, {
+            site
+        }) {
+            const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';
 
             siteService[func](site)
                 .then(site => {
@@ -75,9 +83,11 @@ export default {
         },
         // updateSite(context, { site }) {
         // },
-        [SET_IS_NEW]({ commit }, { isNewSite }) {
-            console.log(isNewSite);
-            
+        [SET_IS_NEW]({
+            commit
+        }, {
+            isNewSite
+        }) {
             commit({
                 type: SET_IS_NEW,
                 isNewSite

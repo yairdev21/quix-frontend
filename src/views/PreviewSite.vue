@@ -33,24 +33,40 @@ export default {
       let siteId = this.$route.params.siteId;
       this.$router.push(`/edit/${siteId}`);
     },
-    save() {
-      const site = this.site;
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => alert("site saved!"));
+   save() {
+      const user = this.$store.getters.getUser;
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
+      }
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site });
     },
     publish() {
+      this.save();
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${  
-        window.location.host
-      }/sites/${user}/${this.site._id}`;
-        this.isEditMode=false
+      const url = `/sites/${user}/${this.site._id}`;
+      this.isEditMode = false;
       this.$swal({
-        title: "Got It!",
-        html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
+        title: "Site Saved!",
+        showCancelButton: true,
+        confirmButtonText: "Go To Your Website!",
+        dangerMode: true
+      }).then(isConfirm => {
+        if (isConfirm.value) {
+          let routeData = this.$router.resolve({ path: url });
+          window.open(routeData.href, "_blank");
+          this.isEditMode = true;
+        } else return (this.isEditMode = true);
       });
-        this.isEditMode=true
+      this.isEditMode = true;
     },
+
+    checkData() {
+      if (this.currPos === this.text) return (this.isTextSelected = false);
+      this.currPos = this.text;
+    }
   },
   created() {
     this.$store.commit("setPreviewMode");
