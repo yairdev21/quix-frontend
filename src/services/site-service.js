@@ -15,12 +15,15 @@ export default {
     getSiteById,
     saveSite,
     saveNewSite,
-    updateSite
+    updateSite,
+    getUserTemplate
 }
 
-function query() {
-    return axios.get(BASE_URL + '/sites')
-        .then(res => res.data.templates)
+async function query() {
+    const { data } = await axios.get(BASE_URL + '/sites');
+    const templates = data.templates.filter( template => !template.hasOwnProperty('user'));
+
+    return templates;
 }
 
 function getSiteById(siteId) {
@@ -45,6 +48,13 @@ function saveNewSite(site) {
     const Site = _clearIds(site);
 
     return axios.post(`${BASE_URL}/sites/${site.user}`, Site);
+}
+
+async function getUserTemplate(id) {
+    const { data } = axios.get(`${BASE_URL}/sites/user/${id}`);
+    const templates = data.templates;
+
+    return templates;
 }
 
 function _clearIds(obj) {

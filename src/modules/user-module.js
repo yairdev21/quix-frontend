@@ -1,6 +1,8 @@
-import { getUser } from '../services/api.service'
+import { getUser } from '../services/api.service';
+import siteService from '../services/site-service.js';
 
 export const LOAD_USER = 'LOAD_USER';
+export const GET_USER_SITES = 'GET_USER_SITES';
 
 export default {
     state: {
@@ -13,26 +15,15 @@ export default {
         [LOAD_USER](state, { user }) {
             state.user = user
         },
-        
-        // setEditMode(state) {
-        //     state.isEditMode = true;
-        // },
-        // setPreviewMode(state) {
-        //     state.isEditMode = false;
-        // },
-        // loadSite(state, {
-        //     site
-        // }) {
-        //     state.site = site;
-        // },
-        // saveSite(state, {
-        //     site
-        // }) {
-        //     state.site = site;
-        // },
+
+        [GET_USER_SITES](state, {isNewSite}) {
+            state.isNewSite = isNewSite
+        }
     },
     actions: {
         async [LOAD_USER]({ commit }) {
+            console.log('in');
+            
             const user = await getUser();
 
             commit({
@@ -41,34 +32,17 @@ export default {
             });
 
             return user;
-        }
+        },
 
-        // getSiteById(context, {
-        //     siteId
-        // }) {
-        //     return siteService.getSiteById(siteId)
-        //         .then(site => {
-        //             context.commit({
-        //                 type: 'loadSite',
-        //                 site
-        //             })
-        //             return site
-        //         })
-        // },
-        // saveSite(context, {site}) {
-        //     siteService.saveSite(site)
-        //         .then(site => {
-                    
-        //             context.commit({
-        //                 type: 'saveSite',
-        //                 site
-        //             })
-        //         })
-                
-        // },
-        // updateSite(context, {site}){ 
-        //     console.log(site);
+        async [GET_USER_SITES]({ commit }, { userId }) {
+            const templates = await siteService.getUserTemplate(userId);
             
-        // }
-    }
+            commit({
+                type: GET_USER_SITES,
+                templates
+            });
+    
+            return templates;
+        }
+    },
 }

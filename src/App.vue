@@ -11,10 +11,8 @@ document.body.setAttribute('spellcheck', false)
     export default {
     name: 'app',
 
-    async mounted() {
-      const user = await this.$store.dispatch({ type: LOAD_USER });
-      console.log(user);
-      
+    created() {
+      this.$store.dispatch({ type: LOAD_USER });
     }
   }
 </script>

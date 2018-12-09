@@ -222,9 +222,8 @@ export default {
 
       const url = `${window.location.protocol}//${  
         window.location.host
-      }/${user.id}/${this.site._id}`;
+      }/sites/${user.id}/${this.site._id}`;
 
-      this.isEditMode=false
       this.$swal({
         title: "Got It!",
         html: `<span><a href='${url}'>Your new Website is ready</a></span>`
