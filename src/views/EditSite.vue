@@ -1,7 +1,14 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
     <!-- <sidebar @addSection="addSection" :sections="sections"></sidebar> -->
-    <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
+    <control-buttons
+      :isEditMode="isEditMode"
+      @share="showShareBtns = !showShareBtns"
+      @preview="preview"
+      @save="save"
+      @publish="publish"
+    ></control-buttons>
+    <social-share v-if="showShareBtns" :url="url"></social-share>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -46,6 +53,7 @@
   <script>
 // v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
+import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import ControlButtons from "@/components/ControlButtons.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
@@ -60,8 +68,10 @@ export default {
     return {
       site: null,
       sections: null,
+      url: null,
       isDraggable: false,
       isPanelOpen: false,
+      showShareBtns: false,
       text: "",
       isTextSelected: false,
       isModalVisible: false,
@@ -151,7 +161,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-            break;
+              break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -209,7 +219,7 @@ export default {
     publish() {
       this.save();
       const user = this.site.user || "templates";
-      const url = `/sites/${user}/${this.site._id}`;
+      const route = `/sites/${user}/${this.site._id}`;
       this.isEditMode = false;
       this.$swal({
         title: "Site Saved!",
@@ -218,20 +228,25 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let routeData = this.$router.resolve({ path: url });
+          let routeData = this.$router.resolve({ path: route });
           window.open(routeData.href, "_blank");
+          this.url =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            routeData.href;
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
 
-      this.isEditMode=true
+      this.isEditMode = true;
     },
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
     }
   },
-   created() {
+  created() {
     document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
@@ -276,7 +291,8 @@ export default {
     Sidebar,
     ControlButtons,
     createLinkModal,
-    TextEditButtons
+    TextEditButtons,
+    SocialShare
   }
 };
 </script>
