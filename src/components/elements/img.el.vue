@@ -11,10 +11,7 @@ import cloudinaryService from "@/services/cloudinary.service.js";
 
 export default {
   props: {
-    isNewImg: {
-      type: Boolean,
-      required: true
-    },
+  
     isEditMode: {},
     data: {
       type: Object,

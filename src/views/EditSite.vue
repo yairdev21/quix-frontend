@@ -1,6 +1,7 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+       <sidebar  @addSection="addSection" :sections="sections"></sidebar>
+
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -12,7 +13,7 @@
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
         <transition-group name="list-complete" tag="p">
-          <div class="section-items" v-for="(section,idx) in sections" :key="section._id">
+          <div class="section-items list-complete-item" v-for="(section,idx) in sections" :key="section._id">
             <drop @drop="handleDrop(arguments[0], idx)">
               <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
                 <section-preview
@@ -95,8 +96,9 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        section._id = ID()
-        this.site.sections.splice(idx, 0, section);
+        section._id= ID()
+        if (idx === -1) this.site.sections.splice(0, 1, section);
+        else this.site.sections.splice(idx, 0, section);
       });
     },
     addElement(elementName, idx) {
@@ -195,7 +197,6 @@ export default {
         this.$router.push(`/login`);
         return;
       }
-
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site }).then(() => {
         this.isEditMode = false;
@@ -222,6 +223,11 @@ export default {
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
+    }
+  },
+  computed:{
+    key(){
+      return ID()
     }
   },
   created() {
@@ -276,6 +282,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.list-complete-item {
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
 .section-list {
   background: whitesmoke;
 }
