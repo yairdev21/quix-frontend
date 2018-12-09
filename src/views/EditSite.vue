@@ -9,7 +9,9 @@
       @save="save"
       @publish="publish"
     ></control-buttons>
+      <transition name="slide-fade">
     <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
+      </transition>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -22,7 +24,8 @@
       <div v-if="sections">
         <transition-group name="list-complete" tag="p">
           <div
-            class="section-items list-complete-item"
+           v-bind:class="{ 'section-items': isEditMode }"
+            class=" list-complete-item"
             v-for="(section,idx) in sections"
             :key="section._id"
           >
