@@ -119,7 +119,7 @@ export default {
               "Too many elements in one section. Please drop the element in another section!"
             );
             this.isEditMode = true;
-            break;
+            return;
         }
         this.site.sections[idx].elements.push(element);
       });
@@ -233,12 +233,7 @@ export default {
       this.currPos = this.text;
     }
   },
-  computed: {
-    key() {
-      return ID();
-    }
-  },
-  created() {
+   created() {
     document.designMode = this.checkEditMode ? "on" : "off";
     EventBus.$on("publish", () => this.publish());
     this.$store.commit("setEditMode");
