@@ -13,28 +13,17 @@ import {
   Facebook,
   Twitter,
   Linkedin,
-  Pinterest,
-  Reddit,
-  Telegram,
   WhatsApp,
   Email,
-  Google
 } from "vue-socialmedia-share";
 export default {
   props: ["url"],
-  // created() {
-  //   if (!url) return this.$swal("Please save your site first");
-  // },
   components: {
     Facebook,
     Twitter,
     Linkedin,
-    Pinterest,
-    Reddit,
-    Telegram,
     WhatsApp,
     Email,
-    Google
   }
 };
 </script>

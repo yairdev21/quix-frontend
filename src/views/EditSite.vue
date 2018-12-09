@@ -3,7 +3,7 @@
     <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <control-buttons
       :isEditMode="isEditMode"
-      @share="showShareBtns = !showShareBtns"
+      @share="openShareComp"
       @preview="preview"
       @save="save"
       @publish="publish"
@@ -231,6 +231,7 @@ export default {
       });
 
       const route = `/sites/${user.id}/${this.site._id}`;
+      const routeData = this.$router.resolve({ path: route });
 
       this.$swal({
         title: "Site Saved!",
@@ -239,19 +240,20 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let routeData = this.$router.resolve({ path: route });
           window.open(routeData.href, "_blank");
-          this.url =
-            window.location.protocol +
-            "//" +
-            window.location.host +
-            routeData.href;
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
+      this.url =
+        window.location.protocol + "//" + window.location.host + routeData.href;
 
       this.isEditMode = true;
     },
+    openShareComp() {
+      if (!this.url) return this.$swal("Please save your site first");
+      this.showShareBtns = !this.showShareBtns;
+    },
+
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;

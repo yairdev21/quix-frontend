@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p class="text" :contenteditable="isEditMode" v-text="content"   @mouseleave="saveText"></p>
+  <p class="text" :contenteditable="isEditMode" v-text="content"   @blur="saveText"></p>
 </div>
 </template>
 
@@ -30,6 +30,8 @@ export default {
       return this.content;
     },
     saveText(ev) {
+      console.log();
+      
       this.content = ev.target.innerText;
       this.data.text =  this.content
     }
