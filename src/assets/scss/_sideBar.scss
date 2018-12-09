@@ -27,8 +27,8 @@ section {
 
   img {
     width: 100%;
-  padding-top: 0;
-
+    padding-top: 0;
+    padding: 1px;
   }
 }
 
@@ -36,7 +36,7 @@ section {
 @media (min-width: 1250px) {
   .card-body {
     transform: scale(0.9);
-    max-height: 56vh;
+    max-height: 53vh;
     overflow: auto;
   }
 

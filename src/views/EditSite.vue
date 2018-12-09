@@ -1,16 +1,17 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData"  v-bind:class="{ preview: isEditMode }">
+    <sidebar :isEditMode="isEditMode" @addSection="addSection" :sections="sections"></sidebar>
     <control-buttons
+      @edit="edit"
       :isEditMode="isEditMode"
       @share="openShareComp"
       @preview="preview"
       @save="save"
       @publish="publish"
     ></control-buttons>
-     <transition name="slide-fade">
+      <transition name="slide-fade">
     <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
-    </transition>
+      </transition>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -23,7 +24,8 @@
       <div v-if="sections">
         <transition-group name="list-complete" tag="p">
           <div
-            class="section-items list-complete-item"
+           v-bind:class="{ 'section-items': isEditMode }"
+            class=" list-complete-item"
             v-for="(section,idx) in sections"
             :key="section._id"
           >
@@ -53,7 +55,6 @@
 </template>
 
   <script>
-// v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
 import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
@@ -209,8 +210,7 @@ export default {
     },
 
     preview() {
-      let siteId = this.$route.params.siteId;
-      this.$router.push(`/preview/${siteId}`);
+    this.isEditMode = false;
     },
     save() {
       const user = this.$store.getters.getUser;
@@ -235,7 +235,7 @@ export default {
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
 
       const route = `/sites/${user.id}/${siteId}`;
-      let routeData = this.$router.resolve({ path: route });
+      const routeData = this.$router.resolve({ path: route });
 
       this.$swal({
         title: "Site Saved!",

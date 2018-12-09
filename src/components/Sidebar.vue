@@ -1,5 +1,5 @@
 <template>
-  <section contenteditable="false">
+  <section v-if="isEditMode" contenteditable="false">
     <transition name="slide-fade">
       <div class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
@@ -104,6 +104,7 @@
 
 <script>
 export default {
+  props:['isEditMode'],
   name: "Sidebar",
   methods: {
     goHome() {
