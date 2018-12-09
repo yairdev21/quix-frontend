@@ -63,7 +63,8 @@ import {
     faLink,
     faPalette,
     faGlobe,
-    faWindowClose
+    faWindowClose,
+    faShareAlt
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faFacebook,
@@ -73,7 +74,7 @@ import {
 import {
     FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
-library.add(faFileImage, faWindowClose, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe)
+library.add(faFileImage, faWindowClose, faFont, faArrowsAlt, faFacebook, faHome, faPlus, faMinus, faBold, faItalic, faLink, faPalette, faFacebook, faYoutube, faInstagram, faGlobe, faShareAlt)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 import {
     dom

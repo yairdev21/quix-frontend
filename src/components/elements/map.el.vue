@@ -77,15 +77,6 @@ export default {
     },
     savePlace(place) {
       EventBus.$emit("updateLocation", place, this.sectionIdx);
-
-      // let site = this.$store.getters.getSite;
-      // console.log('idx is ' , this.idx._id);
-      // let section = site.elements.filter(section=> console.log(section)
-      // )
-      // let El = site.sections[2].elements.filter(element => {
-      //   return element._id === this.col._id;
-      // });
-      // El[0].data.place = place;
     }
   },
   mounted() {

@@ -55,18 +55,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sidebar {
-  position: fixed;
-  width: 25%;
-  top: 0;
-  z-index: 999;
-}
-
 section {
   display: flex;
+  background: black;
 }
-main {
-  width: 80vw;
+.sidebar p:hover {
+  color: black;
+  transition: 0.3s ease;
+}
+.sidebar img:hover {
+  transition: 0.3s ease;
+  cursor: grab;
+  transform: scale(1.02);
+  border: 1px solid black
+}
+.sidebar img:active {
+  cursor: grabbing;
+}
+.sidebar {
+  height: 100%;
+  width: 19vw;
+  position: fixed;
+  z-index: 999;
+  img {
+    width: 100%;
+  }
+}
+.card-body {
+  max-height: 58vh;
+  overflow: none;
+}
+@media (min-width: 1250px) {
+  .card-body {
+    transform: scale(0.9);
+    padding-top: 0;
+    max-height: 60vh;
+    overflow: none;
+  }
+  .sidebar {
+    height: 100%;
+    width: 18vw;
+    position: fixed;
+    z-index: 10;
+    img {
+      width: 100%;
+      margin-bottom: -5px;
+    }
+  }
 }
 .slide-fade-enter-active {
   transition: all 0.3s ease;
@@ -74,8 +109,8 @@ main {
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
 }

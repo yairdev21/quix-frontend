@@ -1,7 +1,7 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
-
+    <!-- <sidebar @addSection="addSection" :sections="sections"></sidebar> -->
+    <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -39,8 +39,6 @@
           </div>
         </transition-group>
       </div>
-
-      <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     </main>
   </div>
 </template>
@@ -153,7 +151,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-              return;
+            break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -225,9 +223,9 @@ export default {
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
-      this.isEditMode = true;
-    },
 
+      this.isEditMode=true
+    },
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -242,15 +240,12 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-      console.log("site", this.site);
 
       if (!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true });
       }
-
-      console.log(this.$store.getters.getIsNew);
     });
   },
   mounted() {
@@ -265,10 +260,13 @@ export default {
       section[0].style["background-size"] = "cover";
       return section[0].style;
     });
-    EventBus.$on("updateLocation", (place, sectionIdx) => {
-      console.log("mmmaaapppp", place, sectionIdx);
-
-      // (this.site.section[sectionIdx]= false)
+    EventBus.$on("updateLocation", (Place, sectionIdx) => {
+      let El = this.site.sections[sectionIdx].elements.filter(
+        element => element.name === "map"
+      );
+      El[0].data.place = Place;
+      let site = this.site;
+      this.$store.commit({ type: "saveSite", site });
     });
 
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
@@ -298,9 +296,10 @@ export default {
   position: absolute;
 }
 .section-list {
-  background: whitesmoke;
+  background: white;
 }
 main {
+  margin: 1rem;
   overflow-y: hidden;
 }
 
@@ -309,6 +308,7 @@ main {
 }
 
 .section-items {
+  padding-left: 1rem;
   float: right;
   width: 78.5vw;
 }
