@@ -107,6 +107,7 @@ this.isEditMode=true
         this.site.sections.splice(dropedIdx, 0, this.site.sections[dragedIdx]);
         this.site.sections.splice(dragedIdx + 1, 1);
       }
+      this.$store.commit('saveSite', site)
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
@@ -114,6 +115,8 @@ this.isEditMode=true
         if (idx === -1) this.site.sections.splice(0, 1, section);
         else this.site.sections.splice(idx, 0, section);
       });
+            this.$store.commit('saveSite', site)
+
     },
     addElement(elementName, idx) {
       sectionService.getSectionByName(elementName).then(element => {
@@ -134,12 +137,16 @@ this.isEditMode=true
         }
         this.site.sections[idx].elements.push(element);
       });
+            this.$store.commit('saveSite', site)
+
     },
     editSelectedText(data, id) {
       this.textEditSection = this.getSectionById(...id);
       if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
+            this.$store.commit('saveSite', site)
+
     },
     showModal() {
       this.isModalVisible = true;
@@ -170,10 +177,13 @@ this.isEditMode=true
               break;
             case "4":
               this.site.sections[sectionIdx].data.sm = "6";
+              break
           }
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
+            this.$store.commit('saveSite', site)
+
     },
     deleteSection(sectionId) {
       this.isEditMode = false;
@@ -192,6 +202,8 @@ this.isEditMode=true
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
+            this.$store.commit('saveSite', site)
+
     },
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;
@@ -206,9 +218,8 @@ this.isEditMode=true
     },
 
     preview() {
-      this.isEditMode= false
-      // let siteId = this.$route.params.siteId;
-      // this.$router.push(`/preview/${siteId}`);
+      let siteId = this.$route.params.siteId;
+      this.$router.push(`/preview/${siteId}`);
     },
     save() {
       const user = this.$store.getters.getUser;
@@ -220,7 +231,7 @@ this.isEditMode=true
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site });
     },
-    publish() {
+    async publish() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -230,12 +241,9 @@ this.isEditMode=true
       }
 
       const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site }).then(() => {
-        this.isEditMode = false;
-      });
-
-      const route = `/sites/${user.id}/${this.site._id}`;
-      const routeData = this.$router.resolve({ path: route });
+      const siteId = await this.$store.dispatch({ type: "saveSite", site })
+      const route = `/sites/${user.id}/${siteId}`;
+      let routeData = this.$router.resolve({path:route});
 
       this.$swal({
         title: "Site Saved!",
@@ -282,14 +290,17 @@ this.isEditMode=true
   mounted() {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
-      return (section[0].style.background = color);
+      section[0].style.background = color
+         return         this.$store.commit('saveSite', site)
+
     });
 
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       section[0].style["background-image"] = `url(${url}`;
       section[0].style["background-size"] = "cover";
-      return section[0].style;
+      return             this.$store.commit('saveSite', site)
+
     });
     EventBus.$on("updateLocation", (Place, sectionIdx) => {
       let El = this.site.sections[sectionIdx].elements.filter(
