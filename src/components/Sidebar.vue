@@ -126,11 +126,14 @@ section {
 
 .sidebar img:hover {
   transition: 0.3s ease;
+  cursor: grab;
+
 }
 .sidebar img:active {
   cursor: grabbing;
 }
 .sidebar {
+  height: 100%;
   width: 19vw;
   position: fixed;
   z-index: 999;
@@ -140,9 +143,28 @@ section {
 }
 
 .card-body {
-  max-height: 50vh;
-  overflow: auto;
+  max-height: 58vh;
+  overflow: none;
 }
+@media (min-width: 1250px) {
+  .card-body {
+    transform: scale(0.9);
+    padding-top: 0;
+    max-height: 60vh;
+    overflow: none;
+  }
+  .sidebar {
+    height: 100%;
+    width: 18vw;
+    position: fixed;
+    z-index: 10;
+    img {
+      width: 100%;
+      margin-bottom: -5px;
+    }
+  }
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }

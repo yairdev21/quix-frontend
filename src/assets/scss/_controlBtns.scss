@@ -1,4 +1,6 @@
     .side-bar-btns {
+        z-index: 11;
+
         position: fixed;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -6,13 +8,12 @@
         bottom: 0;
         width: 19vw;
     }
-    
+
     .side-bar-btns button {
         display: block;
         margin: 1em 2em;
-        // margin-right: 3rem;
     }
-    
+
     .icon {
         color: whitesmoke;
         border: 1px solid transparent;
@@ -22,37 +23,47 @@
         transform: scale(1.8);
         transition: 0.3s ease;
     }
-    
+
     .icon:hover {
         transition: 0.3s ease;
         border: 1px solid whitesmoke;
         cursor: pointer;
         color: black;
     }
-    
+
     @media (max-width: 960px) {
         .side-bar-btns button {
             margin: 1em 1.6em;
         }
     }
-    
+
+    @media (min-width: 1250px) {
+        .side-bar-btns button {
+            width: 50px
+        }
+    }
+
     @media (max-width: 845px) {
         .icon {
             transform: scale(1.7);
         }
+
         .side-bar-btns button {
             margin: 1em;
+            width: 40px;
         }
     }
-    
+
     @media (max-width: 625px) {
         .side-bar-btns {
             display: block;
             margin: 1em auto;
         }
+
         .icon {
             transform: scale(1.3);
         }
+
         .side-bar-btns button {
             margin-right: 0.4rem;
             margin-bottom: 2rem;
