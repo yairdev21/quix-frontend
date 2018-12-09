@@ -21,6 +21,7 @@
 
 <script>
 import { ID } from "../../services/utils.js";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   name: "GoogleMap",
@@ -29,9 +30,14 @@ export default {
       type: Object,
       required: true,
       getMap: false
+    },
+    sectionIdx: {
+      type: Number
+    },
+    col: {
+      type: Object
     }
   },
-  props: ["idx", "col"],
   data() {
     return {
       isGettingLocation: true,
@@ -70,16 +76,7 @@ export default {
       });
     },
     savePlace(place) {
-      console.log(this.col);
-      //   let site = this.$store.getters.getSite;
-      //   let El = site.sections[this.idx].elements.filter(element => {
-      //     console.log(element);
-
-      //     return element._id === this.col._id;
-      //   });
-      //   console.log(El);
-      //   El[0].data.place = place;
-      //   this.$store.dispatch("saveSite", site);
+      EventBus.$emit("updateLocation", place, this.sectionIdx);
     }
   },
   mounted() {

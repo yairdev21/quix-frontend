@@ -1,6 +1,7 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
     <sidebar @addSection="addSection" :sections="sections"></sidebar>
+    <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -26,23 +27,12 @@
                 @deleteElement="deleteElement"
                 :section="section"
                 :isEditMode="isEditMode"
+                :sectionIdx="idx"
               ></section-preview>
             </drag>
           </drop>
         </div>
       </div>
-      <drop v-else @drop="handleDrop(arguments[0], -1)">
-        <section class="add-section section-item">
-          <h1 class="text-center">Drag & Drop New Section Here</h1>
-        </section>
-      </drop>
-
-      <control-buttons
-        :isEditMode="isEditMode"
-        @preview="preview"
-        @save="save"
-        @publish="publish"
-      ></control-buttons>
     </main>
   </div>
 </template>
@@ -56,7 +46,7 @@ import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
-import { SET_IS_NEW } from '../modules/site-module.js';
+import { SET_IS_NEW } from "../modules/site-module.js";
 
 export default {
   data() {
@@ -153,7 +143,7 @@ export default {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
           switch (this.site.sections[sectionIdx].data.sm) {
             case "12":
-              return;
+            break;
             case "6":
               this.site.sections[sectionIdx].data.sm = "12";
               break;
@@ -194,24 +184,19 @@ export default {
       });
     },
     save() {
-      const user = this.$store.getters.getUser
-     
-      if (!user)   {
-        this.$swal("Please login first")
-        this.$router.push(`/login`)
-        return
+      const user = this.$store.getters.getUser;
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
       }
 
-      const site = {...this.site, user: user.id};
-      console.log(this.site);
-      
-      this.$store
-        .dispatch({ type: "saveSite", site })
-        .then(() => {
-            this.isEditMode=false
-          this.$swal("Saved!")
-            this.isEditMode=true
-          });
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
+        this.$swal("Saved!");
+        this.isEditMode = true;
+      });
     },
     preview() {
       let siteId = this.$route.params.siteId;
@@ -263,13 +248,11 @@ export default {
       this.site = res;
       this.sections = res.sections;
 
-      if(!!this.site.user) {
-        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false })
+      if (!!this.site.user) {
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
-        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true })
+        this.$store.dispatch({ type: SET_IS_NEW, isNewSite: true });
       }
-
-      console.log(this.$store.getters.getIsNew);
     });
   },
   mounted() {
@@ -277,16 +260,23 @@ export default {
       let section = this.getSectionById(this.sectionId);
       return (section[0].style.background = color);
     });
+
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       section[0].style["background-image"] = `url(${url}`;
       section[0].style["background-size"] = "cover";
       return section[0].style;
-    }),
-      // EventBus.$on("deleteElement", id => {
-      //   // this.deleteElement(id.elementName, id.sectionId);
-      // }),
-      EventBus.$on('closeEditorButtons', () => this.isTextSelected=false);   
+    });
+    EventBus.$on("updateLocation", (Place, sectionIdx) => {
+      let El = this.site.sections[sectionIdx].elements.filter(
+        element => element.name === "map"
+      );
+      El[0].data.place = Place;
+      let site = this.site;
+      this.$store.commit({ type: "saveSite", site });
+    });
+
+    EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
     SectionPreview,
@@ -300,9 +290,10 @@ export default {
 
 <style lang="scss" scoped>
 .section-list {
-  background: whitesmoke;
+  background: white;
 }
 main {
+  margin: 1rem;
   overflow-y: hidden;
 }
 
@@ -311,6 +302,7 @@ main {
 }
 
 .section-items {
+  padding-left: 1rem;
   float: right;
   width: 78.5vw;
 }
