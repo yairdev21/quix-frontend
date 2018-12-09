@@ -1,7 +1,7 @@
 <template>
-  <div class="section-list">
+  <div class="preview-section-list">
     <div v-if="sections">
-      <div class="section-items" v-for="(section) in sections" :key="section._id">
+      <div class="preview-section-items" v-for="(section) in sections" :key="section._id">
         <section-preview :section="section" :isEditMode="isEditMode"></section-preview>
       </div>
     </div>
@@ -88,6 +88,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.preview-section-list {
+  margin: 0 3rem;
+display: block;
+}
 .add-section {
   border: 1px dashed black;
 }

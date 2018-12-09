@@ -83,8 +83,8 @@ export default {
     };
   },
   methods: {
-    edit(){
-this.isEditMode=true
+    edit() {
+      this.isEditMode = true;
     },
     handleDrop(dragElement, idx) {
       this.isDraggable = false;
@@ -241,7 +241,8 @@ this.isEditMode=true
       }
 
       const site = { ...this.site, user: user.id };
-      const siteId = await this.$store.dispatch({ type: "saveSite", site })
+      const siteId = await this.$store.dispatch({ type: "saveSite", site });
+
       const route = `/sites/${user.id}/${siteId}`;
       let routeData = this.$router.resolve({path:route});
 
