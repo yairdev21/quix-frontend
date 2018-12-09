@@ -31,8 +31,8 @@
                 ></section-preview>
               </drag>
             </drop>
-        </transition-group>
           </div>
+        </transition-group>
       </div>
 
       <control-buttons :isEditMode="isEditMode" @preview="preview" @save="save" @publish="publish"></control-buttons>
