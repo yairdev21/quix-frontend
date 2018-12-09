@@ -5,18 +5,16 @@
 </template>
 
 <script>
-import {LOAD_USER} from './modules/user-module.js';
+import { LOAD_USER } from "./modules/user-module.js";
 
-document.body.setAttribute('spellcheck', false)
-    export default {
-    name: 'app',
+document.body.setAttribute("spellcheck", false);
+export default {
+  name: "app",
 
-    async mounted() {
-      const user = await this.$store.dispatch({ type: LOAD_USER });
-      console.log(user);
-      
-    }
+  async mounted() {
+    const user = await this.$store.dispatch({ type: LOAD_USER });
   }
+};
 </script>
 
 <style lang="scss">
@@ -35,11 +33,14 @@ document.body.setAttribute('spellcheck', false)
     }
   }
 }
-  html, body {
-    padding: 0;
-    margin: 0;
-  }
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 </style>

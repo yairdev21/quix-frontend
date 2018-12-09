@@ -1,5 +1,5 @@
 <template>
-  <section class="hover-section">
+  <section class="hover-section" style="background: transparent">
     <Spinner message="Uploading Image..." v-show="isLoading"/>
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">

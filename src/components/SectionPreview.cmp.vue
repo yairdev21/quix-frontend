@@ -97,17 +97,6 @@ export default {
 };
 </script>
 
-<style>
-.section-item {
-  padding: 3rem;
-  padding-top: 2rem;
-  overflow: hidden;
-  border: 2px solid transparent;
-}
+<style lang="scss" scoped>
 
-.isBorder {
-  resize: vertical;
-  display: block;
-  border: 2px dashed rgb(147, 160, 199);
-}
 </style>

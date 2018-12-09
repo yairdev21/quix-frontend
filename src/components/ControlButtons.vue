@@ -7,7 +7,7 @@
       <i class="far fa-save"></i>
     </button>
     <button v-if="!isEditMode" class="edit-icon icon" @click="$emit('edit')" title="Edit">
-      <i class="far fa-edit" @click="edit"></i>
+      <i class="far fa-edit"></i>
     </button>
     <button v-else class="preview-icon icon" @click="$emit('preview')" title="Preview">
       <i class="far fa-eye"></i>

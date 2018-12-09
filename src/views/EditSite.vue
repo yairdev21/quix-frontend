@@ -1,6 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <!-- <sidebar @addSection="addSection" :sections="sections"></sidebar> -->
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
     <control-buttons
       :isEditMode="isEditMode"
       @share="showShareBtns = !showShareBtns"
@@ -217,10 +217,21 @@ export default {
       this.$store.dispatch({ type: "saveSite", site });
     },
     publish() {
-      this.save();
-      const user = this.site.user || "templates";
-      const route = `/sites/${user}/${this.site._id}`;
-      this.isEditMode = false;
+      const user = this.$store.getters.getUser;
+
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
+      }
+
+      const site = { ...this.site, user: user.id };
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
+      });
+
+      const route = `/sites/${user.id}/${this.site._id}`;
+
       this.$swal({
         title: "Site Saved!",
         showCancelButton: true,
@@ -255,7 +266,6 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
-
       if (!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
@@ -279,11 +289,10 @@ export default {
       let El = this.site.sections[sectionIdx].elements.filter(
         element => element.name === "map"
       );
-      El[0].data.place = Place;
+      El[0].data.place;
       let site = this.site;
       this.$store.commit({ type: "saveSite", site });
     });
-
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
@@ -298,35 +307,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-complete-item {
-  transition: all 1s;
-  display: inline-block;
-  margin-right: 10px;
-}
-.list-complete-enter, .list-complete-leave-to
-/* .list-complete-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
-}
-.list-complete-leave-active {
-  position: absolute;
-}
-.section-list {
-  background: white;
-}
-main {
-  margin: 1rem;
-  overflow-y: hidden;
-}
-
-.add-section {
-  border: 1px dashed black;
-}
-
-.section-items {
-  padding-left: 1rem;
-  float: right;
-  width: 78.5vw;
-}
 </style>
 
