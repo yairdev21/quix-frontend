@@ -20,10 +20,7 @@ import Spinner from "vue-simple-spinner";
 
 export default {
   props: {
-    isNewImg: {
-      type: Boolean,
-      required: true
-    },
+  
     isEditMode: {},
     data: {
       type: Object,

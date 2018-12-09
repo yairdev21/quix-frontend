@@ -1,0 +1,30 @@
+.list-complete-item {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .list-complete-enter, .list-complete-leave-to
+  /* .list-complete-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .list-complete-leave-active {
+    position: absolute;
+  }
+  .section-list {
+    background: white;
+  }
+  main {
+    margin: 1rem;
+    overflow-y: hidden;
+  }
+  
+  .add-section {
+    border: 1px dashed black;
+  }
+  
+  .section-items {
+    padding-left: 1rem;
+    float: right;
+    width: 78.5vw;
+  }

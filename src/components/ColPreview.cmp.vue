@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="background: transparent">
     <div contenteditable="false" class="trash-btn" v-show="isShowControl & isEditMode">
       <button title="Delete" @click="$emit('deleteElement')" @mouseover="isShowControl=true">
         <i class="far fa-trash-alt"></i>
@@ -16,7 +16,6 @@
         :draggable="false"
         :contenteditable="isEditMode"
         :isEditMode="isEditMode"
-        :isNewImg="isNewImg"
         :is="element"
         :data="col.data"
         :col="col"
@@ -41,7 +40,7 @@ import { EventBus } from "@/event-bus.js";
 export default {
   props: ["col", "isEditMode", "sectionIdx"],
   data() {
-    return { isShowControl: false, isNewImg: false };
+    return { isShowControl: false };
   },
   components: {
     TextElement: TxtEl,
@@ -71,7 +70,6 @@ export default {
         case "text":
           return "TextElement";
         case "image":
-          this.isNewImg = true;
           return `ImgElement`;
         case "map":
           return `MapElement`;
@@ -98,7 +96,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .trash-btn button:hover {
   cursor: pointer;
   color: brown;
