@@ -11,10 +11,11 @@ document.body.setAttribute("spellcheck", false);
 export default {
   name: "app",
 
-  async mounted() {
-    const user = await this.$store.dispatch({ type: LOAD_USER });
-  }
-};
+    created() {
+      this.$store.dispatch({ type: LOAD_USER });
+    }
+}
+
 </script>
 
 <style lang="scss">

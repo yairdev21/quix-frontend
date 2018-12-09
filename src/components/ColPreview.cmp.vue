@@ -52,6 +52,16 @@ export default {
     SocialElement: SocialEl,
     EmptyElement: EmptyEl,
     HeaderElement: HeaderEl
+
+    // text: TxtEl,
+    // image: ImgEl,
+    // map: MapEl,
+    // video: VideoEl,
+    // button: ButtonEl,
+    // contact: ContactEl,
+    // socialBtn: SocialEl,
+    // empty: EmptyEl,
+    // header: HeaderEl
   },
   methods: {
     editText() {
@@ -66,6 +76,7 @@ export default {
 
   computed: {
     element() {
+      // return this.col.type;
       switch (this.col.type) {
         case "text":
           return "TextElement";
