@@ -218,17 +218,36 @@ export default {
       this.$router.push(`/preview/${siteId}`);
     },
     publish() {
-      const user = this.site.user || "templates";
+      const user = this.$store.getters.getUser;
+
+      if (!user)   {
+        this.$swal("Please login first")
+        this.$router.push(`/login`)
+        return
+      }
+
+      const site = {...this.site, user: user.id};
+      console.log(this.site);
+      
+      this.$store
+        .dispatch({ type: "saveSite", site })
+        .then(() => {
+          this.isEditMode=false
+      });
+
       const url = `${window.location.protocol}//${  
         window.location.host
-      }/${user}/${this.site._id}`;
-        this.isEditMode=false
+      }/${user.id}/${this.site._id}`;
+
+      this.isEditMode=false
       this.$swal({
         title: "Got It!",
-        html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
+        html: `<span><a href='${url}'>Your new Website is ready</a></span>`
       });
-        this.isEditMode=true
+
+      this.isEditMode=true
     },
+    
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;

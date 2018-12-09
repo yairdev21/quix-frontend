@@ -60,12 +60,12 @@ export default {
                     return site
                 })
         },
-        saveSite(context, { site }) {
-            const isNew = (context.isNewSite) ? 'saveSite' : 'updateSite';
+        saveSite({ commit }, { site }) {
+            const func = ( this.getters.getIsNew ) ? 'saveSite' : 'updateSite';
 
-            siteService[isNew](site)
+            siteService[func](site)
                 .then(site => {
-                    context.commit({
+                    commit({
                         type: 'saveSite',
                         site
                     })
