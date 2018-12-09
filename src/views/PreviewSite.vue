@@ -71,13 +71,14 @@ export default {
   created() {
     this.$store.commit("setPreviewMode");
     this.isEditMode = this.$store.getters.getMode;
-    let siteId = this.$route.params.siteId;
-    let user = this.$route.params.user;
-    this.isPublishMode = user ? true : false;
-    this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
-      this.site = res;
-      this.sections = res.sections;
-    });
+    this.site =  this.$store.getters.getSite
+    // let siteId = this.$route.params.siteId;
+    // let user = this.$route.params.user;
+    // this.isPublishMode = user ? true : false;
+    // this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
+    //   this.site = res;
+    //   this.sections = res.sections;
+    // });
   },
   components: {
     SectionPreview,
