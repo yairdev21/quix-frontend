@@ -43,11 +43,22 @@ export default {
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site });
     },
-    publish() {
-      this.save();
-      const user = this.site.user || "templates";
-      const url = `/sites/${user}/${this.site._id}`;
+async publish() {
+      const user = this.$store.getters.getUser;
+
+      if (!user) {
+        this.$swal("Please login first");
+        this.$router.push(`/login`);
+        return;
+      }
+
+      const site = { ...this.site, user: user.id };
+      const siteId = await this.$store.dispatch({ type: "saveSite", site });
+
       this.isEditMode = false;
+
+      const route = `/sites/${user.id}/${siteId}`;
+
       this.$swal({
         title: "Site Saved!",
         showCancelButton: true,
@@ -55,11 +66,17 @@ export default {
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let routeData = this.$router.resolve({ path: url });
+          let routeData = this.$router.resolve({ path: route });
           window.open(routeData.href, "_blank");
+          this.url =
+            window.location.protocol +
+            "//" +
+            window.location.host +
+            routeData.href;
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
+
       this.isEditMode = true;
     },
 

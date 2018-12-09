@@ -216,7 +216,7 @@ export default {
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site });
     },
-    publish() {
+    async publish() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -226,11 +226,11 @@ export default {
       }
 
       const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site }).then(() => {
-        this.isEditMode = false;
-      });
+      const siteId = await this.$store.dispatch({ type: "saveSite", site });
 
-      const route = `/sites/${user.id}/${this.site._id}`;
+      this.isEditMode = false;
+
+      const route = `/sites/${user.id}/${siteId}`;
 
       this.$swal({
         title: "Site Saved!",
