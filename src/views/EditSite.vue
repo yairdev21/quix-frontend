@@ -8,7 +8,7 @@
       @save="save"
       @publish="publish"
     ></control-buttons>
-    <social-share v-if="showShareBtns" :url="url"></social-share>
+    <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
