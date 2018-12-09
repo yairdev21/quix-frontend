@@ -1,6 +1,6 @@
 <template>
   <div contenteditable="false" class="img-div">
-    <img :src="data.src" alt="image" contenteditable="false">
+    <img :src="data.src"  contenteditable="false">
     <input v-if="!isSrc" type="file" id="uploadSmallImg" ref="img" @change="getUrl">
   </div>
 </template>

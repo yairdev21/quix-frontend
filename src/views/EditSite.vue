@@ -1,6 +1,6 @@
   <template>
   <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-       <sidebar  @addSection="addSection" :sections="sections"></sidebar>
+    <sidebar @addSection="addSection" :sections="sections"></sidebar>
 
     <text-edit-buttons
       @openLinkModal="showModal"
@@ -13,7 +13,11 @@
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
       <div v-if="sections">
         <transition-group name="list-complete" tag="p">
-          <div class="section-items list-complete-item" v-for="(section,idx) in sections" :key="section._id">
+          <div
+            class="section-items list-complete-item"
+            v-for="(section,idx) in sections"
+            :key="section._id"
+          >
             <drop @drop="handleDrop(arguments[0], idx)">
               <drag :draggable="isDraggable" :transfer-data="{method: 'sort', data: idx}">
                 <section-preview
@@ -51,8 +55,7 @@ import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
 import { SET_IS_NEW } from "../modules/site-module.js";
-import { ID } from '../services/utils.js'
-
+import { ID } from "../services/utils.js";
 
 export default {
   data() {
@@ -96,7 +99,7 @@ export default {
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
-        section._id= ID()
+        section._id = ID();
         if (idx === -1) this.site.sections.splice(0, 1, section);
         else this.site.sections.splice(idx, 0, section);
       });
@@ -190,6 +193,11 @@ export default {
         return section._id === sectionId;
       });
     },
+
+    preview() {
+      let siteId = this.$route.params.siteId;
+      this.$router.push(`/preview/${siteId}`);
+    },
     save() {
       const user = this.$store.getters.getUser;
       if (!user) {
@@ -198,36 +206,36 @@ export default {
         return;
       }
       const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site }).then(() => {
-        this.isEditMode = false;
-        this.$swal("Saved!");
-        this.isEditMode = true;
-      });
-    },
-    preview() {
-      let siteId = this.$route.params.siteId;
-      this.$router.push(`/preview/${siteId}`);
+      this.$store.dispatch({ type: "saveSite", site });
     },
     publish() {
+      this.save();
       const user = this.site.user || "templates";
-      const url = `${window.location.protocol}//${
-        window.location.host
-      }/sites/${user}/${this.site._id}`;
+      const url = `/sites/${user}/${this.site._id}`;
       this.isEditMode = false;
       this.$swal({
-        title: "Got It!",
-        html: `<span>Your Website link is:  <a href='${url}'>${url}</a></span>`
+        title: "Site Saved!",
+        showCancelButton: true,
+        confirmButtonText: "Go To Your Website!",
+        dangerMode: true
+      }).then(isConfirm => {
+        if (isConfirm.value) {
+          let routeData = this.$router.resolve({ path: url });
+          window.open(routeData.href, "_blank");
+          this.isEditMode = true;
+        } else return (this.isEditMode = true);
       });
       this.isEditMode = true;
     },
+
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
     }
   },
-  computed:{
-    key(){
-      return ID()
+  computed: {
+    key() {
+      return ID();
     }
   },
   created() {
@@ -262,12 +270,11 @@ export default {
       section[0].style["background-size"] = "cover";
       return section[0].style;
     });
-    EventBus.$on("updateLocation",(place, sectionIdx) =>{
-      console.log('mmmaaapppp', place, sectionIdx);
-      
-      // (this.site.section[sectionIdx]= false)
+    EventBus.$on("updateLocation", (place, sectionIdx) => {
+      console.log("mmmaaapppp", place, sectionIdx);
 
-    })
+      // (this.site.section[sectionIdx]= false)
+    });
 
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
@@ -282,7 +289,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .list-complete-item {
   transition: all 1s;
   display: inline-block;
