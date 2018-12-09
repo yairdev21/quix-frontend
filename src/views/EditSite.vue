@@ -1,7 +1,8 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData">
-    <sidebar @addSection="addSection" :sections="sections"></sidebar>
+  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData"  v-bind:class="{ preview: isEditMode }">
+    <sidebar :isEditMode="isEditMode" @addSection="addSection" :sections="sections"></sidebar>
     <control-buttons
+      @edit="edit"
       :isEditMode="isEditMode"
       @share="showShareBtns = !showShareBtns"
       @preview="preview"
