@@ -83,6 +83,9 @@ export default {
     };
   },
   methods: {
+    edit(){
+this.isEditMode=true
+    },
     handleDrop(dragElement, idx) {
       this.isDraggable = false;
       if (dragElement.method === "addSection")
@@ -203,8 +206,9 @@ export default {
     },
 
     preview() {
-      let siteId = this.$route.params.siteId;
-      this.$router.push(`/preview/${siteId}`);
+      this.isEditMode= false
+      // let siteId = this.$route.params.siteId;
+      // this.$router.push(`/preview/${siteId}`);
     },
     save() {
       const user = this.$store.getters.getUser;
@@ -216,7 +220,7 @@ export default {
       const site = { ...this.site, user: user.id };
       this.$store.dispatch({ type: "saveSite", site });
     },
-    async publish() {
+    publish() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -226,11 +230,11 @@ export default {
       }
 
       const site = { ...this.site, user: user.id };
-      const siteId = await this.$store.dispatch({ type: "saveSite", site });
+      this.$store.dispatch({ type: "saveSite", site }).then(() => {
+        this.isEditMode = false;
+      });
 
-      this.isEditMode = false;
-
-      const route = `/sites/${user.id}/${siteId}`;
+      const route = `/sites/${user.id}/${this.site._id}`;
 
       this.$swal({
         title: "Site Saved!",
