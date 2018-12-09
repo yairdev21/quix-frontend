@@ -74,19 +74,15 @@ export default {
       user: null
     }
   },
-    // computed: {
-    //     user() {
-    //         return this.$store.getters.getUser;
-    //     }
-    // },
 
-    async created() {
-      this.user = this.$store.getters.getUser;
+  async mounted() {
+    this.user = this.$store.getters.getUser;
+    console.log(this);
 
-      const { data } = (this.user) ? await this.$store.dispatch({ type: GET_USER_SITES, id: this.user.id }) : {};
-      console.log(data);
-      
-    }
+    const { data } = (this.user) ? await this.$store.dispatch({ type: GET_USER_SITES, id: this.user.id }) : {};
+    console.log(data);
+    
+  }
 }
 </script>
 

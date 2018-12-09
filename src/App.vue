@@ -14,8 +14,8 @@ export default {
     created() {
       this.$store.dispatch({ type: LOAD_USER });
     }
-  }
-};
+}
+
 </script>
 
 <style lang="scss">
