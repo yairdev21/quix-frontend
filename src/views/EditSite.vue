@@ -8,7 +8,9 @@
       @save="save"
       @publish="publish"
     ></control-buttons>
+     <transition name="slide-fade">
     <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
+    </transition>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -107,7 +109,6 @@ export default {
         this.site.sections.splice(dropedIdx, 0, this.site.sections[dragedIdx]);
         this.site.sections.splice(dragedIdx + 1, 1);
       }
-      this.$store.commit('saveSite', site)
     },
     addSection(sectionName, idx) {
       sectionService.getSectionByName(sectionName).then(section => {
@@ -115,8 +116,6 @@ export default {
         if (idx === -1) this.site.sections.splice(0, 1, section);
         else this.site.sections.splice(idx, 0, section);
       });
-            this.$store.commit('saveSite', site)
-
     },
     addElement(elementName, idx) {
       sectionService.getSectionByName(elementName).then(element => {
@@ -137,16 +136,12 @@ export default {
         }
         this.site.sections[idx].elements.push(element);
       });
-            this.$store.commit('saveSite', site)
-
     },
     editSelectedText(data, id) {
       this.textEditSection = this.getSectionById(...id);
       if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
       this.text = data;
-            this.$store.commit('saveSite', site)
-
     },
     showModal() {
       this.isModalVisible = true;
@@ -177,13 +172,11 @@ export default {
               break;
             case "4":
               this.site.sections[sectionIdx].data.sm = "6";
-              break
+              break;
           }
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
-            this.$store.commit('saveSite', site)
-
     },
     deleteSection(sectionId) {
       this.isEditMode = false;
@@ -202,8 +195,6 @@ export default {
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
-            this.$store.commit('saveSite', site)
-
     },
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;
@@ -244,7 +235,7 @@ export default {
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
 
       const route = `/sites/${user.id}/${siteId}`;
-      let routeData = this.$router.resolve({path:route});
+      let routeData = this.$router.resolve({ path: route });
 
       this.$swal({
         title: "Site Saved!",
@@ -291,17 +282,14 @@ export default {
   mounted() {
     EventBus.$on("changeColor", color => {
       let section = this.getSectionById(this.sectionId);
-      section[0].style.background = color
-         return         this.$store.commit('saveSite', site)
-
+      return (section[0].style.background = color);
     });
 
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       section[0].style["background-image"] = `url(${url}`;
       section[0].style["background-size"] = "cover";
-      return             this.$store.commit('saveSite', site)
-
+      return section[0].style;
     });
     EventBus.$on("updateLocation", (Place, sectionIdx) => {
       let El = this.site.sections[sectionIdx].elements.filter(
@@ -325,5 +313,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all .8s ;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-10px);
+  opacity: 0;
+}
 </style>
 
