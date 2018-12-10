@@ -154,7 +154,6 @@ export default {
     deleteElement(colIdx, sectionId) {
       let section = this.getSectionById(sectionId);
       let sectionIdx = this.site.sections.indexOf(...section);
-      this.isEditMode = false;
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -175,12 +174,10 @@ export default {
               this.site.sections[sectionIdx].data.sm = "6";
               break;
           }
-          this.isEditMode = true;
-        } else return (this.isEditMode = true);
+        } else return
       });
     },
     deleteSection(sectionId) {
-      this.isEditMode = false;
       this.$swal({
         title: "Delete section?",
         text: "It will be gone FOREVER!",
@@ -193,8 +190,7 @@ export default {
           let section = this.getSectionById(sectionId);
           let Idx = this.site.sections.indexOf(...section);
           this.site.sections.splice(Idx, 1);
-          this.isEditMode = true;
-        } else return (this.isEditMode = true);
+        } else return
       });
     },
     changeSectionColor(sectionId) {
@@ -241,6 +237,7 @@ export default {
         title: "Site Saved!",
         showCancelButton: true,
         confirmButtonText: "Go To Your Website!",
+        cancelButtonText: "Not now",
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {

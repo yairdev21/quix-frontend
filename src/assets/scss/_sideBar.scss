@@ -32,13 +32,13 @@ section {
   }
 }
 
+.card-body {
+  transform: scale(0.9);
+  max-height: 52vh;
+  overflow: auto;
+}
 
 @media (min-width: 1250px) {
-  .card-body {
-    transform: scale(0.9);
-    max-height: 53vh;
-    overflow: auto;
-  }
 
   .sidebar {
     height: 100%;

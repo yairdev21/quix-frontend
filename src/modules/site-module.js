@@ -30,6 +30,7 @@ export default {
             site
         }) {
             state.site = site;
+            
         },
         loadSites(state, {
             sites
@@ -66,6 +67,7 @@ export default {
                 })
         },
         async saveSite({ commit }, { site}) {
+            console.log('site to save', site);
             const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';
             const Site = await siteService[func](site);
 
