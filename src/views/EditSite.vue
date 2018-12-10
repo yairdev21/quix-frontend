@@ -155,7 +155,7 @@ export default {
     deleteElement(colIdx, sectionId) {
       let section = this.getSectionById(sectionId);
       let sectionIdx = this.site.sections.indexOf(...section);
-      this.isEditMode = false;
+      // this.isEditMode = false;
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -180,7 +180,7 @@ export default {
       });
     },
     deleteSection(sectionId) {
-      this.isEditMode = false;
+      // this.isEditMode = false;
       this.$swal({
         title: "Delete section?",
         text: "It will be gone FOREVER!",

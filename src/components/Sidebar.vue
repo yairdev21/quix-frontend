@@ -9,7 +9,7 @@
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
-            <b-card-body>
+            <b-card-body :style="{padding:0}">
               <drag :transfer-data="{method: 'addSection', data:'header'}">
                 <p class="card-text" id="header">
                   <img src="@/assets/img/header.png">
@@ -41,7 +41,7 @@
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
+            <b-card-body :style="{padding:0}">
               <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
                 <p class="card-text" id="emptySection">
                   <img src="@/assets/img/emptySection.png">
@@ -73,7 +73,7 @@
             </b-btn>
           </b-card-header>
           <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
-            <b-card-body>
+            <b-card-body :style="{padding:0}">
               <drag :transfer-data="{method: 'addElement', data:'socialBtns'}">
                 <p class="card-text" id="socialBtns">
                   <img src="@/assets/img/socailBtns.png">
