@@ -61,6 +61,7 @@ export default {
     },
     addMarker() {
       if (this.currentPlace) {
+        console.log(this.currentPlace);
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
@@ -83,7 +84,7 @@ export default {
   mounted() {
     const site = this.$store.getters.getSite;
     let place = this.col.data.place
-    console.log("THIS IS THE PLACE: ", place);
+    // console.log("THIS IS THE PLACE: ", this.col.data.place.geometry.location.lat());
     if (this.col.data.place) {
       this.setPlace(place);
     }
