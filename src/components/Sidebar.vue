@@ -1,7 +1,7 @@
 <template>
-  <section v-if="isEditMode" contenteditable="false">
+  <section  class="fullSideBar" contenteditable="false">
     <transition name="slide-fade">
-      <div class="sidebar" role="tablist">
+      <div v-if="isEditMode" class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
             <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
@@ -99,21 +99,37 @@
         </b-card>
       </div>
     </transition>
+    <control-buttons
+      :isEditMode="isEditMode"
+      class="controlButtons"
+      @edit="$emit('edit')"
+      @share="$emit('share')"
+      @preview="$emit('preview')"
+      @save="$emit('save')"
+      @publish="$emit('publish')"
+    ></control-buttons>
   </section>
 </template>
 
 <script>
+import ControlButtons from "@/components/ControlButtons.vue";
+
 export default {
-  props:['isEditMode'],
+  props: ["isEditMode"],
   name: "Sidebar",
   methods: {
     goHome() {
       this.$router.push("/");
     }
+  },
+  components: {
+    ControlButtons
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.fullSideBar{
 
+}
 </style>
