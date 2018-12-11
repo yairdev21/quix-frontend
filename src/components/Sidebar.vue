@@ -8,7 +8,7 @@
               <p class="sidebar-names">Sections</p>
             </b-btn>
           </b-card-header>
-          <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
+          <b-collapse id="accordion1"  visible accordion="my-accordion" role="tabpanel">
             <b-card-body>
               <drag :transfer-data="{method: 'addSection', data:'header'}">
                 <p class="card-text" id="header">
