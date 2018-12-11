@@ -1,17 +1,24 @@
   <template>
-  <div class="section-list" @keyup.esc="isTextSelected=false" @click="checkData"  v-bind:class="{ preview: isEditMode }">
-    <sidebar :isEditMode="isEditMode" @addSection="addSection" :sections="sections"></sidebar>
-    <control-buttons
-      @edit="edit"
+  <div
+    class="section-list"
+    @keyup.esc="isTextSelected=false"
+    @click="checkData"
+    v-bind:class="{ preview: isEditMode }"
+  >
+    <sidebar
       :isEditMode="isEditMode"
-      @share="openShareComp"
+      @addSection="addSection"
+      :sections="sections"
+      @edit="edit"
+      @share="showShareBtns = !showShareBtns"
       @preview="preview"
       @save="save"
       @publish="publish"
-    ></control-buttons>
-      <transition name="slide-fade">
-    <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
-      </transition>
+    ></sidebar>
+
+    <transition name="slide-fade">
+      <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
+    </transition>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -24,8 +31,8 @@
       <div v-if="sections">
         <transition-group name="list-complete" tag="p">
           <div
-           v-bind:class="{ 'section-items': isEditMode }"
-            class=" list-complete-item"
+            v-bind:class="{ 'section-items': isEditMode }"
+            class="list-complete-item"
             v-for="(section,idx) in sections"
             :key="section._id"
           >
@@ -58,7 +65,6 @@
 import Sidebar from "@/components/Sidebar.vue";
 import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
-import ControlButtons from "@/components/ControlButtons.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
@@ -301,7 +307,6 @@ export default {
   components: {
     SectionPreview,
     Sidebar,
-    ControlButtons,
     createLinkModal,
     TextEditButtons,
     SocialShare
