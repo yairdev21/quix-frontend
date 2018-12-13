@@ -14,7 +14,7 @@
       @preview="preview"
       @save="save"
     ></sidebar>
-    <b-btn v-b-modal.modalPrevent>Publish</b-btn>
+    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
     <publish-modal :site="site" @publish="publish"></publish-modal>
 
     <transition name="slide-fade">
@@ -321,6 +321,19 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(-10px);
   opacity: 0;
+}
+
+.publish-btn {
+  background: #123b41 ;
+  margin-top: 0.5em;
+  position: fixed;
+  top: 0;
+  z-index: 20;
+}
+.publish-btn:hover {
+  cursor: pointer;
+  background: #317c88;
+  color: wheat;
 }
 </style>
 
