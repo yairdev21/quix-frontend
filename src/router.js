@@ -21,6 +21,10 @@ export default new Router({
       name: 'about',
       component: About
     },{
+      path: '/:siteName',
+      name: 'published',
+      component: PreviewSite
+    },{
       path: '/',
       name: 'home',
       component: Home
@@ -35,10 +39,6 @@ export default new Router({
       path: '/edit/:siteId?',
       name: 'edit',
       component: EditSite
-    },{
-      path: '/sites/:siteName',
-      name: 'published',
-      component: PreviewSite
     },{
       path: '/userboard',
       name: 'userPage',

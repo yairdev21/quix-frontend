@@ -233,7 +233,7 @@ export default {
 
     publish() {
       const siteName= this.site.name
-      const routeData = this.$router.resolve({ path: `/sites/${siteName}`});
+      const routeData = this.$router.resolve({ path: `/${siteName}`});
 
       this.$swal({
         title: "Site Published!",
