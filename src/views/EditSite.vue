@@ -13,8 +13,9 @@
       @share="showShareBtns = !showShareBtns"
       @preview="preview"
       @save="save"
-      @publish="publish"
     ></sidebar>
+    <b-btn v-b-modal.modalPrevent>Publish</b-btn>
+    <publish-modal :site="site" @publish="publish"></publish-modal>
 
     <transition name="slide-fade">
       <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
@@ -66,6 +67,7 @@ import Sidebar from "@/components/Sidebar.vue";
 import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
+import PublishModal from "@/components/Publish.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
@@ -88,7 +90,8 @@ export default {
       isEditMode: null,
       editedParagraph: null,
       textEditSection: null,
-      currPos: null
+      currPos: null,
+      showPublishCmp: false
     };
   },
   methods: {
@@ -180,7 +183,7 @@ export default {
               this.site.sections[sectionIdx].data.sm = "6";
               break;
           }
-        } else return
+        } else return;
       });
     },
     deleteSection(sectionId) {
@@ -196,7 +199,7 @@ export default {
           let section = this.getSectionById(sectionId);
           let Idx = this.site.sections.indexOf(...section);
           this.site.sections.splice(Idx, 1);
-        } else return
+        } else return;
       });
     },
     changeSectionColor(sectionId) {
@@ -212,19 +215,10 @@ export default {
     },
 
     preview() {
-    this.isEditMode = false;
+      this.isEditMode = false;
     },
-    save() {
-      const user = this.$store.getters.getUser;
-      if (!user) {
-        this.$swal("Please login first");
-        this.$router.push(`/login`);
-        return;
-      }
-      const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site });
-    },
-    async publish() {
+
+    async save() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -232,15 +226,17 @@ export default {
         this.$router.push(`/login`);
         return;
       }
-
       const site = { ...this.site, user: user.id };
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
+      alert("site saved!");
+    },
 
-      const route = `/sites/${user.id}/${siteId}`;
-      const routeData = this.$router.resolve({ path: route });
+    publish() {
+      // const user = this.$store.getters.getUser;
+      const routeData = this.$router.resolve({ path: `/${site.name}` });
 
       this.$swal({
-        title: "Site Saved!",
+        title: "Site Published!",
         showCancelButton: true,
         confirmButtonText: "Go To Your Website!",
         cancelButtonText: "Not now",
@@ -253,7 +249,6 @@ export default {
       });
       this.url =
         window.location.protocol + "//" + window.location.host + routeData.href;
-
       this.isEditMode = true;
     },
     openShareComp() {
@@ -309,17 +304,18 @@ export default {
     Sidebar,
     createLinkModal,
     TextEditButtons,
-    SocialShare
+    SocialShare,
+    PublishModal
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .slide-fade-enter-active {
-  transition: all .8s ;
+  transition: all 0.8s;
 }
 .slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
