@@ -13,8 +13,9 @@
       @share="showShareBtns = !showShareBtns"
       @preview="preview"
       @save="save"
-      @publish="publish"
     ></sidebar>
+    <b-btn v-b-modal.modalPrevent>Publish</b-btn>
+    <publish-modal :site="site" @publish="publish"></publish-modal>
 
     <transition name="slide-fade">
       <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
@@ -62,11 +63,11 @@
 </template>
 
   <script>
-// v-show="isTextSelected"
 import Sidebar from "@/components/Sidebar.vue";
 import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
+import PublishModal from "@/components/Publish.vue";
 import sectionService from "../services/section-service.js";
 import createLinkModal from "@/components/textEdit/createLinkModal.vue";
 import { EventBus } from "@/event-bus.js";
@@ -89,7 +90,8 @@ export default {
       isEditMode: null,
       editedParagraph: null,
       textEditSection: null,
-      currPos: null
+      currPos: null,
+      showPublishCmp: false
     };
   },
   methods: {
@@ -161,7 +163,6 @@ export default {
     deleteElement(colIdx, sectionId) {
       let section = this.getSectionById(sectionId);
       let sectionIdx = this.site.sections.indexOf(...section);
-      // this.isEditMode = false;
       this.$swal({
         title: "Delete Element?",
         text: "You can always add another one later!",
@@ -180,13 +181,12 @@ export default {
               break;
             case "4":
               this.site.sections[sectionIdx].data.sm = "6";
+              break;
           }
-          this.isEditMode = true;
-        } else return (this.isEditMode = true);
+        } else return;
       });
     },
     deleteSection(sectionId) {
-      // this.isEditMode = false;
       this.$swal({
         title: "Delete section?",
         text: "It will be gone FOREVER!",
@@ -199,8 +199,7 @@ export default {
           let section = this.getSectionById(sectionId);
           let Idx = this.site.sections.indexOf(...section);
           this.site.sections.splice(Idx, 1);
-          this.isEditMode = true;
-        } else return (this.isEditMode = true);
+        } else return;
       });
     },
     changeSectionColor(sectionId) {
@@ -217,20 +216,9 @@ export default {
 
     preview() {
       this.isEditMode = false;
-      // let siteId = this.$route.params.siteId;
-      // this.$router.push(`/preview/${siteId}`);
     },
-    save() {
-      const user = this.$store.getters.getUser;
-      if (!user) {
-        this.$swal("Please login first");
-        this.$router.push(`/login`);
-        return;
-      }
-      const site = { ...this.site, user: user.id };
-      this.$store.dispatch({ type: "saveSite", site });
-    },
-    async publish() {
+
+    async save() {
       const user = this.$store.getters.getUser;
 
       if (!user) {
@@ -238,32 +226,36 @@ export default {
         this.$router.push(`/login`);
         return;
       }
-
       const site = { ...this.site, user: user.id };
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
+      alert("site saved!");
+    },
 
-      const route = `/sites/${user.id}/${siteId}`;
+    publish() {
+      // const user = this.$store.getters.getUser;
+      const routeData = this.$router.resolve({ path: `/${site.name}` });
 
       this.$swal({
-        title: "Site Saved!",
+        title: "Site Published!",
         showCancelButton: true,
         confirmButtonText: "Go To Your Website!",
+        cancelButtonText: "Not now",
         dangerMode: true
       }).then(isConfirm => {
         if (isConfirm.value) {
-          let routeData = this.$router.resolve({ path: route });
           window.open(routeData.href, "_blank");
-          this.url =
-            window.location.protocol +
-            "//" +
-            window.location.host +
-            routeData.href;
           this.isEditMode = true;
         } else return (this.isEditMode = true);
       });
-
+      this.url =
+        window.location.protocol + "//" + window.location.host + routeData.href;
       this.isEditMode = true;
     },
+    openShareComp() {
+      if (!this.url) return this.$swal("Please save your site first");
+      this.showShareBtns = !this.showShareBtns;
+    },
+
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -312,11 +304,23 @@ export default {
     Sidebar,
     createLinkModal,
     TextEditButtons,
-    SocialShare
+    SocialShare,
+    PublishModal
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.slide-fade-enter-active {
+  transition: all 0.8s;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-10px);
+  opacity: 0;
+}
 </style>
 

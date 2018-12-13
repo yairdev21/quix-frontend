@@ -4,7 +4,7 @@
       <h1 class="contact-form_title">Contact Us</h1>
       <div class="separator"></div>
       <div v-if="isSending" class="loading">Sending...</div>
-      <form  @click="emitCloseModal" class="form" type="submit" onSubmit="onSubmit">
+      <form @click="emitCloseModal" class="form" type="submit" onSubmit="onSubmit">
         <input placeholder="Name" type="text" autocomplete="off">
         <input placeholder="E-mail" type="email" autocomplete="off">
         <textarea name="message" rows="4" placeholder="Message"></textarea>
@@ -54,7 +54,7 @@ export default {
       // this.$swal('Email Sent Biatch')
     },
     emitCloseModal() {
-EventBus.$emit('closeEditorButtons')
+      EventBus.$emit("closeEditorButtons");
     }
   }
 };
@@ -100,9 +100,9 @@ EventBus.$emit('closeEditorButtons')
 }
 
 .contact-form .button {
-  background: #93d667;
+  background: lightblue;
   border: solid 1px #da552f;
-  color: white;
+  font-family: 'EXO';
   cursor: pointer;
   padding: 10px 50px;
   text-align: center;
@@ -111,7 +111,8 @@ EventBus.$emit('closeEditorButtons')
 }
 
 .contact-form .button:hover {
-  background: #ea532a;
+  color: black;
+  background: lightcyan;
   border: solid 1px #ea532a;
   transition: 0.3s;
 }
