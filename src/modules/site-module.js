@@ -66,6 +66,18 @@ export default {
                     return site
                 })
         },
+        getSiteByName(context, {
+            siteName
+        }) {
+            return siteService.getSiteByName(siteName)
+                .then(site => {
+                    context.commit({
+                        type: 'loadSite',
+                        site
+                    })
+                    return site
+                })
+        },
         async saveSite({ commit }, { site}) {
             console.log('site to save', site);
             const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';

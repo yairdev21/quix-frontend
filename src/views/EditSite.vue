@@ -232,8 +232,8 @@ export default {
     },
 
     publish() {
-      // const user = this.$store.getters.getUser;
-      const routeData = this.$router.resolve({ path: `/${site.name}` });
+      const siteName= this.site.name
+      const routeData = this.$router.resolve({ path: `/sites/${siteName}`});
 
       this.$swal({
         title: "Site Published!",

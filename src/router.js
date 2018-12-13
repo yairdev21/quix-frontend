@@ -36,7 +36,7 @@ export default new Router({
       name: 'edit',
       component: EditSite
     },{
-      path: '/sites/:user/:siteId',
+      path: '/sites/:siteName',
       name: 'published',
       component: PreviewSite
     },{
