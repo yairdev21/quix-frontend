@@ -16,7 +16,8 @@ export default {
     saveSite,
     saveNewSite,
     updateSite,
-    getUserTemplate
+    getUserTemplate,
+    getSiteByName
 }
 
 async function query() {
@@ -30,6 +31,10 @@ async function query() {
 
 function getSiteById(siteId) {
     return axios.get(BASE_URL + '/sites/' + siteId)
+        .then(res => res.data.tamplate)
+}
+function getSiteByName(siteName) {
+    return axios.get(BASE_URL + '/sites/name/' + siteName)
         .then(res => res.data.tamplate)
 }
 
