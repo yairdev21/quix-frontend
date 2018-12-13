@@ -24,8 +24,8 @@ async function query() {
     const {
         data
     } = await axios.get(BASE_URL + '/sites');
-    const templates = data.templates.filter(template => !template.hasOwnProperty('user'));
-
+    // const templates = data.templates.filter(template => !template.hasOwnProperty('user'));
+    const templates = data.templates
     return templates;
 }
 
