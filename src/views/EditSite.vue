@@ -232,24 +232,24 @@ export default {
     },
 
     publish() {
-      const siteName= this.site.name
-      const routeData = this.$router.resolve({ path: `/${siteName}`});
+      // const siteName= this.site.name
+      // const routeData = this.$router.resolve({ path: `/${siteName}`});
 
-      this.$swal({
-        title: "Site Published!",
-        showCancelButton: true,
-        confirmButtonText: "Go To Your Website!",
-        cancelButtonText: "Not now",
-        dangerMode: true
-      }).then(isConfirm => {
-        if (isConfirm.value) {
-          window.open(routeData.href, "_blank");
-          this.isEditMode = true;
-        } else return (this.isEditMode = true);
-      });
-      this.url =
-        window.location.protocol + "//" + window.location.host + routeData.href;
-      this.isEditMode = true;
+      // this.$swal({
+      //   title: "Site Published!",
+      //   showCancelButton: true,
+      //   confirmButtonText: "Go To Your Website!",
+      //   cancelButtonText: "Not now",
+      //   dangerMode: true
+      // }).then(isConfirm => {
+      //   if (isConfirm.value) {
+      //     window.open(routeData.href, "_blank");
+      //     this.isEditMode = true;
+      //   } else return (this.isEditMode = true);
+      // });
+      // this.url =
+      //   window.location.protocol + "//" + window.location.host + routeData.href;
+      // this.isEditMode = true;
     },
     openShareComp() {
       if (!this.url) return this.$swal("Please save your site first");
