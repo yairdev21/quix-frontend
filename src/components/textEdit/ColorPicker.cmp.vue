@@ -56,8 +56,28 @@ export default {
 };
 </script>
 <style>
+.modal-backdrops {
+  z-index: 6;
+  background: transparent;
+  position: fixed;
+  align-items: center;
+}
+
+.modalski {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+  background: rgb(73, 71, 71);
+  box-shadow: 2px 2px 20px 1px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  position: relative;
+  padding: 5px 5px;
+}
 .modal-body p {
-  color:white;
+  color: white;
 }
 .color-picker {
   display: flex;
@@ -72,5 +92,27 @@ export default {
 .color-picker td:hover {
   cursor: pointer;
   transform: translateY(2px);
+}
+.btn-close {
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  font-weight: bold;
+  color: #4aae9b;
+  background: transparent;
+}
+.btn-close:hover {
+  color: #1f534a;
+  cursor: pointer;
+  background: transparent;
+}
+
+.btn-save {
+  width: fit-content;
+  color: white;
+  background: #4aae9b;
+  border: 1px solid #4aae9b;
+  border-radius: 2px;
+  margin: 10px;
 }
 </style>

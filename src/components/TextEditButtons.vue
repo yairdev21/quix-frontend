@@ -47,15 +47,20 @@ export default {
       fontCurrSize: 1,
       fontColor: "black",
       fontFamily: [
-        "Courier New",
+        "ShadowsIntoLight",
         "Franklin Gothic Medium",
         "Gill Sans",
-        "Times New Roman",
-        "Lucida Sans Regular",
-        "Verdana",
+        "WorkSans",
+        "Quicksand",
+        "Exo",
         "Tahoma",
-        "sans-serif",
-        "cursive"
+        "Comfortaa",
+        "cursive",
+        "Cinzel",
+        "Alegreya",,
+        "Acme",
+        "Palatino"
+
       ],
       fontNum: 0
     };

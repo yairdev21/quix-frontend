@@ -3,7 +3,6 @@
     <Spinner message="Uploading Image..." v-show="isLoading"/>
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
-     
       <button title="Delete" @click="$emit('delleteSection')">
         <i class="far fa-trash-alt"></i>
       </button>
@@ -15,12 +14,12 @@
       </button>
       <input hidden id="uploadImg" ref="file" type="file" @change="getUrl">
       <button
-      title="drag section"
-      @mousedown="$emit('isDraggable')"
-      @mouseup="$emit('notDraggable')"
+        title="drag section"
+        @mousedown="$emit('isDraggable')"
+        @mouseup="$emit('notDraggable')"
       >
-      <i class="fas fa-arrows-alt"></i>
-    </button>
+        <i class="fas fa-arrows-alt"></i>
+      </button>
     </div>
   </section>
 </template>
@@ -60,7 +59,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .edit-on-hover button:hover {
   transition: 0.3 ease;
   cursor: pointer;
@@ -74,7 +73,7 @@ export default {
   width: 30px;
   margin: 2px;
   z-index: 1;
-  background:rgb(56, 44, 44);
+  background: rgb(56, 44, 44);
   transition: 0.3 ease;
   margin-top: 0.2rem;
   border-radius: 3px;

@@ -4,7 +4,7 @@
       <div v-if="isEditMode" class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
+            <b-btn class="acordion-header"  block href="#" v-b-toggle.accordion1 variant="info">
               <p class="sidebar-names">Sections</p>
             </b-btn>
           </b-card-header>
