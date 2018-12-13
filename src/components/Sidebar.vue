@@ -1,10 +1,19 @@
 <template>
-  <section  class="fullSideBar" contenteditable="false">
+  <section class="fullSideBar" contenteditable="false">
+    <control-buttons
+      :isEditMode="isEditMode"
+      class="controlButtons"
+      @edit="$emit('edit')"
+      @share="$emit('share')"
+      @preview="$emit('preview')"
+      @save="$emit('save')"
+      @publish="$emit('publish')"
+    ></control-buttons>
     <transition name="slide-fade">
       <div v-if="isEditMode" class="sidebar" role="tablist">
         <b-card no-body class="mb-1">
           <b-card-header header-tag="header" class="p-1" role="tab">
-            <b-btn class="acordion-header"  block href="#" v-b-toggle.accordion1 variant="info">
+            <b-btn class="acordion-header" block href="#" v-b-toggle.accordion1 variant="info">
               <p class="sidebar-names">Sections</p>
             </b-btn>
           </b-card-header>
@@ -99,15 +108,8 @@
         </b-card>
       </div>
     </transition>
-    <control-buttons
-      :isEditMode="isEditMode"
-      class="controlButtons"
-      @edit="$emit('edit')"
-      @share="$emit('share')"
-      @preview="$emit('preview')"
-      @save="$emit('save')"
-      @publish="$emit('publish')"
-    ></control-buttons>
+
+    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
   </section>
 </template>
 
@@ -129,7 +131,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.fullSideBar{
 
+.publish-btn {
+  background: #124127 ;
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  position: fixed;
+  bottom: 1px;
+  left: 4vw;
+  z-index: 20;
+}
+.publish-btn:hover {
+  cursor: pointer;
+  background: #207446;
+  color: black;
 }
 </style>

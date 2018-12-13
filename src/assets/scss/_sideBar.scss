@@ -26,6 +26,7 @@ p {
 
 .sidebar {
   margin-top: 3em;
+  margin-bottom: 3em;
   height: 100%;
   width: 18vw;
   position: fixed;
@@ -39,7 +40,7 @@ p {
 
 .card-body {
   transform: scale(0.85);
-  max-height: 100vh;
+  max-height: 95vh;
   overflow: none;
   @media (min-width: 680px) { 
   transform: scale(1);

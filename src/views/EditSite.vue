@@ -14,12 +14,7 @@
       @preview="preview"
       @save="save"
     ></sidebar>
-    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
-    <publish-modal :site="site" @publish="publish"></publish-modal>
-
-    <transition name="slide-fade">
-      <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
-    </transition>
+    <publish-modal :site="site"></publish-modal>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -64,7 +59,6 @@
 
   <script>
 import Sidebar from "@/components/Sidebar.vue";
-import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
 import PublishModal from "@/components/Publish.vue";
@@ -228,33 +222,9 @@ export default {
       }
       const site = { ...this.site, user: user.id };
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
-      alert("site saved!");
+      this.$swal("site saved!");
     },
 
-    publish() {
-      // const siteName= this.site.name
-      // const routeData = this.$router.resolve({ path: `/${siteName}`});
-
-      // this.$swal({
-      //   title: "Site Published!",
-      //   showCancelButton: true,
-      //   confirmButtonText: "Go To Your Website!",
-      //   cancelButtonText: "Not now",
-      //   dangerMode: true
-      // }).then(isConfirm => {
-      //   if (isConfirm.value) {
-      //     window.open(routeData.href, "_blank");
-      //     this.isEditMode = true;
-      //   } else return (this.isEditMode = true);
-      // });
-      // this.url =
-      //   window.location.protocol + "//" + window.location.host + routeData.href;
-      // this.isEditMode = true;
-    },
-    openShareComp() {
-      if (!this.url) return this.$swal("Please save your site first");
-      this.showShareBtns = !this.showShareBtns;
-    },
 
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
@@ -304,7 +274,6 @@ export default {
     Sidebar,
     createLinkModal,
     TextEditButtons,
-    SocialShare,
     PublishModal
   }
 };
@@ -323,17 +292,5 @@ export default {
   opacity: 0;
 }
 
-.publish-btn {
-  background: #123b41 ;
-  margin-top: 0.5em;
-  position: fixed;
-  top: 0;
-  z-index: 20;
-}
-.publish-btn:hover {
-  cursor: pointer;
-  background: #317c88;
-  color: wheat;
-}
 </style>
 

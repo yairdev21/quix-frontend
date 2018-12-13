@@ -12,10 +12,6 @@
     <button v-else class="preview-icon icon" @click="$emit('preview')" title="Preview">
       <i class="far fa-eye"></i>
     </button>
-    <!-- <button class="share-icon icon" @click="$emit('publish')" title="Share">
-      <i class="fas fa-share-alt"></i>
-    </button> -->
-    
   </div>
 </template>
 
