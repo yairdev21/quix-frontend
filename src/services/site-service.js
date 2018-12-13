@@ -21,10 +21,11 @@ export default {
 }
 
 async function query() {
-    const { data } = await axios.get(BASE_URL + '/sites');
+    const {
+        data
+    } = await axios.get(BASE_URL + '/sites');
+    // const templates = data.templates.filter(template => !template.hasOwnProperty('user'));
     const templates = data.templates
-    // const templates = data.templates.filter( template => !template.hasOwnProperty('user'));
-
     return templates;
 }
 
@@ -57,7 +58,9 @@ function saveNewSite(site) {
 }
 
 async function getUserTemplate(id) {
-    const { data } = axios.get(`${BASE_URL}/sites/user/${id}`);
+    const {
+        data
+    } = axios.get(`${BASE_URL}/sites/user/${id}`);
     const templates = data.templates;
 
     return templates;

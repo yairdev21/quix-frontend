@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .modal-backdrops {
   z-index: 6;
   background: transparent;
