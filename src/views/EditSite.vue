@@ -28,7 +28,7 @@
     ></text-edit-buttons>
     <main>
       <create-link-modal v-show="isModalVisible" @closeModal="closeModal"></create-link-modal>
-      <div v-if="sections">
+      <div v-if="sections" :class="{sectionsList:isEditMode}">
         <transition-group name="list-complete" tag="p">
           <div
             v-bind:class="{ 'section-items': isEditMode }"

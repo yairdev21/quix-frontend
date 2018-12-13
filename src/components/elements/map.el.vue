@@ -4,6 +4,7 @@
       <h2>Add Your Location</h2>
       <label>
         <gmap-autocomplete @place_changed="savePlace"></gmap-autocomplete>
+        {{placeText}}
         <button @click="addMarker">Add</button>
       </label>
       <br>
@@ -45,7 +46,8 @@ export default {
       center: {},
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      placeText:''
     };
   },
   methods: {
@@ -54,14 +56,12 @@ export default {
       this.setPlace(place);
     },
     setPlace(place) {
-      console.log('place that is going', place);
+      console.log("place that is going", place);
       this.currentPlace = place;
       this.isGettingLocation = false;
       this.addMarker();
     },
     addMarker() {
-      if (this.currentPlace) {
-        console.log(this.currentPlace);
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
@@ -70,7 +70,6 @@ export default {
         this.places.push(this.currentPlace);
         this.center = marker;
         this.currentPlace = null;
-      }
     },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
@@ -83,8 +82,7 @@ export default {
   },
   mounted() {
     const site = this.$store.getters.getSite;
-    let place = this.col.data.place
-    // console.log("THIS IS THE PLACE: ", this.col.data.place.geometry.location.lat());
+    let place = this.col.data.place;
     if (this.col.data.place) {
       this.setPlace(place);
     }
