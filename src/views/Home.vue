@@ -3,6 +3,10 @@
     <main-header class="main-header"></main-header>
     <section class="main">
       <div class="container"></div>
+      <h5>A modern aproach to website building</h5>
+      <h1>Build your website!</h1>
+      <!-- <h3>Build a site in minutes!</h3> -->
+      <!-- <h3>or whatever you'd like and publish it in just 5 minutes!</h3> -->
       <h1 hidden>Quix</h1>
     </section>
     <section class="template-section">
@@ -37,17 +41,17 @@ export default {
 
 <style lang="scss" scoped>
 section {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Quicksand";
   max-width: 100vw;
+
   &.main {
     position: relative;
-    background-image: url("../assets/img/homePage2.png");
-    background-attachment: fixed;
-    background-position: center center;
+    background: url("../assets/img/MainHeaderImg.jpg") center center;
+    // background: linear-gradient(#42b983, #8ae7a1);
+    // background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+    background-size: contain;
+    height: 75vh;
 
     @media (max-width: 900px) {
       background-size: contain;
@@ -77,20 +81,43 @@ section {
   }
 }
 .title {
-  font-weight: bold;  
+  color: #42b983 !important;
+  font-weight: bold;
   bottom: 0;
   background: transparent;
-   background: transparent;
-  font-family: Palatino;
-
+  background: transparent;
+  // font-family: Palatino;
 }
 .template-section {
-  background-image: url("../assets/img/7968.jpg");
+  // background-image: url("../assets/img/7968.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-
+.main {
+  margin-top: 0.5em;
+  h1 {
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+    color: white;
+    font-weight: 550;
+    transform: scale(1.88);
+  }
+  h3 {
+    letter-spacing: 2px;
+    // text-decoration: overline;
+    transform: scale(0.8);
+    margin-bottom: 0.3em;
+    font-weight: 600;
+    color: white;
+  }
+  h5 {
+    transform: scale(1.2);
+    margin-top: 2.6em;
+    font-weight: 550;
+    color: white;
+  }
+}
 </style>
