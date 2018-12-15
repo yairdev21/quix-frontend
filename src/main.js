@@ -5,9 +5,9 @@ import VeeValidate from 'vee-validate';
 import store from './store'
 import '@/assets/scss/main.scss'
 import './registerServiceWorker'
-var SocialSharing = require('vue-social-sharing');
+// var SocialSharing = require('vue-social-sharing');
 
-Vue.use(SocialSharing);
+// Vue.use(SocialSharing);
 Vue.use(VeeValidate)
 
 // vue-drag-drop
@@ -20,13 +20,13 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
-// 
+    // 
 import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(VueGoogleMaps, {
     load: {
         key: "AIzaSyDZzqik5JAq6HK7gloZt8_BvLvh04DFjYs",
-        libraries: "places" 
+        libraries: "places"
     }
 });
 
@@ -38,7 +38,7 @@ Vue.use(VueSweetalert2)
 
 
 import VueAWN from "vue-awesome-notifications"
- 
+
 Vue.use(VueAWN, {
     labels: {
         warning: 'Something went wrong',
@@ -80,7 +80,7 @@ import {
     dom
 } from '@fortawesome/fontawesome-svg-core'
 dom.watch()
-// 
+    // 
 
 Vue.config.productionTip = false
 

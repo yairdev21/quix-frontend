@@ -17,9 +17,6 @@
     <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
     <publish-modal :site="site" @publish="publish"></publish-modal>
 
-    <transition name="slide-fade">
-      <social-share v-if="showShareBtns" @hideButtons="showShareBtns=false" :url="url"></social-share>
-    </transition>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -64,7 +61,7 @@
 
   <script>
 import Sidebar from "@/components/Sidebar.vue";
-import SocialShare from "@/components/SocialShare.vue";
+// import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
 import PublishModal from "@/components/Publish.vue";
@@ -220,7 +217,6 @@ export default {
 
     async save() {
       const user = this.$store.getters.getUser;
-
       if (!user) {
         this.$swal("Please login first");
         this.$router.push(`/login`);
@@ -228,13 +224,23 @@ export default {
       }
       const site = { ...this.site, user: user.id };
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
-      alert("site saved!");
+      this.$swal({
+        title: "Site Saved!",
+        position: "middle",
+        background: "white",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        showConfirmButton: false,
+        showCancelButton: false,
+        animation: false,
+        timer: 1500
+      });
     },
 
     publish() {
       // const siteName= this.site.name
       // const routeData = this.$router.resolve({ path: `/${siteName}`});
-
       // this.$swal({
       //   title: "Site Published!",
       //   showCancelButton: true,
@@ -304,7 +310,7 @@ export default {
     Sidebar,
     createLinkModal,
     TextEditButtons,
-    SocialShare,
+    // SocialShare,
     PublishModal
   }
 };
@@ -324,7 +330,7 @@ export default {
 }
 
 .publish-btn {
-  background: #123b41 ;
+  background: #123b41;
   margin-top: 0.5em;
   position: fixed;
   top: 0;

@@ -1,15 +1,9 @@
 .social-share {
     display: inline-block;
-    left: 18vw;
-    z-index: 11;
-    position: fixed;
-    background-color: white;
-    bottom: 93vh;
-    background: transparent;
+    margin: 0 auto;
 }
 
 .share-item {
-    background-color: white;
     margin-right: 2em;
 }
 
@@ -21,14 +15,18 @@
     .slide-fade-enter-active {
         transition: all .3s ease;
     }
-
     .slide-fade-leave-active {
         transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
-
     .slide-fade-enter,
     .slide-fade-leave-to {
         transform: translateX(10px);
         opacity: 0;
     }
+}
+
+.modal-content {
+    font-family: Comfortaa;
+    background: rgb(22, 64, 75) !important;
+    color: whitesmoke;
 }

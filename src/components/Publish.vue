@@ -3,7 +3,7 @@
     <b-modal
       id="modalPrevent"
       ref="modal"
-      title="Give your site a name"
+      title="Lets Publish Your Site!"
       :ok-title="okTitle"
       :cancel-title="cancelTitle"
       @ok="handleOk"
@@ -13,14 +13,33 @@
         <b-form-input type="text" placeholder="Enter site name" v-model="name"></b-form-input>
       </form>
       <div v-else>
-        Your Link is:
-        <a  @click="openSite">{{site.url}}</a>
+        Your website link is:
+        <br>
+        <a @click="openSite">{{site.url}}</a>
+        <div class="social-share">
+            <br>
+          <h4>Let everybody know!</h4>
+            <br>
+          <facebook class="share-item" :url="site.url" scale="3"></facebook>
+          <twitter class="share-item" :url="site.url" title="Check My New Website" scale="3"></twitter>
+          <linkedin class="share-item" :url="site.url" scale="3"></linkedin>
+          <whats-app class="share-item" :url="site.url" title="Hello" scale="3"></whats-app>
+          <email class="share-item" :url="site.url" subject="Hello" scale="3"></email>
+        </div>
       </div>
     </b-modal>
   </div>
 </template>
 
 <script>
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  WhatsApp,
+  Email
+} from "vue-socialmedia-share";
+
 export default {
   props: ["site"],
   data() {
@@ -80,7 +99,7 @@ export default {
       this.cancelTitle = "Go back";
     },
     openSite() {
-      window.open(this.site.url, '_blank')
+      window.open(this.site.url, "_blank");
     },
     share() {
       // this.$refs.modal.hide();
@@ -92,18 +111,22 @@ export default {
       this.okTitle = "Publish!";
       this.cancelTitle = "Cancel";
     }
-  }
+  },
+  components: { Facebook, Twitter, Linkedin, WhatsApp, Email }
 };
 </script>
 
 <style lang="scss" scoped>
- a {
-   color: rgb(0, 0, 206) !important;
-    font-weight: bold;
-  }
-  a:hover{
-    cursor: pointer ;
-    text-decoration: underline !important;
-  }
+
+a {
+  border: 1px solid wheat;
+  padding: 2px;
+}
+a:hover {
+  cursor: pointer;
+  font-weight: 400;
+
+  text-decoration: underline !important;
+}
 </style>
 

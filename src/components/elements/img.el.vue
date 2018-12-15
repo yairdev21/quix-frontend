@@ -1,8 +1,18 @@
 <template>
-  <div contenteditable="false" class="img-div">
+  <div contenteditable="false" class="img-div" @keyup="saveText">
+    <div >
+      <p class="text" :contenteditable="isEditMode" v-text="content"></p>
+    </div>
     <img v-show="isSrc" :src="data.src" class="img" contenteditable="false">
-    <Spinner message="Uploading Image..."  v-show="isLoading"/>
-    <input type="file" id="uploadSmallImg" ref="img" @change="getUrl" hidden>
+    <Spinner message="Uploading Image..." v-show="isLoading"/>
+    <input
+      contenteditable="false"
+      type="file"
+      id="uploadSmallImg"
+      ref="img"
+      @change="getUrl"
+      hidden
+    >
     <label
       v-show="!isSrc && !isLoading"
       class="uploadImageBtn"
@@ -20,7 +30,6 @@ import Spinner from "vue-simple-spinner";
 
 export default {
   props: {
-  
     isEditMode: {},
     data: {
       type: Object,
@@ -31,7 +40,8 @@ export default {
   data() {
     return {
       id: ID(),
-      isLoading:false
+      isLoading: false,
+      content: this.data.text
     };
   },
   methods: {
@@ -42,6 +52,13 @@ export default {
         this.data.src = url;
         this.isLoading = false;
       });
+    },
+    getContent() {
+      return this.content;
+    },
+    saveText(ev) {
+      console.log(ev.target.innerText);
+      this.data.text = ev.target.innerText;
     }
   },
   computed: {
@@ -53,10 +70,10 @@ export default {
     }
   },
   created() {
-    document.designMode = "off";
+    document.designMode = this.checkEditMode ? "on" : "off";
     if (this.isNewImg) this.data.src = "";
   },
-  components:{
+  components: {
     Spinner
   }
 };
@@ -82,6 +99,8 @@ export default {
   // transform: scale(0.8)
 }
 .img-div {
+  display: flex;
+  flex-direction: column;
   object-fit: contain;
 }
 // #uploadSmallImg{
