@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-modal
-      id="modalPrevent"
+      id="modal-center"
       ref="modal"
       :title="title"
       :ok-disabled="okDisabled"

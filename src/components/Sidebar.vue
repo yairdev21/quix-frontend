@@ -109,7 +109,7 @@
       </div>
     </transition>
 
-    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
+    <b-btn class="publish-btn" v-b-modal.modal-center>Publish</b-btn>
   </section>
 </template>
 
