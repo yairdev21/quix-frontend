@@ -1,7 +1,7 @@
 <template>
-<div>
-  <p class="text" :contenteditable="isEditMode" v-text="content"   @blur="saveText"></p>
-</div>
+  <div @keyup="saveText">
+    <p class="text" :contenteditable="isEditMode" v-text="content"></p>
+  </div>
 </template>
 
 <script>
@@ -30,10 +30,8 @@ export default {
       return this.content;
     },
     saveText(ev) {
-      console.log();
-      
-      this.content = ev.target.innerText;
-      this.data.text =  this.content
+      console.log(ev.target.innerText);
+      this.data.text = ev.target.innerText;
     }
   }
 };

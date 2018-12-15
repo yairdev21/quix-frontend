@@ -214,7 +214,6 @@ export default {
 
     async save() {
       const user = this.$store.getters.getUser;
-
       if (!user) {
         this.$swal("Please login first");
         this.$router.push(`/login`);

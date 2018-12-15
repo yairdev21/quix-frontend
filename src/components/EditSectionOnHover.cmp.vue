@@ -79,9 +79,9 @@ export default {
   border-radius: 3px;
 }
 .edit-on-hover {
+  margin-top: 5px;
   display: flex;
   position: relative;
-  width: 73vw;
   top: -30px;
   justify-content: flex-end;
   z-index: 5;
