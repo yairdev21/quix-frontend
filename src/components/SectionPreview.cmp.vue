@@ -99,17 +99,16 @@ export default {
 
 <style lang="scss" scoped>
 .preview-section-item {
-    background: white;
-    padding: 3rem;
-    padding-top: 2rem;
-    overflow: hidden;
-    border: 2px solid transparent;
-  }
-  
-  .isBorder {
-    resize: vertical;
-    display: block;
-    border: 2px dashed rgb(147, 160, 199);
-  }
+  background: white;
+  padding: 3rem;
+  padding-top: 2rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+}
 
+.isBorder {
+  resize: vertical;
+  display: block;
+  border: 2px dashed rgb(147, 160, 199);
+}
 </style>
