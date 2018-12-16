@@ -132,9 +132,12 @@ export default {
             break;
           case "4":
             this.isEditMode = false;
-            this.$swal(
-              "Too many elements in one section. Please drop the element in another section!"
-            );
+            this.$swal({
+              title:
+                "Too many elements in one section. Please drop the element in another section!",
+              confirmButtonColor: "#42b983",
+              reverseButtons: true
+            });
             this.isEditMode = true;
             return;
         }
@@ -160,6 +163,8 @@ export default {
       this.$swal({
         title: "Delete Element?",
         icon: "warning",
+        confirmButtonColor: "#42b983",
+        reverseButtons: true,
         showCancelButton: true,
         animation: false
       }).then(isConfirm => {
@@ -183,6 +188,8 @@ export default {
         background: "whitesmoke ",
         title: "Delete section?",
         icon: "warning",
+        confirmButtonColor: "#42b983",
+        reverseButtons: true,
         showCancelButton: true,
         buttons: ["No, cancel it!", "Yes, I am sure!"],
         animation: false

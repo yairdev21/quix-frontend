@@ -43,6 +43,8 @@ export default {
       this.$swal({
         title: "Enter youtube link",
         input: "text",
+        confirmButtonColor: "#42b983",
+        reverseButtons: true,
         animation: false,
         inputAttributes: {
           autocapitalize: "off"
