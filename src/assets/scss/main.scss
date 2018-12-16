@@ -2,6 +2,7 @@
 @import 'editSite';
 @import 'sectionPreview';
 @import 'socailShare';
+
 .sectionsList {
     transform: scale(0.75)
 }
@@ -13,4 +14,22 @@
 
 .swal2-modal {
     border-radius: 5% !important;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#42b983, #8ae7a1);
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#389e70, #6db880);
+
 }
