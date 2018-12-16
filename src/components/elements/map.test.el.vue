@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!showMap" contenteditable="false">
+    <div v-if="!col.data.place" contenteditable="false">
       <h2>Add Your Location</h2>
       <label>
         <gmap-autocomplete @place_changed="savePlace"></gmap-autocomplete>
@@ -41,38 +41,30 @@ export default {
   },
   data() {
     return {
+      place: null,
       id: ID(),
       center: {},
       markers: [],
       places: [],
       currentPlace: null,
-      placeText: "",
-      showMap: null
+      placeText: ""
     };
   },
   methods: {
     savePlace(place) {
-      console.log(place);
-
-      this.setPlace(place);
+      this.currentPlace = this.col.data.place || place;
+      if (!this.col.data.place) {
+        EventBus.$emit("updateLocation", place, this.sectionIdx);
+      }
       console.log("place that is going", place);
-    },
-    setPlace(place) {
       this.currentPlace = place;
-      this.center = this.col.data.marker;
-      if (!this.showMap) this.addMarker();
-      this.showMap = true;
-    },
-    addMarker() {
+
       const marker = {
         lat: this.currentPlace.geometry.location.lat(),
         lng: this.currentPlace.geometry.location.lng()
       };
       this.markers.push({ position: marker });
       this.places.push(this.currentPlace);
-      this.currentPlace.marker = marker;
-      console.log("place to save", this.currentPlace);
-      EventBus.$emit("updateLocation", this.currentPlace, this.sectionIdx);
       this.center = marker;
       this.currentPlace = null;
     },
@@ -85,16 +77,13 @@ export default {
       });
     }
   },
-  mounted() {
-    console.log(this.col);
+  created() {
     const site = this.$store.getters.getSite;
-    let place = this.col.data;
-    this.showMap = !!place.address_components;
-    if (this.showMap) {
+    console.log("map col:", this.col);
+    let place = this.col.data.place;
+    if (this.col.data.name) {
       this.savePlace(place);
-      this.markers.push({ position: this.col.data.marker });
     }
-    // this.geolocate();
   }
 };
-</script>
+</script> 

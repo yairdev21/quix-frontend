@@ -108,6 +108,8 @@
         </b-card>
       </div>
     </transition>
+
+    <b-btn class="publish-btn" v-b-modal.modal-center>Publish</b-btn>
   </section>
 </template>
 
@@ -129,6 +131,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.publish-btn {
+font-size: 1.4em;
+letter-spacing: 1.6px;
+  font-weight: bold;
+  width: 17.5vw;
+  margin-top: 0.5em;
+  position: fixed;
+  bottom: 1vh;
+  left: 0.3vw;
+  z-index: 20;
+  // @media (max-width: 625px) {
+  //   transform: scale(0.7);
+  //   left: 2vw;
+  // }
+
+}
+.publish-btn:hover {
+  cursor: pointer;
+  background: #33ce47 !important;
+  color: wheat;
+}
+
 .card.mb-1 {
   border: none;
 }
@@ -144,43 +168,34 @@ export default {
 section {
   display: flex;
 }
-
 .sidebar p:hover {
   color: black;
   transition: 0.3s ease;
 }
-
 .sidebar img:hover {
   transition: 0.3s ease;
   cursor: grab;
   border: 1px solid black;
 }
-
 .sidebar img,
 p {
   border: 2px solid transparent;
   padding-bottom: 3px;
 }
-
 .sidebar img:active {
   cursor: grabbing;
 }
-
 .sidebar {
   margin-top: 3em;
   height: 100%;
   width: 18vw;
   position: fixed;
   z-index: 10;
-
   img {
     width: 85%;
     padding: 2px;
   }
 }
-// .collapse {
-//   height: 56vh;
-// }
 
 .card-body {
   transform: scale(0.85);
@@ -200,34 +215,27 @@ p {
     width: 18vw;
     position: fixed;
     z-index: 10;
-
     img {
       margin-bottom: -10px;
     }
   }
 }
-
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
-
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
 }
-
 .acordion-header {
   height: 2.6rem;
-
   @media (max-width: 625px) {
     height: 5.5vw;
   }
-
   .sidebar {
     height: 100%;
     width: 18vw;
@@ -235,7 +243,6 @@ p {
     z-index: 10;
   }
 }
-
 @media (max-width: 625px) {
   .sidebar-names {
     font-size: 2.3vw;

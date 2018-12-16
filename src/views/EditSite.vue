@@ -14,9 +14,7 @@
       @preview="preview"
       @save="save"
     ></sidebar>
-    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish!</b-btn>
-    <publish-modal :site="site" @publish="publish"></publish-modal>
-
+    <publish-modal :site="site"></publish-modal>
     <text-edit-buttons
       @openLinkModal="showModal"
       v-show="isTextSelected"
@@ -61,7 +59,6 @@
 
   <script>
 import Sidebar from "@/components/Sidebar.vue";
-// import SocialShare from "@/components/SocialShare.vue";
 import SectionPreview from "@/components/SectionPreview.cmp.vue";
 import TextEditButtons from "@/components/TextEditButtons.vue";
 import PublishModal from "@/components/Publish.vue";
@@ -236,30 +233,6 @@ export default {
       });
     },
 
-    publish() {
-      // const siteName= this.site.name
-      // const routeData = this.$router.resolve({ path: `/${siteName}`});
-      // this.$swal({
-      //   title: "Site Published!",
-      //   showCancelButton: true,
-      //   confirmButtonText: "Go To Your Website!",
-      //   cancelButtonText: "Not now",
-      //   dangerMode: true
-      // }).then(isConfirm => {
-      //   if (isConfirm.value) {
-      //     window.open(routeData.href, "_blank");
-      //     this.isEditMode = true;
-      //   } else return (this.isEditMode = true);
-      // });
-      // this.url =
-      //   window.location.protocol + "//" + window.location.host + routeData.href;
-      // this.isEditMode = true;
-    },
-    openShareComp() {
-      if (!this.url) return this.$swal("Please save your site first");
-      this.showShareBtns = !this.showShareBtns;
-    },
-
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -293,14 +266,15 @@ export default {
       section[0].style["background-size"] = "cover";
       return section[0].style;
     });
-    EventBus.$on("updateLocation", (Place, sectionIdx) => {
+    EventBus.$on("updateLocation", (place, sectionIdx) => {
       let El = this.site.sections[sectionIdx].elements.filter(
         element => element.name === "map"
       );
-      El[0].data.place;
+      El[0].data = place;
       let site = this.site;
       this.$store.commit({ type: "saveSite", site });
     });
+
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
@@ -308,17 +282,12 @@ export default {
     Sidebar,
     createLinkModal,
     TextEditButtons,
-    // SocialShare,
     PublishModal
   }
 };
 </script>
 
 <style lang="scss" scoped>
-// .sectionsList {
-// transform: scale(0.75);
-// }
-
 .list-complete-item {
   overflow-x: hidden;
   transition: all 0.3s ease-in-out;
@@ -360,28 +329,6 @@ main {
 .slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
-}
-
-.publish-btn {
-  background: #42b983;
-  margin-top: 0.5em;
-  position: fixed;
-  bottom: 1vh;
-  left: 5vw;
-  z-index: 20;
-  @media (max-width: 625px) {
-    transform: scale(0.7);
-    left: 2vw;
-  }
-  @media (max-width: 900px) {
-    transform: scale(0.9);
-    left: 4vw;
-  }
-}
-.publish-btn:hover {
-  cursor: pointer;
-  background: #317c88;
-  color: wheat;
 }
 </style>
 

@@ -1,0 +1,127 @@
+{
+    "_id": {
+        "$oid": "5c122ee42f3d512b18395f77"
+    },
+    "name": "Coding",
+    "thumb": "http://res.cloudinary.com/bebarefoot/image/upload/v1544875109/codingacadamy.png",
+    "sections": [
+        {
+            "_id": {
+                "$oid": "5f743738667a6d356563626b"
+            },
+            "style": {
+                "background": "url(http://res.cloudinary.com/dqk87o0m5/image/upload/v1544874137/quix/jcuhcafglb2bhqzarpiz.png) center center",
+                "margin": "0 auto",
+                "background-repeat": "no-repeat",
+                "background-size": "100% 100%",
+                "height": "33vw"
+            },
+            "elements": [
+                {
+                    "_id": {
+                        "$oid": "5c14e9a70e2a7305b87ed82d"
+                    },
+                    "style": {
+                        "font-size": "calc(0.8*4vw",
+                        "color": "white",
+                        "font-family": "Quicksand"
+                    },
+                    "type": "header",
+                    "name": "header",
+                    "data": {
+                        "title": "This Is Your Header",
+                        "text": "\n"
+                    }
+                },
+                {
+                    "_id": {
+                        "$oid": "5c14ea680e2a7305b87ed835"
+                    },
+                    "style": {
+                        "font-size": "calc(0.8*4vw",
+                        "color": "white",
+                        "font-family": "Quicksand"
+                    },
+                    "type": "text",
+                    "name": "text",
+                    "data": {
+                        "text": "Learn To Code            \n\nIn Just 12 Weeks             \n\n"
+                    }
+                }
+            ],
+            "type": "section",
+            "name": "header",
+            "data": {
+                "sm": "6"
+            }
+        },
+        {
+            "_id": {
+                "$oid": "5f636a35386977377a6c7273"
+            },
+            "style": {},
+            "elements": [
+                {
+                    "_id": {
+                        "$oid": "5c14eae50e2a7305b87ed845"
+                    },
+                    "style": {
+                        "font-size": "calc(0.6000000000000001*4vw",
+                        "color": "black",
+                        "font-family": "WorkSans"
+                    },
+                    "type": "text",
+                    "name": "p",
+                    "data": {
+                        "text": "Next course opens up in january 2019 so hurry the fuck up and sign NOW!!!\n\n"
+                    }
+                },
+                {
+                    "_id": {
+                        "$oid": "5c14eae50e2a7305b87ed844"
+                    },
+                    "style": {},
+                    "type": "video",
+                    "name": "video",
+                    "data": {
+                        "src": "https://youtu.be/VvU27gvAK40"
+                    }
+                }
+            ],
+            "type": "section",
+            "name": "oneColsSectionWithVid",
+            "data": {
+                "sm": "6"
+            }
+        },
+        {
+            "_id": {
+                "$oid": "5c0676941378773a50b4c041"
+            },
+            "style": {},
+            "elements": [
+                {
+                    "_id": {
+                        "$oid": "5c0676941378773a50b4c042"
+                    },
+                    "style": {},
+                    "type": "contact",
+                    "name": "div",
+                    "data": {}
+                }
+            ],
+            "type": "section",
+            "name": "contactComponent",
+            "data": {
+                "sm": "12"
+            }
+        }
+    ],
+    "__v": 0,
+    "date": {
+        "$date": "2018-12-13T10:05:20.477Z"
+    },
+    "user": {
+        "$oid": "5c08e9c5e2ff900938698412"
+    }
+}

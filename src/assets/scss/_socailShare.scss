@@ -1,5 +1,7 @@
 .social-share {
     display: inline-block;
+    background-color: white;
+    background: transparent;
     margin: 0 auto;
 }
 
@@ -9,25 +11,4 @@
 
 .share-item:hover {
     cursor: pointer;
-}
-
-.slide-fade {
-    .slide-fade-enter-active {
-        transition: all .3s ease;
-    }
-    .slide-fade-leave-active {
-        transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    }
-    .slide-fade-enter,
-    .slide-fade-leave-to {
-        transform: translateX(10px);
-        opacity: 0;
-    }
-}
-
-.modal-content {
-    font-family: Comfortaa;
-    background:   linear-gradient(to right, #1d976c, #93f9b9) !important;
-    color: whitesmoke;
-  
 }

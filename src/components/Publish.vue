@@ -1,10 +1,11 @@
 <template>
   <div>
     <b-modal
-      id="modalPrevent"
+      id="modal-center"
       ref="modal"
-      title="Lets Publish Your Site!"
+      :title="title"
       :ok-title="okTitle"
+      ok-variant="success"
       :cancel-title="cancelTitle"
       @ok="handleOk"
       @shown="clearName"
@@ -12,33 +13,23 @@
       <form v-if="showNameInput" @submit.stop.prevent="handleSubmit">
         <b-form-input type="text" placeholder="Enter site name" v-model="name"></b-form-input>
       </form>
-      <div v-else>
-        Your website link is:
-        <br>
-        <a @click="openSite">{{site.url}}</a>
-        <div class="social-share">
-            <br>
-          <h4>Let everybody know!</h4>
-            <br>
-          <facebook class="share-item" :url="site.url" scale="3"></facebook>
-          <twitter class="share-item" :url="site.url" title="Check My New Website" scale="3"></twitter>
-          <linkedin class="share-item" :url="site.url" scale="3"></linkedin>
-          <whats-app class="share-item" :url="site.url" title="Hello" scale="3"></whats-app>
-          <email class="share-item" :url="site.url" subject="Hello" scale="3"></email>
+      <transition name="fade">
+        <div v-if="!showNameInput">
+          <p>
+            Your Link is:
+            <a @click="openSite">{{site.url}}</a>
+          </p>
+          <p>
+            <social-share :url="site.url"></social-share>
+          </p>
         </div>
-      </div>
+      </transition>
     </b-modal>
   </div>
 </template>
 
 <script>
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  WhatsApp,
-  Email
-} from "vue-socialmedia-share";
+import SocialShare from "@/components/SocialShare.vue";
 
 export default {
   props: ["site"],
@@ -46,8 +37,9 @@ export default {
     return {
       name: "",
       showNameInput: true,
-      okTitle: "Publish!",
-      cancelTitle: "Cancel"
+      title: "Give your site a name",
+      okTitle: "Publish",
+      cancelTitle: "Cancel",
     };
   },
   methods: {
@@ -56,14 +48,11 @@ export default {
     },
     handleOk(evt) {
       evt.preventDefault();
-      if (this.okTitle === "Publish!") {
-        if (!this.name) {
-          alert("Please enter site name");
-        } else {
-          this.handleSubmit();
-        }
-      } else if (this.okTitle === "Share!") {
-        this.share();
+        if (!this.showNameInput) return this.$refs.modal.hide()
+      if (!this.name) {
+        alert("Please enter site name");
+      } else {
+        this.handleSubmit();
       }
     },
     handleSubmit() {
@@ -95,38 +84,53 @@ export default {
       this.site.url =
         window.location.protocol + "//" + window.location.host + routeData.href;
       this.showNameInput = false;
-      this.okTitle = "Share!";
       this.cancelTitle = "Go back";
+      this.title = "Share Your Site";
+      this.okTitle = "Got it";
     },
     openSite() {
       window.open(this.site.url, "_blank");
-    },
-    share() {
-      // this.$refs.modal.hide();
     }
   },
-  created() {
+  mounted() {
     if (!this.site.url) {
+      this.title = "Give your site a name";
       this.showNameInput = true;
-      this.okTitle = "Publish!";
+      this.okTitle = "Publish";
       this.cancelTitle = "Cancel";
+      this.okDisabled = false;
+      this.okVariant = "primary";
     }
   },
-  components: { Facebook, Twitter, Linkedin, WhatsApp, Email }
+  components: {
+    SocialShare
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-
+b-modal {
+  background: greenyellow !important
+}
 a {
-  border: 1px solid wheat;
-  padding: 2px;
+  color: rgb(0, 0, 206) !important;
+  font-weight: bold;
 }
 a:hover {
   cursor: pointer;
-  font-weight: 400;
-
   text-decoration: underline !important;
+}
+
+p {
+  color: black;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.8s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
 
