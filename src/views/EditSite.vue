@@ -291,8 +291,6 @@ export default {
   opacity: 0;
 }
 
-<<<<<<< HEAD
-=======
 .publish-btn {
   background: #42b983;
   margin-top: 0.5em;
@@ -314,6 +312,5 @@ transform: scale(0.9);
   background: #317c88;
   color: wheat;
 }
->>>>>>> c4ac8133376faf5be39bc007c79467e4394b4cd2
 </style>
 
