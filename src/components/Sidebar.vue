@@ -137,7 +137,7 @@ export default {
 <style lang="scss" scoped>
 .publish-btn {
   font-size: 1.4em;
-  letter-spacing: 1.6px;
+  letter-spacing: 1.4px;
   font-weight: bold;
   width: 17.5vw;
   margin-top: 0.5em;
@@ -145,15 +145,12 @@ export default {
   bottom: 1vh;
   left: 0.3vw;
   z-index: 20;
-  // @media (max-width: 625px) {
-  //   transform: scale(0.7);
-  //   left: 2vw;
-  // }
+  background: #ebb215 !important;
 }
 .publish-btn:hover {
   cursor: pointer;
-  background: #33ce47 !important;
-  color: wheat;
+  background: #ffd04e !important;
+  color: black;
 }
 
 .card.mb-1 {

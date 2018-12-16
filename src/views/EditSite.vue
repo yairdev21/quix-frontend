@@ -298,7 +298,6 @@ export default {
 .list-complete-item {
   overflow-x: hidden;
   transition: all 0.3s ease-in-out;
-  // display: inline-block;
   margin: auto 10px;
 }
 .list-complete-enter,
