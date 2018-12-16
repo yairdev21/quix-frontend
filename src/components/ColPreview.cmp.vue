@@ -8,7 +8,7 @@
     <div
       @mouseup="editText"
       class="left-side"
-      :style="style"
+      :style=" this.col.style || null"
       @mouseover.stop="isShowControl=true"
       @mouseleave="(isShowControl=false)"
     >
@@ -16,7 +16,7 @@
         :draggable="false"
         :contenteditable="isEditMode"
         :isEditMode="isEditMode"
-        :is="element"
+        :is="this.col.type + 'Cmp'"
         :data="col.data"
         :col="col"
         :sectionIdx="sectionIdx"
@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import TxtEl from "../components/elements/txt.el";
-import ImgEl from "../components/elements/img.el";
-import MapEl from "../components/elements/map.el";
-import VideoEl from "../components/elements/video.el";
-import ButtonEl from "../components/elements/btn.el";
-import SocialEl from "../components/elements/social-btn.el";
-import ContactEl from "../components/elements/contact.el";
-import EmptyEl from "../components/elements/empty.el";
-import HeaderEl from "../components/elements/header-fixed.el";
+import TextCmp from "../components/elements/txt.el.vue";
+import ImageCmp from "../components/elements/img.el.vue";
+import MapCmp from "../components/elements/map.el.vue";
+import VideoCmp from "../components/elements/video.el.vue";
+import ButtonCmp from "../components/elements/btn.el.vue";
+import SocialbtnCmp from "../components/elements/social-btn.el.vue";
+import ContactCmp from "../components/elements/contact.el.vue";
+import EmptyCmp from "../components/elements/empty.el.vue";
+import HeaderCmp from "../components/elements/header-fixed.el.vue";
 import { EventBus } from "@/event-bus.js";
 
 export default {
@@ -43,25 +43,15 @@ export default {
     return { isShowControl: false };
   },
   components: {
-    TextElement: TxtEl,
-    ImgElement: ImgEl,
-    MapElement: MapEl,
-    VideoElement: VideoEl,
-    ButtonElement: ButtonEl,
-    ContactElement: ContactEl,
-    SocialElement: SocialEl,
-    EmptyElement: EmptyEl,
-    HeaderElement: HeaderEl
-
-    // text: TxtEl,
-    // image: ImgEl,
-    // map: MapEl,
-    // video: VideoEl,
-    // button: ButtonEl,
-    // contact: ContactEl,
-    // socialBtn: SocialEl,
-    // empty: EmptyEl,
-    // header: HeaderEl
+    TextCmp,
+    ImageCmp,
+    MapCmp,
+    VideoCmp,
+    ButtonCmp,
+    SocialbtnCmp,
+    ContactCmp,
+    EmptyCmp,
+    HeaderCmp
   },
   methods: {
     editText() {
@@ -73,37 +63,6 @@ export default {
   created() {
     document.designMode = this.checkEditMode ? "on" : "off";
   },
-
-  computed: {
-    element() {
-      // return this.col.type;
-      switch (this.col.type) {
-        case "text":
-          return "TextElement";
-        case "image":
-          return `ImgElement`;
-        case "map":
-          return `MapElement`;
-        case "video":
-          return `VideoElement`;
-        case "button":
-          return `ButtonElement`;
-        case "socialBtn":
-          return `SocialElement`;
-        case "contact":
-          return `ContactElement`;
-        case "empty":
-          return `EmptyElement`;
-        case "header":
-          return `HeaderElement`;
-        default:
-          return "TextElement";
-      }
-    },
-    style() {
-      return this.col.style || null;
-    }
-  }
 };
 </script>
 
