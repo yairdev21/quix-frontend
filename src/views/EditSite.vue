@@ -267,14 +267,15 @@ export default {
       section[0].style["background-size"] = "cover";
       return section[0].style;
     });
-    EventBus.$on("updateLocation", (Place, sectionIdx) => {
+    EventBus.$on("updateLocation", (place, sectionIdx) => {
       let El = this.site.sections[sectionIdx].elements.filter(
         element => element.name === "map"
       );
-      El[0].data.place;
+      El[0].data = place;
       let site = this.site;
       this.$store.commit({ type: "saveSite", site });
     });
+   
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
@@ -288,9 +289,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sectionsList {
-  transform: scale(0.75);
-}
 
 .list-complete-item {
   overflow-x:hidden; 

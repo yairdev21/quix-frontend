@@ -4,9 +4,8 @@
       id="modal-center"
       ref="modal"
       :title="title"
-      :ok-disabled="okDisabled"
       :ok-title="okTitle"
-      :ok-variant="okVariant"
+      ok-variant="success"
       :cancel-title="cancelTitle"
       @ok="handleOk"
       @shown="clearName"
@@ -41,8 +40,6 @@ export default {
       title: "Give your site a name",
       okTitle: "Publish",
       cancelTitle: "Cancel",
-      okDisabled: false,
-      okVariant: "primary"
     };
   },
   methods: {
@@ -51,6 +48,7 @@ export default {
     },
     handleOk(evt) {
       evt.preventDefault();
+        if (!this.showNameInput) return this.$refs.modal.hide()
       if (!this.name) {
         alert("Please enter site name");
       } else {
@@ -86,17 +84,15 @@ export default {
       this.site.url =
         window.location.protocol + "//" + window.location.host + routeData.href;
       this.showNameInput = false;
-      this.okDisabled = true;
       this.cancelTitle = "Go back";
       this.title = "Share Your Site";
       this.okTitle = "Got it";
-      this.okVariant = "success";
     },
     openSite() {
       window.open(this.site.url, "_blank");
     }
   },
-  created() {
+  mounted() {
     if (!this.site.url) {
       this.title = "Give your site a name";
       this.showNameInput = true;

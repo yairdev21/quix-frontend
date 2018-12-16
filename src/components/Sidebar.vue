@@ -208,10 +208,9 @@ p {
   @media (max-width: 625px) {
     transform: scale(1.1);
   }
+
 }
-.collapse{
-height: 56vh;
-}
+
 @media (min-width: 1250px) {
   .sidebar {
     height: 100%;
