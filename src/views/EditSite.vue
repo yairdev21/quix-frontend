@@ -14,7 +14,7 @@
       @preview="preview"
       @save="save"
     ></sidebar>
-    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish</b-btn>
+    <b-btn class="publish-btn" v-b-modal.modalPrevent>Publish!</b-btn>
     <publish-modal :site="site" @publish="publish"></publish-modal>
 
     <text-edit-buttons
@@ -330,11 +330,20 @@ export default {
 }
 
 .publish-btn {
-  background: #123b41;
+  background: #42b983;
   margin-top: 0.5em;
   position: fixed;
-  top: 0;
+  bottom: 1vh;
+  left: 5vw;
   z-index: 20;
+@media (max-width: 625px) {
+transform: scale(0.7);
+  left: 2vw;
+}
+@media (max-width: 900px) {
+transform: scale(0.9);
+  left: 4vw;
+}
 }
 .publish-btn:hover {
   cursor: pointer;

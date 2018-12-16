@@ -52,8 +52,8 @@
           <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
             <b-card-body :style="{padding:0}">
               <drag :transfer-data="{method: 'addSection', data:'emptySection'}">
-                <p class="card-text" id="emptySection"> 
-                  <img src="@/assets/img/emptySection.png" title="DRAG ME IN TO THE PAGE! " >
+                <p class="card-text" id="emptySection">
+                  <img src="@/assets/img/emptySection.png" title="DRAG ME IN TO THE PAGE! ">
                 </p>
               </drag>
               <drag :transfer-data="{method: 'addSection', data:'oneColsSectionWithMap'}">
@@ -90,7 +90,7 @@
               </drag>
               <drag :transfer-data="{method: 'addElement', data:'video'}">
                 <p class="card-text" id="video">
-                  <img src="@/assets/img/video.png" title="DRAG ME IN TO THE PAGE! "> 
+                  <img src="@/assets/img/video.png" title="DRAG ME IN TO THE PAGE! ">
                 </p>
               </drag>
               <drag :transfer-data="{method: 'addElement', data:'text' }">
@@ -133,7 +133,7 @@ export default {
   border: none;
 }
 .btn {
-  background: #1f3e63 ;
+  background: #1f3e63;
 }
 .btn:hover {
   background: #216774;
@@ -237,12 +237,19 @@ p {
   .sidebar-names {
     font-size: 2.3vw;
     float: left;
+    margin: 0;
   }
   .sidebar {
     margin-top: 25px;
   }
   .card-header {
     transform: scale(0.9);
+  }
+  .card-body img {
+    padding: 0;
+  }
+  .card-text {
+    margin: 0;
   }
 }
 </style>
