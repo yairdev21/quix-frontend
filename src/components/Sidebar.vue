@@ -109,12 +109,13 @@
       </div>
     </transition>
 
-    <b-btn class="publish-btn" v-b-modal.modal-center>Publish</b-btn>
+    <b-btn class="publish-btn" v-b-modal.modal-center @click="focusInput">Publish</b-btn>
   </section>
 </template>
 
 <script>
 import ControlButtons from "@/components/ControlButtons.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["isEditMode"],
@@ -122,6 +123,9 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/");
+    },
+    focusInput() {
+      EventBus.$emit("focusInput");
     }
   },
   components: {
@@ -132,8 +136,8 @@ export default {
 
 <style lang="scss" scoped>
 .publish-btn {
-font-size: 1.4em;
-letter-spacing: 1.6px;
+  font-size: 1.4em;
+  letter-spacing: 1.6px;
   font-weight: bold;
   width: 17.5vw;
   margin-top: 0.5em;
@@ -145,7 +149,6 @@ letter-spacing: 1.6px;
   //   transform: scale(0.7);
   //   left: 2vw;
   // }
-
 }
 .publish-btn:hover {
   cursor: pointer;

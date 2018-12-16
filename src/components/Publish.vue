@@ -17,7 +17,7 @@
       footer-bg-variant="light"
     >
       <form v-if="showNameInput" @submit.stop.prevent="handleSubmit">
-        <b-form-input ref="input" type="text" placeholder="Enter site name" v-model="name"></b-form-input>
+        <b-form-input type="text" ref="textInput" placeholder="Enter site name" v-model="name"></b-form-input>
       </form>
       <transition name="fade">
         <div v-if="!showNameInput">
@@ -36,6 +36,7 @@
 
 <script>
 import SocialShare from "@/components/SocialShare.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["site"],
@@ -46,7 +47,7 @@ export default {
       title: "Give your site a name",
       okTitle: "Publish",
       cancelTitle: "Cancel",
-      url:null
+      url: null
     };
   },
   methods: {
@@ -94,15 +95,18 @@ export default {
       this.cancelTitle = "Go back";
       this.title = "Share Your Site";
       this.okTitle = "Got it";
-      this.site.url = this.url
+      this.site.url = this.url;
     },
     openSite() {
       window.open(this.url, "_blank");
     }
   },
   mounted() {
-    if (!this.site.url) {
-      this.$refs.input.focus();
+    EventBus.$on("focusInput", () => {
+      console.log('ok');
+      this.$refs.textInput.focus();
+    });
+    if (!this.url) {
       this.title = "Give your site a name";
       this.showNameInput = true;
       this.okTitle = "Publish";
