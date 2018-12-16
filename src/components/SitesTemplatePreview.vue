@@ -35,13 +35,6 @@ export default {
   background: ghostwhite;
 }
 
-.card:hover:first-child {
-  transition: 0.4s;
-  cursor: pointer;
-  opacity: 1 !important;
-  transform: scale(1.01);
-}
-
 .card:hover > .card-img-top {
   transition: 0.4s;
   cursor: pointer;
@@ -49,7 +42,14 @@ export default {
   transform: scale(1.01);
 }
 
-.card:hover > .website-menu:hover  {
+.card:hover:first-child {
+  transition: 0.4s;
+  cursor: pointer;
+  opacity: 1;
+  transform: scale(1.01);
+}
+
+.card:hover > .website-menu:hover {
   opacity: 1;
   transition: 0.4s;
 }

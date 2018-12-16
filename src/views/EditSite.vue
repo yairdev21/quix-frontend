@@ -162,11 +162,9 @@ export default {
       let sectionIdx = this.site.sections.indexOf(...section);
       this.$swal({
         title: "Delete Element?",
-        text: "You can always add another one later!",
         icon: "warning",
         showCancelButton: true,
-        buttons: ["No, Dont!", "Yes, It's all good"],
-        dangerMode: true
+        animation: false
       }).then(isConfirm => {
         if (isConfirm.value) {
           this.site.sections[sectionIdx].elements.splice(colIdx, 1);
@@ -185,12 +183,12 @@ export default {
     },
     deleteSection(sectionId) {
       this.$swal({
+        background: "whitesmoke ",
         title: "Delete section?",
-        text: "It will be gone FOREVER!",
         icon: "warning",
         showCancelButton: true,
         buttons: ["No, cancel it!", "Yes, I am sure!"],
-        dangerMode: true
+        animation: false
       }).then(isConfirm => {
         if (isConfirm.value) {
           let section = this.getSectionById(sectionId);
@@ -226,7 +224,7 @@ export default {
       const siteId = await this.$store.dispatch({ type: "saveSite", site });
       this.$swal({
         title: "Site Saved!",
-        position: "middle",
+        position: "top-right",
         background: "white",
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -234,7 +232,7 @@ export default {
         showConfirmButton: false,
         showCancelButton: false,
         animation: false,
-        timer: 1500
+        timer: 1000
       });
     },
 
@@ -317,14 +315,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sectionsList {
+  transform: scale(0.75);
+}
+
+.list-complete-item {
+  overflow-x:hidden; 
+  transition: all 0.3s ease-in-out;
+  // display: inline-block;
+  margin:auto 10px;
+}
+.list-complete-enter,
+.list-complete-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+.section-list {
+  background: white;
+}
+main {
+  margin: 0.5rem;
+  overflow-y: hidden;
+}
+
+.add-section {
+  border: 1px dashed black;
+}
+
+.section-items {
+  padding-left: 1rem;
+  float: right;
+  width: 78.5vw;
+}
 .slide-fade-enter-active {
   transition: all 0.8s;
 }
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+.slide-fade-enter,
+.slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
 }
@@ -336,14 +369,14 @@ export default {
   bottom: 1vh;
   left: 5vw;
   z-index: 20;
-@media (max-width: 625px) {
-transform: scale(0.7);
-  left: 2vw;
-}
-@media (max-width: 900px) {
-transform: scale(0.9);
-  left: 4vw;
-}
+  @media (max-width: 625px) {
+    transform: scale(0.7);
+    left: 2vw;
+  }
+  @media (max-width: 900px) {
+    transform: scale(0.9);
+    left: 4vw;
+  }
 }
 .publish-btn:hover {
   cursor: pointer;

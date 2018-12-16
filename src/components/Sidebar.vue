@@ -178,11 +178,14 @@ p {
     padding: 2px;
   }
 }
+.collapse {
+  height: 56vh;
+}
 
 .card-body {
   transform: scale(0.85);
   max-height: 100vh;
-  overflow: none;
+  overflow: auto;
   @media (min-width: 625px) {
     transform: scale(1);
   }
