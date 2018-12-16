@@ -1,4 +1,6 @@
-import { getUser } from '../services/api.service';
+import {
+    getUser
+} from '../services/api.service';
 import siteService from '../services/site-service.js';
 
 export const LOAD_USER = 'LOAD_USER';
@@ -12,36 +14,42 @@ export default {
         getUser: state => state.user
     },
     mutations: {
-        [LOAD_USER](state, { user }) {
+        [LOAD_USER](state, {
+            user
+        }) {
             state.user = user
         },
 
-        [GET_USER_SITES](state, {isNewSite}) {
+        [GET_USER_SITES](state, {
+            isNewSite
+        }) {
             state.isNewSite = isNewSite
         }
     },
     actions: {
-        async [LOAD_USER]({ commit }) {
-            console.log('in');
-            
+        async [LOAD_USER]({
+            commit
+        }) {
             const user = await getUser();
-
             commit({
                 type: LOAD_USER,
                 user
             });
-
             return user;
         },
 
-        async [GET_USER_SITES]({ commit }, { userId }) {
-            const templates = await siteService.getUserTemplate(userId);
+        async [GET_USER_SITES]({
+            commit
+        }, {
+            userId
+        }) {
             
+            const templates = await siteService.getUserTemplate(userId);
             commit({
                 type: GET_USER_SITES,
                 templates
             });
-    
+
             return templates;
         }
     },

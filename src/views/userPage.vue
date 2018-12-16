@@ -1,105 +1,101 @@
 <template>
-<div class="container">
-  <header>
-    
-  </header>
-  <main>
-    <div v-if="!user"></div>
+  <div class="container">
+    <header></header>
+    <main>
+      <div v-if="!user"></div>
 
-    <div v-else class="row">
-      <div class="left col-lg-4">
-        <div class="photo-left">
-          <img class="photo" :src="user.image"/>
-          <div class="active"></div>
-        </div>
-        <h4 class="name">{{user.userName}}</h4>
-        <p class="info">{{user.email}}</p>
-        <div class="stats row">
-          <div class="stat col-xs-4" style="padding-right: 50px;">
-            <p class="number-stat">3,619</p>
-            <p class="desc-stat">Followers</p>
+      <div v-else class="row">
+        <div class="left col-lg-4">
+          <div class="photo-left">
+            <img class="photo" :src="user.image">
+            <div class="active"></div>
           </div>
-          <div class="stat col-xs-4">
-            <p class="number-stat">42</p>
-            <p class="desc-stat">Following</p>
+          <h4 class="name">{{user.userName}}</h4>
+          <p class="info">{{user.email}}</p>
+          <div class="stats row">
+            <div class="stat col-xs-4" style="padding-right: 50px;">
+              <p class="number-stat">3,619</p>
+              <p class="desc-stat">Followers</p>
+            </div>
+            <div class="stat col-xs-4">
+              <p class="number-stat">42</p>
+              <p class="desc-stat">Following</p>
+            </div>
+            <div class="stat col-xs-4" style="padding-left: 50px;">
+              <p class="number-stat">{{user.sites.length}}</p>
+              <p class="desc-stat">Uploads</p>
+            </div>
           </div>
-          <div class="stat col-xs-4" style="padding-left: 50px;">
-            <p class="number-stat">{{user.sites.length}}</p>
-            <p class="desc-stat">Uploads</p>
-          </div>
-        </div>
-        <p class="desc">Welcome! this is your oun profile, here you can see all your active sites.</p>
-        <div class="social">
+          <p class="desc">Welcome! this is your oun profile, here you can see all your active sites.</p>
+          <div class="social">
             <router-link to="/" active-class="link">Go back</router-link>
             <!-- <button class="link" @click="handleSignOut">Sign Out</button> -->
-        </div>
-
-      </div>
-      <div class="right col-lg-8">
-        <ul class="nav">
-          <li>Your active sites</li>
-        </ul>
-        <div class="row gallery">
-          <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg"/>
-          </div>
-          <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo5.jpg"/>
-          </div>
-          <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo6.jpg"/>
-          </div>
-          <div class="col-md-4">
-             <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774817-photo1.jpg"/>
-          </div>
-          <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774815-photo2.jpg"/>
-          </div>
-          <div class="col-md-4">
-            <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774816-photo3.jpg"/>
           </div>
         </div>
+        <div class="right col-lg-8">
+          <ul class="nav">
+            <li>Your active sites</li>
+          </ul>
+          <div class="row gallery">
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg">
+            </div>
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo5.jpg">
+            </div>
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774814-photo6.jpg">
+            </div>
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774817-photo1.jpg">
+            </div>
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774815-photo2.jpg">
+            </div>
+            <div class="col-md-4">
+              <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774816-photo3.jpg">
+            </div>
+          </div>
+        </div>
       </div>
-      </div>
-  </main>
-</div>
+    </main>
+  </div>
 </template>
 
 <script>
-import { GET_USER_SITES } from '../modules/user-module.js';
+import { GET_USER_SITES } from "../modules/user-module.js";
 
 export default {
   state() {
     return {
       user: null
-    }
+    };
   },
 
   async mounted() {
-    this.user = this.$store.getters.getUser;
-    console.log(this);
-
-    const { data } = (this.user) ? await this.$store.dispatch({ type: GET_USER_SITES, id: this.user.id }) : {};
-    console.log(data);
-    
+    let User = this.$store.getters.getUser;
+    const { data } = User
+      ? await this.$store.dispatch({ type: GET_USER_SITES, userId: User.id })
+      : {};
+    this.user = User
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .link {
-    text-decoration: none;
-    border: none;
-    padding: 0 5px;
-    color: #bbb;
-    border-bottom: 1px solid  #bbb;
-    transition: all .3s;
+  text-decoration: none;
+  border: none;
+  padding: 0 5px;
+  color: #bbb;
+  border-bottom: 1px solid #bbb;
+  transition: all 0.3s;
 }
 .link:hover {
-    text-decoration: none;
-    color: #fff;
-    border-bottom: none;
-    background-color: #bbb;
+  text-decoration: none;
+  color: #fff;
+  border-bottom: none;
+  background-color: #bbb;
 }
 
 .container {
@@ -108,7 +104,7 @@ export default {
   padding: 0 !important;
   width: 90%;
   background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -129,18 +125,18 @@ header i {
   color: #fff;
 }
 
-@media (max-width:800px) {
+@media (max-width: 800px) {
   header {
     height: 150px;
-  } 
-  
+  }
+
   header i {
     right: -90%;
   }
 }
 
 main {
-      padding: 20px 20px 0px 20px;
+  padding: 20px 20px 0px 20px;
 }
 
 .left {
@@ -169,11 +165,11 @@ main {
   border: 3px solid #fff;
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .active {
     right: calc(50% - 60px);
     top: 50px;
-  } 
+  }
 }
 
 .name {
@@ -187,7 +183,7 @@ main {
 .info {
   margin-top: -5px;
   margin-bottom: 5px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 11pt;
   color: #aaa;
 }
@@ -197,15 +193,14 @@ main {
   text-align: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #ededed;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
-
 
 .number-stat {
   padding: 0px;
   font-size: 14pt;
   font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #aaa;
 }
 
@@ -240,10 +235,18 @@ main {
   margin: 0 15px;
 }
 
-.social i:nth-child(1)  { color: #4267b2; }
-.social i:nth-child(2)  { color: #1da1f2; }
-.social i:nth-child(3)  { color: #bd081c; }
-.social i:nth-child(4)  { color: #36465d; }
+.social i:nth-child(1) {
+  color: #4267b2;
+}
+.social i:nth-child(2) {
+  color: #1da1f2;
+}
+.social i:nth-child(3) {
+  color: #bd081c;
+}
+.social i:nth-child(4) {
+  color: #36465d;
+}
 
 .right {
   padding: 0 25px 0 25px !important;
@@ -258,12 +261,13 @@ main {
   cursor: pointer;
   font-size: 13pt;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #888;
 }
 
-.nav li:hover, .nav li:nth-child(1)  { 
+.nav li:hover,
+.nav li:nth-child(1) {
   color: #999;
   border-bottom: 2px solid #999;
 }
@@ -277,20 +281,20 @@ main {
   color: #fff;
   padding: 8px 15px;
   cursor: pointer;
-  transition: all .4s;
-  font-family: 'Montserrat', sans-serif;
+  transition: all 0.4s;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 
 .follow:hover {
-  box-shadow: 0 0 15px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width:990px) {
+@media (max-width: 990px) {
   .nav {
     display: none;
   }
-  
+
   .follow {
     width: 50%;
     margin-left: 25%;
@@ -299,7 +303,7 @@ main {
     text-align: center;
   }
 }
-.gallery  {
+.gallery {
   margin-top: 35px;
 }
 
@@ -308,8 +312,8 @@ main {
 }
 
 .gallery img {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
-  width: auto; 
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
   height: auto;
   cursor: pointer;
   max-width: 100%;

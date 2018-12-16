@@ -36,9 +36,7 @@ export default {
 };
 </script>
 <style>
-.modal-body p {
-  image:white;
-}
+
 .image-picker {
   display: flex;
   justify-content: center;

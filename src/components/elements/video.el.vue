@@ -12,6 +12,8 @@
       </button>
     </div>
     <iframe
+      width="700"
+      height="350"
       class="embed-container-iframe"
       :src="`https://www.youtube.com/embed/${video}`"
       frameborder="0"
@@ -41,7 +43,7 @@ export default {
       this.$swal({
         title: "Enter youtube link",
         input: "text",
-        animation:false,
+        animation: false,
         inputAttributes: {
           autocapitalize: "off"
         },

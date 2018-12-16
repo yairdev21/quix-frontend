@@ -315,15 +315,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sectionsList {
-  transform: scale(0.75);
-}
+// .sectionsList {
+// transform: scale(0.75);
+// }
 
 .list-complete-item {
-  overflow-x:hidden; 
+  overflow-x: hidden;
   transition: all 0.3s ease-in-out;
   // display: inline-block;
-  margin:auto 10px;
+  margin: auto 10px;
 }
 .list-complete-enter,
 .list-complete-leave-to {

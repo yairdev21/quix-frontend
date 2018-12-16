@@ -3,11 +3,12 @@
     <main-header class="main-header"></main-header>
     <section class="main">
       <div class="container"></div>
-      <h5>A modern aproach to website building</h5>
-      <h1>Build your website!</h1>
-      <!-- <h3>Build a site in minutes!</h3> -->
-      <!-- <h3>or whatever you'd like and publish it in just 5 minutes!</h3> -->
-      <h1 hidden>Quix</h1>
+      <div class="header-text">
+        <h5>A modern aproach to website building</h5>
+        <h1>Build your website!</h1>
+        <!-- <h3>Build a site in minutes!</h3> -->
+        <h1 hidden>Quix</h1>
+      </div>
     </section>
     <section class="template-section">
       <br>
@@ -19,8 +20,6 @@
 </template>
 
 <script>
-// import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 import HomeFooter from "@/components/HomeFooter.vue";
 import MainHeader from "@/components/MainHeader.vue";
 import CardSection from "@/components/CardSection.vue";
@@ -41,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  overflow:hidden ;
+  overflow: hidden;
 }
 section {
   font-family: "Quicksand";
@@ -52,17 +51,18 @@ section {
     // background: linear-gradient(#42b983, #8ae7a1);
     // background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: contain;
-    height: 75vh;
+    background-size: 100%;
+    height: 490px;
 
+    @media (max-width: 1100px) {
+       height: 450px;
+    }
     @media (max-width: 900px) {
-      background-size: contain;
-      background-position: center;
+       height: 400px;
     }
     @media (max-width: 600px) {
-      background-size: contain;
-      background-position: center;
-      height: 90vh;
+       height: 280px;
+
     }
 
     &::before {
@@ -71,7 +71,7 @@ section {
       z-index: -1;
     }
     .container {
-      padding: 80px;
+      padding: 50px;
       width: 800px;
       max-width: 100%;
       margin: 0 auto;
@@ -82,12 +82,31 @@ section {
     }
   }
 }
+.header-text {
+  margin-top: 5.5em;
+  @media (max-width: 900px) {
+    transform: scale(0.7);
+    margin-top: 8.8em;
+  }
+  @media (max-width: 600px) {
+    transform: scale(0.3);
+    margin-top: -1em;
+  }
+}
 .title {
   color: #42b983 !important;
   font-weight: bold;
   bottom: 0;
   background: transparent;
   background: transparent;
+  @media (max-width: 900px) {
+    transform: scale(0.9);
+    margin-top: -1em;
+  }
+  @media (max-width: 600px) {
+    transform: scale(0.6);
+    margin-top: -2em;
+  }
 }
 .template-section {
   // background-image: url("../assets/img/7968.jpg");
@@ -99,6 +118,7 @@ section {
 
 .main {
   margin-top: 0.5em;
+
   h1 {
     margin-top: 0.5em;
     margin-bottom: 0.8em;
