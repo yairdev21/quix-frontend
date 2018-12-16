@@ -49,7 +49,7 @@ export default {
   transform: scale(1.01);
 }
 
-.card:hover > .website-menu:hover::no {
+.card:hover > .website-menu:hover  {
   opacity: 1;
   transition: 0.4s;
 }
