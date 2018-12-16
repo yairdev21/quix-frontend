@@ -40,10 +40,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.home {
+  overflow:hidden ;
+}
 section {
   font-family: "Quicksand";
   max-width: 100vw;
-
   &.main {
     position: relative;
     background: url("../assets/img/MainHeaderImg.jpg") center center;
@@ -86,7 +88,6 @@ section {
   bottom: 0;
   background: transparent;
   background: transparent;
-  // font-family: Palatino;
 }
 .template-section {
   // background-image: url("../assets/img/7968.jpg");

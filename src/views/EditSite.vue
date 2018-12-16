@@ -291,5 +291,29 @@ export default {
   opacity: 0;
 }
 
+<<<<<<< HEAD
+=======
+.publish-btn {
+  background: #42b983;
+  margin-top: 0.5em;
+  position: fixed;
+  bottom: 1vh;
+  left: 5vw;
+  z-index: 20;
+@media (max-width: 625px) {
+transform: scale(0.7);
+  left: 2vw;
+}
+@media (max-width: 900px) {
+transform: scale(0.9);
+  left: 4vw;
+}
+}
+.publish-btn:hover {
+  cursor: pointer;
+  background: #317c88;
+  color: wheat;
+}
+>>>>>>> c4ac8133376faf5be39bc007c79467e4394b4cd2
 </style>
 

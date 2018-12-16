@@ -1,7 +1,8 @@
 <template>
   <div contenteditable="false" class="card" style="width: 18rem">
     <img class="card-img-top" :src="site.thumb" alt="Card image cap">
-    <div class="website-menu">
+    <div v-if="index===0" class="website-menu" @click="editSite(site)"></div>
+    <div v-else class="website-menu">
       <i class="far fa-eye" @click="previewSite(site)"></i>
       <i class="far fa-edit" @click="editSite(site)"></i>
     </div>
@@ -10,23 +11,22 @@
 
 <script>
 export default {
-  props: ["site"],
+  props: ["site", "index"],
   data() {
     return { imgHover: false };
   },
   methods: {
     previewSite(site) {
-  this.$router.push(`/preview/${site._id}`)
+      this.$router.push(`/preview/${site._id}`);
     },
     editSite(site) {
-          this.$router.push(`/edit/${site._id}`)
+      this.$router.push(`/edit/${site._id}`);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 .card {
   margin: 3rem;
   min-width: 20%;
@@ -35,15 +35,21 @@ export default {
   background: ghostwhite;
 }
 
+.card:hover:first-child {
+  transition: 0.4s;
+  cursor: pointer;
+  opacity: 1 !important;
+  transform: scale(1.01);
+}
+
 .card:hover > .card-img-top {
   transition: 0.4s;
   cursor: pointer;
   opacity: 0.4;
   transform: scale(1.01);
-  
 }
 
-.card:hover > .website-menu:hover {
+.card:hover > .website-menu:hover  {
   opacity: 1;
   transition: 0.4s;
 }
@@ -73,8 +79,7 @@ export default {
   cursor: pointer;
 }
 
-.card-img-top{
+.card-img-top {
   transition: 0.5s;
-
 }
 </style>
