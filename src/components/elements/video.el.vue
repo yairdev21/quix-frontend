@@ -41,6 +41,7 @@ export default {
       this.$swal({
         title: "Enter youtube link",
         input: "text",
+        animation:false,
         inputAttributes: {
           autocapitalize: "off"
         },

@@ -196,9 +196,11 @@ p {
     padding: 2px;
   }
 }
+
+
 .card-body {
   transform: scale(0.85);
-  max-height: 100vh;
+  max-height: 54vh;
   overflow: auto;
   @media (min-width: 625px) {
     transform: scale(1);
