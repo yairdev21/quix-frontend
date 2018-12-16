@@ -132,18 +132,25 @@ export default {
 
 <style lang="scss" scoped>
 .publish-btn {
-  background: #124127 ;
-  font-size: 1.5em;
+  background: #42b983;
   margin-top: 0.5em;
   position: fixed;
-  bottom: 1px;
-  left: 4vw;
+  bottom: 1vh;
+  left: 5vw;
   z-index: 20;
+@media (max-width: 625px) {
+transform: scale(0.7);
+  left: 2vw;
+}
+@media (max-width: 900px) {
+transform: scale(0.9);
+  left: 4vw;
+}
 }
 .publish-btn:hover {
   cursor: pointer;
-  background: #207446;
-  color: black;
+  background: #317c88;
+  color: wheat;
 }
 
 .card.mb-1 {
@@ -161,45 +168,38 @@ export default {
 section {
   display: flex;
 }
-
 .sidebar p:hover {
   color: black;
   transition: 0.3s ease;
 }
-
 .sidebar img:hover {
   transition: 0.3s ease;
   cursor: grab;
   border: 1px solid black;
 }
-
 .sidebar img,
 p {
   border: 2px solid transparent;
   padding-bottom: 3px;
 }
-
 .sidebar img:active {
   cursor: grabbing;
 }
-
 .sidebar {
   margin-top: 3em;
   height: 100%;
   width: 18vw;
   position: fixed;
   z-index: 10;
-
   img {
     width: 85%;
     padding: 2px;
   }
 }
-
 .card-body {
   transform: scale(0.85);
   max-height: 100vh;
-  overflow: none;
+  overflow: auto;
   @media (min-width: 625px) {
     transform: scale(1);
   }
@@ -207,41 +207,36 @@ p {
     transform: scale(1.1);
   }
 }
-
+.collapse{
+height: 56vh;
+}
 @media (min-width: 1250px) {
   .sidebar {
     height: 100%;
     width: 18vw;
     position: fixed;
     z-index: 10;
-
     img {
       margin-bottom: -10px;
     }
   }
 }
-
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
-
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-
 .slide-fade-enter,
 .slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
 }
-
 .acordion-header {
   height: 2.6rem;
-
   @media (max-width: 625px) {
     height: 5.5vw;
   }
-
   .sidebar {
     height: 100%;
     width: 18vw;
@@ -249,7 +244,6 @@ p {
     z-index: 10;
   }
 }
-
 @media (max-width: 625px) {
   .sidebar-names {
     font-size: 2.3vw;
