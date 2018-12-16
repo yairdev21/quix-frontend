@@ -43,7 +43,7 @@ export default {
   font-size: 3rem;
   top: 0;
   width: 100%;
-  padding: 10px;
+  // padding: 10px;
   background: linear-gradient(to right, #ece9e6, #ffffff);
   color: #f1f1f1;
   display: flex;
@@ -51,6 +51,7 @@ export default {
   align-items: center;
 }
 #nav .logo {
+  margin-left: 3vw;
   cursor: pointer;
   float: left;
   background: transparent;

@@ -132,24 +132,24 @@ export default {
 
 <style lang="scss" scoped>
 .publish-btn {
-  background: #42b983;
+font-size: 1.4em;
+letter-spacing: 1.6px;
+  font-weight: bold;
+  width: 17.5vw;
   margin-top: 0.5em;
   position: fixed;
   bottom: 1vh;
-  left: 5vw;
+  left: 0.3vw;
   z-index: 20;
-@media (max-width: 625px) {
-transform: scale(0.7);
-  left: 2vw;
-}
-@media (max-width: 900px) {
-transform: scale(0.9);
-  left: 4vw;
-}
+  // @media (max-width: 625px) {
+  //   transform: scale(0.7);
+  //   left: 2vw;
+  // }
+
 }
 .publish-btn:hover {
   cursor: pointer;
-  background: #317c88;
+  background: #33ce47 !important;
   color: wheat;
 }
 
@@ -197,7 +197,6 @@ p {
   }
 }
 
-
 .card-body {
   transform: scale(0.85);
   max-height: 54vh;
@@ -208,7 +207,6 @@ p {
   @media (max-width: 625px) {
     transform: scale(1.1);
   }
-
 }
 
 @media (min-width: 1250px) {

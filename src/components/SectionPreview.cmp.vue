@@ -103,7 +103,6 @@ export default {
   padding: 3rem;
   padding-top: 2rem;
   overflow: hidden;
-  border: 2px solid transparent;
 }
 
 .isBorder {

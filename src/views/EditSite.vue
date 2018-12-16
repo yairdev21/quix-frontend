@@ -233,7 +233,6 @@ export default {
       });
     },
 
-
     checkData() {
       if (this.currPos === this.text) return (this.isTextSelected = false);
       this.currPos = this.text;
@@ -275,7 +274,7 @@ export default {
       let site = this.site;
       this.$store.commit({ type: "saveSite", site });
     });
-   
+
     EventBus.$on("closeEditorButtons", () => (this.isTextSelected = false));
   },
   components: {
@@ -289,12 +288,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .list-complete-item {
-  overflow-x:hidden; 
+  overflow-x: hidden;
   transition: all 0.3s ease-in-out;
   // display: inline-block;
-  margin:auto 10px;
+  margin: auto 10px;
 }
 .list-complete-enter,
 .list-complete-leave-to {
@@ -331,28 +329,6 @@ main {
 .slide-fade-leave-to {
   transform: translateX(-10px);
   opacity: 0;
-}
-
-.publish-btn {
-  background: #42b983;
-  margin-top: 0.5em;
-  position: fixed;
-  bottom: 1vh;
-  left: 5vw;
-  z-index: 20;
-  @media (max-width: 625px) {
-    transform: scale(0.7);
-    left: 2vw;
-  }
-  @media (max-width: 900px) {
-    transform: scale(0.9);
-    left: 4vw;
-  }
-}
-.publish-btn:hover {
-  cursor: pointer;
-  background: #317c88;
-  color: wheat;
 }
 </style>
 

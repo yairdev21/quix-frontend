@@ -21,11 +21,9 @@ export default {
   methods: {
     goHome() {
       this.$swal({
- 
-        background:"linear-gradient(#ada996, #f2f2f2, #dbdbdb, #eaeaea)",
-        color:"white",
-        title: "Go Home?",
-        text: "You will loose any unsaved changes",
+        background:"white",
+        title: "Go Back?",
+        text: "You will lose any unsaved changes",
         showCancelButton: true,
         confirmButtonColor: "#1f3e63",
         cancelButtonColor: "#3085d6",
