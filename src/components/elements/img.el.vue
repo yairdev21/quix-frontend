@@ -103,8 +103,5 @@ export default {
   flex-direction: column;
   object-fit: contain;
 }
-// #uploadSmallImg{
-//      position: absolute;
-//     left: 1000px;
-// }
+
 </style>
