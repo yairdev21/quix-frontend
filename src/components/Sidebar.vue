@@ -157,10 +157,10 @@ export default {
   border: none;
 }
 .btn {
-  background: #1f3e63;
+  background: #2f976c;
 }
 .btn:hover {
-  background: #216774;
+  background: #5bb891;
 }
 .card-header {
   border: none;
