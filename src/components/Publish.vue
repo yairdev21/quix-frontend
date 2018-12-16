@@ -109,9 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-b-modal {
-  background: greenyellow !important
-}
+
 a {
   color: rgb(0, 0, 206) !important;
   font-weight: bold;
