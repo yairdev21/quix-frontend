@@ -109,6 +109,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.modal-content{
+  font-family: exo !important
+}
 a {
   color: rgb(0, 0, 206) !important;
   font-weight: bold;
