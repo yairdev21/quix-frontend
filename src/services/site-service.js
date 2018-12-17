@@ -16,7 +16,7 @@ export default {
     saveSite,
     saveNewSite,
     updateSite,
-    getUserTemplate,
+    getUserTemplates,
     getSiteByName
 }
 
@@ -57,7 +57,7 @@ function saveNewSite(site) {
     return axios.post(`${BASE_URL}/sites/${site.user}`, Site);
 }
 
-async function getUserTemplate(id) {
+async function getUserTemplates(id) {
     const {
         data
     } = axios.get(`${BASE_URL}/sites/user/${id}`);

@@ -37,6 +37,7 @@
             <li>Your active sites</li>
           </ul>
           <div class="row gallery">
+            <pre>{{userSites}}</pre>
             <div class="col-md-4">
               <img src="https://image.noelshack.com/fichiers/2017/38/2/1505774813-photo4.jpg">
             </div>
@@ -68,16 +69,20 @@ import { GET_USER_SITES } from "../modules/user-module.js";
 export default {
   state() {
     return {
-      user: null
+      user: null,
     };
   },
-
+  data() {
+    return {
+      userSites: null
+    };
+  },
   async mounted() {
     let User = this.$store.getters.getUser;
-    const { data } = User
+    this.userSites = User
       ? await this.$store.dispatch({ type: GET_USER_SITES, userId: User.id })
       : {};
-    this.user = User
+    this.user = User;
   }
 };
 </script>

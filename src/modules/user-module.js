@@ -8,7 +8,8 @@ export const GET_USER_SITES = 'GET_USER_SITES';
 
 export default {
     state: {
-        user: null
+        user: null,
+        userSites:null
     },
     getters: {
         getUser: state => state.user
@@ -21,9 +22,9 @@ export default {
         },
 
         [GET_USER_SITES](state, {
-            isNewSite
+            userSites
         }) {
-            state.isNewSite = isNewSite
+            state.userSites = userSites
         }
     },
     actions: {
