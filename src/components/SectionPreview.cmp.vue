@@ -16,7 +16,7 @@
       @delleteSection="sendDeleteSection(section._id)"
       :style="isShow"
     ></edit-section-on-hover>
-    <b-row>
+    <b-row :style="showBorder">
       <b-col v-for="(col,idx) in cols" cols="12" :sm="section.data.sm" :key="col._id">
         <drop @drop="emitHandleDrop(arguments[0], idx)">
           <drag :transfer-data="{method: 'sort', data: idx}">
@@ -78,12 +78,15 @@ export default {
       return this.section.style || null;
     },
     borderStyle() {
-      if (this.isEditMode) return { isBorder: this.isBorder };
+      if (this.isEditMode) return { isBorder: this.isBorder, };
       else return false;
     },
     isShow() {
       if (this.isBorder & this.isEditMode) return { visibility: "visible" };
       else return { visibility: "hidden" };
+    },
+    showBorder(){
+      if (this.isEditMode) return { "border": "2px solid transparent"}
     }
   },
   created() {
@@ -104,10 +107,13 @@ export default {
   padding-top: 2rem;
   overflow: hidden;
 }
+.preview-section-item-border {
+  border: 2px solid transparent;
+}
 
 .isBorder {
   resize: vertical;
   display: block;
-  border: 2px dashed rgb(147, 160, 199);
+  border: 2px dashed rgb(103, 113, 145);
 }
 </style>

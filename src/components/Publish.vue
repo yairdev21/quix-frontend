@@ -55,10 +55,12 @@ export default {
       this.name = "";
     },
     handleOk(evt) {
+      console.log('publish site', this.site);
+      
       evt.preventDefault();
       if (!this.showNameInput) return this.$refs.modal.hide();
       if (!this.name) {
-        alert("Please enter site name");
+        this.$swal("Please enter site name");
       } else {
         this.handleSubmit();
       }
@@ -101,18 +103,20 @@ export default {
       window.open(this.url, "_blank");
     }
   },
-  mounted() {
+  created() {
     EventBus.$on("focusInput", () => {
-      console.log('ok');
       this.$refs.textInput.focus();
     });
-    if (!this.url) {
+    if (!this.site.name) {
       this.title = "Give your site a name";
       this.showNameInput = true;
       this.okTitle = "Publish";
       this.cancelTitle = "Cancel";
       this.okDisabled = false;
       this.okVariant = "primary";
+    }else {
+      this.showNameInput = false;
+      publish()
     }
   },
   components: {
