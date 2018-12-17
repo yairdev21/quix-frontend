@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-  margin: 3rem;
+  margin: 1rem;
   min-width: 20%;
   max-width: 100%;
   transition: 0.4s;

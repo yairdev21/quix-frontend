@@ -94,8 +94,9 @@ export default {
 }
 
 .img {
-  max-width: 300px;
-  max-height: 300px;
+  width: 22vw;
+  height: 20vw;
+  // transform: scale(0.8)
 }
 .img-div {
   margin: -3vw;
