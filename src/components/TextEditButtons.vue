@@ -57,9 +57,12 @@ export default {
         "Comfortaa",
         "cursive",
         "Cinzel",
-        "Alegreya",,
+        "Alegreya",
         "Acme",
-        "Palatino"
+        "Palatino",
+        "Rancho",
+        "Patrcik",
+        "Italiano"
 
       ],
       fontNum: 0

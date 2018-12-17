@@ -4,15 +4,15 @@
     <section class="main">
       <div class="container"></div>
       <div class="header-text">
-        <h5>A modern aproach to website building</h5>
-        <h1>Build your website!</h1>
-        <!-- <h3>Build a site in minutes!</h3> -->
+        <!-- <h5>A modern aproach to website building</h5> -->
+        <h1>Build your website</h1>
+        <h5>Choose a template. Make it your own . Publish</h5>
         <h1 hidden>Quix</h1>
       </div>
     </section>
     <section class="template-section">
       <br>
-      <h1 class="title">Choose a template and start Quixly!</h1>
+      <h1 class="title">As fast as you can say Quixly!</h1>
       <card-section style="background:transparent"></card-section>
       <home-footer class="footer"></home-footer>
     </section>
@@ -117,18 +117,18 @@ section {
 }
 
 .main {
-  margin-top: 0.5em;
+  margin-top: .6em;
 
   h1 {
-    margin-top: 0.5em;
-    margin-bottom: 0.8em;
+    margin-top: 3.2em;
+    // margin-bottom: 0.5em;
     color: white;
     font-weight: 550;
     transform: scale(1.88);
   }
   h3 {
     letter-spacing: 2px;
-    // text-decoration: overline;
+    // text-decoration: overline;  
     transform: scale(0.8);
     margin-bottom: 0.3em;
     font-weight: 600;
@@ -136,7 +136,7 @@ section {
   }
   h5 {
     transform: scale(1.2);
-    margin-top: 2.6em;
+    margin-top: 1.4em;
     font-weight: 550;
     color: white;
   }
