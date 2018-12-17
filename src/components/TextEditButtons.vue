@@ -109,7 +109,7 @@ export default {
       this.formatStyle();
     },
     getText() {
-      let data = this   .text;
+      let data = this.text;
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
           return element.data.text.includes(data);
