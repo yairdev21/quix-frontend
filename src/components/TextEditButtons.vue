@@ -2,8 +2,7 @@
 <template>
   <section>
     <div v-bind:style="{ left: width, top: height }" class="edit-buttons" contenteditable="false">
-      <ul @mousedown="isMenu=false"
-      >
+      <ul @mousedown="isMenu=false">
         <li>
           <button id="bold" @click.stop="formatText('bold')" title="Bold Text"></button>
         </li>
@@ -41,13 +40,22 @@ export default {
   props: ["text", "section"],
   data() {
     return {
-      element:null,
+      element: null,
       width: 0,
       isMenu: true,
       height: 0,
       fontCurrSize: 1,
       fontColor: "black",
-      fontColorOptions: ["black","white","green","red","gray","yellow","purple","brown"],
+      fontColorOptions: [
+        "black",
+        "white",
+        "green",
+        "red",
+        "gray",
+        "yellow",
+        "purple",
+        "brown"
+      ],
       fontFamily: [
         "ShadowsIntoLight",
         "Franklin Gothic Medium",
@@ -65,10 +73,9 @@ export default {
         "Rancho",
         "Patrcik",
         "Italiano"
-
       ],
       fontNum: 0,
-      fontColorNum:0
+      fontColorNum: 0
     };
   },
   methods: {
@@ -76,7 +83,7 @@ export default {
       this.isMenu = false;
       if (data) {
         this.fontCurrSize += data;
-      } 
+      }
       this.getTextElement().filter(element => {
         element.style = {
           "font-size": `calc(${this.fontCurrSize}*4vw`,
@@ -86,41 +93,44 @@ export default {
       });
     },
     mouseClick(e) {
-      if (this.isMenu === false) return this.isMenu=true
-      this.width = `${e.pageX-120}px`;
-      this.height = `${e.pageY+20}px`;
+      if (this.isMenu === false) return (this.isMenu = true);
+      this.width = `${e.pageX - 120}px`;
+      this.height = `${e.pageY + 20}px`;
     },
     formatText(data) {
-       this.isMenu = false;
+      this.isMenu = false;
       document.execCommand(`${data}`);
       switch (data) {
-        case 'bold':
-      this.element.style['font-weight'] = 'bold'
+        case "bold":
+          this.element.style["font-weight"] = "bold";
           break;
-        case 'italic':
-      this.element.style['font-style'] = 'italic'
+        case "italic":
+          this.element.style["font-style"] = "italic";
           break;
-        case 'underline':
-      this.element.style['text-decoration'] = 'underline'
+        case "underline":
+          this.element.style["text-decoration"] = "underline";
           break;
-      
+
         default:
           break;
       }
     },
     foramtLink() {
-       this.isMenu = false;
+      this.isMenu = false;
       this.$emit("openLinkModal");
     },
     changeFontColor() {
-      this.fontColorNum++
-       if (this.fontColorNum === this.fontColorOptions.length) this.fontColorNum = 0;
-      this.fontColor=this.fontColorOptions[this.fontColorNum]
+      this.fontColorNum++;
+      if (this.fontColorNum === this.fontColorOptions.length)
+        this.fontColorNum = 0;
+      this.fontColor = this.fontColorOptions[this.fontColorNum];
+      this.element.style["color"] = this.fontColor;
       this.formatStyle();
     },
     changeFont() {
       this.fontNum++;
       if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
+            this.element.style["font-family"] = this.fontNum;
       this.formatStyle();
     },
     getTextElement() {
@@ -134,7 +144,7 @@ export default {
   },
 
   created() {
-    this.element = this.getTextElement
+    this.element = this.getTextElement;
     let data = this.text;
     EventBus.$on("link-for-edit", link => {
       let element = document.createElement("a");
@@ -152,13 +162,13 @@ export default {
         });
     }),
       window.addEventListener("mouseup", this.mouseClick);
-  },
+  }
 };
 </script>
 
 <style>
 ul {
-    display: flex;
+  display: flex;
   flex-direction: row;
   list-style: none;
 }
