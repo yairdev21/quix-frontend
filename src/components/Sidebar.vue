@@ -136,6 +136,7 @@ export default {
 
 <style lang="scss" scoped>
 .publish-btn {
+  font-family: Comfortaa !important;
   font-size: 1.4em;
   letter-spacing: 1.4px;
   font-weight: bold;
@@ -152,6 +153,10 @@ export default {
   background: #ffd04e !important;
   color: black;
 }
+.publish-btn:active {
+  color: black !important;
+  background: #fffd95 !important;
+}
 
 .card.mb-1 {
   border: none;
@@ -161,6 +166,9 @@ export default {
 }
 .btn:hover {
   background: #5bb891;
+}
+.acordion-header:active {
+  background: #62c59c !important;
 }
 .card-header {
   border: none;
@@ -196,6 +204,9 @@ p {
     padding: 2px;
   }
 }
+.sidebar-names{
+    font-family: Comfortaa !important;
+  }
 
 .card-body {
   transform: scale(0.85);

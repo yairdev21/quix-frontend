@@ -52,10 +52,8 @@ export default {
   },
   methods: {
     savePlace(place) {
-      console.log(place);
-
       this.setPlace(place);
-      console.log("place that is going", place);
+      // console.log("place that is going", place);
     },
     setPlace(place) {
       this.currentPlace = place;
@@ -71,7 +69,7 @@ export default {
       this.markers.push({ position: marker });
       this.places.push(this.currentPlace);
       this.currentPlace.marker = marker;
-      console.log("place to save", this.currentPlace);
+      // console.log("place to save", this.currentPlace);
       EventBus.$emit("updateLocation", this.currentPlace, this.sectionIdx);
       this.center = marker;
       this.currentPlace = null;
@@ -86,7 +84,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.col);
     const site = this.$store.getters.getSite;
     let place = this.col.data;
     this.showMap = !!place.address_components;
@@ -94,7 +91,6 @@ export default {
       this.savePlace(place);
       this.markers.push({ position: this.col.data.marker });
     }
-    // this.geolocate();
   }
 };
 </script>

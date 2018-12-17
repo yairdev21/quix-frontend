@@ -136,6 +136,8 @@ export default {
               title:
                 "Too many elements in one section. Please drop the element in another section!",
               confirmButtonColor: "#42b983",
+              confirmButtonClass: "button-font",
+              cancelButtonClass: "button-font",
               reverseButtons: true
             });
             this.isEditMode = true;
@@ -163,6 +165,8 @@ export default {
       this.$swal({
         title: "Delete Element?",
         icon: "warning",
+        confirmButtonClass: "button-font",
+        cancelButtonClass: "button-font",
         confirmButtonColor: "#42b983",
         reverseButtons: true,
         showCancelButton: true,
@@ -189,6 +193,8 @@ export default {
         title: "Delete section?",
         icon: "warning",
         confirmButtonColor: "#42b983",
+        confirmButtonClass: "button-font",
+        cancelButtonClass: "button-font",
         reverseButtons: true,
         showCancelButton: true,
         buttons: ["No, cancel it!", "Yes, I am sure!"],
@@ -254,6 +260,8 @@ export default {
     this.$store.dispatch({ type: "getSiteById", siteId }).then(res => {
       this.site = res;
       this.sections = res.sections;
+      console.log("site is:", this.site);
+
       if (!!this.site.user) {
         this.$store.dispatch({ type: SET_IS_NEW, isNewSite: false });
       } else {
