@@ -2,6 +2,8 @@
   <div>
     <b-modal
       id="modal-center"
+      size="lg"
+      centered
       ref="modal"
       :title="title"
       :ok-title="okTitle"
@@ -9,18 +11,22 @@
       :cancel-title="cancelTitle"
       @ok="handleOk"
       @shown="clearName"
+      header-bg-variant="success"
+      header-text-variant="light"
+      body-bg-variant="light"
+      footer-bg-variant="light"
     >
       <form v-if="showNameInput" @submit.stop.prevent="handleSubmit">
-        <b-form-input type="text" placeholder="Enter site name" v-model="name"></b-form-input>
+        <b-form-input type="text" ref="textInput" placeholder="Enter site name" v-model="name"></b-form-input>
       </form>
       <transition name="fade">
         <div v-if="!showNameInput">
           <p>
             Your Link is:
-            <a @click="openSite">{{site.url}}</a>
+            <a @click="openSite">{{url}}</a>
           </p>
           <p>
-            <social-share :url="site.url"></social-share>
+            <social-share :url="url"></social-share>
           </p>
         </div>
       </transition>
@@ -30,6 +36,7 @@
 
 <script>
 import SocialShare from "@/components/SocialShare.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["site"],
@@ -40,6 +47,7 @@ export default {
       title: "Give your site a name",
       okTitle: "Publish",
       cancelTitle: "Cancel",
+      url: null
     };
   },
   methods: {
@@ -48,7 +56,7 @@ export default {
     },
     handleOk(evt) {
       evt.preventDefault();
-        if (!this.showNameInput) return this.$refs.modal.hide()
+      if (!this.showNameInput) return this.$refs.modal.hide();
       if (!this.name) {
         alert("Please enter site name");
       } else {
@@ -81,19 +89,24 @@ export default {
     publish() {
       const siteName = this.site.name;
       const routeData = this.$router.resolve({ path: `/${siteName}` });
-      this.site.url =
+      this.url =
         window.location.protocol + "//" + window.location.host + routeData.href;
       this.showNameInput = false;
       this.cancelTitle = "Go back";
       this.title = "Share Your Site";
       this.okTitle = "Got it";
+      this.site.url = this.url;
     },
     openSite() {
-      window.open(this.site.url, "_blank");
+      window.open(this.url, "_blank");
     }
   },
   mounted() {
-    if (!this.site.url) {
+    EventBus.$on("focusInput", () => {
+      console.log('ok');
+      this.$refs.textInput.focus();
+    });
+    if (!this.url) {
       this.title = "Give your site a name";
       this.showNameInput = true;
       this.okTitle = "Publish";
@@ -109,7 +122,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 a {
   color: rgb(0, 0, 206) !important;
   font-weight: bold;

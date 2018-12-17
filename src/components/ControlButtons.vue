@@ -21,12 +21,12 @@ export default {
   methods: {
     goHome() {
       this.$swal({
-        background:"white",
+        background: "white",
         title: "Go Back?",
         text: "You will lose any unsaved changes",
         showCancelButton: true,
-        confirmButtonColor: "#1f3e63",
-        cancelButtonColor: "#3085d6",
+        confirmButtonColor: "#42b983",
+        reverseButtons: true,
         confirmButtonText: "Yes",
         animation: "false"
       }).then(result => {

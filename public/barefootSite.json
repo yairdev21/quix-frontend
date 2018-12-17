@@ -2,7 +2,8 @@
     "_id": {
         "$oid": "5c0e406b514673370892de75"
     },
-    "name": "sdf",
+    "name": "barefoot-site",
+    "url": "https://quix-site-creator.herokuapp.com/barefoot-site",
     "thumb": "http://res.cloudinary.com/bebarefoot/image/upload/v1544864456/barefoot_site.jpg.png",
     "sections": [
         {

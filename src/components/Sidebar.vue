@@ -109,12 +109,13 @@
       </div>
     </transition>
 
-    <b-btn class="publish-btn" v-b-modal.modal-center>Publish</b-btn>
+    <b-btn class="publish-btn" v-b-modal.modal-center @click="focusInput">Publish</b-btn>
   </section>
 </template>
 
 <script>
 import ControlButtons from "@/components/ControlButtons.vue";
+import { EventBus } from "@/event-bus.js";
 
 export default {
   props: ["isEditMode"],
@@ -122,6 +123,9 @@ export default {
   methods: {
     goHome() {
       this.$router.push("/");
+    },
+    focusInput() {
+      EventBus.$emit("focusInput");
     }
   },
   components: {
@@ -131,25 +135,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.publish-btn:hover {
-  cursor: pointer;
-  background: #209930 !important;
-  color: wheat;
-}
-
-.card.mb-1 {
-  border: none;
-}
-.btn {
-  background: #1f6360;
-}
-.btn:hover {
-  background: #21744a;
-}
 .publish-btn {
-  background: #28866a;
   font-size: 1.4em;
-  letter-spacing: 1.6px;
+  letter-spacing: 1.4px;
   font-weight: bold;
   width: 17.5vw;
   margin-top: 0.5em;
@@ -157,6 +145,22 @@ export default {
   bottom: 1vh;
   left: 0.3vw;
   z-index: 20;
+  background: #ebb215 !important;
+}
+.publish-btn:hover {
+  cursor: pointer;
+  background: #ffd04e !important;
+  color: black;
+}
+
+.card.mb-1 {
+  border: none;
+}
+.btn {
+  background: #2f976c;
+}
+.btn:hover {
+  background: #5bb891;
 }
 .card-header {
   border: none;

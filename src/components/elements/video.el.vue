@@ -12,7 +12,7 @@
       </button>
     </div>
     <iframe
-      width="700"
+      width="350"
       height="350"
       class="embed-container-iframe"
       :src="`https://www.youtube.com/embed/${video}`"
@@ -43,6 +43,8 @@ export default {
       this.$swal({
         title: "Enter youtube link",
         input: "text",
+        confirmButtonColor: "#42b983",
+        reverseButtons: true,
         animation: false,
         inputAttributes: {
           autocapitalize: "off"
@@ -60,7 +62,7 @@ export default {
     },
     video() {
       const video =
-        this.data.src || "https://www.youtube.com/watch?v=e7sw5xA066Y";
+        this.data.src || "https://www.youtube.com/watch?v=069G-EgvTe0";
       const videoId = video.match(
         /(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/
       );
