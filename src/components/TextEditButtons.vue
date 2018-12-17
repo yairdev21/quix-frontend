@@ -41,6 +41,7 @@ export default {
   props: ["text", "section"],
   data() {
     return {
+      element:null,
       width: 0,
       isMenu: true,
       height: 0,
@@ -76,8 +77,8 @@ export default {
       if (data) {
         this.fontCurrSize += data;
       } 
-      this.getText().filter(text => {
-        text.style = {
+      this.getTextElement().filter(element => {
+        element.style = {
           "font-size": `calc(${this.fontCurrSize}*4vw`,
           color: `${this.fontColor}`,
           "font-family": `${this.fontFamily[this.fontNum]}`
@@ -92,6 +93,20 @@ export default {
     formatText(data) {
        this.isMenu = false;
       document.execCommand(`${data}`);
+      switch (data) {
+        case 'bold':
+      this.element.style['font-weight'] = 'bold'
+          break;
+        case 'italic':
+      this.element.style['font-style'] = 'italic'
+          break;
+        case 'underline':
+      this.element.style['text-decoration'] = 'underline'
+          break;
+      
+        default:
+          break;
+      }
     },
     foramtLink() {
        this.isMenu = false;
@@ -108,7 +123,7 @@ export default {
       if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
       this.formatStyle();
     },
-    getText() {
+    getTextElement() {
       let data = this.text;
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
@@ -119,6 +134,7 @@ export default {
   },
 
   created() {
+    this.element = this.getTextElement
     let data = this.text;
     EventBus.$on("link-for-edit", link => {
       let element = document.createElement("a");
