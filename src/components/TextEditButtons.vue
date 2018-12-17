@@ -46,6 +46,7 @@ export default {
       height: 0,
       fontCurrSize: 1,
       fontColor: "black",
+      fontColorOptions: ["black","white","green","red","gray","yellow","purple","brown"],
       fontFamily: [
         "ShadowsIntoLight",
         "Franklin Gothic Medium",
@@ -65,7 +66,8 @@ export default {
         "Italiano"
 
       ],
-      fontNum: 0
+      fontNum: 0,
+      fontColorNum:0
     };
   },
   methods: {
@@ -96,8 +98,9 @@ export default {
       this.$emit("openLinkModal");
     },
     changeFontColor() {
-      if (this.fontColor === "black") this.fontColor = "white";
-      else this.fontColor = "black";
+      this.fontColorNum++
+       if (this.fontColorNum === this.fontColorOptions.length) this.fontColorNum = 0;
+      this.fontColor=this.fontColorOptions[this.fontColorNum]
       this.formatStyle();
     },
     changeFont() {
@@ -106,7 +109,7 @@ export default {
       this.formatStyle();
     },
     getText() {
-      let data = this.text;
+      let data = this   .text;
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
           return element.data.text.includes(data);
