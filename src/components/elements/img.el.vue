@@ -94,11 +94,11 @@ export default {
 }
 
 .img {
-  width: 300px;
-  height: 300px;
-  // transform: scale(0.8)
+  max-width: 300px;
+  max-height: 300px;
 }
 .img-div {
+  margin: -3vw;
   display: flex;
   flex-direction: column;
   object-fit: contain;
