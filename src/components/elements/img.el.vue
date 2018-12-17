@@ -1,5 +1,5 @@
 <template>
-  <div contenteditable="false" class="img-div" @keyup="saveText">
+  <div contenteditable="false" class="img-div">
     <div >
       <p class="text" :contenteditable="isEditMode" v-text="content"></p>
     </div>

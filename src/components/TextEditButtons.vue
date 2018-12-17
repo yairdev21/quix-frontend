@@ -100,15 +100,28 @@ export default {
     formatText(data) {
       this.isMenu = false;
       document.execCommand(`${data}`);
+      let element = this.getTextElement();
+      this.element = element[0];
+      const style = this.element.style;
       switch (data) {
         case "bold":
-          this.element.style["font-weight"] = "bold";
+          style["font-weight"] =
+            !style["font-weight"] || style["font-weight"] !== "bold"
+              ? "bold"
+              : "normal";
           break;
         case "italic":
-          this.element.style["font-style"] = "italic";
+          style["font-style"] =
+            !style["font-style"] || style["font-style"] !== "italic"
+              ? "italic"
+              : "normal";
           break;
         case "underline":
-          this.element.style["text-decoration"] = "underline";
+          style["text-decoration"] =
+            !style["text-decoration"] ||
+            style["text-decoration"] !== "underline"
+              ? "underline"
+              : "none";
           break;
 
         default:
@@ -120,6 +133,8 @@ export default {
       this.$emit("openLinkModal");
     },
     changeFontColor() {
+      let element = this.getTextElement();
+      this.element = element[0];
       this.fontColorNum++;
       if (this.fontColorNum === this.fontColorOptions.length)
         this.fontColorNum = 0;
@@ -130,7 +145,7 @@ export default {
     changeFont() {
       this.fontNum++;
       if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
-            this.element.style["font-family"] = this.fontNum;
+      this.element.style["font-family"] = this.fontNum;
       this.formatStyle();
     },
     getTextElement() {
@@ -144,7 +159,6 @@ export default {
   },
 
   created() {
-    this.element = this.getTextElement;
     let data = this.text;
     EventBus.$on("link-for-edit", link => {
       let element = document.createElement("a");
