@@ -98,6 +98,7 @@ export default {
       this.height = `${e.pageY + 20}px`;
     },
     formatText(data) {
+      
       this.isMenu = false;
       document.execCommand(`${data}`);
       let element = this.getTextElement();
@@ -150,6 +151,8 @@ export default {
     },
     getTextElement() {
       let data = this.text;
+            console.log('txt', this.text);
+
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
           return element.data.text.includes(data);
@@ -170,7 +173,7 @@ export default {
         .filter(element => {
           if (element.data.text) {
           } else return;
-        })
+        })  
         .filter(text => {
           text.data.text = this.text;
         });
