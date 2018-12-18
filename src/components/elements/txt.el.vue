@@ -1,6 +1,6 @@
 <template>
   <div @keyup="saveText">
-    <p class="text" :contenteditable="isEditMode" v-text="content"></p>
+    <p class="text" :contenteditable="isEditMode" v-html="content"></p>
   </div>
 </template>
 

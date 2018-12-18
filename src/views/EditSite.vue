@@ -147,6 +147,7 @@ export default {
       });
     },
     editSelectedText(data, id) {
+      // console.log('editSelectedText',data);
       this.textEditSection = this.getSectionById(...id);
       if (!data) return (this.isTextSelected = false);
       this.isTextSelected = true;
@@ -304,7 +305,6 @@ export default {
 .list-complete-item {
   overflow-x: hidden;
   transition: all 0.6s ease-in-out;
-  // display: inline-block;
   margin: auto 10px;
 }
 .list-complete-enter,
