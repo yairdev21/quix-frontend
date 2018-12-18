@@ -151,6 +151,7 @@ export default {
 
   created() {
     EventBus.$on("link-for-edit", link => {
+      if (link==='') return
       let currEl = this.getTextElement();
       this.element = currEl[0];
       let element = document.createElement("a");

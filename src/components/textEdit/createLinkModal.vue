@@ -2,16 +2,20 @@
   <transition name="modal-fade">
     <div @keyup.escape="close" contenteditable="false" class="modal-backdrops">
       <div class="modalski">
-        <b-button type="button" class="btn-close" @click="close">X</b-button>
         <section class="modal-body" id="modalDescription">
           <input
+          style="width: 30vw"
             autofocus
             type="text"
             @keyup.enter="close"
             v-model="getLink"
             placeholder="enter link..."
           >
-          <b-button type="button" class="btn-save" @click="close">Save</b-button>
+          <hr>
+          <div>
+          <b-btn variant="primary" @click="close">Cancel</b-btn> &nbsp &nbsp 
+          <b-btn variant="success" @click="close">Save</b-btn>
+          </div>
         </section>
       </div>
     </div>
@@ -49,8 +53,9 @@ export default {
 }
 
 .modalski {
+  padding:1.5em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-  background: rgb(73, 71, 71);
+  background: rgb(238, 228, 228);
   box-shadow: 2px 2px 20px 1px;
   overflow: hidden;
   display: flex;
@@ -63,6 +68,7 @@ export default {
 }
 
 .btn-close {
+  text-align: right;
   border: none;
   font-size: 20px;
   padding: 10px;
