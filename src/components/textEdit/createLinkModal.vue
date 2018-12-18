@@ -13,8 +13,8 @@
           >
           <hr>
           <div>
-          <b-btn variant="primary" @click="close">Cancel</b-btn> &nbsp &nbsp 
-          <b-btn variant="success" @click="close">Save</b-btn>
+          <b-btn variant="primary" @click="close" class="btn-close">Cancel</b-btn> &nbsp &nbsp 
+          <b-btn variant="success" @click="close" class="btn-close">Save</b-btn>
           </div>
         </section>
       </div>
@@ -68,19 +68,20 @@ export default {
 }
 
 .btn-close {
-  text-align: right;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
+font-family: exo;
+  // text-align: right;
+  // border: none;
+  // font-size: 20px;
+  // padding: 10px;
+  // font-weight: bold;
+  // color: #4aae9b;
+  // background: transparent;
 }
-.btn-close:hover {
-  color: #1f534a;
-  cursor: pointer;
-  background: transparent;
-}
+// .btn-close:hover {
+//   color: #1f534a;
+//   cursor: pointer;
+//   background: transparent;
+// }
 
 .btn-save {
   width: fit-content;
