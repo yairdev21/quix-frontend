@@ -35,7 +35,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 
 .image-picker {
   display: flex;

@@ -172,8 +172,7 @@ export default {
   }
 };
 </script>
-
-<style>
+<style lang="scss" scoped>
 ul {
   display: flex;
   flex-direction: row;

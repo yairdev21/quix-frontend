@@ -4,7 +4,6 @@
     <section class="main">
       <div class="container"></div>
       <div class="header-text">
-        <!-- <h5>A modern aproach to website building</h5> -->
         <h1>Build your website</h1>
         <h5>Choose a template. Make it your own . Publish</h5>
         <h1 hidden>Quix</h1>
@@ -49,10 +48,9 @@ section {
     position: relative;
     background: url("../assets/img/MainHeaderImg.jpg") center center;
     // background: linear-gradient(#42b983, #8ae7a1);
-    // background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 490px;
+    height: 580px;
 
     @media (max-width: 1100px) {
       height: 450px;
@@ -70,14 +68,14 @@ section {
       z-index: -1;
     }
     .container {
-      padding: 50px;
-      width: 800px;
-      max-width: 100%;
-      margin: 0 auto;
-      display: flex;
-      @media (max-width: 900px) {
-        padding-top: 0;
-      }
+      // padding: 50px;
+      // width: 300px;
+      // max-width: 100%;
+      // margin: 0 auto;
+      // display: flex;
+      // @media (max-width: 900px) {
+      //   padding-top: 0;
+      // }
     }
   }
 }

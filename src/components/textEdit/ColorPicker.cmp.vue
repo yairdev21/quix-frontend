@@ -24,7 +24,7 @@
               </td>
             </tr>
           </table>
-          <b-button  v-show="!isSelecting" type="button" class="btn-save" @click="setColor">Save</b-button>
+          <b-button v-show="!isSelecting" type="button" class="btn-save" @click="setColor">Save</b-button>
         </section>
       </div>
     </div>
@@ -90,11 +90,13 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 .modal-backdrops {
   z-index: 6;
   background: transparent;
-  position: fixed;
+  position: absolute;
+  margin-top: 1vw;
+  right: 0;
   align-items: center;
 }
 
