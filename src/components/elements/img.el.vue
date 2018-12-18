@@ -88,8 +88,14 @@ export default {
 }
 
 .img {
-  width: 22vw;
-  height: 20vw;
+  width: 12vw;
+  height: 10vw;
+  border-radius: 10px;
+  position: relative;
+  right: -25vw;
+  bottom: -10vw;
+  // padding-bottom: 7rem;
+  // margin-bottom: 5rem;
 }
 .img-div {
   margin: -3vw;
