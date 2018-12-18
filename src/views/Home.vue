@@ -55,14 +55,13 @@ section {
     height: 490px;
 
     @media (max-width: 1100px) {
-       height: 450px;
+      height: 450px;
     }
     @media (max-width: 900px) {
-       height: 400px;
+      height: 400px;
     }
     @media (max-width: 600px) {
-       height: 280px;
-
+      height: 280px;
     }
 
     &::before {
@@ -109,7 +108,6 @@ section {
   }
 }
 .template-section {
-  // background-image: url("../assets/img/7968.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
@@ -117,18 +115,16 @@ section {
 }
 
 .main {
-  margin-top: .6em;
+  margin-top: 0.6em;
 
   h1 {
     margin-top: 3.2em;
-    // margin-bottom: 0.5em;
     color: white;
     font-weight: 550;
     transform: scale(1.88);
   }
   h3 {
     letter-spacing: 2px;
-    // text-decoration: overline;  
     transform: scale(0.8);
     margin-bottom: 0.3em;
     font-weight: 600;
