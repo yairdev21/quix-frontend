@@ -44,25 +44,26 @@ export default {
       width: 0,
       isMenu: true,
       height: 0,
-      fontCurrSize: 1,
+      fontCurrSize: 0.3,
       fontColor: "black",
       fontColorOptions: [
         "black",
-        "white",
         "green",
         "red",
+        "white",
         "gray",
         "yellow",
         "purple",
         "brown"
       ],
       fontFamily: [
+        "Segoe UI",
+        "Exo",
         "ShadowsIntoLight",
         "Franklin Gothic Medium",
         "Gill Sans",
         "WorkSans",
         "Quicksand",
-        "Exo",
         "Tahoma",
         "Comfortaa",
         "cursive",
@@ -81,16 +82,24 @@ export default {
   methods: {
     formatStyle(data) {
       this.isMenu = false;
+      const currEl = this.getTextElement();
+      this.element = currEl[0];
+      console.log(this.element);
+      this.element.fontFamily =
+        this.element.fontFamily || this.fontFamily[0];
+      this.element.fontColor =
+        this.element.fontColor || this.fontColor[0];
+
       if (data) {
-        this.fontCurrSize += data;
+        this.element.fontSize = !this.element.fontSize
+          ? 0.7 + data
+          : (this.element.fontSize += data);
       }
-      this.getTextElement().filter(element => {
-        element.style = {
-          "font-size": `calc(${this.fontCurrSize}*4vw`,
-          color: `${this.fontColor}`,
-          "font-family": `${this.fontFamily[this.fontNum]}`
-        };
-      });
+      this.element.style = {
+        "font-size": `calc(${this.element.fontSize}*2.5vw`,
+        color: `${this.element.fontColor}`,
+        "font-family": `${this.element.fontFamily}`
+      };
     },
     mouseClick(e) {
       if (this.isMenu === false) return (this.isMenu = true);
@@ -98,36 +107,11 @@ export default {
       this.height = `${e.pageY + 20}px`;
     },
     formatText(data) {
-      
       this.isMenu = false;
       document.execCommand(`${data}`);
-      let element = this.getTextElement();
-      this.element = element[0];
-      const style = this.element.style;
-      switch (data) {
-        case "bold":
-          style["font-weight"] =
-            !style["font-weight"] || style["font-weight"] !== "bold"
-              ? "bold"
-              : "normal";
-          break;
-        case "italic":
-          style["font-style"] =
-            !style["font-style"] || style["font-style"] !== "italic"
-              ? "italic"
-              : "normal";
-          break;
-        case "underline":
-          style["text-decoration"] =
-            !style["text-decoration"] ||
-            style["text-decoration"] !== "underline"
-              ? "underline"
-              : "none";
-          break;
-
-        default:
-          break;
-      }
+      const currEl = this.getTextElement();
+      this.element = currEl[0];
+      this.element.data.text = this.text.commonAncestorContainer.parentElement.innerHTML;
     },
     foramtLink() {
       this.isMenu = false;
@@ -137,22 +121,26 @@ export default {
       let element = this.getTextElement();
       this.element = element[0];
       this.fontColorNum++;
-      if (this.fontColorNum === this.fontColorOptions.length)
-        this.fontColorNum = 0;
-      this.fontColor = this.fontColorOptions[this.fontColorNum];
-      this.element.style["color"] = this.fontColor;
+      if (this.fontColorNum === this.fontColorOptions.length) this.fontColorNum = 0;
+      this.element.fontColor = this.fontColorOptions[this.fontColorNum];
+      this.element.style["color"] = this.element.fontColor;
       this.formatStyle();
     },
     changeFont() {
+      const currEl = this.getTextElement();
+      this.element = currEl[0];
       this.fontNum++;
+      this.element.fontNum = !this.element.fontNum
+        ? this.fontNum
+        : this.fontNum++;
       if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
       this.element.style["font-family"] = this.fontNum;
+      this.element.fontFamily = this.fontFamily[this.element.fontNum];
       this.formatStyle();
     },
     getTextElement() {
-      let data = this.text;
-            console.log('txt', this.text);
-
+      const data = this.text;
+      console.log("txt", this.text);
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
           return element.data.text.includes(data);
@@ -162,20 +150,22 @@ export default {
   },
 
   created() {
-    let data = this.text;
     EventBus.$on("link-for-edit", link => {
+      let currEl = this.getTextElement();
+      this.element = currEl[0];
       let element = document.createElement("a");
       element.setAttribute("contenteditable", "false");
       element.setAttribute("target", "_blank");
       element.setAttribute("href", `https://${link}`);
       this.text.surroundContents(element);
+      this.element.data.text = this.text.commonAncestorContainer.innerHTML;
       return this.section[0].elements
         .filter(element => {
           if (element.data.text) {
           } else return;
-        })  
+        })
         .filter(text => {
-          text.data.text = this.text;
+          text.data.text === this.text;
         });
     }),
       window.addEventListener("mouseup", this.mouseClick);
