@@ -106,9 +106,8 @@ export default {
   padding: 3rem;
   padding-top: 2rem;
   overflow: hidden;
-}
-.preview-section-item-border {
   border: 2px solid transparent;
+
 }
 
 .isBorder {

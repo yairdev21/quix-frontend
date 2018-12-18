@@ -79,9 +79,8 @@ export default {
                 })
         },
         async saveSite({ commit }, { site}) {
-            console.log('site to save', site);
-            // const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';
-            const func =  'updateSite';
+            const func = (this.getters.getIsNew) ? 'saveSite' : 'updateSite';
+            // const func =  'updateSite';
             const Site = await siteService[func](site);
 
             commit({type: 'saveSite', Site});

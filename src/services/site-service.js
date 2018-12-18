@@ -44,7 +44,6 @@ async function saveSite(site) {
     const {
         data
     } = await axios.post(`${BASE_URL}/sites/`, Site);
-    console.log(data);
     return data;
 }
 
