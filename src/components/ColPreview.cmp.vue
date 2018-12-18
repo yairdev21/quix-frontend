@@ -10,13 +10,13 @@
       class="left-side"
       :style=" this.col.style || null"
       @mouseover.stop="isShowControl=true"
-      @mouseleave="(isShowControl=false)"
+      @mouseleave="isShowControl=false"
     >
       <component
         :draggable="false"
         :contenteditable="isEditMode"
         :isEditMode="isEditMode"
-        :is="this.col.type + 'Cmp'"
+        :is="col.type + 'Cmp'"
         :data="col.data"
         :col="col"
         :sectionIdx="sectionIdx"

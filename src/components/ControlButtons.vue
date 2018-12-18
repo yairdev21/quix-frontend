@@ -27,6 +27,8 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#42b983",
         reverseButtons: true,
+        confirmButtonClass: "button-font",
+        cancelButtonClass: "button-font",
         confirmButtonText: "Yes",
         animation: "false"
       }).then(result => {

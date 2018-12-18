@@ -7,13 +7,19 @@
     :style="{ height: '100%' }"
   >
     <div contenteditable="false" class="edit-video">
-      <button id="link" v-show="isVideo" @click.stop="changeLink" title="Change Link">
+      <button
+        class="link-btn"
+        id="link"
+        v-show="isVideo"
+        @click.stop="changeLink"
+        title="Change Link"
+      >
         <i class="fas fa-link"></i>
       </button>
     </div>
     <iframe
-      width="350"
-      height="350"
+      :width="width"
+      :height="width/1.2"
       class="embed-container-iframe"
       :src="`https://www.youtube.com/embed/${video}`"
       frameborder="0"
@@ -38,12 +44,14 @@ export default {
       isVideo: false
     };
   },
-  computed: {
+  methods: {
     changeLink() {
       this.$swal({
         title: "Enter youtube link",
         input: "text",
         confirmButtonColor: "#42b983",
+        confirmButtonClass: "button-font",
+        cancelButtonClass: "button-font",
         reverseButtons: true,
         animation: false,
         inputAttributes: {
@@ -59,6 +67,11 @@ export default {
       }).then(result => {
         return result;
       });
+    }
+  },
+  computed: {
+    width() {
+      return window.innerWidth >= 900 ? 350 :100;
     },
     video() {
       const video =
@@ -85,7 +98,7 @@ export default {
   max-width: 100%;
   max-height: 100%;
 }
-.edit-video i:hover {
+.edit-video .link-btn:hover {
   cursor: pointer;
   color: brown;
   background: white;

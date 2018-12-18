@@ -305,7 +305,7 @@ export default {
 <style lang="scss" scoped>
 .list-complete-item {
   overflow-x: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.6s ease-in-out;
   // display: inline-block;
   margin: auto 10px;
 }
