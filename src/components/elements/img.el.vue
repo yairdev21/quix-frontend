@@ -94,6 +94,7 @@ export default {
 .img-div {
   margin: -3vw;
   display: flex;
+  align-items: center;
   flex-direction: column;
   object-fit: contain;
 }
