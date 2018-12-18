@@ -67,7 +67,7 @@ section {
       position: absolute;
       z-index: -1;
     }
-    .container {
+    // .container {
       // padding: 50px;
       // width: 300px;
       // max-width: 100%;
@@ -76,7 +76,7 @@ section {
       // @media (max-width: 900px) {
       //   padding-top: 0;
       // }
-    }
+    // }
   }
 }
 .header-text {
