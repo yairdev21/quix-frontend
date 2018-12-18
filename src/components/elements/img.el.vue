@@ -100,7 +100,6 @@ export default {
 .img-div {
   margin: -3vw;
   display: flex;
-  flex-direction: column;
   object-fit: contain;
 }
 
