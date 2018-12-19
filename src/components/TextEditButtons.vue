@@ -158,7 +158,7 @@ export default {
       element.setAttribute("contenteditable", "false");
       element.setAttribute("target", "_blank");
       element.setAttribute("href", `https://${link}`);
-      element.setAttribute("class", "btn btn-success btn-lg");
+      element.setAttribute("class", "btn btn-success btn-lg big-font");
       this.text.surroundContents(element);
       this.element.data.text = this.text.commonAncestorContainer.innerHTML;
       return this.section[0].elements
@@ -179,6 +179,10 @@ ul {
   display: flex;
   flex-direction: row;
   list-style: none;
+}
+
+.big-font{
+  font-size:5vw !important;
 }
 
 .edit-buttons {
