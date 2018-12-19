@@ -91,9 +91,11 @@ export default {
           ? 0.7 + data
           : (this.element.fontSize += data);
       }
-      this.element.style["font-size"] = `calc(${this.element.fontSize}*2.5vw`;
-      this.element.style["color"] = `${this.element.fontColor}`;
-      this.element.style["font-family"] = `${this.element.fontFamily}`;
+      this.element.style = {
+        "font-size": `calc(${this.element.fontSize}*2.5vw`,
+        color: `${this.element.fontColor}`,
+        "font-family": `${this.element.fontFamily}`
+      };
     },
     mouseClick(e) {
       if (this.isMenu === false) return (this.isMenu = true);
