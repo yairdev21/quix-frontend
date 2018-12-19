@@ -1,6 +1,6 @@
 <template>
   <section class="hover-section" style="background: transparent">
-    <Spinner message="Uploading Image..." v-show="isLoading"/>
+    <Spinner class="spinner" message="Uploading Image..." v-show="isLoading"/>
     <color-picker class="color-picker" v-show="showColorPicker" @setColor="setColor"></color-picker>
     <div class="edit-on-hover">
       <button title="Delete" @click="$emit('delleteSection')">
@@ -89,5 +89,12 @@ export default {
   top: -30px;
   justify-content: flex-end;
   z-index: 5;
+}
+.spinner{
+  position: fixed;
+  top: 20px;
+  left:0;
+  right: 0;
+  display: block;
 }
 </style>

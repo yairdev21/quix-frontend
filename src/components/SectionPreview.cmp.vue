@@ -107,13 +107,11 @@ export default {
   padding: 3rem;
   padding-top: 2rem;
   overflow: hidden;
-  border: 2px solid transparent;
-
 }
 
+
 .isBorder {
-  resize: vertical;
-  display: block;
-  border: 2px dashed rgb(103, 113, 145);
+box-shadow: inset 0px 0px 5px 3px rgb(126, 125, 125);
+  
 }
 </style>
