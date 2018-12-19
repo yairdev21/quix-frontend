@@ -8,6 +8,7 @@
     contenteditable="false"
   >
     <edit-section-on-hover
+    :section="section"
       class="hover-control"
       @isDraggable="$emit('isDraggable')"
       @notDraggable="$emit('notDraggable')"
@@ -60,8 +61,8 @@ export default {
     changeColorEmit(sectionId) {
       this.$emit("colorChangeSectionId", sectionId);
     },
-    changeBgImgEmit(url) {
-      this.$emit("imgChangeSectionId", url, this.section._id);
+    changeBgImgEmit(sectionId) {
+      this.$emit("imgChangeSectionId", sectionId);
     },
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;

@@ -211,7 +211,7 @@ export default {
     changeSectionColor(sectionId) {
       this.sectionId = sectionId;
     },
-    changeSectionImg(url, sectionId) {
+    changeSectionImg(sectionId) {
       this.sectionId = sectionId;
     },
     getSectionById(sectionId) {

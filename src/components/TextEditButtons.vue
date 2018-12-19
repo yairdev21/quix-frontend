@@ -84,8 +84,12 @@ export default {
       this.isMenu = false;
       const currEl = this.getTextElement();
       this.element = currEl[0];
-      this.element.fontFamily = this.element.fontFamily || this.fontFamily[0];
-      this.element.fontColor = this.element.fontColor || this.fontColor[0];
+      console.log(this.element);
+      this.element.fontFamily =
+        this.element.fontFamily || this.fontFamily[0];
+      this.element.fontColor =
+        this.element.fontColor || this.fontColor[0];
+
       if (data) {
         this.element.fontSize = !this.element.fontSize
           ? 0.7 + data
@@ -117,8 +121,7 @@ export default {
       let element = this.getTextElement();
       this.element = element[0];
       this.fontColorNum++;
-      if (this.fontColorNum === this.fontColorOptions.length)
-        this.fontColorNum = 0;
+      if (this.fontColorNum === this.fontColorOptions.length) this.fontColorNum = 0;
       this.element.fontColor = this.fontColorOptions[this.fontColorNum];
       this.element.style["color"] = this.element.fontColor;
       this.formatStyle();
@@ -130,13 +133,14 @@ export default {
       this.element.fontNum = !this.element.fontNum
         ? this.fontNum
         : this.fontNum++;
-      if (this.fontNum >= this.fontFamily.length) this.fontNum = 0;
+      if (this.fontNum === this.fontFamily.length) this.fontNum = 0;
       this.element.style["font-family"] = this.fontNum;
       this.element.fontFamily = this.fontFamily[this.element.fontNum];
       this.formatStyle();
     },
     getTextElement() {
       const data = this.text;
+      console.log("txt", this.text);
       return this.section[0].elements.filter(element => {
         if (element.data.text) {
           return element.data.text.includes(data);
@@ -147,7 +151,7 @@ export default {
 
   created() {
     EventBus.$on("link-for-edit", link => {
-      if (link === "") return;
+      if (link==='') return
       let currEl = this.getTextElement();
       this.element = currEl[0];
       let element = document.createElement("a");
