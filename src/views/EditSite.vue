@@ -277,7 +277,8 @@ export default {
     EventBus.$on("changeBgImg", url => {
       let section = this.getSectionById(this.sectionId);
       section[0].style["background-image"] = `url(${url}`;
-      section[0].style["background-size"] = "cover";
+      section[0].style["background-size"] = "100% 100%";
+      section[0].style["height"] = "28vw  ";
       return section[0].style;
     });
     EventBus.$on("updateLocation", (place, sectionIdx) => {
