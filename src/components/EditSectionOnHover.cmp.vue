@@ -30,6 +30,7 @@ import { EventBus } from "@/event-bus.js";
 import cloudinaryService from "../services/cloudinary.service.js";
 import Spinner from "vue-simple-spinner";
 export default {
+  props: ["section"],
   data() {
     return { showColorPicker: false, isLoading: false };
   },
@@ -40,18 +41,21 @@ export default {
       EventBus.$emit("changeColor", color);
     },
     uploadImage() {
+      console.log(this.section._id);
+      this.$emit("changeBgImgToSection", this.section._id);
       document.getElementById("uploadImg").click();
     },
     getUrl() {
+
       this.isLoading = true;
       console.log("IS LOADING- ", this.isLoading);
       cloudinaryService(this.$refs.file).then(url => {
-        this.$emit("changeBgImgToSection", url);
         EventBus.$emit("changeBgImg", url);
         this.isLoading = false;
       });
     }
   },
+ 
   components: {
     ColorPicker,
     Spinner
