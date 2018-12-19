@@ -99,7 +99,6 @@ export default {
         "font-size": `calc(${this.element.fontSize}*2.5vw`,
         color: `${this.element.fontColor}`,
         "font-family": `${this.element.fontFamily}`
-        
       };
     },
     mouseClick(e) {
