@@ -1,4 +1,5 @@
 <template>
+<section>
   <p class="social-share">
     <facebook class="share-item" :url="url" scale="3"></facebook>
     <twitter class="share-item" :url="url" title="Check My New Website" scale="3"></twitter>
@@ -6,6 +7,8 @@
     <whats-app class="share-item" :url="url" title="Hello" scale="3"></whats-app>
     <email class="share-item" :url="url" subject="Hello" scale="3"></email>
   </p>
+  <qriously value=" https://quix-site-creator.herokuapp.com/abcdefg" :size="250" />
+</section>
 </template>
 
 <script>

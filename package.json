@@ -22,6 +22,7 @@
     "vue": "^2.5.17",
     "vue-awesome-notifications": "^2.2.9",
     "vue-drag-drop": "^1.1.4",
+    "vue-qriously": "^1.1.1",
     "vue-router": "^3.0.1",
     "vue-simple-spinner": "^1.2.8",
     "vue-socialmedia-share": "^1.0.1",

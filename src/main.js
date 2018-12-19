@@ -5,7 +5,9 @@ import VeeValidate from 'vee-validate';
 import store from './store'
 import '@/assets/scss/main.scss'
 import './registerServiceWorker'
-// var SocialSharing = require('vue-social-sharing');
+
+import VueQriously from 'vue-qriously'
+Vue.use(VueQriously)
 
 // Vue.use(SocialSharing);
 Vue.use(VeeValidate)
