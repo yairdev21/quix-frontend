@@ -50,7 +50,7 @@ section {
     // background: linear-gradient(#42b983, #8ae7a1);
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 580px;
+    height: 460px;
 
     @media (max-width: 1100px) {
       height: 450px;
@@ -116,7 +116,7 @@ section {
   margin-top: 0.6em;
 
   h1 {
-    margin-top: 3.2em;
+    margin-top: -.5em;
     color: white;
     font-weight: 550;
     transform: scale(1.88);

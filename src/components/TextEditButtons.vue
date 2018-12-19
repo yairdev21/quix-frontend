@@ -154,6 +154,7 @@ export default {
       element.setAttribute("contenteditable", "false");
       element.setAttribute("target", "_blank");
       element.setAttribute("href", `https://${link}`);
+      element.setAttribute("class", "btn btn-success");
       this.text.surroundContents(element);
       this.element.data.text = this.text.commonAncestorContainer.innerHTML;
       return this.section[0].elements

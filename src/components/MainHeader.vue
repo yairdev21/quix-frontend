@@ -39,7 +39,6 @@ export default {
 #nav {
   z-index: 100;
   font-family:Rancho;
-  text-decoration: underline;   
   position: fixed;
   font-size: 3rem;
   top: 0;

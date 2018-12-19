@@ -17,6 +17,7 @@
         <i class="fas fa-link"></i>
       </button>
     </div>
+    <h3>About Us:</h3>
     <iframe
       :width="width"
       :height="width/1.2"
@@ -71,7 +72,7 @@ export default {
   },
   computed: {
     width() {
-      return window.innerWidth >= 900 ? 350 :100;
+      return window.innerWidth >= 900 ? 350 : 100;
     },
     video() {
       const video =
@@ -97,6 +98,7 @@ export default {
   overflow: hidden;
   max-width: 100%;
   max-height: 100%;
+  border-left: 2px solid gray
 }
 .edit-video .link-btn:hover {
   cursor: pointer;
