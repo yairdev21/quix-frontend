@@ -108,10 +108,8 @@ export default {
   padding-top: 2rem;
   overflow: hidden;
 }
-
-
 .isBorder {
-box-shadow: inset 0px 0px 5px 3px rgb(126, 125, 125);
-  
+  outline: 2px dashed rgb(103, 113, 145);
+  outline-offset: -3px;
 }
 </style>
