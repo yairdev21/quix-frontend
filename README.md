@@ -1,29 +1,12 @@
-# quix
+# quix - sites builder
+Creat your own site simply and quickly
 
-## Project setup
+## Link
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+https://quix-site-creator.herokuapp.com
 ```
 
-### Compiles and minifies for production
+### description:
 ```
-npm run build
+Vue based web single page application that let you create a great site in a few moments
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
