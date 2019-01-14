@@ -92,7 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 .preview-section-list {
-  margin: 0 3rem;
+  // margin: 0 3rem;
 display: block;
 }
 .add-section {

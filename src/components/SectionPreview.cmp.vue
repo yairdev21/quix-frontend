@@ -104,7 +104,7 @@ export default {
 <style lang="scss" scoped>
 .preview-section-item {
   background: white;
-  padding: 3rem;
+  // padding: 3rem;
   padding-top: 2rem;
   overflow: hidden;
 }
